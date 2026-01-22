@@ -6,6 +6,12 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "com.dbrizov.naughtyattributes": {
+      "version": "file:NaughtyAttributes-2.1.4",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "file:unity-toolbar-extender-1.4.3",
       "depth": 0,

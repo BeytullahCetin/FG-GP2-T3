@@ -1,8 +1,11 @@
 ﻿<Solution>
+  <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="UniTask.csproj" />
   <Project Path="UniTask.Linq.csproj" />
+  <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Editor.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
+  <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
