@@ -12,5 +12,6 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.EditorResources.csproj" />
+  <Project Path="ToolbarExtender.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj" />
 </Solution>
