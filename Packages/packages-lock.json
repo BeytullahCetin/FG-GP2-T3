@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.antonysze.custom-play-button": {
+      "version": "file:unity-custom-play-button-1.0",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "file:unity-toolbar-extender-1.4.3",
       "depth": 0,
