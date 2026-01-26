@@ -5,13 +5,13 @@
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Editor.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="CustomPlayButton.Editor.csproj" />
   <Project Path="DOTweenPro.EditorScripts.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="DOTweenPro.Scripts.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
