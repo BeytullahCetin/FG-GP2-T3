@@ -1,66 +1,69 @@
 using UnityEngine;
 using System;
 
-[Serializable]
-public struct HexCoordinates
+namespace FG_GP2_T3
 {
-    [SerializeField]
-    private int q, r;
-
-    public int Q => q;
-    public int R => r;
-    public int S => -q - r;
-
-    public int X => Q;
-    public int Y => R;
-    public int Z => S;
-
-    public HexCoordinates(int q, int r)
+    [Serializable]
+    public struct HexCoordinates
     {
-        this.q = q;
-        this.r = r;
-    }
+        [SerializeField]
+        private int q, r;
 
-    public static HexCoordinates FromWorldPosition(Vector3 position)
-    {
-        float qFactor = (2f / 3f * position.x) / GameConstants.HexGrid.OUTER_RADIUS;
-        float rFactor = (-1f / 3f * position.x + Mathf.Sqrt(3f) / 3f * -position.z) / GameConstants.HexGrid.OUTER_RADIUS;
+        public int Q => q;
+        public int R => r;
+        public int S => -q - r;
 
-        return RoundToHex(qFactor, rFactor);
-    }
+        public int X => Q;
+        public int Y => R;
+        public int Z => S;
 
-    public static Vector3 ToWorldPosition(HexCoordinates coordinates)
-    {
-        float xPosition = coordinates.Q * (GameConstants.HexGrid.OUTER_RADIUS * 1.5f);
-        float zPosition = -(coordinates.R + coordinates.Q * 0.5f) * (GameConstants.HexGrid.OUTER_RADIUS * Mathf.Sqrt(3f));
-        
-        return new Vector3(xPosition, 0f, zPosition);
-    }
-
-    private static HexCoordinates RoundToHex(float qFloat, float rFloat)
-    {
-        float sFloat = -qFloat - rFloat;
-
-        int iQ = Mathf.RoundToInt(qFloat);
-        int iR = Mathf.RoundToInt(rFloat);
-        int iS = Mathf.RoundToInt(sFloat);
-
-        float deltaQ = Mathf.Abs(qFloat - iQ);
-        float deltaR = Mathf.Abs(rFloat - iR);
-        float deltaS = Mathf.Abs(sFloat - iS);
-
-        if (deltaQ > deltaR && deltaQ > deltaS)
+        public HexCoordinates(int q, int r)
         {
-            iQ = -iR - iS;
-        }
-        else if (deltaR > deltaS)
-        {
-            iR = -iQ - iS;
+            this.q = q;
+            this.r = r;
         }
 
-        return new HexCoordinates(iQ, iR);
-    }
+        public static HexCoordinates FromWorldPosition(Vector3 position)
+        {
+            float qFactor = (2f / 3f * position.x) / GameConstants.HexGrid.OUTER_RADIUS;
+            float rFactor = (-1f / 3f * position.x + Mathf.Sqrt(3f) / 3f * -position.z) / GameConstants.HexGrid.OUTER_RADIUS;
 
-    public override string ToString() => $"({Q}, {R}, {S})";
-    public string ToStringOnSeparateLines() => $"{Q}\n{R}\n{S}";
+            return RoundToHex(qFactor, rFactor);
+        }
+
+        public static Vector3 ToWorldPosition(HexCoordinates coordinates)
+        {
+            float xPosition = coordinates.Q * (GameConstants.HexGrid.OUTER_RADIUS * 1.5f);
+            float zPosition = -(coordinates.R + coordinates.Q * 0.5f) * (GameConstants.HexGrid.OUTER_RADIUS * Mathf.Sqrt(3f));
+            
+            return new Vector3(xPosition, 0f, zPosition);
+        }
+
+        private static HexCoordinates RoundToHex(float qFloat, float rFloat)
+        {
+            float sFloat = -qFloat - rFloat;
+
+            int iQ = Mathf.RoundToInt(qFloat);
+            int iR = Mathf.RoundToInt(rFloat);
+            int iS = Mathf.RoundToInt(sFloat);
+
+            float deltaQ = Mathf.Abs(qFloat - iQ);
+            float deltaR = Mathf.Abs(rFloat - iR);
+            float deltaS = Mathf.Abs(sFloat - iS);
+
+            if (deltaQ > deltaR && deltaQ > deltaS)
+            {
+                iQ = -iR - iS;
+            }
+            else if (deltaR > deltaS)
+            {
+                iR = -iQ - iS;
+            }
+
+            return new HexCoordinates(iQ, iR);
+        }
+
+        public override string ToString() => $"({Q}, {R}, {S})";
+        public string ToStringOnSeparateLines() => $"{Q}\n{R}\n{S}";
+    }
 }
