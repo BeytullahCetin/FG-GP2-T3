@@ -5,21 +5,21 @@ namespace FG_GP2_T3
 {
 	public class HexGridCamera : MonoBehaviour
 	{
-		[SerializeField] Vector2 _stickZoomRange;
-		[SerializeField] Vector2 _swivelZoomRange;
-		[SerializeField] float _zoomDampingFactor;
-		[SerializeField] Vector2 _moveSpeedRange;
-		[SerializeField] float _moveDampingFactor;
-		[SerializeField] float _rotationSpeed;
-		[SerializeField] float _rotationDampingFactor;
+		[SerializeField] private Vector2 _stickZoomRange;
+		[SerializeField] private Vector2 _swivelZoomRange;
+		[SerializeField] private float _zoomDampingFactor;
+		[SerializeField] private Vector2 _moveSpeedRange;
+		[SerializeField] private float _moveDampingFactor;
+		[SerializeField] private float _rotationSpeed;
+		[SerializeField] private float _rotationDampingFactor;
 
-		Transform _swivel, _stick;
-		float _rotationAngle;
-		float _pendingZoom, _pendingRotation;
-		Vector2 _pendingMove;
-		float _zoom = 1f;
+		private Transform _swivel, _stick;
+		private float _rotationAngle;
+		private float _pendingZoom, _pendingRotation;
+		private Vector2 _pendingMove;
+		private float _zoom = 1f;
 
-		void Awake() 
+		private void Awake() 
 		{
 			_swivel = transform.GetChild(0);
 			_stick = _swivel.GetChild(0);
@@ -29,7 +29,7 @@ namespace FG_GP2_T3
 			AdjustRotation(0f);
 		}
 
-		void Update() 
+		private void Update() 
 		{
 			float zoomDelta = InputManager.Instance.Controls.MapEditor.Zoom.ReadValue<float>();
 			if (zoomDelta != 0f || _pendingZoom != 0f)
@@ -44,7 +44,7 @@ namespace FG_GP2_T3
 				AdjustPosition(moveDelta.x, moveDelta.y);
 		}
 		
-		void AdjustZoom(float delta)
+		private void AdjustZoom(float delta)
 		{
 			_pendingZoom = Mathf.Clamp(_pendingZoom + delta * Time.deltaTime, -1f, 1f);
 			_zoom = Mathf.Clamp01(_zoom + _pendingZoom);
@@ -58,7 +58,7 @@ namespace FG_GP2_T3
 			_pendingZoom = Mathf.Lerp(_pendingZoom, 0f, Time.deltaTime * _zoomDampingFactor);
 		}
 
-		void AdjustPosition(float xDelta, float zDelta)
+		private void AdjustPosition(float xDelta, float zDelta)
 		{
 			_pendingMove += new Vector2(xDelta, zDelta) * Time.deltaTime;
 			_pendingMove = Vector2.ClampMagnitude(_pendingMove, 1f);
@@ -69,7 +69,7 @@ namespace FG_GP2_T3
 			_pendingMove = Vector2.Lerp(_pendingMove, Vector2.zero, Time.deltaTime * _moveDampingFactor);
 		}
 
-		Vector3 ClampPosition(Vector3 position) 
+		private Vector3 ClampPosition(Vector3 position) 
 		{
 			float xMax = (GameConstants.HexGrid.GRID_RADIUS - 1f) * (2f * GameConstants.HexGrid.INNER_RADIUS);
 			position.x = Mathf.Clamp(position.x, -xMax, xMax);
@@ -80,7 +80,7 @@ namespace FG_GP2_T3
 			return position;
 		}
 
-		void AdjustRotation(float delta) 
+		private void AdjustRotation(float delta) 
 		{
 			_pendingRotation = Mathf.Clamp(_pendingRotation + delta * Time.deltaTime, -1f, 1f);
 			_rotationAngle += _pendingRotation * _rotationSpeed * Mathf.PI * Time.deltaTime;

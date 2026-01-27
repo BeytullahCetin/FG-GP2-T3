@@ -1,15 +1,17 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace FG_GP2_T3
 {
     public class HexCell : MonoBehaviour
     {
-        [SerializeField] GameObject _outerBorder;
-        [SerializeField] GameObject _innerBorder;
+        [SerializeField] private GameObject _outerBorder;
+        [SerializeField] private GameObject _innerBorder;
 
         public HexCoordinates Coordinates;
         public GameObject Tile;
+        public HexTile TileData;
         public Color OuterColor
         {
             set
@@ -32,9 +34,10 @@ namespace FG_GP2_T3
                 _innerMeshRenderer.SetPropertyBlock(_propertyBlock);
             }
         }
+        public bool IsCore { get; private set; }
+        public void SetAsCore(bool isCore = true) => IsCore = isCore;
 
         private HexCell[] _neighbors = new HexCell[6];
-        private HexTile _tileData;
         private MeshRenderer _outerMeshRenderer;
         private MeshRenderer _innerMeshRenderer;
         private MaterialPropertyBlock _propertyBlock;
@@ -53,6 +56,8 @@ namespace FG_GP2_T3
 
         public bool TrySetTile(HexTile tile, float rotation = 0f) //Set to null to remove the tile
         {
+            TileData = tile;
+
             if(tile == null)
             {
                 if(Tile != null)
