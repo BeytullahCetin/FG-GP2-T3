@@ -20,7 +20,7 @@ namespace FG_GP2_T3
             Instance = this;
         }
 
-        public List<HexTile> GetRandomValidTiles(int amount, int withRoads = -1)
+        public List<HexTile> GetRandomValidTiles(int amount, int withRoads = -1) //withRoads == -1 means any number of roads
         {
             List<HexTile> availableTiles = new List<HexTile>(_hexTiles);
 

@@ -22,7 +22,10 @@ namespace FG_GP2_T3
 		void EditCell(HexCell cell)
 		{
 			List<HexTile> tiles = HexManager.Instance.GetRandomValidTiles(1);
-			cell.TrySetTile(tiles[0]);
+			if(cell.Tile != null)
+				cell.TrySetTile(null);
+			else
+				cell.TrySetTile(tiles[0]);
 		}
 	}
 }

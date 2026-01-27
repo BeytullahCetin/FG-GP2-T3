@@ -51,7 +51,7 @@ namespace FG_GP2_T3
             _propertyBlock = new MaterialPropertyBlock();
         }
 
-        public bool TrySetTile(HexTile tile, float rotation = 0f)
+        public bool TrySetTile(HexTile tile, float rotation = 0f) //Set to null to remove the tile
         {
             if(tile == null)
             {
