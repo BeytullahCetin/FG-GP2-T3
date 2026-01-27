@@ -1,37 +1,38 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-[System.Serializable]
-public class HexRoadSet
+namespace FG_GP2_T3
 {
-    public bool[] Roads = new bool[6];
-
-    public void SetRandom(int roadLimit)
+    [CreateAssetMenu(fileName = "HexTile", menuName = "Scriptable Objects/HexTile")]
+    public class HexTile : ScriptableObject
     {
-        for (int i = 0; i < 6; i++)
-            Roads[i] = false;
+        public GameObject TilePrefab;
+        public HexRoadSet Roads;
+        public bool HasRoad(HexDirection direction) => Roads.HasRoad(direction);
+        public int RoadsCount => Roads.CountRoads();
+    }
 
-        int _actualLimit = Mathf.Clamp(roadLimit, 0, 6);
-        if (_actualLimit == 0)
-            return;
+    [System.Serializable]
+    public class HexRoadSet //Made mostly for the property drawer
+    {
+        [SerializeField] private bool[] _roads = new bool[6];
 
-        List<int> _availableIndices = new List<int> { 0, 1, 2, 3, 4, 5 };
-
-        for (int i = 0; i < _actualLimit; i++)
+        public bool this[int i]
         {
-            int _randomIndex = Random.Range(0, _availableIndices.Count);
-            int _chosenHexIndex = _availableIndices[_randomIndex];
+            get => _roads[i];
+            set => _roads[i] = value;
+        }
 
-            Roads[_chosenHexIndex] = true;
-            _availableIndices.RemoveAt(_randomIndex);
+        public bool HasRoad(HexDirection dir) => _roads[(int)dir];
+
+        public int CountRoads()
+        {
+            int count = 0;
+            for(int i = 0; i < 6; i++)
+                if(_roads[i]) count++;
+
+            return count;
         }
     }
-}
-
-[CreateAssetMenu(fileName = "HexTile", menuName = "Scriptable Objects/HexTile")]
-public class HexTile : ScriptableObject
-{
-    public GameObject TilePrefab;
-    public HexRoadSet Roads;
-    public bool HasRoad(HexDirection direction) => Roads.Roads[(int)direction];
 }

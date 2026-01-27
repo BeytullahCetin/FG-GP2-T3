@@ -1,50 +1,86 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HexCell : MonoBehaviour
+namespace FG_GP2_T3
 {
-    [SerializeField] GameObject _outerBorder;
-    [SerializeField] GameObject _innerBorder;
-
-    public HexCoordinates Coordinates;
-    public HexTile Tile = null;
-    public HexCell[] _neighbors = new HexCell[6];
-    public Color OuterColor
+    public class HexCell : MonoBehaviour
     {
-        set
+        [SerializeField] GameObject _outerBorder;
+        [SerializeField] GameObject _innerBorder;
+
+        public HexCoordinates Coordinates;
+        public GameObject Tile;
+        public Color OuterColor
         {
-            _outerMeshRenderer.GetPropertyBlock(_outerPropertyBlock);
-            _outerPropertyBlock.SetColor(_colorProperty, value);
-            _outerMeshRenderer.SetPropertyBlock(_outerPropertyBlock);
+            set
+            {
+                if (_outerMeshRenderer == null) Initialize();
+
+                _outerMeshRenderer.GetPropertyBlock(_propertyBlock);
+                _propertyBlock.SetColor(_colorProperty, value);
+                _outerMeshRenderer.SetPropertyBlock(_propertyBlock);
+            }
         }
-    }
-    public Color InnerColor
-    {
-        set
+        public Color InnerColor
         {
-            _innerMeshRenderer.GetPropertyBlock(_innerPropertyBlock);
-            _innerPropertyBlock.SetColor(_colorProperty, value);
-            _innerMeshRenderer.SetPropertyBlock(_innerPropertyBlock);
+            set
+            {
+                if (_innerMeshRenderer == null) Initialize();
+
+                _innerMeshRenderer.GetPropertyBlock(_propertyBlock);
+                _propertyBlock.SetColor(_colorProperty, value);
+                _innerMeshRenderer.SetPropertyBlock(_propertyBlock);
+            }
         }
-    }
 
-    private MeshRenderer _outerMeshRenderer;
-    private MeshRenderer _innerMeshRenderer;
-    private MaterialPropertyBlock _outerPropertyBlock;
-    private MaterialPropertyBlock _innerPropertyBlock;
-    private static readonly int _colorProperty = Shader.PropertyToID("_Color");
+        private HexCell[] _neighbors = new HexCell[6];
+        private HexTile _tileData;
+        private MeshRenderer _outerMeshRenderer;
+        private MeshRenderer _innerMeshRenderer;
+        private MaterialPropertyBlock _propertyBlock;
+        private static readonly int _colorProperty = Shader.PropertyToID("_Color");
 
-    private void Awake()
-    {
-        _outerMeshRenderer = _outerBorder.GetComponent<MeshRenderer>();
-        _innerMeshRenderer = _innerBorder.GetComponent<MeshRenderer>();
-        _outerPropertyBlock = new MaterialPropertyBlock();
-        _innerPropertyBlock = new MaterialPropertyBlock();
-    }
+        private void Awake() => Initialize();
 
-    public void SetNeighbor(HexDirection direction, HexCell cell) 
-    {
-        _neighbors[(int)direction] = cell;
-        cell._neighbors[(int)direction.Opposite()] = this;
+        private void Initialize()
+        {
+            if (_propertyBlock != null) return;
+
+            _outerMeshRenderer = _outerBorder.GetComponent<MeshRenderer>();
+            _innerMeshRenderer = _innerBorder.GetComponent<MeshRenderer>();
+            _propertyBlock = new MaterialPropertyBlock();
+        }
+
+        public bool TrySetTile(HexTile tile, float rotation = 0f)
+        {
+            if(tile == null)
+            {
+                if(Tile != null)
+                {
+                    Destroy(Tile);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                if (Tile == null)
+                {
+                    Tile = Instantiate(tile.TilePrefab);
+                    Tile.transform.SetParent(transform, false);
+                    transform.Rotate(0f, rotation, 0f);
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public void SetNeighbor(HexDirection direction, HexCell cell) 
+        {
+            _neighbors[(int)direction] = cell;
+            cell._neighbors[(int)direction.Opposite()] = this;
+        }
+
+        public HexCell GetNeighbor(HexDirection direction) => _neighbors[(int)direction];
     }
-    public HexCell GetNeighbor(HexDirection direction) => _neighbors[(int)direction];
 }
