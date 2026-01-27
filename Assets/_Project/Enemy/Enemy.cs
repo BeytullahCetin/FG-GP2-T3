@@ -7,20 +7,21 @@ namespace FG_GP2_T3
 {
 	public class Enemy : MonoBehaviour
 	{
-		private Health health;
-		private NavMeshAgent agent;
-
-		[SerializeField] private Transform destination;
-		[SerializeField] private POE poe;
+		private Health _health;
+		private NavMeshAgent _agent;
+		private POE _poe;
 
 		private void Awake()
 		{
-			agent = GetComponent<NavMeshAgent>();
-			health = GetComponent<Health>();
+			_agent = GetComponent<NavMeshAgent>();
+			_health = GetComponent<Health>();
+			_poe = EnemyManager.Instance.Poe;
+
+			StartEnemyBehaviour().Forget();
 		}
 
 		[Button]
-		private async UniTask StartEnemyBehaviour()
+		public async UniTaskVoid StartEnemyBehaviour()
 		{
 			SetDestination();
 			// Wait for navmesh updates itself.
@@ -31,9 +32,9 @@ namespace FG_GP2_T3
 
 		private async UniTask WaitUntilReachDestination()
 		{
-			while (agent.remainingDistance >= agent.stoppingDistance)
+			while (_agent.remainingDistance >= _agent.stoppingDistance)
 			{
-				Debug.Log(agent.remainingDistance);
+				Debug.Log(_agent.remainingDistance);
 				await UniTask.WaitForSeconds(1f);
 			}
 
@@ -46,19 +47,19 @@ namespace FG_GP2_T3
 
 			while (true)
 			{
-				if (health.IsAlive == false || poe.Health.IsAlive == false)
+				if (_health.IsAlive == false || _poe.Health.IsAlive == false)
 					break;
 
-				poe.Health.TakeDamage(20);
+				_poe.Health.TakeDamage(20);
 				await UniTask.WaitForSeconds(1f);
 			}
 
 			Debug.Log("Attack Ended!");
 		}
 
-		private void SetDestination()
+		public void SetDestination()
 		{
-			agent.SetDestination(destination.position);
+			_agent.SetDestination(_poe.transform.position);
 			Debug.Log("Destination set");
 		}
 	}
