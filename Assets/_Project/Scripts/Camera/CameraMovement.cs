@@ -5,6 +5,8 @@ namespace FG_GP2_T3
 {
     public class CameraMovement : MonoBehaviour
     {
+        [Header("1080x1920 = 1.75")]
+        [Header("vivo NEX 3 5G = 0.89")]
         [Header("Speed Variables")]
         [SerializeField] private float moveSpeed = 1f;
 
