@@ -12,20 +12,6 @@
       "source": "embedded",
       "dependencies": {}
     },
-    "com.febucci.custom-hierarchy": {
-      "version": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "845f7521c4695bc30d9efe0c3168b616cc51454a"
-    },
-    "com.fmod.fmod-for-unity-2-03": {
-      "version": "2.3.11",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.marijnzwemmer.unity-toolbar-extender": {
       "version": "file:unity-toolbar-extender-1.4.3",
       "depth": 0,

@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "com.febucci.custom-hierarchy": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
-    "com.fmod.fmod-for-unity-2-03": "2.3.11",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.collab-proxy": "2.11.2",
     "com.unity.device-simulator.devices": "1.0.1",
