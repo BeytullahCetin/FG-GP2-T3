@@ -7,52 +7,59 @@ namespace FG_GP2_T3
 {
 	public class Enemy : MonoBehaviour
 	{
-		Health health;
-		NavMeshAgent agent;
+		private Health health;
+		private NavMeshAgent agent;
 
-		[SerializeField] Transform destination;
-		[SerializeField] Health towerHealth;
+		[SerializeField] private Transform destination;
+		[SerializeField] private POE poe;
 
-		void Awake()
+		private void Awake()
 		{
 			agent = GetComponent<NavMeshAgent>();
 			health = GetComponent<Health>();
-
-			health.OnDead += TestFunction;
 		}
 
-		void TestFunction()
+		[Button]
+		private async UniTask StartEnemyBehaviour()
 		{
-			Debug.Log("OnDead Test");
-		}
-
-		async UniTaskVoid DebugRemainingDistance()
-		{
+			SetDestination();
+			// Wait for navmesh updates itself.
 			await UniTask.WaitForEndOfFrame();
-			while (agent.remainingDistance > agent.stoppingDistance)
+			await WaitUntilReachDestination();
+			await StartAttack();
+		}
+
+		private async UniTask WaitUntilReachDestination()
+		{
+			while (agent.remainingDistance >= agent.stoppingDistance)
 			{
 				Debug.Log(agent.remainingDistance);
 				await UniTask.WaitForSeconds(1f);
 			}
 
 			Debug.Log("Agent is close enough!");
-			StartAttack().Forget();
 		}
 
-		async UniTaskVoid StartAttack()
+		private async UniTask StartAttack()
 		{
-			while (health.IsAlive == true && towerHealth.IsAlive == true)
+			Debug.Log("Attack Started!");
+
+			while (true)
 			{
-				towerHealth.TakeDamage(5);
+				if (health.IsAlive == false || poe.Health.IsAlive == false)
+					break;
+
+				poe.Health.TakeDamage(20);
 				await UniTask.WaitForSeconds(1f);
 			}
+
+			Debug.Log("Attack Ended!");
 		}
 
-		[Button]
-		void SetDestination()
+		private void SetDestination()
 		{
 			agent.SetDestination(destination.position);
-			DebugRemainingDistance().Forget();
+			Debug.Log("Destination set");
 		}
 	}
 }
