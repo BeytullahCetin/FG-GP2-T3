@@ -15,14 +15,13 @@ namespace FG_GP2_T3
         
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (Instance != null)
             {
                 Destroy(gameObject);
                 return;
             }
             
             Instance = this;
-            DontDestroyOnLoad(this);
         }
 
         private void Start()
