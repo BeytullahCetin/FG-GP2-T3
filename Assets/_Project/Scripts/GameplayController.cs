@@ -69,6 +69,11 @@ namespace FG_GP2_T3
             {
                 TowerPlacementUpdate();
             }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
 
         private void HandleInput()
