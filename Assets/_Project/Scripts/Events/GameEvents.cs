@@ -18,7 +18,7 @@ namespace FG_GP2_T3
         public readonly HexCell Cell;
         public readonly CellEventType ActionType;
 
-        public CellActionEventArgs(HexCell cell, CellEventType actionType, int value = 0)
+        public CellActionEventArgs(HexCell cell, CellEventType actionType)
         {
             Cell = cell;
             ActionType = actionType;
