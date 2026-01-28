@@ -1,14 +1,25 @@
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace FG_GP2_T3
 {
+    public enum GameplayState
+    {
+        TilePlacement,
+        TowerPlacement,
+        EnemyAttack
+    }
+
     public class GameplayController : MonoBehaviour
     {
         [SerializeField] GameplayUI gameplayUI;
+        private GameplayState currentGameState;
+
+        [Header("Tile Placement")]
         [Expandable][SerializeField] private List<HexTile> _tiles = new List<HexTile>();
         [ReadOnly][SerializeField] private HexTile _currentSelectedTile;
 
@@ -18,15 +29,28 @@ namespace FG_GP2_T3
         [SerializeField] private List<float> validTileRotationsForSelectedHexTile;
         private int currentValidRotationIndex = 0;
 
+        [Header("Tower Placement")]
+        [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
+        [SerializeField] private TowerData selectedTowerData;
+        [SerializeField] private TowerBase previewTower;
+
         void Awake()
         {
+            currentGameState = GameplayState.TilePlacement;
             Initialize();
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
-                HandleInput();
+            if (currentGameState == GameplayState.TilePlacement)
+            {
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+                    HandleInput();
+            }
+            else if (currentGameState == GameplayState.TowerPlacement)
+            {
+                TowerPlacementUpdate();
+            }
         }
 
         private void HandleInput()
@@ -40,6 +64,11 @@ namespace FG_GP2_T3
                     PreviewTileOnTheSelectedCell();
                 }
             }
+        }
+
+        private void TowerPlacementUpdate()
+        {
+
         }
 
         private void Initialize()
@@ -66,8 +95,23 @@ namespace FG_GP2_T3
 
             gameplayUI.BtnRotate.onClick.AddListener(() => RotatePreviewTile());
             gameplayUI.BtnConfirmRotation.onClick.AddListener(() => SetTile());
+
+            gameplayUI.TilePlacementPanel.SetActive(false);
+            gameplayUI.TowerPlacementPanel.SetActive(true);
             gameplayUI.BtnNextRound.gameObject.SetActive(false);
             gameplayUI.RotationPopup.SetActive(false);
+
+            for (int i = 0; i < towerDatas.Count; i++)
+            {
+                TowerData towerData = towerDatas[i];
+                SelectionButton towerButton = gameplayUI.TowerButtons[i];
+                towerButton.Title.SetText(towerData.TowerName);
+
+                towerButton.Button.onClick.AddListener(() =>
+                {
+                    selectedTowerData = towerData;
+                });
+            }
         }
 
         public void SelectHexTile(HexTile hexTile)
@@ -124,11 +168,14 @@ namespace FG_GP2_T3
             {
                 gameplayUI.RotationPopup.SetActive(false);
                 gameplayUI.BtnNextRound.gameObject.SetActive(true);
+                gameplayUI.TilePlacementPanel.SetActive(false);
+                gameplayUI.TowerPlacementPanel.SetActive(true);
                 NavmeshManager.Instance.RebakeNavmesh();
 
                 Destroy(previewTile);
                 previewTile = null;
                 _currentSelectedTile = null;
+                currentGameState = GameplayState.TowerPlacement;
             }
         }
     }

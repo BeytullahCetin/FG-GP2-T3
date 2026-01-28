@@ -10,6 +10,8 @@ namespace FG_GP2_T3
         [SerializeField] private GameObject _topBar;
         [SerializeField] private GameObject _bottomBar;
         [SerializeField] private GameObject _rotationPopup;
+        [SerializeField] private GameObject _tilePlacementPanel;
+        [SerializeField] private GameObject _towerPlacementPanel;
 
         [SerializeField] private FormatableText _txtPhase;
         [SerializeField] private Button _btnNextRound;
@@ -27,6 +29,9 @@ namespace FG_GP2_T3
 
         public List<SelectionButton> TileButtons => _tileButtons;
         public List<SelectionButton> TowerButtons => _towerButtons;
+
+        public GameObject TilePlacementPanel => _tilePlacementPanel;
+        public GameObject TowerPlacementPanel => _towerPlacementPanel;
 
         public Button BtnCancelRotation => _btnCancelRotation;
         public Button BtnRotate => _btnRotate;
