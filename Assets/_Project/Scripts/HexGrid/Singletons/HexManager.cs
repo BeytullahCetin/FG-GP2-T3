@@ -13,6 +13,7 @@ namespace FG_GP2_T3
         [SerializeField, Expandable] private List<HexTile> _hexTiles = new();
 
         private HashSet<(HexCell, HexDirection)> _availableConnections = new();
+        //TODO Optimize to not calculate many times at runtime
         private HashSet<(HexCell, HexDirection)> _availableConnectionsWithoutCore => new HashSet<(HexCell, HexDirection)>(
             _availableConnections.Where(connection => !HexCore.CoreCoordinates.Contains(connection.Item1.Coordinates))
         );
@@ -57,15 +58,104 @@ namespace FG_GP2_T3
 
         private bool IsTileValid(HexTile tile, HexCell cell)
         {
+            bool isCoreAdjacent = false;
+            int roadsToTiles = 0;
+            int roadsToCore = 0;
+
             //Check if all sides match with neighbors in terms of road connections
             foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
             {
                 HexCell neighbor = cell.GetNeighbor(direction);
-                if(neighbor != null && !neighbor.IsCore && neighbor.TileData != null && neighbor.TileData.HasRoad(direction.Opposite()) != tile.HasRoad(direction))
+
+                //Road going off the map
+                if(neighbor == null && tile.HasRoad(direction))
+                    return false;
+
+                //Road not connecting to another road if there's a tile adjacent
+                if(neighbor != null)
+                {
+                    if(neighbor.IsCore)
+                    {
+                        if(tile.HasRoad(direction)) 
+                            roadsToCore++;
+
+                        isCoreAdjacent = true;
+                    }
+                    else if(neighbor.TileData != null)
+                    {
+                        if(neighbor.TileData.HasRoad(direction.Opposite()) != tile.HasRoad(direction))
+                            return false;
+
+                        if(tile.HasRoad(direction))
+                            roadsToTiles++;
+                    }
+                }
+            }
+
+            if(isCoreAdjacent)
+            {
+                //Road connecting with all ends to the core creating a closed circuit
+                if(roadsToCore == tile.RoadsCount)
+                    return false;
+
+                //Road not connected to anything
+                if(roadsToCore == 0 && roadsToTiles == 0)
+                    return false;
+            }
+
+            if(IsCreatingClosedCircuit(tile, cell))
+                return false;
+
+            return true;
+        }
+
+        private bool IsCreatingClosedCircuit(HexTile tile, HexCell cell)
+        {
+            HashSet<HexCell> visitedCells = new HashSet<HexCell>{ cell };
+
+            foreach (HexDirection direction in Enum.GetValues(typeof(HexDirection)))
+            {
+                if (!tile.HasRoad(direction))
+                    continue;
+
+                HexCell neighbor = cell.GetNeighbor(direction);
+                if (IsBranchOpen(neighbor, direction.Opposite(), visitedCells))
                     return false;
             }
 
             return true;
+        }
+
+        private bool IsBranchOpen(HexCell currentCell, HexDirection incomingDirection, HashSet<HexCell> visitedCells)
+        {
+            if (currentCell == null) //Reached border of the map
+                return false;
+
+            if (currentCell.IsCore) //Reached core
+                return false;
+
+            if (currentCell.TileData == null) //Reached an open path!
+                return true;
+
+            if (visitedCells.Contains(currentCell)) //Adding cell to visited
+                return false;
+
+            visitedCells.Add(currentCell);
+
+            foreach (HexDirection direction in Enum.GetValues(typeof(HexDirection)))
+            {
+                if (direction == incomingDirection) //Don't scan in the direction you came from
+                    continue;
+
+                if (!currentCell.TileData.HasRoad(direction)) //Don't scan if there's no road
+                    continue;
+
+                HexCell nextNeighbor = currentCell.GetNeighbor(direction);
+                if (IsBranchOpen(nextNeighbor, direction.Opposite(), visitedCells)) //Continue traversing the branch
+                    return true;
+            }
+
+            return false;
         }
 
         private void RemoveInvalidTiles(List<HexTile> tiles, bool isFirstTurn)
@@ -98,6 +188,7 @@ namespace FG_GP2_T3
                         if(neighbor != null)
                             _availableConnections.Remove((neighbor, direction.Opposite()));
 
+                        Debug.Log(args.Cell.TileData.HasRoad(direction));
                         if(!args.Cell.TileData.HasRoad(direction))
                             continue;
 
@@ -151,7 +242,7 @@ namespace FG_GP2_T3
             {
                 HexCell neighbor = cell.GetNeighbor(direction);
                 if(GetValidTileRotations(tile, neighbor).Count > 0)
-                    validCells.Add(cell);
+                    validCells.Add(neighbor);
             }
 
             return validCells;
@@ -175,9 +266,22 @@ namespace FG_GP2_T3
         }
 
         //TODO
+        /*
         public List<Vector3> GetEnemyPath()
         {
             return new List<Vector3>();
+        }
+        */
+
+        //TEMP REPLACEMENT
+        public List<Vector3> GetEnemyEntryPoints()
+        {
+            List<Vector3> entryPoints = new();
+
+            foreach((HexCell cell, HexDirection direction) in _availableConnectionsWithoutCore)
+                entryPoints.Add(cell.transform.localPosition + HexMetrics.GetEdgeCenter(direction));
+
+            return entryPoints;
         }
 
         #endregion
