@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace FG_GP2_T3
 {
@@ -11,12 +10,15 @@ namespace FG_GP2_T3
     {
         TilePlacement,
         TowerPlacement,
-        EnemyAttack
+        EnemyAttack,
+        GameOverState
     }
 
     public class GameplayController : MonoBehaviour
     {
         [SerializeField] GameplayUI gameplayUI;
+        [SerializeField] GameOverUI gameOverUI;
+
         private GameplayState currentGameState;
 
         [Header("Tile Placement")]
@@ -46,6 +48,13 @@ namespace FG_GP2_T3
         void Start()
         {
             EnemyManager.Instance.OnAllEnemiesDead += StartTilePlacementPhase;
+            EnemyManager.Instance.Poe.Health.OnDead += ShowGameOverPanel;
+        }
+
+        private void ShowGameOverPanel()
+        {
+            currentGameState = GameplayState.GameOverState;
+            gameOverUI.GameOverPanel.SetActive(true);
         }
 
         private void Update()
@@ -136,12 +145,17 @@ namespace FG_GP2_T3
                 {
                     SelectTowerType(towerData);
                 });
-
             }
+
+            gameOverUI.RestartButton.onClick.AddListener(() => SceneManager.LoadScene(0));
+            gameOverUI.GameOverPanel.SetActive(false);
         }
 
         private void StartTilePlacementPhase()
         {
+            if (currentGameState == GameplayState.GameOverState)
+                return;
+
             gameplayUI.TxtPhase.FillText("Tile Placement");
             gameplayUI.TopBar.SetActive(true);
             gameplayUI.BottomBar.SetActive(true);
@@ -151,7 +165,6 @@ namespace FG_GP2_T3
             gameplayUI.RotationPopup.SetActive(false);
 
             currentGameState = GameplayState.TilePlacement;
-
         }
 
         public void SelectHexTile(HexTile hexTile)
