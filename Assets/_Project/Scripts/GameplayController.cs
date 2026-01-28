@@ -12,10 +12,11 @@ namespace FG_GP2_T3
         [Expandable][SerializeField] private List<HexTile> _tiles = new List<HexTile>();
         [ReadOnly][SerializeField] private HexTile _currentSelectedTile;
 
-        [SerializeField] private HexTile hexTileToSelect;
-        [SerializeField] private HexCell selectedCell;
-
         [SerializeField] private GameObject previewTile;
+        [SerializeField] private HexCell selectedCell;
+        [SerializeField] private List<HexCell> validCellsForSelectedHexTile;
+        [SerializeField] private List<float> validTileRotationsForSelectedHexTile;
+        private int currentValidRotationIndex = 0;
 
         void Awake()
         {
@@ -52,8 +53,9 @@ namespace FG_GP2_T3
                 tileButton.Button.onClick.AddListener(() =>
                 {
                     Debug.Log($"tileButtonClicked - {hexTile.name}");
+                    StopAnimateValidCellsForSelectedHexTile();
                     SelectHexTile(hexTile);
-                    ShowValidEmptyTiles();
+                    StartAnimateValidCellsForSelectedHexTile();
                 });
             }
 
@@ -71,11 +73,25 @@ namespace FG_GP2_T3
         public void SelectHexTile(HexTile hexTile)
         {
             _currentSelectedTile = hexTile;
+            validCellsForSelectedHexTile = HexManager.Instance.GetValidCells(_currentSelectedTile);
         }
 
-        public void ShowValidEmptyTiles()
+        public void StartAnimateValidCellsForSelectedHexTile()
         {
+            foreach (HexCell cell in validCellsForSelectedHexTile)
+            {
+                cell.OuterColor = Color.white;
+                cell.InnerColor = Color.white;
+            }
+        }
 
+        public void StopAnimateValidCellsForSelectedHexTile()
+        {
+            foreach (HexCell cell in validCellsForSelectedHexTile)
+            {
+                cell.OuterColor = Color.black;
+                cell.InnerColor = Color.black;
+            }
         }
 
         [Button]
@@ -84,9 +100,13 @@ namespace FG_GP2_T3
             if (previewTile != null)
                 Destroy(previewTile);
 
+            validTileRotationsForSelectedHexTile = HexManager.Instance.GetValidTileRotations(_currentSelectedTile, selectedCell);
+            currentValidRotationIndex = 0;
+
             previewTile = Instantiate(_currentSelectedTile.TilePrefab);
             previewTile.transform.SetParent(selectedCell.transform);
-            previewTile.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            previewTile.transform.localPosition = Vector3.zero;
+            previewTile.transform.rotation = Quaternion.Euler(0, validTileRotationsForSelectedHexTile[currentValidRotationIndex], 0);
 
             gameplayUI.RotationPopup.SetActive(true);
         }
@@ -94,19 +114,22 @@ namespace FG_GP2_T3
         [Button]
         public void RotatePreviewTile()
         {
-            previewTile.transform.Rotate(Vector3.up * 60);
+            currentValidRotationIndex = (currentValidRotationIndex + 1) % validTileRotationsForSelectedHexTile.Count;
+            previewTile.transform.rotation = Quaternion.Euler(0, validTileRotationsForSelectedHexTile[currentValidRotationIndex], 0);
         }
 
         public void SetTile()
         {
-            selectedCell.TrySetTile(_currentSelectedTile, previewTile.transform.eulerAngles.y);
-            gameplayUI.RotationPopup.SetActive(false);
-            gameplayUI.BtnNextRound.gameObject.SetActive(true);
-            NavmeshManager.Instance.RebakeNavmesh();
+            if (selectedCell.TrySetTile(_currentSelectedTile, previewTile.transform.eulerAngles.y))
+            {
+                gameplayUI.RotationPopup.SetActive(false);
+                gameplayUI.BtnNextRound.gameObject.SetActive(true);
+                NavmeshManager.Instance.RebakeNavmesh();
 
-            Destroy(previewTile);
-            previewTile = null;
-            _currentSelectedTile = null;
+                Destroy(previewTile);
+                previewTile = null;
+                _currentSelectedTile = null;
+            }
         }
     }
 }

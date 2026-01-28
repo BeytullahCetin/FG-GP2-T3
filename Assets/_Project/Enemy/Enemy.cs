@@ -23,9 +23,7 @@ namespace FG_GP2_T3
 		[Button]
 		public async UniTaskVoid StartEnemyBehaviour()
 		{
-			SetDestination();
-			// Wait for navmesh updates itself.
-			await UniTask.WaitForEndOfFrame();
+			await SetDestination();
 			await WaitUntilReachDestination();
 			await StartAttack();
 		}
@@ -38,6 +36,7 @@ namespace FG_GP2_T3
 				await UniTask.WaitForSeconds(1f);
 			}
 
+			_agent.ResetPath();
 			Debug.Log("Agent is close enough!");
 		}
 
@@ -57,9 +56,10 @@ namespace FG_GP2_T3
 			Debug.Log("Attack Ended!");
 		}
 
-		public void SetDestination()
+		public async UniTask SetDestination()
 		{
 			_agent.SetDestination(_poe.transform.position);
+			await UniTask.WaitUntil(() => _agent.hasPath == true);
 			Debug.Log("Destination set");
 		}
 	}
