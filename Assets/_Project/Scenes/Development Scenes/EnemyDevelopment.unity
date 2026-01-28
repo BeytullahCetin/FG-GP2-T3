@@ -2500,7 +2500,7 @@ MonoBehaviour:
   _poe: {fileID: 1144003027}
   _enemyPrefab: {fileID: 5154048427091497292, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
   _enemiesParent: {fileID: 1051704115}
-  _baseEnemySpawnCount: 3
+  _baseEnemySpawnCount: 1
   _enemySpawnCountMultiplier: 1.2
 --- !u!1 &1099333808
 GameObject:
