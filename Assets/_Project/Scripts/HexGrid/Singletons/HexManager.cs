@@ -13,8 +13,8 @@ namespace FG_GP2_T3
         [SerializeField, Expandable] private List<HexTile> _hexTiles = new();
 
         private HashSet<(HexCell, HexDirection)> _availableConnections = new();
-        private HashSet<(HexCell, HexDirection)> _availableConnectionsWithoutCore => (HashSet<(HexCell, HexDirection)>)_availableConnections.Where(
-            (c, dir) => !HexCore.CoreCoordinates.Contains(c.Item1.Coordinates)
+        private HashSet<(HexCell, HexDirection)> _availableConnectionsWithoutCore => new HashSet<(HexCell, HexDirection)>(
+            _availableConnections.Where(connection => !HexCore.CoreCoordinates.Contains(connection.Item1.Coordinates))
         );
 
         private void Awake()
@@ -41,32 +41,18 @@ namespace FG_GP2_T3
 
         private void SetCoreTiles()
         {
-            if(!HexGrid.Instance.TryGetCell(new HexCoordinates(0, 0), out HexCell cell))
-                throw new Exception("The grid doesn't exist");
+            foreach(HexCoordinates coordinate in HexCore.CoreCoordinates)
+                if(HexGrid.Instance.TryGetCell(coordinate, out HexCell cell))
+                    cell.SetAsCore();
 
-            //Setting 7 middle tiles as Core
-            cell.SetAsCore();
-            foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
-            {
-                HexCell neighbor = cell.GetNeighbor(direction);
-                if(neighbor != null)
-                    neighbor.SetAsCore();
-            }       
-
-            //Setting core tiles as available connections
-            foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
-            {
-                HexCell neighbor = cell.GetNeighbor(direction);
-                if(neighbor == null)
-                    continue;
-
-                foreach(HexDirection neighborDirection in Enum.GetValues(typeof(HexDirection)))
-                {
-                    HexCell neighborsNeighbor = cell.GetNeighbor(neighborDirection);
-                    if(neighborsNeighbor != null && !neighborsNeighbor.IsCore)
-                        _availableConnections.Add((neighborsNeighbor, neighborDirection));
-                }  
-            }   
+            foreach(HexCoordinates coordinate in HexCore.CoreCoordinates)
+                if(HexGrid.Instance.TryGetCell(coordinate, out HexCell cell))
+                    foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
+                    {
+                        HexCell neighbor = cell.GetNeighbor(direction);
+                        if(neighbor != null && !neighbor.IsCore)
+                            _availableConnections.Add((cell, direction));
+                    }   
         }
 
         private bool IsTileValid(HexTile tile, HexCell cell)
@@ -75,8 +61,8 @@ namespace FG_GP2_T3
             foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
             {
                 HexCell neighbor = cell.GetNeighbor(direction);
-                    if(neighbor != null && neighbor.TileData != null && neighbor.TileData.HasRoad(direction.Opposite()) != tile.HasRoad(direction))
-                        return false;
+                if(neighbor != null && !neighbor.IsCore && neighbor.TileData != null && neighbor.TileData.HasRoad(direction.Opposite()) != tile.HasRoad(direction))
+                    return false;
             }
 
             return true;
@@ -84,22 +70,20 @@ namespace FG_GP2_T3
 
         private void RemoveInvalidTiles(List<HexTile> tiles, bool isFirstTurn)
         {
-            foreach(HexTile tile in tiles)
-            {
-                bool isInvalid = true;
+            HashSet<(HexCell, HexDirection)> connections = (isFirstTurn || _availableConnectionsWithoutCore.Count == 0) ? _availableConnections : _availableConnectionsWithoutCore;
 
-                foreach((HexCell cell, HexDirection direction) in isFirstTurn ? _availableConnections : _availableConnectionsWithoutCore)
+            tiles.RemoveAll(tile => 
+            {
+                foreach ((HexCell cell, HexDirection direction) in isFirstTurn ? _availableConnections : _availableConnectionsWithoutCore)
                 {
                     HexCell neighbor = cell.GetNeighbor(direction);
-                    if(GetValidTileRotations(tile, neighbor).Count > 0)
-                    {
-                        isInvalid = false;
-                        break;
-                    }
+
+                    if (GetValidTileRotations(tile, neighbor).Count > 0)
+                        return false; 
                 }
 
-                if(isInvalid) tiles.Remove(tile);
-            }
+                return true;
+            });
         }
 
         private void OnCellAction(CellActionEventArgs args)
@@ -109,11 +93,15 @@ namespace FG_GP2_T3
                 case CellEventType.Place:
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
+                        //Removing neighbor connection points
+                        HexCell neighbor = args.Cell.GetNeighbor(direction);
+                        if(neighbor != null)
+                            _availableConnections.Remove((neighbor, direction.Opposite()));
+
                         if(!args.Cell.TileData.HasRoad(direction))
                             continue;
 
                         //Adding available connections if roads end with no adjacent tiles
-                        HexCell neighbor = args.Cell.GetNeighbor(direction);
                         if(neighbor != null && neighbor.Tile == null && !neighbor.IsCore)
                             _availableConnections.Add((args.Cell, direction));
                     }
@@ -172,7 +160,9 @@ namespace FG_GP2_T3
         public List<float> GetValidTileRotations(HexTile tile, HexCell cell)
         {
             List<float> validRotations = new();
+
             HexTile tileCopy = Instantiate(tile);
+
             for(int i = 0; i < 6; i++)
             {
                 if(IsTileValid(tileCopy, cell))
@@ -181,7 +171,7 @@ namespace FG_GP2_T3
                 tileCopy.Roads.ShiftRight();
             }
 
-            return new List<float>();
+            return validRotations;
         }
 
         //TODO
