@@ -21,7 +21,7 @@ namespace FG_GP2_T3
 
 		private void EditCell(HexCell cell)
 		{
-			List<HexTile> tiles = HexManager.Instance.GetRandomValidTiles(1);
+			List<HexTile> tiles = HexManager.Instance.GetRandomValidTiles(3, true);
 			if(cell.Tile != null)
 				cell.TrySetTile(null);
 			else

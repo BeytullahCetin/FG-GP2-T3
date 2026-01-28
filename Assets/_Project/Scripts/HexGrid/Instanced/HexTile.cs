@@ -34,5 +34,18 @@ namespace FG_GP2_T3
 
             return count;
         }
+
+        public void ShiftRight(int repetitions = 1)
+        {
+            if(repetitions <= 0)
+                return;
+
+            bool[] newRoads = new bool[6];
+            for(int i = 0; i < repetitions; i++)
+                for(int j = 0; j < 6; j++)
+                    newRoads[(j + 1) % 6] = _roads[j];
+
+            _roads = newRoads;
+        }
     }
 }
