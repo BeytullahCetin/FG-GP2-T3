@@ -71,6 +71,8 @@ namespace FG_GP2_T3
 
             cell.SetNeighbor(direction, _neighbor);
         }
+
+        #region API
         
         public bool TryGetCell(HexCoordinates coordinates, out HexCell cell)
         {
@@ -83,11 +85,14 @@ namespace FG_GP2_T3
             cell = null;
             return false;
         }
+
         public bool TryGetCell(Vector3 position, out HexCell cell) 
         {
             position = transform.InverseTransformPoint(position);
             HexCoordinates coordinates = HexCoordinates.FromWorldPosition(position);
             return TryGetCell(coordinates, out cell);
         }
+
+        #endregion
     }
 }

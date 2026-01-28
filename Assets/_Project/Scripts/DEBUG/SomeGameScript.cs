@@ -6,8 +6,26 @@ namespace FG_GP2_T3
 {
 	public class SomeGameScript : MonoBehaviour
 	{
+		bool _tileSelected = false;
+		HexTile _selectedTile;
+		List<HexCell> _highlightedCells = new();
+
 		private void Update() 
 		{
+			if(!_tileSelected)
+			{
+				foreach(HexCell cell in _highlightedCells) //Clearing highlighting
+					cell.InnerColor = Color.black;
+
+				_selectedTile = HexManager.Instance.GetRandomValidTiles(3, true)[0]; //Always picking the first option out of 3 returned by the func
+
+				_highlightedCells = HexManager.Instance.GetValidCells(_selectedTile); //Getting new cells to highlight
+				foreach(HexCell cell in _highlightedCells)
+					cell.InnerColor = Color.white;
+
+				_tileSelected = true;
+			}
+
 			if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
 				HandleInput();
 		}
@@ -21,11 +39,8 @@ namespace FG_GP2_T3
 
 		private void EditCell(HexCell cell)
 		{
-			List<HexTile> tiles = HexManager.Instance.GetRandomValidTiles(1);
-			if(cell.Tile != null)
-				cell.TrySetTile(null);
-			else
-				cell.TrySetTile(tiles[0]);
+			cell.TrySetTile(_selectedTile, HexManager.Instance.GetValidTileRotations(_selectedTile, cell)[0]); //Setting the cell with first valid rotation
+			_tileSelected = false;
 		}
 	}
 }
