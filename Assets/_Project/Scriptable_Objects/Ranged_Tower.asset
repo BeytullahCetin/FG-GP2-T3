@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
+  m_Name: Ranged_Tower
+  m_EditorClassIdentifier: 
+  TowerName: 
+  Role: 0
+  TowerPrefab: {fileID: 0}
+  Range: 4
+  Damage: 10
+  FireRate: 2
+  DamageType: 0
+  ProjectilePrefab: {fileID: 2595672995752767437, guid: 44d433f45af59094691c5cf262c9bd7a, type: 3}
+  CompostCost: 0
