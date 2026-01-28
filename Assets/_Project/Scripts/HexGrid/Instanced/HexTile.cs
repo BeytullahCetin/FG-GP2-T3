@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace FG_GP2_T3
 {
@@ -29,8 +29,8 @@ namespace FG_GP2_T3
         public int CountRoads()
         {
             int count = 0;
-            for(int i = 0; i < 6; i++)
-                if(_roads[i]) count++;
+            for (int i = 0; i < 6; i++)
+                if (_roads[i]) count++;
 
             return count;
         }
