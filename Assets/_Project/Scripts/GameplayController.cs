@@ -18,6 +18,7 @@ namespace FG_GP2_T3
     {
         [SerializeField] GameplayUI gameplayUI;
         [SerializeField] GameOverUI gameOverUI;
+        [SerializeField] StickyCameraMovement cameraController;
 
         private GameplayState currentGameState;
 
@@ -132,6 +133,7 @@ namespace FG_GP2_T3
                 currentGameState = GameplayState.EnemyAttack;
             });
 
+            gameplayUI.BtnCancelRotation.onClick.AddListener(() => CancelPreview());
             gameplayUI.BtnRotate.onClick.AddListener(() => RotatePreviewTile());
             gameplayUI.BtnConfirmRotation.onClick.AddListener(() => SetTile());
 
@@ -205,6 +207,20 @@ namespace FG_GP2_T3
             previewTile.transform.rotation = Quaternion.Euler(0, validTileRotationsForSelectedHexTile[currentValidRotationIndex], 0);
 
             gameplayUI.RotationPopup.SetActive(true);
+
+            cameraController.transform.position = previewTile.transform.position;
+            cameraController.ZoomIn();
+        }
+
+        public void CancelPreview()
+        {
+            cameraController.transform.position = EnemyManager.Instance.Poe.transform.position;
+            cameraController.ZoomOut();
+            gameplayUI.RotationPopup.SetActive(false);
+
+            Destroy(previewTile.gameObject);
+            previewTile = null;
+            _currentSelectedTile = null;
         }
 
         public void RotatePreviewTile()
