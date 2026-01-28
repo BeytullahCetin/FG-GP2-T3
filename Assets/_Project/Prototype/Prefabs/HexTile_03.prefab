@@ -56,9 +56,25 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c2ad0d46078d5e4cb2076c051e97614, type: 2}
+    - target: {fileID: -1710581543988348024, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
       propertyPath: m_Name
       value: HexTile_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378922297957006227, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589153179846731007, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8750140563518859423, guid: 644eb3085543c254e829f43e9b8002dc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using NaughtyAttributes;
 using UnityEngine;
@@ -11,21 +13,37 @@ namespace FG_GP2_T3
 		private NavMeshAgent _agent;
 		private POE _poe;
 
+		public Health Health => _health;
+
 		private void Awake()
 		{
 			_agent = GetComponent<NavMeshAgent>();
 			_health = GetComponent<Health>();
 			_poe = EnemyManager.Instance.Poe;
 
+			_health.OnDead += Die;
+
 			StartEnemyBehaviour().Forget();
+		}
+
+		public void Die()
+		{
+			Destroy(gameObject);
 		}
 
 		[Button]
 		public async UniTaskVoid StartEnemyBehaviour()
 		{
-			await SetDestination();
-			await WaitUntilReachDestination();
-			await StartAttack();
+			try
+			{
+				await SetDestination();
+				await WaitUntilReachDestination();
+				await StartAttack();
+			}
+			catch (Exception ex)
+			{
+				Debug.Log("Exception handled!");
+			}
 		}
 
 		private async UniTask WaitUntilReachDestination()

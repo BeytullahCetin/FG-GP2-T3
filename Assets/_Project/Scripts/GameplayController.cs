@@ -21,23 +21,31 @@ namespace FG_GP2_T3
 
         [Header("Tile Placement")]
         [Expandable][SerializeField] private List<HexTile> _tiles = new List<HexTile>();
-        [ReadOnly][SerializeField] private HexTile _currentSelectedTile;
-
-        [SerializeField] private GameObject previewTile;
-        [SerializeField] private HexCell selectedCell;
-        [SerializeField] private List<HexCell> validCellsForSelectedHexTile;
-        [SerializeField] private List<float> validTileRotationsForSelectedHexTile;
+        private HexTile _currentSelectedTile;
+        private GameObject previewTile;
+        private HexCell selectedCell;
+        private List<HexCell> validCellsForSelectedHexTile;
+        private List<float> validTileRotationsForSelectedHexTile;
         private int currentValidRotationIndex = 0;
 
         [Header("Tower Placement")]
-        [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
-        [SerializeField] private TowerData selectedTowerData;
-        [SerializeField] private TowerBase previewTower;
+        [Expandable][SerializeField] List<TowerData> towerDatas = new List<TowerData>();
+        [SerializeField] TowerBase baseTowerPrefab;
+        [SerializeField] private LayerMask groundDetectionLayerMask;
+        private TowerData selectedTowerData;
+        private TowerBase previewTower;
 
         void Awake()
         {
             currentGameState = GameplayState.TilePlacement;
+
             Initialize();
+            StartTilePlacementPhase();
+        }
+
+        void Start()
+        {
+            EnemyManager.Instance.OnAllEnemiesDead += StartTilePlacementPhase;
         }
 
         private void Update()
@@ -68,8 +76,24 @@ namespace FG_GP2_T3
 
         private void TowerPlacementUpdate()
         {
+            if (selectedTowerData != null && previewTower != null)
+            {
+                Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                bool isRayHit = Physics.Raycast(inputRay, out RaycastHit hit, 250, groundDetectionLayerMask);
+                previewTower.gameObject.SetActive(isRayHit);
 
+                if (isRayHit == false)
+                    return;
+
+                previewTower.transform.position = hit.point;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SetTower();
+                }
+            }
         }
+
 
         private void Initialize()
         {
@@ -82,7 +106,9 @@ namespace FG_GP2_T3
                 tileButton.Button.onClick.AddListener(() =>
                 {
                     Debug.Log($"tileButtonClicked - {hexTile.name}");
-                    StopAnimateValidCellsForSelectedHexTile();
+
+                    if (_currentSelectedTile != null)
+                        StopAnimateValidCellsForSelectedHexTile();
                     SelectHexTile(hexTile);
                     StartAnimateValidCellsForSelectedHexTile();
                 });
@@ -90,16 +116,15 @@ namespace FG_GP2_T3
 
             gameplayUI.BtnNextRound.onClick.AddListener(() =>
             {
+                gameplayUI.TopBar.SetActive(false);
+                gameplayUI.BottomBar.SetActive(false);
+                gameplayUI.BtnNextRound.gameObject.SetActive(false);
                 EnemyManager.Instance.SpawnEnemiesTest();
+                currentGameState = GameplayState.EnemyAttack;
             });
 
             gameplayUI.BtnRotate.onClick.AddListener(() => RotatePreviewTile());
             gameplayUI.BtnConfirmRotation.onClick.AddListener(() => SetTile());
-
-            gameplayUI.TilePlacementPanel.SetActive(false);
-            gameplayUI.TowerPlacementPanel.SetActive(true);
-            gameplayUI.BtnNextRound.gameObject.SetActive(false);
-            gameplayUI.RotationPopup.SetActive(false);
 
             for (int i = 0; i < towerDatas.Count; i++)
             {
@@ -109,9 +134,24 @@ namespace FG_GP2_T3
 
                 towerButton.Button.onClick.AddListener(() =>
                 {
-                    selectedTowerData = towerData;
+                    SelectTowerType(towerData);
                 });
+
             }
+        }
+
+        private void StartTilePlacementPhase()
+        {
+            gameplayUI.TxtPhase.FillText("Tile Placement");
+            gameplayUI.TopBar.SetActive(true);
+            gameplayUI.BottomBar.SetActive(true);
+            gameplayUI.TilePlacementPanel.SetActive(true);
+            gameplayUI.TowerPlacementPanel.SetActive(false);
+            gameplayUI.BtnNextRound.gameObject.SetActive(false);
+            gameplayUI.RotationPopup.SetActive(false);
+
+            currentGameState = GameplayState.TilePlacement;
+
         }
 
         public void SelectHexTile(HexTile hexTile)
@@ -138,7 +178,6 @@ namespace FG_GP2_T3
             }
         }
 
-        [Button]
         public void PreviewTileOnTheSelectedCell()
         {
             if (previewTile != null)
@@ -155,7 +194,6 @@ namespace FG_GP2_T3
             gameplayUI.RotationPopup.SetActive(true);
         }
 
-        [Button]
         public void RotatePreviewTile()
         {
             currentValidRotationIndex = (currentValidRotationIndex + 1) % validTileRotationsForSelectedHexTile.Count;
@@ -172,11 +210,30 @@ namespace FG_GP2_T3
                 gameplayUI.TowerPlacementPanel.SetActive(true);
                 NavmeshManager.Instance.RebakeNavmesh();
 
-                Destroy(previewTile);
+                Destroy(previewTile.gameObject);
                 previewTile = null;
                 _currentSelectedTile = null;
                 currentGameState = GameplayState.TowerPlacement;
+                gameplayUI.TxtPhase.FillText("Tower Placement");
             }
+        }
+
+        public void SelectTowerType(TowerData towerData)
+        {
+            if (selectedTowerData != null && previewTower != null)
+                Destroy(previewTower.gameObject);
+
+            selectedTowerData = towerData;
+            previewTower = Instantiate(baseTowerPrefab);
+            previewTower.Data = towerData;
+            previewTower.gameObject.SetActive(false);
+        }
+
+
+        private void SetTower()
+        {
+            previewTower = null;
+            selectedTowerData = null;
         }
     }
 }

@@ -37,5 +37,8 @@ namespace FG_GP2_T3
         public Button BtnRotate => _btnRotate;
         public Button BtnConfirmRotation => _btnConfirmRotation;
 
+        public GameObject TopBar => _topBar;
+        public GameObject BottomBar => _bottomBar;
+
     }
 }
