@@ -81,7 +81,8 @@ namespace FG_GP2_T3
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(inputRay, out RaycastHit hit) && HexGrid.Instance.TryGetCell(hit.point, out HexCell cell))
             {
-                if (cell.Tile == null && _currentSelectedTile != null)
+                bool canPreview = validCellsForSelectedHexTile.Contains(cell);
+                if (cell.Tile == null && _currentSelectedTile != null && canPreview == true)
                 {
                     selectedCell = cell;
                     PreviewTileOnTheSelectedCell();
@@ -124,6 +125,7 @@ namespace FG_GP2_T3
 
                     if (_currentSelectedTile != null)
                         StopAnimateValidCellsForSelectedHexTile();
+                    CancelPreview();
                     SelectHexTile(hexTile);
                     StartAnimateValidCellsForSelectedHexTile();
                 });
@@ -223,7 +225,9 @@ namespace FG_GP2_T3
             cameraController.ZoomOut();
             gameplayUI.RotationPopup.SetActive(false);
 
-            Destroy(previewTile.gameObject);
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
             previewTile = null;
             _currentSelectedTile = null;
         }
