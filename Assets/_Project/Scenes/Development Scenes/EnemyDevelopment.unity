@@ -3173,6 +3173,10 @@ PrefabInstance:
       propertyPath: volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2955722730015907751, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3008956727511088395, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3212,6 +3216,14 @@ PrefabInstance:
     - target: {fileID: 3008956727511088395, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655344649019509134, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
+      propertyPath: EventPlayTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655344649019509134, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
+      propertyPath: EventStopTrigger
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7824847482556423322, guid: 8950aa6f5c5ea50498f35a591da43c93, type: 3}
       propertyPath: m_Name
