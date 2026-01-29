@@ -81,8 +81,7 @@ namespace FG_GP2_T3
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(inputRay, out RaycastHit hit) && HexGrid.Instance.TryGetCell(hit.point, out HexCell cell))
             {
-                bool canPreview = validCellsForSelectedHexTile.Contains(cell);
-                if (cell.Tile == null && _currentSelectedTile != null && canPreview == true)
+                if (cell.Tile == null && _currentSelectedTile != null && validCellsForSelectedHexTile.Contains(cell))
                 {
                     selectedCell = cell;
                     PreviewTileOnTheSelectedCell();
