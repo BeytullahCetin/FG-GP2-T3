@@ -20,8 +20,6 @@ namespace FG_GP2_T3
         [SerializeField] private float _baseEnemySpawnCount = 6;
         [SerializeField] private float _enemySpawnCountMultiplier = 1.2f;
 
-        List<Vector3> lalalala = new();
-
         List<Enemy> enemies = new List<Enemy>();
         public event Action OnAllEnemiesDead = delegate { };
 
@@ -40,8 +38,7 @@ namespace FG_GP2_T3
         public void SpawnEnemies(int wave)
         {
             List<Vector3> spawnPoints = HexManager.Instance.GetEnemyEntryPoints();
-            lalalala = spawnPoints;
-
+            
             int spawnPointsCount = spawnPoints.Count;
             int enemySpawnCount = GetEnemyCount(wave);
 
@@ -56,8 +53,6 @@ namespace FG_GP2_T3
                     enemies.Add(enemy);
                 }
             }
-
-            Debug.LogError("Your mom");
         }
 
         public void RemoveFromEnemiesList(Enemy enemy)
@@ -74,12 +69,6 @@ namespace FG_GP2_T3
                 return 0;
 
             return Mathf.RoundToInt(_baseEnemySpawnCount * Mathf.Pow(_enemySpawnCountMultiplier, wave - 1));
-        }
-
-        private void OnDrawGizmos()
-        {
-            foreach(Vector3 vector in lalalala)
-                Gizmos.DrawSphere(vector, 0.5f);
         }
     }
 }
