@@ -20,4 +20,5 @@ MonoBehaviour:
   FireRate: 1
   DamageType: 0
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 199f551af5ad7914482dc18ba0fd961a, type: 3}
+  towerMaterial: {fileID: 2100000, guid: 653a483cd8a125f43ba6047f5f653211, type: 2}
   CompostCost: 0

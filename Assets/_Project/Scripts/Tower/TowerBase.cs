@@ -1,5 +1,6 @@
-using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -12,23 +13,32 @@ namespace FG_GP2_T3
 {
     public class TowerBase : MonoBehaviour
     {
-        [Expandable]public TowerData Data;
+        [Expandable] public TowerData Data;
 
         public LayerMask EnemyLayer;
 
         private Transform _CurrentTarget;
         private float _FireCooldown;
+        [SerializeField] List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
+
+        public void SetMaterials()
+        {
+            foreach (var renderer in meshRenderers)
+            {
+                renderer.material = Data.towerMaterial;
+            }
+        }
 
         private void Update()
         {
-            _FireCooldown-=Time.deltaTime;
+            _FireCooldown -= Time.deltaTime;
 
             if (_CurrentTarget == null || !TargetInRange(_CurrentTarget))
             {
                 _CurrentTarget = FindFirstEnemyInRange();
             }
 
-            if (_CurrentTarget != null && _FireCooldown <= 0) 
+            if (_CurrentTarget != null && _FireCooldown <= 0)
             {
                 Fire();
                 _FireCooldown = 1f;
@@ -54,14 +64,14 @@ namespace FG_GP2_T3
         {
             if (Data.ProjectilePrefab == null) return;
 
-            GameObject ProjObj=Instantiate(Data.ProjectilePrefab,transform.position,Quaternion.identity);
-            Projectile Proj=ProjObj.GetComponent<Projectile>();
+            GameObject ProjObj = Instantiate(Data.ProjectilePrefab, transform.position, Quaternion.identity);
+            Projectile Proj = ProjObj.GetComponent<Projectile>();
             Proj.Initiliaze(_CurrentTarget, Data.Damage);
         }
 
         private void OnDrawGizmosSelected()
         {
-            if(Data==null) return;
+            if (Data == null) return;
 
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(transform.position, Data.Range);

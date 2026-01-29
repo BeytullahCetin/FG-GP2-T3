@@ -263,6 +263,7 @@ namespace FG_GP2_T3
             selectedTowerData = towerData;
             previewTower = Instantiate(baseTowerPrefab);
             previewTower.Data = towerData;
+            previewTower.SetMaterials();
             previewTower.gameObject.SetActive(false);
         }
 
