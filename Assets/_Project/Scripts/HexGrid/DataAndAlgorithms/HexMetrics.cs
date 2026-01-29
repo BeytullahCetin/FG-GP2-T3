@@ -15,7 +15,7 @@ namespace FG_GP2_T3
 
         public static Vector3 GetFirstCorner(HexDirection direction) => corners[(int)direction];
         public static Vector3 GetSecondCorner(HexDirection direction) => corners[((int)direction + 1) % 6];
-        public static Vector3 GetEdgeCenter(HexDirection direction) => GetFirstCorner(direction) + GetSecondCorner(direction);
+        public static Vector3 GetEdgeCenter(HexDirection direction) => (GetFirstCorner(direction) + GetSecondCorner(direction)) / 2f;
         public static float GetAngleDegrees(HexDirection direction) => (int)direction.Previous() * 60f;
     }
 }
