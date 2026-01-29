@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Melee_Tower
   m_EditorClassIdentifier: 
-  TowerName: 
+  TowerName: Melee Tower
   Role: 1
   TowerPrefab: {fileID: 0}
-  Range: 2
+  Range: 5
   Damage: 20
   FireRate: 1
   DamageType: 0

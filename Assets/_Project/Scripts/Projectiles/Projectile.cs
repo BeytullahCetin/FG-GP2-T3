@@ -35,7 +35,7 @@ namespace FG_GP2_T3
 
         private void DoInstantHit()
         {
-            Test_Enemy enemy = _Target.GetComponent<Test_Enemy>();
+            Health enemy = _Target.GetComponent<Health>();
 
             if (enemy != null)
             {
@@ -63,7 +63,7 @@ namespace FG_GP2_T3
         {
             if (!other.CompareTag("Enemy")) return;
 
-            Test_Enemy enemy = other.GetComponent<Test_Enemy>();
+            Health enemy = other.GetComponent<Health>();
 
             if (enemy != null)
             {

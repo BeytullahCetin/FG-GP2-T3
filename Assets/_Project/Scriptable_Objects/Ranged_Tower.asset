@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Ranged_Tower
   m_EditorClassIdentifier: 
-  TowerName: 
+  TowerName: Ranged Tower
   Role: 0
   TowerPrefab: {fileID: 0}
-  Range: 4
+  Range: 25
   Damage: 10
   FireRate: 2
   DamageType: 0

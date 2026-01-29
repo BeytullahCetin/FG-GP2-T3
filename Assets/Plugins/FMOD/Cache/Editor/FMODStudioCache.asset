@@ -1,5 +1,497 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8640489389706997390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lumberfolk/Default/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Lumberfolk/Default/Attack
+  Guid:
+    Data1: -1611712617
+    Data2: 1224948873
+    Data3: -1393839994
+    Data4: -151157539
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8304880873656061204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/BrazilNut/Selected
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/BrazilNut/Selected
+  Guid:
+    Data1: -1618667750
+    Data2: 1129195484
+    Data3: -521845836
+    Data4: 569678837
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7101010367556098075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Jaguar/Selected
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Jaguar/Selected
+  Guid:
+    Data1: -965534653
+    Data2: 1307337019
+    Data3: -694050897
+    Data4: 557176934
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6981944270716381276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Default
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Default
+  Guid:
+    Data1: -761117193
+    Data2: 1175720287
+    Data3: -531365470
+    Data4: 765370342
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6588507649139136686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_SFX_Interaction
+  m_EditorClassIdentifier: 
+  Name: Volume_SFX_Interaction
+  StudioPath: parameter:/Volume_SFX_Interaction
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 1440559668
+    data2: 56013402
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-6478061843016023098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_Ambience
+  m_EditorClassIdentifier: 
+  Name: Volume_Ambience
+  StudioPath: parameter:/Volume_Ambience
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 3003424504
+    data2: 1245478250
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-6099846781280159897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Jaguar/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Jaguar/Attack
+  Guid:
+    Data1: 990256475
+    Data2: 1120421873
+    Data3: 1130330760
+    Data4: 384312878
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6003337125442119715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Jaguar/Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Jaguar/Ambient
+  Guid:
+    Data1: -1537503684
+    Data2: 1088475091
+    Data3: -1494847564
+    Data4: -1794807171
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5973734864461837889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Default/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Default/Attack
+  Guid:
+    Data1: 1969468275
+    Data2: 1158987675
+    Data3: -1297767285
+    Data4: 466514566
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4518950726268340782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_Music
+  m_EditorClassIdentifier: 
+  Name: Volume_Music
+  StudioPath: parameter:/Volume_Music
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2523905738
+    data2: 3198048833
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-3467998299687559177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Default/Placed
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Default/Placed
+  Guid:
+    Data1: 204717667
+    Data2: 1331598743
+    Data3: 362637450
+    Data4: -205659313
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3261343089669076842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_Project/_SourceAssets/Audio/FMOD/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639051420199263674
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2117875101123185907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Default/Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Default/Ambient
+  Guid:
+    Data1: -1533530206
+    Data2: 1131895951
+    Data3: -1058611271
+    Data4: 1764706986
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1900278336600825323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_Main
+  m_EditorClassIdentifier: 
+  Name: Volume_Main
+  StudioPath: parameter:/Volume_Main
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 1570242600
+    data2: 2459908850
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1800477817471415569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/BrazilNut/Placed
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/BrazilNut/Placed
+  Guid:
+    Data1: -1734249319
+    Data2: 1339868802
+    Data3: 2018826923
+    Data4: -331094890
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1750712978449937722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/BrazilNut/Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/BrazilNut/Ambient
+  Guid:
+    Data1: -1223092486
+    Data2: 1238715920
+    Data3: -832362585
+    Data4: 1623278741
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-749699781972774431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lumberfolk/Default/Death
+  m_EditorClassIdentifier: 
+  Path: event:/Lumberfolk/Default/Death
+  Guid:
+    Data1: -1262164306
+    Data2: 1191074074
+    Data3: -2047785076
+    Data4: 1895319796
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-340157726616572165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Buttons/Pressed
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Buttons/Pressed
+  Guid:
+    Data1: -893589147
+    Data2: 1126583819
+    Data3: -1601341051
+    Data4: -1480571822
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-80537790223084407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/BrazilNut/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/BrazilNut/Attack
+  Guid:
+    Data1: -203128071
+    Data2: 1078299227
+    Data3: -139245151
+    Data4: 1673426986
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,11 +504,276 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
-  EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
+  EditorBanks:
+  - {fileID: 3668960654709508680}
+  - {fileID: -3261343089669076842}
+  EditorEvents:
+  - {fileID: -8304880873656061204}
+  - {fileID: -6003337125442119715}
+  - {fileID: -7101010367556098075}
+  - {fileID: 7994752423370923519}
+  - {fileID: -6099846781280159897}
+  - {fileID: 1905854146524249662}
+  - {fileID: -3467998299687559177}
+  - {fileID: -340157726616572165}
+  - {fileID: -5973734864461837889}
+  - {fileID: 6117962479123124462}
+  - {fileID: 3053586222184409470}
+  - {fileID: -8640489389706997390}
+  - {fileID: -1800477817471415569}
+  - {fileID: -2117875101123185907}
+  - {fileID: -749699781972774431}
+  - {fileID: -6981944270716381276}
+  - {fileID: -80537790223084407}
+  - {fileID: -1750712978449937722}
+  EditorParameters:
+  - {fileID: 3257674893053582272}
+  - {fileID: -4518950726268340782}
+  - {fileID: 2365992634649757803}
+  - {fileID: -6588507649139136686}
+  - {fileID: 309357525344282694}
+  - {fileID: -1900278336600825323}
+  - {fileID: -6478061843016023098}
+  MasterBanks:
+  - {fileID: -3261343089669076842}
+  StringsBanks:
+  - {fileID: 3668960654709508680}
   cacheVersion: 131858
-  cacheTime: 0
-  SerializableEventsDict: []
+  cacheTime: 639051420199264714
+  SerializableEventsDict:
+  - key: event:/Towers/BrazilNut/Selected
+    index: 0
+  - key: event:/Towers/Jaguar/Ambient
+    index: 1
+  - key: event:/Towers/Jaguar/Selected
+    index: 2
+  - key: event:/Poe/Hit
+    index: 3
+  - key: event:/Towers/Jaguar/Attack
+    index: 4
+  - key: event:/Lumberfolk/Default/Hit
+    index: 5
+  - key: event:/Towers/Default/Placed
+    index: 6
+  - key: event:/UI/Buttons/Pressed
+    index: 7
+  - key: event:/Towers/Default/Attack
+    index: 8
+  - key: event:/Towers/Default/Selected
+    index: 9
+  - key: event:/Towers/Jaguar/Placed
+    index: 10
+  - key: event:/Lumberfolk/Default/Attack
+    index: 11
+  - key: event:/Towers/BrazilNut/Placed
+    index: 12
+  - key: event:/Towers/Default/Ambient
+    index: 13
+  - key: event:/Lumberfolk/Default/Death
+    index: 14
+  - key: event:/Ambience/Default
+    index: 15
+  - key: event:/Towers/BrazilNut/Attack
+    index: 16
+  - key: event:/Towers/BrazilNut/Ambient
+    index: 17
+--- !u!114 &309357525344282694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_Narration
+  m_EditorClassIdentifier: 
+  Name: Volume_Narration
+  StudioPath: parameter:/Volume_Narration
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 101620740
+    data2: 2338462806
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &1905854146524249662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lumberfolk/Default/Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Lumberfolk/Default/Hit
+  Guid:
+    Data1: 350496866
+    Data2: 1239063536
+    Data3: 1967664262
+    Data4: -369311217
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2365992634649757803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_SFX_Auto
+  m_EditorClassIdentifier: 
+  Name: Volume_SFX_Auto
+  StudioPath: parameter:/Volume_SFX_Auto
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 3965330802
+    data2: 3888219769
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &3053586222184409470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Jaguar/Placed
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Jaguar/Placed
+  Guid:
+    Data1: 777251464
+    Data2: 1222047758
+    Data3: -1847026027
+    Data4: -868510499
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3257674893053582272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume_UI
+  m_EditorClassIdentifier: 
+  Name: Volume_UI
+  StudioPath: parameter:/Volume_UI
+  Min: 0
+  Max: 1
+  Default: 0.5
+  ID:
+    data1: 2388050592
+    data2: 1842582022
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &3668960654709508680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_Project/_SourceAssets/Audio/FMOD/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639051420199264714
+  FileSizes:
+  - Name: 
+    Value: 2138
+  Exists: 1
+--- !u!114 &6117962479123124462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Default/Selected
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Default/Selected
+  Guid:
+    Data1: -300924796
+    Data2: 1100923368
+    Data3: -1320169556
+    Data4: -934625325
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7994752423370923519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Poe/Hit
+  m_EditorClassIdentifier: 
+  Path: event:/Poe/Hit
+  Guid:
+    Data1: 1478027342
+    Data2: 1331178523
+    Data3: 806227641
+    Data4: -1979510983
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

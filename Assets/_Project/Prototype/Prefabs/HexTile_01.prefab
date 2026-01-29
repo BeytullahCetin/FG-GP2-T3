@@ -56,9 +56,25 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 7c2ad0d46078d5e4cb2076c051e97614, type: 2}
+    - target: {fileID: -1710581543988348024, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: m_Name
       value: HexTile_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378922297957006227, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589153179846731007, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8750140563518859423, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -71,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1378922297957006227, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3160417699261552353}
+    - targetCorrespondingSourceObject: {fileID: 1378922297957006227, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5976056794653732816}
     - targetCorrespondingSourceObject: {fileID: 3589153179846731007, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5843928821856636115}
@@ -132,6 +151,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8634060567236447461, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
+--- !u!114 &5976056794653732816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2991904454800466512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5973251535908495947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1710581543988348024, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
