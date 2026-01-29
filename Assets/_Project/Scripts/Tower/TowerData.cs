@@ -20,9 +20,11 @@ namespace FG_GP2_T3
         public float Damage;
         public float FireRate;
 
-       
+
         public DamageType DamageType;
         public GameObject ProjectilePrefab;
+
+        public Material towerMaterial;
 
 
         public int CompostCost;
