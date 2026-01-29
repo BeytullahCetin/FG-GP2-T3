@@ -72,8 +72,13 @@ namespace FG_GP2_T3
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(0);
+                ReloadScene();
             }
+        }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(0);
         }
 
         private void HandleInput()
@@ -155,7 +160,7 @@ namespace FG_GP2_T3
                 });
             }
 
-            gameOverUI.RestartButton.onClick.AddListener(() => SceneManager.LoadScene(0));
+            gameOverUI.RestartButton.onClick.AddListener(ReloadScene);
             gameOverUI.GameOverPanel.SetActive(false);
         }
 
