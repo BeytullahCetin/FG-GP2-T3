@@ -278,7 +278,7 @@ namespace FG_GP2_T3
             List<Vector3> entryPoints = new();
 
             foreach((HexCell cell, HexDirection direction) in _availableConnectionsWithoutCore)
-                entryPoints.Add(cell.transform.localPosition + HexMetrics.GetEdgeCenter(direction) * 0.9f + Vector3.up * 0.2f); //0.9f to spawn them closer to center
+                entryPoints.Add(cell.transform.localPosition + HexMetrics.GetEdgeCenter(direction) * 0.8f + Vector3.up * 0.25f); //0.9f to spawn them closer to center
 
             return entryPoints;
         }
