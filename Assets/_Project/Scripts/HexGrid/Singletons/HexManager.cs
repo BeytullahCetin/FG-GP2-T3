@@ -188,7 +188,6 @@ namespace FG_GP2_T3
                         if(neighbor != null)
                             _availableConnections.Remove((neighbor, direction.Opposite()));
 
-                        Debug.Log(args.Cell.TileData.HasRoad(direction));
                         if(!args.Cell.TileData.HasRoad(direction))
                             continue;
 
