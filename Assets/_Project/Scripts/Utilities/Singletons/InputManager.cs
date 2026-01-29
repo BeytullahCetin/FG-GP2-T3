@@ -21,7 +21,18 @@ namespace FG_GP2_T3
             Controls = new InputSystem();
         }
 
-        private void OnEnable() => Controls.Enable();
-        private void OnDisable() => Controls.Disable();
+        void OnEnable()
+        {
+            if (Controls == null) return;
+            
+            Controls.Enable();
+        }
+
+        void OnDisable()
+        {
+            if (Controls == null) return;
+
+            Controls.Disable();
+        }
     }
 }
