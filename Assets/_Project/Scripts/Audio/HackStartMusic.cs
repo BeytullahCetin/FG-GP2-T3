@@ -12,7 +12,9 @@ namespace FG_GP2_T3
         private void Start()
         {
             RuntimeManager.StudioSystem.setParameterByName("Volume_Music", volume);
-            emitter.Play();
+            
+            if(!emitter.IsPlaying())
+                emitter.Play();
         }
     }
 }
