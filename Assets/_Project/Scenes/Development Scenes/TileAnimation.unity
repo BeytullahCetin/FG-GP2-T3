@@ -22245,8 +22245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellsParent: {fileID: 1619522134}
-  dropDuration: 0.2
-  delayBetweenCells: 0.01
+  dropHeight: 50
+  dropDuration: 1
+  delayBetweenCells: 0.03
   cells: []
 --- !u!1 &1630724008
 GameObject:
