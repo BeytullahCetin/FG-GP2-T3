@@ -7,6 +7,8 @@ namespace FG_GP2_T3
     {
         public static GameManager Instance;
 
+        [SerializeField] TilePlacementController tilePlacementController;
+
         private StateMachine gameflowStateMachine;
         private MainMenuState mainMenuState;
         private GameplayState gameplayState;
@@ -17,7 +19,7 @@ namespace FG_GP2_T3
             Instance = this;
             gameflowStateMachine = new StateMachine();
             mainMenuState = new MainMenuState(gameflowStateMachine);
-            gameplayState = new GameplayState(gameflowStateMachine);
+            gameplayState = new GameplayState(gameflowStateMachine, tilePlacementController);
             gameOverState = new GameOverState(gameflowStateMachine);
         }
 

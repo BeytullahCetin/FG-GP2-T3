@@ -3,12 +3,24 @@ using UnityEngine.UI;
 
 namespace FG_GP2_T3
 {
-	class GameOverUI : MonoBehaviour
+	public class GameOverUI : MonoBehaviour
 	{
-		[SerializeField] GameObject gameOverPanel;
+		[SerializeField] ScaleUpPanel gameoverPanel;
 		[SerializeField] Button restartButton;
 
-		public GameObject GameOverPanel => gameOverPanel;
-		public Button RestartButton => restartButton;
+		void OnEnable()
+		{
+			GameflowEvents.OnEnterGameOverState += gameoverPanel.Show;
+		}
+
+		void OnDisable()
+		{
+			GameflowEvents.OnEnterGameOverState -= gameoverPanel.Show;
+		}
+
+		void Start()
+		{
+			gameoverPanel.Hide();
+		}
 	}
 }

@@ -1,40 +1,86 @@
 using System.Collections.Generic;
-using BrunoMikoski.AnimationSequencer;
 using FormatableTextNS;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace FG_GP2_T3
 {
     public class GameplayUI : MonoBehaviour
     {
-        [Header("Top Bar")]
-        [SerializeField] private GameObject _topBar;
-        [SerializeField] private FormatableText _txtPhase;
+        [SerializeField] TilePlacementController tilePlacementController;
+        [SerializeField] FormatableText phaseText;
+        [SerializeField] Transform tileSelectionButtonsParent;
+        [SerializeField] Transform towerSelectionButtonsParent;
 
-        [Header("Bottom Bar")]
-        [SerializeField] private GameObject _bottomBar;
-        [SerializeField] private GameObject _tilePlacementPanel;
-        [SerializeField] private GameObject _towerPlacementPanel;
-        [SerializeField] private Transform tilePlacementButtonsParent;
-        [SerializeField] private Transform towerPlacementButtonsParent;
-        [SerializeField] private GameObject selectionButtonPrefab;
+        [Header("Panels")]
+        [SerializeField] AnimatedPanel topPanel;
+        [SerializeField] AnimatedPanel bottomPanel;
+        [SerializeField] ScaleUpPanel tileRotationPanel;
+        [SerializeField] ScaleUpPanel nextPhasePanel;
 
-        [Header("Others")]
-        [SerializeField] private Button _btnNextRound;
-        [SerializeField] private GameObject _rotationPopup;
-        [SerializeField] private Button _btnCancelRotation;
-        [SerializeField] private Button _btnRotate;
-        [SerializeField] private Button _btnConfirmRotation;
+        [Header("Prefabs")]
+        [SerializeField] SelectionButton selectionButtonPrefab;
 
-        [SerializeField] AnimationSequencerController topBarAnimation;
-        [SerializeField] AnimationSequencerController bottomBarAnimation;
-
-        void Awake()
+        void OnEnable()
         {
-            // animationSequencerController.PlayBackwards();
-            topBarAnimation.Play();
-            bottomBarAnimation.Play();
+            GameflowEvents.OnEnteredGameplayState += topPanel.Show;
+            GameflowEvents.OnEnteredGameplayState += bottomPanel.Show;
+
+            GameflowEvents.OnExitedGameplayState += topPanel.Hide;
+            GameflowEvents.OnExitedGameplayState += bottomPanel.Hide;
+
+            GameflowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
+            GameflowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
+            GameflowEvents.OnExitedTileSelectionSubGameplayState += bottomPanel.Hide;
+        }
+
+        void OnDisable()
+        {
+            GameflowEvents.OnEnteredGameplayState -= topPanel.Show;
+            GameflowEvents.OnEnteredGameplayState -= bottomPanel.Show;
+
+            GameflowEvents.OnExitedGameplayState -= topPanel.Hide;
+            GameflowEvents.OnExitedGameplayState -= bottomPanel.Hide;
+
+            GameflowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
+            GameflowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
+            GameflowEvents.OnExitedTileSelectionSubGameplayState -= bottomPanel.Hide;
+        }
+
+        void Start()
+        {
+            topPanel.Hide();
+            bottomPanel.Hide();
+            tileRotationPanel.Hide();
+            nextPhasePanel.Hide();
+        }
+
+        void EnableTileSelectionButtons()
+        {
+            tileSelectionButtonsParent.gameObject.SetActive(true);
+            towerSelectionButtonsParent.gameObject.SetActive(false);
+        }
+
+        void EnableTowerSelectionButtons()
+        {
+            towerSelectionButtonsParent.gameObject.SetActive(true);
+            tileSelectionButtonsParent.gameObject.SetActive(false);
+        }
+
+        void ResetTileSelectionButtons()
+        {
+            foreach (Transform child in tileSelectionButtonsParent)
+            {
+                Destroy(child.gameObject);
+            }
+
+            foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
+            {
+                SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
+                selectionButton.Button.onClick.AddListener(() =>
+                {
+                    tilePlacementController.SetSelectedHexTile(hexTile);
+                });
+            }
         }
     }
 }

@@ -15,7 +15,10 @@ namespace FG_GP2_T3
         {
             Debug.Log($"<color=green>{GetType()} - Enter()</color>");
         }
-        public virtual void Exit() { }
+        public virtual void Exit()
+        {
+            Debug.Log($"<color=red>{GetType()} - Exit()</color>");
+        }
         public virtual void Update() { }
     }
 }
