@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BrunoMikoski.AnimationSequencer;
 using FormatableTextNS;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,9 +27,14 @@ namespace FG_GP2_T3
         [SerializeField] private Button _btnRotate;
         [SerializeField] private Button _btnConfirmRotation;
 
+        [SerializeField] AnimationSequencerController topBarAnimation;
+        [SerializeField] AnimationSequencerController bottomBarAnimation;
+
         void Awake()
         {
-
+            // animationSequencerController.PlayBackwards();
+            topBarAnimation.Play();
+            bottomBarAnimation.Play();
         }
     }
 }
