@@ -41,8 +41,7 @@ namespace FG_GP2_T3
         #region API
 
         public HexCoordinates Coordinates;
-        public GameObject Tile;
-        public HexTileData TileData;
+        public HexTile Tile;
         public Color OuterColor
         {
             set
@@ -66,35 +65,34 @@ namespace FG_GP2_T3
             }
         }
 
-        public bool TrySetTile(HexTileData tile, float rotation = 0f) //Set to null to remove the tile
+        public bool TrySetTile(HexTileData tileData, float rotation = 0f) //Set to null to remove the tile
         {
             if(IsCore) return false;
-                
-            TileData = Instantiate(tile);
 
-            if(tile == null)
+            if(tileData == null)
             {
-                if(Tile != null)
-                {
-                    Destroy(Tile);
-                    EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Remove));
-                    return true;
-                }
-                return false;
+                if (Tile == null) return false;
+
+                Destroy(Tile.gameObject);
+                Tile = null;
+
+                EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Remove));
+                return true;
             }
-            else
-            {
-                if (Tile == null)
-                {
-                    Tile = Instantiate(tile.TilePrefab);
-                    Tile.transform.SetParent(transform, false);
-                    transform.Rotate(0f, rotation, 0f);
-                    TileData.Roads.ShiftRight((int)(rotation / 60f));
-                    EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Place));
-                    return true;
-                }
-                return false;
-            }
+            
+            if (Tile != null) return false;
+
+            HexTileData dataInstance = Instantiate(tileData);
+            dataInstance.Roads.ShiftRight(Mathf.RoundToInt(rotation / 60f));
+
+            GameObject visual = Instantiate(dataInstance.TilePrefab);
+            Tile = visual.AddComponent<HexTile>();  
+            Tile.transform.SetParent(transform, false);
+            Tile.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
+            Tile.Initialize(dataInstance);
+
+            EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Place));
+            return true;
         }
 
         #endregion

@@ -27,10 +27,10 @@ namespace FG_GP2_T3
                     if (tile.HasRoad(direction)) roadsToCore++;
                     isCoreAdjacent = true;
                 }
-                else if (neighbor.TileData != null)
+                else if (neighbor.Tile != null)
                 {
                     //Side type doesn't match with neighbor
-                    if (neighbor.TileData.HasRoad(direction.Opposite()) != tile.HasRoad(direction)) 
+                    if (neighbor.Tile.Data.HasRoad(direction.Opposite()) != tile.HasRoad(direction)) 
                         return false;
 
                     if (tile.HasRoad(direction)) roadsToTiles++;
@@ -72,7 +72,7 @@ namespace FG_GP2_T3
 
         private static bool IsBranchOpen(HexCell currentCell, HexDirection incomingDirection, HashSet<HexCell> visitedCells)
         {
-            if (currentCell == null || currentCell.IsCore || currentCell.TileData == null) return false;
+            if (currentCell == null || currentCell.IsCore || currentCell.Tile == null) return false;
             if (visitedCells.Contains(currentCell)) return false;
 
             visitedCells.Add(currentCell);
@@ -80,7 +80,7 @@ namespace FG_GP2_T3
             foreach (HexDirection direction in Enum.GetValues(typeof(HexDirection)))
             {
                 if (direction == incomingDirection) continue;
-                if (!currentCell.TileData.HasRoad(direction)) continue;
+                if (!currentCell.Tile.Data.HasRoad(direction)) continue;
 
                 HexCell nextNeighbor = currentCell.GetNeighbor(direction);
                 if (IsBranchOpen(nextNeighbor, direction.Opposite(), visitedCells))

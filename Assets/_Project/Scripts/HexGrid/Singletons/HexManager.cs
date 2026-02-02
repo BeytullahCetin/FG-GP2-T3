@@ -82,7 +82,7 @@ namespace FG_GP2_T3
                         if(neighbor != null)
                             _connections.Remove((neighbor, direction.Opposite()));
 
-                        if(!args.Cell.TileData.HasRoad(direction))
+                        if(!args.Cell.Tile.Data.HasRoad(direction))
                             continue;
 
                         //Adding available connections if roads end with no adjacent tiles
@@ -98,7 +98,7 @@ namespace FG_GP2_T3
 
                         //Adding available connections to neighbor cells if they have roads
                         HexCell neighbor = args.Cell.GetNeighbor(direction);
-                        if(neighbor != null && neighbor.TileData != null && neighbor.TileData.HasRoad(direction.Opposite()))
+                        if(neighbor != null && neighbor.Tile != null && neighbor.Tile.Data.HasRoad(direction.Opposite()))
                             _connections.Add((neighbor, direction.Opposite()));
                     }
                     return;
