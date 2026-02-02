@@ -42,7 +42,7 @@ namespace FG_GP2_T3
 
         public HexCoordinates Coordinates;
         public GameObject Tile;
-        public HexTile TileData;
+        public HexTileData TileData;
         public Color OuterColor
         {
             set
@@ -66,7 +66,7 @@ namespace FG_GP2_T3
             }
         }
 
-        public bool TrySetTile(HexTile tile, float rotation = 0f) //Set to null to remove the tile
+        public bool TrySetTile(HexTileData tile, float rotation = 0f) //Set to null to remove the tile
         {
             if(IsCore) return false;
                 

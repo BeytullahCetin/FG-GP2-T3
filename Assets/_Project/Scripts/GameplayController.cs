@@ -23,8 +23,8 @@ namespace FG_GP2_T3
         private GameplayState currentGameState;
 
         [Header("Tile Placement")]
-        [Expandable][SerializeField] private List<HexTile> _tiles = new List<HexTile>();
-        private HexTile _currentSelectedTile;
+        [Expandable][SerializeField] private List<HexTileData> _tiles = new List<HexTileData>();
+        private HexTileData _currentSelectedTile;
         private GameObject previewTile;
         private HexCell selectedCell;
         private List<HexCell> validCellsForSelectedHexTile;
@@ -119,7 +119,7 @@ namespace FG_GP2_T3
         {
             for (int i = 0; i < _tiles.Count; i++)
             {
-                HexTile hexTile = _tiles[i];
+                HexTileData hexTile = _tiles[i];
                 SelectionButton tileButton = gameplayUI.TileButtons[i];
                 tileButton.Title.SetText(hexTile.name);
 
@@ -180,7 +180,7 @@ namespace FG_GP2_T3
             currentGameState = GameplayState.TilePlacement;
         }
 
-        public void SelectHexTile(HexTile hexTile)
+        public void SelectHexTile(HexTileData hexTile)
         {
             _currentSelectedTile = hexTile;
             validCellsForSelectedHexTile = HexManager.Instance.GetValidCells(_currentSelectedTile);

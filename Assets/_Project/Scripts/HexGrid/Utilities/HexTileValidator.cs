@@ -6,7 +6,7 @@ namespace FG_GP2_T3
 {
     public static class HexTileValidator
     {
-        public static bool IsTileValid(HexTile tile, HexCell cell)
+        public static bool IsTileValid(HexTileData tile, HexCell cell)
         {
             bool isCoreAdjacent = false;
             int roadsToTiles = 0;
@@ -51,10 +51,10 @@ namespace FG_GP2_T3
                     return false;
             }
 
-            return !IsCreatingClosedCircuit(tile, cell);
+            return IsCreatingClosedCircuit(tile, cell);
         }
 
-        private static bool IsCreatingClosedCircuit(HexTile tile, HexCell cell)
+        private static bool IsCreatingClosedCircuit(HexTileData tile, HexCell cell)
         {
             HashSet<HexCell> visitedCells = new HashSet<HexCell> { cell };
 

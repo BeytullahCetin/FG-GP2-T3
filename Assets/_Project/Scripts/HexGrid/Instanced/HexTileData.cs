@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace FG_GP2_T3
 {
-    [CreateAssetMenu(fileName = "HexTile", menuName = "Scriptable Objects/HexTile")]
-    public class HexTile : ScriptableObject
+    [CreateAssetMenu(fileName = "HexTileData", menuName = "Scriptable Objects/HexTileData")]
+    public class HexTileData : ScriptableObject
     {
         public GameObject TilePrefab;
         public HexRoadSet Roads;

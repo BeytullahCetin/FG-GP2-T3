@@ -10,7 +10,7 @@ namespace FG_GP2_T3
     {
         public static HexManager Instance { get; private set; }
 
-        [SerializeField] private List<HexTile> _hexTiles = new();
+        [SerializeField] private List<HexTileData> _hexTiles = new();
 
         private ConnectionManager _connections = new ConnectionManager();
 
@@ -52,7 +52,7 @@ namespace FG_GP2_T3
                     }   
         }
 
-        private void RemoveInvalidTiles(List<HexTile> tiles, bool isFirstTurn)
+        private void RemoveInvalidTiles(List<HexTileData> tiles, bool isFirstTurn)
         {
             HashSet<(HexCell, HexDirection)> connections = (isFirstTurn || _connections.ConnectionsWithoutCore.Count == 0) ? _connections.Connections : _connections.ConnectionsWithoutCore;
 
@@ -108,15 +108,15 @@ namespace FG_GP2_T3
 
         #region API
 
-        public List<HexTile> GetRandomValidTiles(int amount, bool isFirstTurn = false)
+        public List<HexTileData> GetRandomValidTiles(int amount, bool isFirstTurn = false)
         {
-            List<HexTile> availableTiles = new List<HexTile>(_hexTiles);
+            List<HexTileData> availableTiles = new List<HexTileData>(_hexTiles);
 
             if(isFirstTurn) availableTiles = availableTiles.Where(t => t.RoadsCount == 2).ToList();
                 
             RemoveInvalidTiles(availableTiles, isFirstTurn);
 
-            List<HexTile> result = new List<HexTile>();
+            List<HexTileData> result = new List<HexTileData>();
             for (int i = 0; i < Mathf.Min(amount, availableTiles.Count); i++)
             {
                 int randomIndex = UnityEngine.Random.Range(0, availableTiles.Count);
@@ -127,7 +127,7 @@ namespace FG_GP2_T3
             return result;
         }
 
-        public List<HexCell> GetValidCells(HexTile tile)
+        public List<HexCell> GetValidCells(HexTileData tile)
         {
             List<HexCell> validCells = new();
 
@@ -141,11 +141,11 @@ namespace FG_GP2_T3
             return validCells;
         }
 
-        public List<float> GetValidTileRotations(HexTile tile, HexCell cell)
+        public List<float> GetValidTileRotations(HexTileData tile, HexCell cell)
         {
             List<float> validRotations = new();
 
-            HexTile tileCopy = Instantiate(tile);
+            HexTileData tileCopy = Instantiate(tile);
 
             for(int i = 0; i < 6; i++)
             {
