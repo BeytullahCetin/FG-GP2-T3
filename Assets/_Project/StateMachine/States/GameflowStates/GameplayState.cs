@@ -40,6 +40,8 @@ namespace FG_GP2_T3
 			subStateMachine.Update();
 		}
 
+		#region State Switches
+
 		public void SwitchToTileSelectionState()
 		{
 			subStateMachine.ChangeState(tileSelectionState);
@@ -54,5 +56,7 @@ namespace FG_GP2_T3
 		{
 			subStateMachine.ChangeState(tileRotationState);
 		}
+
+		#endregion
 	}
 }

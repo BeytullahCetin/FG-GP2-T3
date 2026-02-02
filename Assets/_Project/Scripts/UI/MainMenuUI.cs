@@ -30,7 +30,7 @@ namespace FG_GP2_T3
         {
             tapToScreenButton.onClick.AddListener(() =>
             {
-                GameManager.Instance.StartGame();
+                GameManager.Instance.SwitchToGameplayState();
             });
 
             tapToScreenText.transform

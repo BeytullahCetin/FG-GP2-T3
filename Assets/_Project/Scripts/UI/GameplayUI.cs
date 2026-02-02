@@ -20,6 +20,9 @@ namespace FG_GP2_T3
         [Header("Prefabs")]
         [SerializeField] SelectionButton selectionButtonPrefab;
 
+        private List<SelectionButton> currentTileSelectionButtons = new List<SelectionButton>();
+        private List<SelectionButton> currentTowerSelectionButtons = new List<SelectionButton>();
+
         void OnEnable()
         {
             GameflowEvents.OnEnteredGameplayState += topPanel.Show;
@@ -30,7 +33,6 @@ namespace FG_GP2_T3
 
             GameflowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
             GameflowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
-            GameflowEvents.OnExitedTileSelectionSubGameplayState += bottomPanel.Hide;
         }
 
         void OnDisable()
@@ -43,7 +45,6 @@ namespace FG_GP2_T3
 
             GameflowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
             GameflowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
-            GameflowEvents.OnExitedTileSelectionSubGameplayState -= bottomPanel.Hide;
         }
 
         void Start()
@@ -66,19 +67,37 @@ namespace FG_GP2_T3
             tileSelectionButtonsParent.gameObject.SetActive(false);
         }
 
-        void ResetTileSelectionButtons()
+        void DeselectSelectionButtons(List<SelectionButton> selectionButtons)
         {
-            foreach (Transform child in tileSelectionButtonsParent)
+            foreach (SelectionButton selectionButton in selectionButtons)
+            {
+                selectionButton.Deselect();
+            }
+        }
+
+        void DestroyAllChildren(Transform parent)
+        {
+            foreach (Transform child in parent)
             {
                 Destroy(child.gameObject);
             }
+        }
+
+        void ResetTileSelectionButtons()
+        {
+            DestroyAllChildren(tileSelectionButtonsParent);
+            currentTileSelectionButtons.Clear();
 
             foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
+                currentTileSelectionButtons.Add(selectionButton);
+
                 selectionButton.Button.onClick.AddListener(() =>
                 {
                     tilePlacementController.SetSelectedHexTile(hexTile);
+                    DeselectSelectionButtons(currentTileSelectionButtons);
+                    selectionButton.Select();
                 });
             }
         }

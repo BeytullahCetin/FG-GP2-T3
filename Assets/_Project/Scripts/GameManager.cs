@@ -25,7 +25,7 @@ namespace FG_GP2_T3
 
         void Start()
         {
-            SwitchToMainMenu();
+            SwitchToMainMenuState();
         }
 
         void Update()
@@ -33,22 +33,44 @@ namespace FG_GP2_T3
             gameflowStateMachine.Update();
         }
 
+        #region State Switches
+
         [Button]
-        public void SwitchToMainMenu()
+        public void SwitchToMainMenuState()
         {
             gameflowStateMachine.ChangeState(mainMenuState);
         }
 
         [Button]
-        public void StartGame()
+        public void SwitchToGameplayState()
         {
             gameflowStateMachine.ChangeState(gameplayState);
         }
 
         [Button]
-        public void GameOver()
+        public void SwitchToGameOverState()
         {
             gameflowStateMachine.ChangeState(gameOverState);
         }
+
+        [Button]
+        public void SwitchToTileSelectionSubState()
+        {
+            gameplayState.SwitchToTileSelectionState();
+        }
+
+        [Button]
+        public void SwitchToTilePlacementSubState()
+        {
+            gameplayState.SwitchToTilePlacementState();
+        }
+
+        [Button]
+        public void SwitchToTileRotationSubState()
+        {
+            gameplayState.SwitchToTileRotationState();
+        }
+
+        #endregion
     }
 }

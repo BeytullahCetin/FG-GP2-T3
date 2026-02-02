@@ -14,20 +14,37 @@ namespace FG_GP2_T3
         public void SetSelectedHexTile(HexTile hexTile)
         {
             currentSelectedHexTile = hexTile;
-            validCellsForSelectedHexTile = HexManager.Instance.GetValidCells(currentSelectedHexTile);
+            GameManager.Instance.SwitchToTilePlacementSubState();
         }
 
         public List<HexTile> GetHexTilesForPlacement()
         {
+            // TODO: add select 3 random tile
             return hexTiles;
         }
 
-        public void StartAnimateValidCellsForPlacement()
+        public void SetValidCellsForSelectedHexTile()
         {
+            validCellsForSelectedHexTile = HexManager.Instance.GetValidCells(currentSelectedHexTile);
+        }
+
+        public void StartAnimateValidCells()
+        {
+            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedHexTile)
             {
                 cell.OuterColor = Color.white;
                 cell.InnerColor = Color.white;
+            }
+        }
+
+        public void StopAnimateValidCells()
+        {
+            // TODO: add settings for colors
+            foreach (HexCell cell in validCellsForSelectedHexTile)
+            {
+                cell.OuterColor = Color.black;
+                cell.InnerColor = Color.black;
             }
         }
     }
