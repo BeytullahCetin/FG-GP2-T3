@@ -13,7 +13,7 @@ namespace FG_GP2_T3
         public bool IsCore { get; private set; }
         public void SetAsCore(bool isCore = true) => IsCore = isCore;
 
-        private HexCell[] _neighbors = new HexCell[6];
+        [SerializeField] HexCell[] _neighbors = new HexCell[6];
         private MeshRenderer _outerMeshRenderer;
         private MeshRenderer _innerMeshRenderer;
         private MaterialPropertyBlock _propertyBlock;

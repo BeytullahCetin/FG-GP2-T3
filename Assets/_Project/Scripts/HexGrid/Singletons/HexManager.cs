@@ -10,7 +10,7 @@ namespace FG_GP2_T3
     {
         public static HexManager Instance { get; private set; }
 
-        [SerializeField, Expandable] private List<HexTile> _hexTiles = new();
+        [SerializeField] private List<HexTile> _hexTiles = new();
 
         private HashSet<(HexCell, HexDirection)> _availableConnections = new();
         //TODO Optimize to not calculate many times at runtime
@@ -164,7 +164,7 @@ namespace FG_GP2_T3
 
             tiles.RemoveAll(tile => 
             {
-                foreach ((HexCell cell, HexDirection direction) in isFirstTurn ? _availableConnections : _availableConnectionsWithoutCore)
+                foreach ((HexCell cell, HexDirection direction) in connections)
                 {
                     HexCell neighbor = cell.GetNeighbor(direction);
 
