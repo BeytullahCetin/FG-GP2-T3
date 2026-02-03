@@ -11,13 +11,13 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
-			GameflowEvents.OnEnteredTileSelectionSubGameplayState?.Invoke();
+			GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState?.Invoke();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
-			GameflowEvents.OnExitedTileSelectionSubGameplayState?.Invoke();
+			GameplayStateFlowEvents.OnExitedTileSelectionSubGameplayState?.Invoke();
 		}
 	}
 }

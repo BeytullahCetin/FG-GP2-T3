@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using FormatableTextNS;
 using UnityEngine;
 
@@ -31,11 +32,14 @@ namespace FG_GP2_T3
             GameflowEvents.OnExitedGameplayState += topPanel.Hide;
             GameflowEvents.OnExitedGameplayState += bottomPanel.Hide;
 
-            GameflowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
-            GameflowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
 
-            GameflowEvents.OnEnteredTileRotationSubGameplayState += tileRotationPanel.Show;
-            GameflowEvents.OnExitedTileRotationSubGameplayState += tileRotationPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredTileRotationSubGameplayState += tileRotationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTileRotationSubGameplayState += tileRotationPanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += EnableTowerSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
         }
 
         void OnDisable()
@@ -46,11 +50,14 @@ namespace FG_GP2_T3
             GameflowEvents.OnExitedGameplayState -= topPanel.Hide;
             GameflowEvents.OnExitedGameplayState -= bottomPanel.Hide;
 
-            GameflowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
-            GameflowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
 
-            GameflowEvents.OnEnteredTileRotationSubGameplayState -= tileRotationPanel.Show;
-            GameflowEvents.OnExitedTileRotationSubGameplayState -= tileRotationPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredTileRotationSubGameplayState -= tileRotationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTileRotationSubGameplayState -= tileRotationPanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= EnableTowerSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
         }
 
         void Start()
@@ -61,6 +68,20 @@ namespace FG_GP2_T3
             nextPhasePanel.Hide();
         }
 
+        void DestroyAllChildren(Transform parent)
+        {
+            foreach (Transform child in parent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+
+        public void SetPhaseText(string value)
+        {
+            phaseText.FillText(value);
+        }
+
         void EnableTileSelectionButtons()
         {
             tileSelectionButtonsParent.gameObject.SetActive(true);
@@ -69,18 +90,19 @@ namespace FG_GP2_T3
 
         void EnableTowerSelectionButtons()
         {
-            towerSelectionButtonsParent.gameObject.SetActive(true);
             tileSelectionButtonsParent.gameObject.SetActive(false);
+            towerSelectionButtonsParent.gameObject.SetActive(true);
         }
 
-        void TransitionFromTileToTower()
+        public async UniTask TransitionFromTileToTower()
         {
+            topPanel.Hide();
+            bottomPanel.Hide();
 
-        }
+            await UniTask.WaitForSeconds(.5f);
 
-        public void SetPhaseText(string value)
-        {
-            phaseText.FillText(value);
+            topPanel.Show();
+            bottomPanel.Show();
         }
 
         void DeselectSelectionButtons(List<SelectionButton> selectionButtons)
@@ -88,14 +110,6 @@ namespace FG_GP2_T3
             foreach (SelectionButton selectionButton in selectionButtons)
             {
                 selectionButton.Deselect();
-            }
-        }
-
-        void DestroyAllChildren(Transform parent)
-        {
-            foreach (Transform child in parent)
-            {
-                Destroy(child.gameObject);
             }
         }
 
@@ -116,6 +130,25 @@ namespace FG_GP2_T3
                     selectionButton.Select();
                 });
             }
+        }
+
+        void ResetTowerSelectionButtons()
+        {
+            DestroyAllChildren(towerSelectionButtonsParent);
+            // currentTileSelectionButtons.Clear();
+
+            // foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
+            // {
+            //     SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
+            //     currentTileSelectionButtons.Add(selectionButton);
+
+            //     selectionButton.Button.onClick.AddListener(() =>
+            //     {
+            //         tilePlacementController.SetSelectedHexTile(hexTile);
+            //         DeselectSelectionButtons(currentTileSelectionButtons);
+            //         selectionButton.Select();
+            //     });
+            // }
         }
     }
 }

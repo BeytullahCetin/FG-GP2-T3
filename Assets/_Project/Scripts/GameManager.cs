@@ -72,6 +72,12 @@ namespace FG_GP2_T3
         }
 
         [Button]
+        public void SwitchToTileToTowerTransitionSubState()
+        {
+            gameplayState.SwitchToTileToTowerTransitionState();
+        }
+
+        [Button]
         public void SwitchToTowerSelectionSubState()
         {
             gameplayState.SwitchToTowerSelectionState();

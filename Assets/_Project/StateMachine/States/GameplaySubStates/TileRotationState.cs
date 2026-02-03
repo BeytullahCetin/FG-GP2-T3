@@ -12,14 +12,14 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
-			GameflowEvents.OnEnteredTileRotationSubGameplayState?.Invoke();
+			GameplayStateFlowEvents.OnEnteredTileRotationSubGameplayState?.Invoke();
 			tilePlacementController.PreviewTileOnTheCell();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
-			GameflowEvents.OnExitedTileRotationSubGameplayState?.Invoke();
+			GameplayStateFlowEvents.OnExitedTileRotationSubGameplayState?.Invoke();
 		}
 	}
 }

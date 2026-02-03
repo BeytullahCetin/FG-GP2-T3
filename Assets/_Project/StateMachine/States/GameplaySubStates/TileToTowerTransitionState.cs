@@ -6,9 +6,11 @@ namespace FG_GP2_T3
 		{
 		}
 
-		public override void Enter()
+		public async override void Enter()
 		{
 			base.Enter();
+			await UIManager.Instance.GameplayUI.TransitionFromTileToTower();
+			GameManager.Instance.SwitchToTowerSelectionSubState();
 		}
 
 		public override void Exit()

@@ -20,15 +20,15 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
-			GameflowEvents.OnEnteredTilePlacementSubGameplayState?.Invoke();
 			tilePlacementController.StartAnimateValidCells();
+			GameplayStateFlowEvents.OnEnteredTilePlacementSubGameplayState?.Invoke();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
 			tilePlacementController.StopAnimateValidCells();
-			GameflowEvents.OnExitedTilePlacementSubGameplayState?.Invoke();
+			GameplayStateFlowEvents.OnExitedTilePlacementSubGameplayState?.Invoke();
 		}
 
 		private void CheckValidCellClicked()

@@ -57,7 +57,7 @@ namespace FG_GP2_T3
             }
 
             previewTile = null;
-            GameManager.Instance.SwitchToTowerSelectionSubState();
+            GameManager.Instance.SwitchToTileToTowerTransitionSubState();
         }
 
         public void SetSelectedHexTile(HexTile tile)
