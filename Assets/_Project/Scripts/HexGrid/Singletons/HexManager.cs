@@ -11,8 +11,9 @@ namespace FG_GP2_T3
         public static HexManager Instance { get; private set; }
 
         [SerializeField] private List<HexTileData> _hexTiles = new();
-
-        private PathManager _connections = new PathManager();
+        
+        private ConnectionManager _connections = new ConnectionManager();
+        private List<HexCell> _towerCells = new();
 
         private void Awake()
         {
@@ -44,17 +45,22 @@ namespace FG_GP2_T3
 
             foreach(HexCoordinates coordinate in HexCore.CoreCoordinates)
                 if(HexGrid.Instance.TryGetCell(coordinate, out HexCell cell))
+                {
+                    _connections.AddTowerTileConnections(cell);
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         HexCell neighbor = cell.GetNeighbor(direction);
                         if(neighbor != null && !neighbor.IsCore)
-                            _connections.Add((cell, direction));
-                    }   
+                        {
+                            _connections.AddPathConnection((cell, direction));
+                        }                 
+                    }  
+                } 
         }
 
         private void RemoveInvalidTiles(List<HexTileData> tiles, bool isFirstTurn)
         {
-            HashSet<(HexCell, HexDirection)> connections = (isFirstTurn || _connections.ConnectionsWithoutCore.Count == 0) ? _connections.Connections : _connections.ConnectionsWithoutCore;
+            HashSet<(HexCell, HexDirection)> connections = (isFirstTurn || _connections.PathConnectionsWithoutCore.Count == 0) ? _connections.PathConnections : _connections.PathConnectionsWithoutCore;
 
             tiles.RemoveAll(tile => 
             {
@@ -75,13 +81,22 @@ namespace FG_GP2_T3
             switch(args.ActionType)
             {
                 case CellEventType.Place:
+                    if(args.Cell.Tile.Data.RoadsCount == 0)
+                    {
+                        _towerCells.Add(args.Cell);
+                        _connections.RemoveTowerTileConnection(args.Cell);
+                        return;
+                    }
+
+                    _connections.AddTowerTileConnections(args.Cell);
+
                     int tileNeighbours = 0;
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         //Removing neighbor connection points
                         HexCell neighbor = args.Cell.GetNeighbor(direction);
                         if(neighbor != null)
-                            _connections.Remove((neighbor, direction.Opposite()));
+                            _connections.RemovePathConnection((neighbor, direction.Opposite()));
 
                         if(!args.Cell.Tile.Data.HasRoad(direction))
                             continue;
@@ -91,22 +106,29 @@ namespace FG_GP2_T3
                         {
                             tileNeighbours++;
                             if(neighbor.Tile == null && !neighbor.IsCore)
-                                _connections.Add((args.Cell, direction));
+                                _connections.AddPathConnection((args.Cell, direction));
                         }
                     }
                     if(tileNeighbours > 1)
                         UpdateTilesAvailablePathsInBranch(args.Cell);
                     return;
                 case CellEventType.Remove:
+                    if(args.Cell.Tile.Data.RoadsCount == 0)
+                    {
+                        _towerCells.Remove(args.Cell);
+                        _connections.AddTowerTileConnection(args.Cell);
+                        return;
+                    }
+
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         //Removing all existing connections for the cell
-                        _connections.Remove((args.Cell, direction));
+                        _connections.RemovePathConnection((args.Cell, direction));
 
                         //Adding available connections to neighbor cells if they have roads
                         HexCell neighbor = args.Cell.GetNeighbor(direction);
                         if(neighbor != null && neighbor.Tile != null && neighbor.Tile.Data.HasRoad(direction.Opposite()))
-                            _connections.Add((neighbor, direction.Opposite()));
+                            _connections.AddPathConnection((neighbor, direction.Opposite()));
                     }
                     return;
                 default: return;
@@ -168,9 +190,11 @@ namespace FG_GP2_T3
 
         public List<HexCell> GetValidCells(HexTileData tile)
         {
+            if(tile.RoadsCount == 0) return _connections.TowerTileConnections.ToList();
+
             List<HexCell> validCells = new();
 
-            foreach((HexCell cell, HexDirection direction) in _connections.Connections)
+            foreach((HexCell cell, HexDirection direction) in _connections.PathConnections)
             {
                 HexCell neighbor = cell.GetNeighbor(direction);
                 if(GetValidTileRotations(tile, neighbor).Count > 0)
@@ -197,9 +221,11 @@ namespace FG_GP2_T3
             return validRotations;
         }
 
+        public List<HexCell> GetTowerCells() => _towerCells;
+
         public List<Vector3> GetNextEnemyPath()
         {
-            (HexCell, HexDirection) connection = _connections.GetNextConnection();
+            (HexCell, HexDirection) connection = _connections.GetNextPathConnection();
             Vector3 start = _connections.GetEntrancePoint(connection.Item1, connection.Item2);
             List<Vector3> path = new List<Vector3> { start };
 
@@ -225,11 +251,12 @@ namespace FG_GP2_T3
             return path;
         }
 
+        //LEGACY
         public List<Vector3> GetEnemyEntryPoints()
         {
             List<Vector3> entryPoints = new();
 
-            foreach((HexCell cell, HexDirection direction) in _connections.ConnectionsWithoutCore)
+            foreach((HexCell cell, HexDirection direction) in _connections.PathConnectionsWithoutCore)
                 entryPoints.Add(_connections.GetEntrancePoint(cell, direction));
 
             return entryPoints;

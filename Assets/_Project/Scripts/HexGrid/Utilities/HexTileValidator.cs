@@ -30,8 +30,8 @@ namespace FG_GP2_T3
                 else if (neighbor.Tile != null)
                 {
                     //Side type doesn't match with neighbor
-                    if (neighbor.Tile.Data.HasRoad(direction.Opposite()) != tile.HasRoad(direction)) 
-                        return false;
+                    if (neighbor.Tile.Data.HasRoad(direction.Opposite()) != tile.HasRoad(direction))
+                        return false;                 
 
                     if (tile.HasRoad(direction)) roadsToTiles++;
                 }
