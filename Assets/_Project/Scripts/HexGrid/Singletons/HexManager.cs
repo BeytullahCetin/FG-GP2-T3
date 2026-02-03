@@ -225,6 +225,16 @@ namespace FG_GP2_T3
             return path;
         }
 
+        public List<Vector3> GetEnemyEntryPoints()
+        {
+            List<Vector3> entryPoints = new();
+
+            foreach((HexCell cell, HexDirection direction) in _connections.ConnectionsWithoutCore)
+                entryPoints.Add(_connections.GetEntrancePoint(cell, direction));
+
+            return entryPoints;
+        }
+
         #endregion
     }
 }
