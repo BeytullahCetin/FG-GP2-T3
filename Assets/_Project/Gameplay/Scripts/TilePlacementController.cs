@@ -50,7 +50,7 @@ namespace FG_GP2_T3
 
         void ConfirmPreview()
         {
-            if (selectedCell.TrySetTile(selectedTile, previewTile.transform.eulerAngles.y))
+            if (selectedCell.TrySetTile(selectedTile, validRotationsForSelectedTile[currentTileRotationIndex]))
             {
                 NavmeshManager.Instance.RebakeNavmesh();
                 Destroy(previewTile.gameObject);

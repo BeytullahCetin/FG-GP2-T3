@@ -45,6 +45,9 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += nextPhasePanel.Show;
 
+            GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Hide;
+
         }
 
         void OnDisable()
@@ -64,6 +67,9 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= EnableTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= nextPhasePanel.Show;
+
+            GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
         }
 
         void Start()
@@ -82,7 +88,6 @@ namespace FG_GP2_T3
                 Destroy(child.gameObject);
             }
         }
-
 
         public void SetPhaseText(string value)
         {

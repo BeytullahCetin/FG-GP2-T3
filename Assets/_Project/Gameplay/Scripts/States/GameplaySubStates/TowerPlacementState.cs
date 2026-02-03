@@ -13,12 +13,14 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
+			towerPlacementController.StartAnimateValidCells();
 			GameplayStateFlowEvents.OnEnteredTowerPlacementSubGameplayState?.Invoke();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
+			towerPlacementController.StopAnimateValidCells();
 			GameplayStateFlowEvents.OnExitedTowerPlacementSubGameplayState?.Invoke();
 		}
 
@@ -51,11 +53,8 @@ namespace FG_GP2_T3
 			if (hasGetCell == false)
 				return;
 
-			// if (cell.Tile != null || towerPlacementController.ValidCellsForSelectedTile.Contains(cell) == false)
-			// 	return;
-
-			// if (cell.Tile != null)
-			// 	return;
+			if (towerPlacementController.ValidCellsForSelectedTile.Contains(cell) == false)
+				return;
 
 			towerPlacementController.SetSelectedCell(cell);
 		}

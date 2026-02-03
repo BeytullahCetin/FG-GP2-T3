@@ -2805,8 +2805,9 @@ GameObject:
   - component: {fileID: 73609132}
   - component: {fileID: 73609131}
   - component: {fileID: 73609130}
+  - component: {fileID: 73609134}
   m_Layer: 5
-  m_Name: BTN_NextRound
+  m_Name: BTN_NextWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2929,6 +2930,19 @@ MonoBehaviour:
   duration: 0.5
   showEase: 27
   hideEase: 26
+--- !u!114 &73609134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73609128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e16dbb6977841046868e415c2679c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 73609130}
 --- !u!1001 &73645779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59467,7 +59481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 895804492}
-  towerTileBase: {fileID: 11400000, guid: 38c8531395d4abe46b36110cad05b5d6, type: 2}
+  towerConfirmation: {fileID: 39515420}
+  nextWave: {fileID: 73609134}
+  towerTile: {fileID: 11400000, guid: 38c8531395d4abe46b36110cad05b5d6, type: 2}
   towerDatas:
   - {fileID: 11400000, guid: 4e2d03495bd005540af5c5a471c4be06, type: 2}
   - {fileID: 11400000, guid: 4f88cfb1233a218459abb2c89f062fe3, type: 2}

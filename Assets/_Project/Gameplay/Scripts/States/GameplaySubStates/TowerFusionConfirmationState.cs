@@ -7,5 +7,11 @@ namespace FG_GP2_T3
 		{
 			this.towerPlacementController = towerPlacementController;
 		}
+
+		public override void Enter()
+		{
+			base.Enter();
+			towerPlacementController.SetFusionListeners();
+		}
 	}
 }
