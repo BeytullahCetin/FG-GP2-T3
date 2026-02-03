@@ -8,6 +8,8 @@ namespace FG_GP2_T3
     public class GameplayUI : MonoBehaviour
     {
         [SerializeField] TilePlacementController tilePlacementController;
+        [SerializeField] TowerPlacementController towerPlacementController;
+
         [SerializeField] FormatableText phaseText;
         [SerializeField] Transform tileSelectionButtonsParent;
         [SerializeField] Transform towerSelectionButtonsParent;
@@ -16,6 +18,7 @@ namespace FG_GP2_T3
         [SerializeField] AnimatedPanel topPanel;
         [SerializeField] AnimatedPanel bottomPanel;
         [SerializeField] ScaleUpPanel tileRotationPanel;
+        [SerializeField] ScaleUpPanel towerConfirmationPanel;
         [SerializeField] ScaleUpPanel nextPhasePanel;
 
         [Header("Prefabs")]
@@ -40,6 +43,8 @@ namespace FG_GP2_T3
 
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += EnableTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += nextPhasePanel.Show;
+
         }
 
         void OnDisable()
@@ -58,6 +63,7 @@ namespace FG_GP2_T3
 
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= EnableTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= nextPhasePanel.Show;
         }
 
         void Start()
@@ -65,6 +71,7 @@ namespace FG_GP2_T3
             topPanel.Hide();
             bottomPanel.Hide();
             tileRotationPanel.Hide();
+            towerConfirmationPanel.Hide();
             nextPhasePanel.Hide();
         }
 
@@ -121,6 +128,7 @@ namespace FG_GP2_T3
             foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
+                selectionButton.Title.SetText(hexTile.name);
                 currentTileSelectionButtons.Add(selectionButton);
 
                 selectionButton.Button.onClick.AddListener(() =>
@@ -129,26 +137,32 @@ namespace FG_GP2_T3
                     DeselectSelectionButtons(currentTileSelectionButtons);
                     selectionButton.Select();
                 });
+
             }
+
+            DeselectSelectionButtons(currentTileSelectionButtons);
         }
 
         void ResetTowerSelectionButtons()
         {
             DestroyAllChildren(towerSelectionButtonsParent);
-            // currentTileSelectionButtons.Clear();
+            currentTowerSelectionButtons.Clear();
 
-            // foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
-            // {
-            //     SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
-            //     currentTileSelectionButtons.Add(selectionButton);
+            foreach (TowerData towerData in towerPlacementController.GetTowerDatasForPlacement())
+            {
+                SelectionButton selectionButton = Instantiate(selectionButtonPrefab, towerSelectionButtonsParent);
+                selectionButton.Title.SetText(towerData.name);
+                currentTowerSelectionButtons.Add(selectionButton);
 
-            //     selectionButton.Button.onClick.AddListener(() =>
-            //     {
-            //         tilePlacementController.SetSelectedHexTile(hexTile);
-            //         DeselectSelectionButtons(currentTileSelectionButtons);
-            //         selectionButton.Select();
-            //     });
-            // }
+                selectionButton.Button.onClick.AddListener(() =>
+                {
+                    towerPlacementController.SetSelectedTower(towerData);
+                    DeselectSelectionButtons(currentTowerSelectionButtons);
+                    selectionButton.Select();
+                });
+            }
+
+            DeselectSelectionButtons(currentTowerSelectionButtons);
         }
     }
 }

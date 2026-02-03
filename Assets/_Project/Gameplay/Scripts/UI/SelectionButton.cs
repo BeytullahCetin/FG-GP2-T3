@@ -9,19 +9,21 @@ namespace FG_GP2_T3
         [SerializeField] Button button;
         [SerializeField] TMP_Text title;
         [SerializeField] Image image;
+        [SerializeField] GameObject selected;
 
         public Button Button => button;
         public TMP_Text Title => title;
         public Image Image => image;
+        public GameObject Selected => selected;
 
         public void Select()
         {
-            // TODO: Add select logic
+            selected.SetActive(true);
         }
 
         public void Deselect()
         {
-            // TODO: Add deselect logic
+            selected.SetActive(false);
         }
     }
 }

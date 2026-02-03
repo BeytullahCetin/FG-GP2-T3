@@ -69,6 +69,7 @@ namespace FG_GP2_T3
             validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedTile);
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
+            // TODO: move camera movement to state
             cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTilePlacementSubState();
         }

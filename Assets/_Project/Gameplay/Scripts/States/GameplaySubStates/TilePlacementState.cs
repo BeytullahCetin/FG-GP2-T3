@@ -11,12 +11,6 @@ namespace FG_GP2_T3
 			this.tilePlacementController = tilePlacementController;
 		}
 
-		public override void Update()
-		{
-			base.Update();
-			CheckValidCellClicked();
-		}
-
 		public override void Enter()
 		{
 			base.Enter();
@@ -31,8 +25,15 @@ namespace FG_GP2_T3
 			GameplayStateFlowEvents.OnExitedTilePlacementSubGameplayState?.Invoke();
 		}
 
+		public override void Update()
+		{
+			base.Update();
+			CheckValidCellClicked();
+		}
+
 		private void CheckValidCellClicked()
 		{
+			// TODO: Change input system to new input system
 			if (Input.GetMouseButtonDown(0) == false)
 				return;
 

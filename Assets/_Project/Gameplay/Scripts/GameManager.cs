@@ -8,6 +8,7 @@ namespace FG_GP2_T3
         public static GameManager Instance;
 
         [SerializeField] TilePlacementController tilePlacementController;
+        [SerializeField] TowerPlacementController towerPlacementController;
 
         private StateMachine gameflowStateMachine;
         private MainMenuState mainMenuState;
@@ -19,7 +20,7 @@ namespace FG_GP2_T3
             Instance = this;
             gameflowStateMachine = new StateMachine();
             mainMenuState = new MainMenuState(gameflowStateMachine);
-            gameplayState = new GameplayState(gameflowStateMachine, tilePlacementController);
+            gameplayState = new GameplayState(gameflowStateMachine, tilePlacementController, towerPlacementController);
             gameOverState = new GameOverState(gameflowStateMachine);
         }
 
@@ -81,6 +82,24 @@ namespace FG_GP2_T3
         public void SwitchToTowerSelectionSubState()
         {
             gameplayState.SwitchToTowerSelectionState();
+        }
+
+        [Button]
+        public void SwitchToTowerPlacementSubState()
+        {
+            gameplayState.SwitchToTowerPlacementState();
+        }
+
+        [Button]
+        public void SwitchToTowerPlacementConfirmationSubState()
+        {
+            gameplayState.SwitchToTowerPlacementConfirmationState();
+        }
+
+        [Button]
+        public void SwitchToFusionConfirmationSubState()
+        {
+            gameplayState.SwitchToTowerFusionConfirmationState();
         }
 
         #endregion
