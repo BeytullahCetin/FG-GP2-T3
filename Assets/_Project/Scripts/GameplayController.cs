@@ -48,8 +48,8 @@ namespace FG_GP2_T3
 
         void Start()
         {
-            EnemyManager.Instance.OnAllEnemiesDead += StartTilePlacementPhase;
-            EnemyManager.Instance.Poe.Health.OnDead += ShowGameOverPanel;
+            //EnemyManager.Instance.OnAllEnemiesDead += StartTilePlacementPhase;
+            //EnemyManager.Instance.Poe.Health.OnDead += ShowGameOverPanel;
         }
 
         private void ShowGameOverPanel()
@@ -140,7 +140,7 @@ namespace FG_GP2_T3
                 gameplayUI.TopBar.SetActive(false);
                 gameplayUI.BottomBar.SetActive(false);
                 gameplayUI.BtnNextRound.gameObject.SetActive(false);
-                EnemyManager.Instance.SpawnEnemiesTest();
+                //EnemyManager.Instance.SpawnEnemiesTest();
                 currentGameState = GameplayState.EnemyAttack;
             });
 
@@ -225,7 +225,7 @@ namespace FG_GP2_T3
 
         public void CancelPreview()
         {
-            cameraController.transform.position = EnemyManager.Instance.Poe.transform.position;
+            cameraController.transform.position = EnemyManager.Instance.GetTarget().transform.position;
             cameraController.ZoomOut();
             gameplayUI.RotationPopup.SetActive(false);
 
@@ -250,7 +250,7 @@ namespace FG_GP2_T3
                 gameplayUI.BtnNextRound.gameObject.SetActive(true);
                 gameplayUI.TilePlacementPanel.SetActive(false);
                 gameplayUI.TowerPlacementPanel.SetActive(true);
-                NavmeshManager.Instance.RebakeNavmesh();
+                //NavmeshManager.Instance.RebakeNavmesh();
 
                 Destroy(previewTile.gameObject);
                 previewTile = null;

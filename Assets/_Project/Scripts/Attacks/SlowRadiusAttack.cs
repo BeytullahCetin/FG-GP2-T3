@@ -11,7 +11,7 @@ namespace FG_GP2_T3
 
             foreach(Collider hit in Hits)
             {
-                IDamegable enemy= hit.GetComponent<IDamegable>();
+                IDamageable enemy= hit.GetComponent<IDamageable>();
                 if (enemy==null) continue;
 
                 enemy.ApplySlow(Tower.Data.SlowPercent, Tower.Data.CcDuration);

@@ -1,10 +1,10 @@
 ﻿<Solution>
   <Project Path="NaughtyAttributes.Core.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UniTask.csproj" />
   <Project Path="UniTask.Linq.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />

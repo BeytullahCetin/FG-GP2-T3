@@ -19,7 +19,7 @@ namespace FG_GP2_T3
                 if (angle <= Tower.Data.ConeAngle / 2f)
                 {
 
-                    IDamegable enemy = hit.GetComponent<IDamegable>();
+                    IDamageable enemy = hit.GetComponent<IDamageable>();
                     if (enemy != null)
                         enemy.TakeDamage(Tower.Data.Damage);
                 }

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace FG_GP2_T3
 {
-	public class Enemy : MonoBehaviour
+	public class LegacyEnemy : MonoBehaviour
 	{
 		private Health _health;
 		private NavMeshAgent _agent;
@@ -19,7 +19,7 @@ namespace FG_GP2_T3
 		{
 			_agent = GetComponent<NavMeshAgent>();
 			_health = GetComponent<Health>();
-			_poe = EnemyManager.Instance.Poe;
+			_poe = LegacyEnemyManager.Instance.Poe;
 
 			_health.OnDead += Die;
 
@@ -64,10 +64,10 @@ namespace FG_GP2_T3
 
 			while (true)
 			{
-				if (_health.IsAlive == false || _poe.Health.IsAlive == false)
+				if (_health.IsAlive == false || _poe.Health <= 0)
 					break;
 
-				_poe.Health.TakeDamage(20);
+				_poe.TakeDamage(20);
 				await UniTask.WaitForSeconds(1f);
 			}
 

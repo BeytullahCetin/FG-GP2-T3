@@ -7,21 +7,21 @@ using UnityEngine;
 
 namespace FG_GP2_T3
 {
-    public class EnemyManager : MonoBehaviour
+    public class LegacyEnemyManager : MonoBehaviour
     {
-        public static EnemyManager Instance;
+        public static LegacyEnemyManager Instance;
         public POE Poe => _poe;
 
         [SerializeField] private POE _poe;
 
-        [SerializeField] private Enemy _enemyPrefab;
+        [SerializeField] private LegacyEnemy _enemyPrefab;
         [SerializeField] private Transform _enemiesParent;
 
         [Header("Settings")]
         [SerializeField] private float _baseEnemySpawnCount = 6;
         [SerializeField] private float _enemySpawnCountMultiplier = 1.2f;
 
-        List<Enemy> enemies = new List<Enemy>();
+        List<LegacyEnemy> enemies = new List<LegacyEnemy>();
         public event Action OnAllEnemiesDead = delegate { };
 
         private int _turn = 1;
@@ -40,11 +40,11 @@ namespace FG_GP2_T3
 
         public void SpawnEnemies(int wave)
         {
-            List<Vector3> spawnPoints = HexManager.Instance.GetEnemyEntryPoints();
+            List<Vector3> movementPoints = HexManager.Instance.GetNextEnemyPath();
             
             //int enemySpawnCount = GetEnemyCount(wave);
 
-            StartCoroutine(SpawnEnemiesRoutine(spawnPoints));
+            StartCoroutine(SpawnEnemiesRoutine(movementPoints));
         }
 
         private IEnumerator SpawnEnemiesRoutine(List<Vector3> spawnPoints)
@@ -63,12 +63,12 @@ namespace FG_GP2_T3
 
         void SpawnSingleEnemy(Vector3 position)
         {
-            Enemy enemy = Instantiate(_enemyPrefab, position, Quaternion.identity, _enemiesParent);
+            LegacyEnemy enemy = Instantiate(_enemyPrefab, position, Quaternion.identity, _enemiesParent);
             enemy.Health.OnDead += () => RemoveFromEnemiesList(enemy);
             enemies.Add(enemy);
         }
 
-        public void RemoveFromEnemiesList(Enemy enemy)
+        public void RemoveFromEnemiesList(LegacyEnemy enemy)
         {
             enemies.Remove(enemy);
 
