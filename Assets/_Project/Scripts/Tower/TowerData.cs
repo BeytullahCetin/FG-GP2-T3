@@ -19,6 +19,9 @@ namespace FG_GP2_T3
         public AttackType AttackType;
         public DamageType DamageType;
 
+        public GlobalSoundType SoundOnSelected;
+        public GlobalSoundType SoundOnPlaced;
+
         [Header("Crowd Control Stats")]
         public CrowdControlType CrowdControlType;
 

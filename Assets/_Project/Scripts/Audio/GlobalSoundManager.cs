@@ -31,7 +31,16 @@ namespace FG_GP2_T3
 
         public void OnPlaySound(GlobalSoundType type)
         {
+            // Don't play if sound is set to default
+            if (type == GlobalSoundType.Default)// && !Application.isEditor)
+                return;
+            
             _globalSoundEmitters.Find(x => x.soundType == type).Play();
+        }
+
+        public void OnStopSound(GlobalSoundType type)
+        {
+            _globalSoundEmitters.Find(x => x.soundType == type).Stop();
         }
     }
 }
