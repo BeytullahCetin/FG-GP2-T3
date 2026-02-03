@@ -22,7 +22,7 @@ namespace FG_GP2_T3
         [Header("Melee Mode")]
         public bool InstantHit = false;
 
-        internal void Initiliaze(Transform currentTarget, float damage)
+        internal void Initialize(Transform currentTarget, float damage)
         {
             _Target = currentTarget;
             _Damage = damage;
@@ -35,7 +35,7 @@ namespace FG_GP2_T3
 
         private void DoInstantHit()
         {
-            Health enemy = _Target.GetComponent<Health>();
+            Test_Enemy enemy = _Target.GetComponent<Test_Enemy>();
 
             if (enemy != null)
             {
@@ -63,7 +63,7 @@ namespace FG_GP2_T3
         {
             if (!other.CompareTag("Enemy")) return;
 
-            Health enemy = other.GetComponent<Health>();
+            Test_Enemy enemy = other.GetComponent<Test_Enemy>();
 
             if (enemy != null)
             {
@@ -72,5 +72,7 @@ namespace FG_GP2_T3
 
             Destroy(gameObject);
         }
+
+        
     }
 }
