@@ -7,7 +7,7 @@ namespace FG_GP2_T3
 	public class SomeGameScript : MonoBehaviour
 	{
 		bool _tileSelected = false;
-		HexTile _selectedTile;
+		HexTileData _selectedTile;
 		List<HexCell> _highlightedCells = new();
 
 		private void Update() 
@@ -17,7 +17,11 @@ namespace FG_GP2_T3
 				foreach(HexCell cell in _highlightedCells) //Clearing highlighting
 					cell.InnerColor = Color.black;
 
-				_selectedTile = HexManager.Instance.GetRandomValidTiles(3, true)[0]; //Always picking the first option out of 3 returned by the func
+				List<HexTileData> validTiles = HexManager.Instance.GetRandomValidTiles(3, true); //Getting 3 random valid tiles
+				if(validTiles.Count == 0) 
+					return;
+
+				_selectedTile = validTiles[0]; //Always picking the first option out of 3 returned by the func
 
 				_highlightedCells = HexManager.Instance.GetValidCells(_selectedTile); //Getting new cells to highlight
 				foreach(HexCell cell in _highlightedCells)
