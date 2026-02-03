@@ -71,10 +71,10 @@ namespace FG_GP2_T3
 
 		private Vector3 ClampPosition(Vector3 position) 
 		{
-			float xMax = (GameConstants.HexGrid.GRID_RADIUS - 1f) * (2f * GameConstants.HexGrid.INNER_RADIUS);
+			float xMax = (HexGrid.Instance.GridRadius - 1f) * (2f * GameConstants.HexGrid.INNER_RADIUS);
 			position.x = Mathf.Clamp(position.x, -xMax, xMax);
 
-			float zMax = GameConstants.HexGrid.GRID_RADIUS * (1.5f * GameConstants.HexGrid.OUTER_RADIUS);
+			float zMax = HexGrid.Instance.GridRadius * (1.5f * GameConstants.HexGrid.OUTER_RADIUS);
 			position.z = Mathf.Clamp(position.z, -zMax, zMax);
 
 			return position;

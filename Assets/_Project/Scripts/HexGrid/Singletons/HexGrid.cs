@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 namespace FG_GP2_T3
@@ -9,6 +11,9 @@ namespace FG_GP2_T3
         public static HexGrid Instance { get; private set; }
 
         [SerializeField] private HexCell _cellPrefab;
+        [SerializeField] private int _gridRadius = 5;
+        public int GridRadius => _gridRadius;
+
         private Dictionary<HexCoordinates, HexCell> _cells = new Dictionary<HexCoordinates, HexCell>();
 
         private void Awake()
@@ -23,32 +28,68 @@ namespace FG_GP2_T3
             CreateGrid();
         }
 
-        private void CreateGrid()
+        private void InitializeDictionary()
         {
-            for (int q = -GameConstants.HexGrid.GRID_RADIUS; q <= GameConstants.HexGrid.GRID_RADIUS; q++)
+            _cells.Clear();
+            HexCell[] foundCells = GetComponentsInChildren<HexCell>();
+            
+            foreach (HexCell cell in foundCells)
+                if (cell != null)
+                    _cells[cell.Coordinates] = cell;
+        }
+
+        [Button("Generate Grid")]
+        public void CreateGrid()
+        {
+            if (Application.isPlaying)
+                return;
+
+            ClearGrid();
+            InitializeDictionary();
+
+            for (int q = -_gridRadius; q <= _gridRadius; q++)
             {
-                int rMin = Mathf.Max(-GameConstants.HexGrid.GRID_RADIUS, -q - GameConstants.HexGrid.GRID_RADIUS);
-                int rMax = Mathf.Min(GameConstants.HexGrid.GRID_RADIUS, -q + GameConstants.HexGrid.GRID_RADIUS);
+                int rMin = Mathf.Max(-_gridRadius, -q - _gridRadius);
+                int rMax = Mathf.Min(_gridRadius, -q + _gridRadius);
 
                 for (int r = rMin; r <= rMax; r++)
                     CreateCell(q, r);
             }
 
             ConnectCells();
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(this);
+            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
+#endif
+            Debug.Log("Grid has been generated and saved in the scene.");
+        }
+
+        [Button("Clear Grid")]
+        private void ClearGrid()
+        {
+            for (int i = transform.childCount - 1; i >= 0; i--)
+                DestroyImmediate(transform.GetChild(i).gameObject);
+
+            _cells.Clear();
         }
 
         private void CreateCell(int q, int r)
         {
             HexCoordinates coordinates = new HexCoordinates(q, r);
+            HexCell cell;
 
-            HexCell cell = Instantiate(_cellPrefab);
+#if UNITY_EDITOR
+            cell = (HexCell)PrefabUtility.InstantiatePrefab(_cellPrefab, transform);
+#else
+            cell = Instantiate(_cellPrefab, transform);
+#endif
 
-            cell.transform.SetParent(transform, false);
             cell.transform.localPosition = HexCoordinates.ToWorldPosition(coordinates);
             cell.Coordinates = coordinates;
-            cell.name = "HexCell " + coordinates.ToString();
+            cell.name = $"HexCell {coordinates}";
 
-            _cells.Add(coordinates, cell);
+            _cells[coordinates] = cell;
         }
 
         private void ConnectCells()
@@ -70,20 +111,20 @@ namespace FG_GP2_T3
                 return;
 
             cell.SetNeighbor(direction, _neighbor);
+
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(cell);
+#endif
         }
 
         #region API
         
         public bool TryGetCell(HexCoordinates coordinates, out HexCell cell)
         {
-            if(_cells.TryGetValue(coordinates, out HexCell c))
-            {
-                cell = c;
-                return true;
-            }
+            if (_cells.Count == 0 && transform.childCount > 0)
+                InitializeDictionary();
 
-            cell = null;
-            return false;
+            return _cells.TryGetValue(coordinates, out cell);
         }
 
         public bool TryGetCell(Vector3 position, out HexCell cell) 
