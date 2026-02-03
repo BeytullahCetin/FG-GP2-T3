@@ -73,6 +73,16 @@ namespace FG_GP2_T3
             tileSelectionButtonsParent.gameObject.SetActive(false);
         }
 
+        void TransitionFromTileToTower()
+        {
+
+        }
+
+        public void SetPhaseText(string value)
+        {
+            phaseText.FillText(value);
+        }
+
         void DeselectSelectionButtons(List<SelectionButton> selectionButtons)
         {
             foreach (SelectionButton selectionButton in selectionButtons)

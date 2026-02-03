@@ -50,6 +50,12 @@ namespace FG_GP2_T3
 
         void ConfirmPreview()
         {
+            if (selectedCell.TrySetTile(selectedTile, previewTile.transform.eulerAngles.y))
+            {
+                NavmeshManager.Instance.RebakeNavmesh();
+                Destroy(previewTile.gameObject);
+            }
+
             previewTile = null;
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
