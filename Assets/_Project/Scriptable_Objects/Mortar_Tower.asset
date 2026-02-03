@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
-  m_Name: Melee_Tower
+  m_Name: Mortar_Tower
   m_EditorClassIdentifier: 
-  TowerName: Melee Tower
-  Role: 1
-  AttackType: 2
+  TowerName: 
+  Role: 0
+  TowerPrefab: {fileID: 0}
+  AttackType: 4
   DamageType: 0
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0
   EnemyTargetting: 1
   MaxTargets: 1
-  ExplosionRadius: 0
+  ExplosionRadius: 3.5
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
-  Range: 5
-  Damage: 20
-  FireRate: 1
+  Range: 9
+  Damage: 35
+  FireRate: 0.5
   pierce: 0
-  FirePoint: {fileID: 0}
-  ProjectilePrefab: {fileID: 2595672995752767437, guid: 199f551af5ad7914482dc18ba0fd961a, type: 3}
-  towerMaterial: {fileID: 2100000, guid: 653a483cd8a125f43ba6047f5f653211, type: 2}
+  ProjectilePrefab: {fileID: 2595672995752767437, guid: 26ad00780f9e81b439360bbe8e7824ee, type: 3}
+  towerMaterial: {fileID: 0}
   CompostCost: 0
