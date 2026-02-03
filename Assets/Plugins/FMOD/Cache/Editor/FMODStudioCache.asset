@@ -51,7 +51,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 501
---- !u!114 &-8304880873656061204
+--- !u!114 &-8482407011440752057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,14 +61,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Towers/BrazilNut/Selected
+  m_Name: event:/Towers/Howler/Ambient
   m_EditorClassIdentifier: 
-  Path: event:/Towers/BrazilNut/Selected
+  Path: event:/Towers/Howler/Ambient
   Guid:
-    Data1: -1618667750
-    Data2: 1129195484
-    Data3: -521845836
-    Data4: 569678837
+    Data1: -1223092486
+    Data2: 1238715920
+    Data3: -832362585
+    Data4: 1623278741
   Banks:
   - {fileID: -3261343089669076842}
   IsStream: 0
@@ -78,6 +78,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8094754176132224541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Bamboo/Selected
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Bamboo/Selected
+  Guid:
+    Data1: -926826696
+    Data2: 1223858377
+    Data3: 1477802165
+    Data4: -1198027288
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 21372
 --- !u!114 &-7687183435098100939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,13 +149,13 @@ MonoBehaviour:
     Data4: 557176934
   Banks:
   - {fileID: -3261343089669076842}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 37190
 --- !u!114 &-6981944270716381276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,12 +252,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -3261343089669076842}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 900
 --- !u!114 &-6003337125442119715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +495,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-3513254043986879119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Bamboo/Placed
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Bamboo/Placed
+  Guid:
+    Data1: 887318569
+    Data2: 1202796735
+    Data3: 821964219
+    Data4: 530525071
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1008
 --- !u!114 &-3467998299687559177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +564,7 @@ MonoBehaviour:
   Path: Assets/_Project/_SourceAssets/Audio/FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639052796254698396
+  lastModified: 639057470234672733
   FileSizes: []
   Exists: 1
 --- !u!114 &-3252087686008171185
@@ -561,14 +615,14 @@ MonoBehaviour:
     Data4: -1241174809
   Banks:
   - {fileID: -3261343089669076842}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
   - {fileID: 6681037828943448056}
   MinDistance: 1
   MaxDistance: 20
-  Length: 8000
+  Length: 106629
 --- !u!114 &-2117875101123185907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +674,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-1800477817471415569
+--- !u!114 &-1218543988479885692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -630,50 +684,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Towers/BrazilNut/Placed
+  m_Name: event:/Towers/Howler/Attack
   m_EditorClassIdentifier: 
-  Path: event:/Towers/BrazilNut/Placed
+  Path: event:/Towers/Howler/Attack
   Guid:
-    Data1: -1734249319
-    Data2: 1339868802
-    Data3: 2018826923
-    Data4: -331094890
+    Data1: -203128071
+    Data2: 1078299227
+    Data3: -139245151
+    Data4: 1673426986
   Banks:
   - {fileID: -3261343089669076842}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &-1750712978449937722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Towers/BrazilNut/Ambient
-  m_EditorClassIdentifier: 
-  Path: event:/Towers/BrazilNut/Ambient
-  Guid:
-    Data1: -1223092486
-    Data2: 1238715920
-    Data3: -832362585
-    Data4: 1623278741
-  Banks:
-  - {fileID: -3261343089669076842}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Length: 907
 --- !u!114 &-749699781972774431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,33 +728,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1205
---- !u!114 &-80537790223084407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Towers/BrazilNut/Attack
-  m_EditorClassIdentifier: 
-  Path: event:/Towers/BrazilNut/Attack
-  Guid:
-    Data1: -203128071
-    Data2: 1078299227
-    Data3: -139245151
-    Data4: 1673426986
-  Banks:
-  - {fileID: -3261343089669076842}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +744,6 @@ MonoBehaviour:
   - {fileID: 3668960654709508680}
   - {fileID: -3261343089669076842}
   EditorEvents:
-  - {fileID: -8304880873656061204}
   - {fileID: -6003337125442119715}
   - {fileID: -7101010367556098075}
   - {fileID: 7994752423370923519}
@@ -755,12 +754,9 @@ MonoBehaviour:
   - {fileID: 6117962479123124462}
   - {fileID: 3053586222184409470}
   - {fileID: -8640489389706997390}
-  - {fileID: -1800477817471415569}
   - {fileID: -2117875101123185907}
   - {fileID: -749699781972774431}
   - {fileID: -6981944270716381276}
-  - {fileID: -80537790223084407}
-  - {fileID: -1750712978449937722}
   - {fileID: -2321199585730817389}
   - {fileID: -3252087686008171185}
   - {fileID: -4513908503635535237}
@@ -771,6 +767,14 @@ MonoBehaviour:
   - {fileID: 9164403729635216524}
   - {fileID: -5298200680398239265}
   - {fileID: 8661311747655468763}
+  - {fileID: 3854325298362824446}
+  - {fileID: 4957882459131114502}
+  - {fileID: -3513254043986879119}
+  - {fileID: 3378200859346071432}
+  - {fileID: -8094754176132224541}
+  - {fileID: 5421106521983984077}
+  - {fileID: -1218543988479885692}
+  - {fileID: -8482407011440752057}
   EditorParameters:
   - {fileID: 3257674893053582272}
   - {fileID: -4518950726268340782}
@@ -786,62 +790,70 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 3668960654709508680}
   cacheVersion: 131858
-  cacheTime: 639052796254718511
+  cacheTime: 639057470234693003
   SerializableEventsDict:
-  - key: event:/Towers/BrazilNut/Selected
-    index: 0
   - key: event:/Towers/Jaguar/Ambient
-    index: 1
+    index: 0
   - key: event:/Towers/Jaguar/Selected
-    index: 2
+    index: 1
   - key: event:/Poe/Hit
-    index: 3
+    index: 2
   - key: event:/Towers/Jaguar/Attack
-    index: 4
+    index: 3
   - key: event:/Lumberfolk/Default/Hit
-    index: 5
+    index: 4
   - key: event:/Towers/Default/Placed
-    index: 6
+    index: 5
   - key: event:/Towers/Default/Attack
-    index: 7
+    index: 6
   - key: event:/Towers/Default/Selected
-    index: 8
+    index: 7
   - key: event:/Towers/Jaguar/Placed
-    index: 9
+    index: 8
   - key: event:/Lumberfolk/Default/Attack
-    index: 10
-  - key: event:/Towers/BrazilNut/Placed
-    index: 11
+    index: 9
   - key: event:/Towers/Default/Ambient
-    index: 12
+    index: 10
   - key: event:/Lumberfolk/Default/Death
-    index: 13
+    index: 11
   - key: event:/Ambience/Default
-    index: 14
-  - key: event:/Towers/BrazilNut/Attack
-    index: 15
-  - key: event:/Towers/BrazilNut/Ambient
-    index: 16
+    index: 12
   - key: event:/Music/Lose
-    index: 17
+    index: 13
   - key: event:/Music/Win
-    index: 18
+    index: 14
   - key: event:/Music/Wave
-    index: 19
+    index: 15
   - key: event:/UI/Buttons/Default
-    index: 20
+    index: 16
   - key: event:/Tiles/SelectBlank
-    index: 21
+    index: 17
   - key: event:/Music/Wave_Stems1
-    index: 22
+    index: 18
   - key: event:/Tiles/PlaceRoad
-    index: 23
+    index: 19
   - key: event:/Tiles/SelectRoad
-    index: 24
+    index: 20
   - key: event:/Music/Build
-    index: 25
+    index: 21
   - key: event:/Music/Menu
+    index: 22
+  - key: event:/Towers/Bamboo/Ambient
+    index: 23
+  - key: event:/Towers/Howler/Selected
+    index: 24
+  - key: event:/Towers/Bamboo/Placed
+    index: 25
+  - key: event:/Towers/Bamboo/Attack
     index: 26
+  - key: event:/Towers/Bamboo/Selected
+    index: 27
+  - key: event:/Towers/Howler/Placed
+    index: 28
+  - key: event:/Towers/Howler/Attack
+    index: 29
+  - key: event:/Towers/Howler/Ambient
+    index: 30
 --- !u!114 &309357525344282694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,7 +955,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2974
 --- !u!114 &3257674893053582272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +980,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &3378200859346071432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Bamboo/Attack
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Bamboo/Attack
+  Guid:
+    Data1: 132026157
+    Data2: 1133070810
+    Data3: 1453492108
+    Data4: -1828849691
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 470
 --- !u!114 &3668960654709508680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,11 +1022,92 @@ MonoBehaviour:
   Path: Assets/_Project/_SourceAssets/Audio/FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639052796254718511
+  lastModified: 639057470234693003
   FileSizes:
   - Name: 
-    Value: 2680
+    Value: 2858
   Exists: 1
+--- !u!114 &3854325298362824446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Bamboo/Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Bamboo/Ambient
+  Guid:
+    Data1: 48699654
+    Data2: 1283387575
+    Data3: -1326852198
+    Data4: 1633750464
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4957882459131114502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Howler/Selected
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Howler/Selected
+  Guid:
+    Data1: -1618667750
+    Data2: 1129195484
+    Data3: -521845836
+    Data4: 569678837
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8630
+--- !u!114 &5421106521983984077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Towers/Howler/Placed
+  m_EditorClassIdentifier: 
+  Path: event:/Towers/Howler/Placed
+  Guid:
+    Data1: -1734249319
+    Data2: 1339868802
+    Data3: 2018826923
+    Data4: -331094890
+  Banks:
+  - {fileID: -3261343089669076842}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2771
 --- !u!114 &6117962479123124462
 MonoBehaviour:
   m_ObjectHideFlags: 0
