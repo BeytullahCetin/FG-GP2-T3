@@ -33,6 +33,9 @@ namespace FG_GP2_T3
 
             GameflowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
             GameflowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
+
+            GameflowEvents.OnEnteredTileRotationSubGameplayState += tileRotationPanel.Show;
+            GameflowEvents.OnExitedTileRotationSubGameplayState += tileRotationPanel.Hide;
         }
 
         void OnDisable()
@@ -45,6 +48,9 @@ namespace FG_GP2_T3
 
             GameflowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
             GameflowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
+
+            GameflowEvents.OnEnteredTileRotationSubGameplayState -= tileRotationPanel.Show;
+            GameflowEvents.OnExitedTileRotationSubGameplayState -= tileRotationPanel.Hide;
         }
 
         void Start()

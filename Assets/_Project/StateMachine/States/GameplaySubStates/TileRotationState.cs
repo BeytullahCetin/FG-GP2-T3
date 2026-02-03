@@ -8,5 +8,18 @@ namespace FG_GP2_T3
 		{
 			this.tilePlacementController = tilePlacementController;
 		}
+
+		public override void Enter()
+		{
+			base.Enter();
+			GameflowEvents.OnEnteredTileRotationSubGameplayState?.Invoke();
+			tilePlacementController.PreviewTileOnTheCell();
+		}
+
+		public override void Exit()
+		{
+			base.Exit();
+			GameflowEvents.OnExitedTileRotationSubGameplayState?.Invoke();
+		}
 	}
 }

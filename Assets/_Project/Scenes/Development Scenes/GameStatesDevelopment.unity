@@ -3019,6 +3019,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &895804492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3805030264933881306, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
+  m_PrefabInstance: {fileID: 1743176019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73b799beadc19e245a9e899c3555db1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &948038226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3029,15 +3040,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.13
+      value: 5.0370646
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.13
+      value: 5.0370646
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.13
+      value: 5.0370646
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3078,10 +3089,6 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_Name
@@ -3351,11 +3358,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0864d02150e4d8ca661c0d5dca13a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSelectedHexTile: {fileID: 0}
-  hexTiles:
+  cam: {fileID: 895804492}
+  tileRotationConfirmation: {fileID: 1569384421}
+  tiles:
   - {fileID: 11400000, guid: 6344af6a6be6f574f83cdecfc51d9c72, type: 2}
   - {fileID: 11400000, guid: b1c4028d105ce7b4b8ddc1ec7b31894e, type: 2}
   - {fileID: 11400000, guid: 4ad4b30267f8f334fa9ac43c25301b8e, type: 2}
+  selectedTile: {fileID: 0}
+  selectedCell: {fileID: 0}
+  previewTile: {fileID: 0}
+  currentTileRotationIndex: 0
 --- !u!1 &1115663516
 GameObject:
   m_ObjectHideFlags: 0
@@ -4502,6 +4514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569384419}
   - component: {fileID: 1569384420}
+  - component: {fileID: 1569384421}
   m_Layer: 5
   m_Name: RotationConfirmation
   m_TagString: Untagged
@@ -4527,7 +4540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 650}
   m_SizeDelta: {x: 550, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1569384420
@@ -4545,6 +4558,21 @@ MonoBehaviour:
   duration: 0.5
   showEase: 27
   hideEase: 26
+--- !u!114 &1569384421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569384418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8153ffeadd40f41c59038c42cc6f6eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cancelButton: {fileID: 331203657}
+  rotateButton: {fileID: 1945756329}
+  confirmButton: {fileID: 1115663518}
 --- !u!1 &1620629787
 GameObject:
   m_ObjectHideFlags: 0
@@ -6356,8 +6384,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6374,13 +6402,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 125
+  m_fontSize: 120
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 125
-  m_fontStyle: 2
+  m_fontSizeMax: 120
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

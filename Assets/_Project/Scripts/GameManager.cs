@@ -71,6 +71,12 @@ namespace FG_GP2_T3
             gameplayState.SwitchToTileRotationState();
         }
 
+        [Button]
+        public void SwitchToTowerSelectionSubState()
+        {
+            gameplayState.SwitchToTowerSelectionState();
+        }
+
         #endregion
     }
 }
