@@ -86,10 +86,10 @@ namespace FG_GP2_T3
             dataInstance.Roads.ShiftRight(Mathf.RoundToInt(rotation / 60f));
 
             GameObject visual = Instantiate(dataInstance.TilePrefab);
-            Tile = visual.AddComponent<HexTile>();  
+            Tile = visual.AddComponent<HexTile>();
             Tile.transform.SetParent(transform, false);
             Tile.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
-            Tile.Initialize(dataInstance);
+            Tile.Initialize(dataInstance, this);
 
             EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Place));
             return true;

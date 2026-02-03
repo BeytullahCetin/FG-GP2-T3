@@ -12,7 +12,7 @@ namespace FG_GP2_T3
 
         [SerializeField] private List<HexTileData> _hexTiles = new();
 
-        private ConnectionManager _connections = new ConnectionManager();
+        private PathManager _connections = new PathManager();
 
         private void Awake()
         {
@@ -75,6 +75,7 @@ namespace FG_GP2_T3
             switch(args.ActionType)
             {
                 case CellEventType.Place:
+                    int tileNeighbours = 0;
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         //Removing neighbor connection points
@@ -86,9 +87,15 @@ namespace FG_GP2_T3
                             continue;
 
                         //Adding available connections if roads end with no adjacent tiles
-                        if(neighbor != null && neighbor.Tile == null && !neighbor.IsCore)
-                            _connections.Add((args.Cell, direction));
+                        if(neighbor != null)
+                        {
+                            tileNeighbours++;
+                            if(neighbor.Tile == null && !neighbor.IsCore)
+                                _connections.Add((args.Cell, direction));
+                        }
                     }
+                    if(tileNeighbours > 1)
+                        UpdateTilesAvailablePathsInBranch(args.Cell);
                     return;
                 case CellEventType.Remove:
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
@@ -103,6 +110,38 @@ namespace FG_GP2_T3
                     }
                     return;
                 default: return;
+            }
+        }
+
+        private void UpdateTilesAvailablePathsInBranch(HexCell startCell)
+        {
+            if (startCell == null || startCell.Tile == null) return;
+
+            Stack<HexCell> cellsToProcess = new Stack<HexCell>();
+            HashSet<HexCell> visitedCells = new HashSet<HexCell>();
+
+            cellsToProcess.Push(startCell);
+
+            while (cellsToProcess.Count > 0)
+            {
+                HexCell current = cellsToProcess.Pop();
+
+                if (visitedCells.Contains(current)) continue;
+                visitedCells.Add(current);
+
+                if (current.Tile != null)
+                    current.Tile.UpdateAvailablePaths();
+
+                foreach (HexDirection direction in Enum.GetValues(typeof(HexDirection)))
+                {
+                    if (current.Tile != null && !current.Tile.Data.HasRoad(direction)) continue;
+                    if (current.IsCore) continue;
+
+                    HexCell neighbor = current.GetNeighbor(direction);
+
+                    if (neighbor != null && neighbor.Tile != null)
+                        cellsToProcess.Push(neighbor);
+                }
             }
         }
 
@@ -158,23 +197,32 @@ namespace FG_GP2_T3
             return validRotations;
         }
 
-        //TODO
-        /*
-        public List<Vector3> GetEnemyPath()
+        public List<Vector3> GetNextEnemyPath()
         {
-            return new List<Vector3>();
-        }
-        */
+            (HexCell, HexDirection) connection = _connections.GetNextConnection();
+            Vector3 start = _connections.GetEntrancePoint(connection.Item1, connection.Item2);
+            List<Vector3> path = new List<Vector3> { start };
 
-        //TEMP REPLACEMENT
-        public List<Vector3> GetEnemyEntryPoints()
-        {
-            List<Vector3> entryPoints = new();
+            int safetyCounter = 0;
 
-            foreach((HexCell cell, HexDirection direction) in _connections.ConnectionsWithoutCore)
-                entryPoints.Add(cell.transform.localPosition + HexMetrics.GetEdgeCenter(direction) * 0.8f + Vector3.up * 0.25f); //0.9f to spawn them closer to center
+            HexCell currentCell = connection.Item1;
+            HexDirection movementDirection = currentCell.Tile.GetNextDirection(connection.Item2);
 
-            return entryPoints;
+            while(true)
+            {
+                if (currentCell.IsCore) break;
+
+                path.Add(currentCell.transform.position);
+
+                movementDirection = currentCell.Tile.GetNextDirection(movementDirection.Opposite());
+                currentCell = currentCell.GetNeighbor(movementDirection);
+
+                safetyCounter++;
+                if(safetyCounter > 1000)
+                    throw new Exception("Infinite loop detected in enemy pathfinding. Could not find a path to the core.");
+            }
+
+            return path;
         }
 
         #endregion
