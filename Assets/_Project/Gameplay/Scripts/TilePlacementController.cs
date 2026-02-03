@@ -11,14 +11,14 @@ namespace FG_GP2_T3
         // if (previewTile != null)
         //         Destroy(previewTile);
 
-        public HexTile CurrentSelectedTile => selectedTile;
+        public HexTileData CurrentSelectedTile => selectedTile;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTile;
 
         [SerializeField] StickyCameraMovement cam;
         [SerializeField] TileRotationConfirmation tileRotationConfirmation;
-        [SerializeField] List<HexTile> tiles = new List<HexTile>();
+        [SerializeField] List<HexTileData> tiles = new List<HexTileData>();
 
-        [ReadOnly][SerializeField] private HexTile selectedTile;
+        [ReadOnly][SerializeField] private HexTileData selectedTile;
         [ReadOnly][SerializeField] private HexCell selectedCell;
         [ReadOnly][SerializeField] private GameObject previewTile;
         [ReadOnly][SerializeField] private int currentTileRotationIndex;
@@ -60,7 +60,7 @@ namespace FG_GP2_T3
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
         }
 
-        public void SetSelectedHexTile(HexTile tile)
+        public void SetSelectedHexTile(HexTileData tile)
         {
             if (previewTile != null)
                 Destroy(previewTile);
@@ -80,7 +80,7 @@ namespace FG_GP2_T3
             GameManager.Instance.SwitchToTileRotationSubState();
         }
 
-        public List<HexTile> GetHexTilesForPlacement()
+        public List<HexTileData> GetHexTilesForPlacement()
         {
             // TODO: add select 3 random tile
             return tiles;

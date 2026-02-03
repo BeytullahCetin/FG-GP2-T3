@@ -59467,6 +59467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 895804492}
+  towerTileBase: {fileID: 11400000, guid: 38c8531395d4abe46b36110cad05b5d6, type: 2}
   towerDatas:
   - {fileID: 11400000, guid: 4e2d03495bd005540af5c5a471c4be06, type: 2}
   - {fileID: 11400000, guid: 4f88cfb1233a218459abb2c89f062fe3, type: 2}

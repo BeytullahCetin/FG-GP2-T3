@@ -125,15 +125,15 @@ namespace FG_GP2_T3
             DestroyAllChildren(tileSelectionButtonsParent);
             currentTileSelectionButtons.Clear();
 
-            foreach (HexTile hexTile in tilePlacementController.GetHexTilesForPlacement())
+            foreach (HexTileData hexTileData in tilePlacementController.GetHexTilesForPlacement())
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
-                selectionButton.Title.SetText(hexTile.name);
+                selectionButton.Title.SetText(hexTileData.name);
                 currentTileSelectionButtons.Add(selectionButton);
 
                 selectionButton.Button.onClick.AddListener(() =>
                 {
-                    tilePlacementController.SetSelectedHexTile(hexTile);
+                    tilePlacementController.SetSelectedHexTile(hexTileData);
                     DeselectSelectionButtons(currentTileSelectionButtons);
                     selectionButton.Select();
                 });

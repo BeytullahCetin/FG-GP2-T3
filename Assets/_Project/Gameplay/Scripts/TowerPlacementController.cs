@@ -16,7 +16,7 @@ namespace FG_GP2_T3
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
 
         [SerializeField] StickyCameraMovement cam;
-        [SerializeField] HexTile towerTileBase;
+        [SerializeField] HexTileData towerTileBase;
         [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
 
         [ReadOnly][SerializeField] private TowerData selectedTower;
@@ -31,7 +31,8 @@ namespace FG_GP2_T3
 
             selectedTower = tower;
 
-            // validCellsForSelectedTower = HexManager.Instance.GetValidCells(selectedTile);
+            validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTileBase);
+            StartAnimateValidCells();
 
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
@@ -64,15 +65,15 @@ namespace FG_GP2_T3
             return towerDatas.Take(3).ToList();
         }
 
-        // public void StartAnimateValidCells()
-        // {
-        //     // TODO: add settings for colors
-        //     foreach (HexCell cell in validCellsForSelectedTile)
-        //     {
-        //         cell.OuterColor = Color.white;
-        //         cell.InnerColor = Color.white;
-        //     }
-        // }
+        public void StartAnimateValidCells()
+        {
+            // TODO: add settings for colors
+            foreach (HexCell cell in validCellsForSelectedTower)
+            {
+                cell.OuterColor = Color.white;
+                cell.InnerColor = Color.white;
+            }
+        }
 
         // public void StopAnimateValidCells()
         // {
