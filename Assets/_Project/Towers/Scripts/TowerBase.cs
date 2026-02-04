@@ -57,33 +57,24 @@ namespace FG_GP2_T3
 
         private void Awake()
         {
-            Debug.Log("TowerBase.Awake()");
             GetVisualReferances();
-        }
-
-        private void Start()
-        {
-            Debug.Log("TowerBase.Start()");
-            // stats = new TowerStats(Data);
-            // BuildTower();
         }
 
         void GetVisualReferances()
         {
-            Debug.Log("TowerBase.GetVisualReferances()");
             towerVisuals = towerVisualsParent.GetComponentsInChildren<TowerVisual>(true).ToList();
         }
 
         [Button]
         public void UpdateTowerVisual()
         {
-            Debug.Log("TowerBase.UpdateTowerVisual()");
             foreach (TowerVisual visual in towerVisuals)
             {
                 visual.gameObject.SetActive(Data == visual.TowerData);
             }
         }
 
+        [Button]
         public void BuildTower()
         {
             stats = new TowerStats(Data);
@@ -102,7 +93,7 @@ namespace FG_GP2_T3
 
         public void PlayBuildSound()
         {
-            GlobalSoundManager.Instance.OnPlaySound(Data.SoundOnPlaced);
+            // GlobalSoundManager.Instance.OnPlaySound(Data.SoundOnPlaced);
         }
 
         private void Update()
