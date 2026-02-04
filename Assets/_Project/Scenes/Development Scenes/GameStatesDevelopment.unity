@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 8455231}
   - component: {fileID: 8455230}
   - component: {fileID: 8455229}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25454,7 +25454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 655467186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36543,9 +36543,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6797780881090856957, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4990125288211002990, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4091792821388611644, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
       propertyPath: m_Name
       value: poe_tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272792448870640430, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3830128448114483933, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070767616040691672, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762868550023720026, guid: c5c95b138ab3a0c4a8c386599023670c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46594,9 +46626,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1144003024}
   - component: {fileID: 1144003027}
-  - component: {fileID: 1144003025}
   - component: {fileID: 1144003026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: POE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46619,20 +46650,6 @@ Transform:
   - {fileID: 655467186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1144003025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144003023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663ee5c20cda6ea43b94ab6608542340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _health: 0
 --- !u!208 &1144003026
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -83694,10 +83711,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 655467186}
     m_Modifications:
+    - target: {fileID: 453000270604930952, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762592767324347199, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2688318772209042647, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 17a3538daedb5dd48a057d2784d22b13, type: 2}
+    - target: {fileID: 2782223368473073647, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782223368473073647, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782223368473073647, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2894986372039587815, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -83721,6 +83758,10 @@ PrefabInstance:
     - target: {fileID: 7068247013590821521, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
       propertyPath: m_Name
       value: HexTile_Poe
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068247013590821521, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7592125149319245867, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83763,10 +83804,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9121218334411922497, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Height
+      value: 90.7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9121218334411922497, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_Radius
+      value: 20.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121218334411922497, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9121218334411922497, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3371791169096884987, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2894986372039587815, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
     m_AddedGameObjects:

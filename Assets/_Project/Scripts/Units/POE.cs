@@ -8,6 +8,14 @@ namespace FG_GP2_T3
 		[SerializeField] private float _health;
 		public float Health => _health;
 
+		private CapsuleCollider _collider;
+		public CapsuleCollider Collider => _collider;
+
+		private void Awake()
+		{
+			_collider = GetComponentInChildren<CapsuleCollider>();
+		}
+
 		public void TakeDamage(float damage)
 		{
 			_health -= damage;

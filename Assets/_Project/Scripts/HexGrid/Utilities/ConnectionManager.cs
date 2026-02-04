@@ -59,10 +59,10 @@ namespace FG_GP2_T3
 
         public (HexCell, HexDirection) GetNextPathConnection()
         {
-            if(PathConnections.Count == 0) throw new System.InvalidOperationException("No connections available.");
+            if(PathConnectionsWithoutCore.Count == 0) throw new System.InvalidOperationException("No connections available.");
 
-            (HexCell, HexDirection) connection = PathConnections.ElementAt(_currentConnectionIndex);
-            _currentConnectionIndex = (_currentConnectionIndex + 1) % PathConnections.Count;
+            (HexCell, HexDirection) connection = PathConnectionsWithoutCore.ElementAt(_currentConnectionIndex);
+            _currentConnectionIndex = (_currentConnectionIndex + 1) % PathConnectionsWithoutCore.Count;
 
             return connection;
         }
