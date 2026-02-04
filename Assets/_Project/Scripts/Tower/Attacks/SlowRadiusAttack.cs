@@ -14,7 +14,7 @@ namespace FG_GP2_T3
                 IDamegable enemy= hit.GetComponent<IDamegable>();
                 if (enemy==null) continue;
 
-                enemy.ApplySlow(Tower.Data.SlowPercent, Tower.Data.CcDuration);
+                enemy.ApplySlow(Tower.Stats.Slowpercent, Tower.Stats.CCDuraton);
             }
         }
 
