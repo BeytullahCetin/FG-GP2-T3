@@ -22,7 +22,7 @@ namespace FG_GP2_T3
         
         // Specific Towers: 1100 - ?
         SelectTowerJaguar = 1100,
-        PlaceTowerJaguar = 1102,
+        PlaceTowerJaguar = 1101,
         
         SelectTowerHowler = 1105,
         PlaceTowerHowler = 1106,
@@ -36,11 +36,11 @@ namespace FG_GP2_T3
         SelectTowerTrumpet = 1120,
         PlaceTowerTrumpet = 1121,
         
-        SelectTower6 = 1125,
-        PlaceTower6 = 1126,
+        SelectTowerHarpy = 1125,
+        PlaceTowerHarpy = 1126,
         
-        SelectTower7 = 1130,
-        PlaceTower7 = 1131,
+        SelectTowerMacaw = 1130,
+        PlaceTowerMacaw = 1131,
         
         SelectTower8 = 1135,
         PlaceTower8 = 1136,

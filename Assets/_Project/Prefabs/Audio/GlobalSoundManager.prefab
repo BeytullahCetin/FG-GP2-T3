@@ -48,11 +48,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -300924796
-      Data2: 1100923368
-      Data3: -1320169556
-      Data4: -934625325
-    Path: event:/Towers/Default/Selected
+      Data1: -977552726
+      Data2: 1335085726
+      Data3: -1772240766
+      Data4: 1355066865
+    Path: event:/Towers/Harpy/Selected
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1125
 --- !u!1 &1033399523824612311
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,11 +125,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -300924796
-      Data2: 1100923368
-      Data3: -1320169556
-      Data4: -934625325
-    Path: event:/Towers/Default/Selected
+      Data1: -2077146598
+      Data2: 1178256973
+      Data3: 1743409319
+      Data4: 741557811
+    Path: event:/Towers/Macaw/Selected
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1130
 --- !u!1 &1518477597176144778
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4361234655890891240}
   m_Layer: 0
-  m_Name: Tower_7
+  m_Name: Tower_Macaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1105
 --- !u!1 &1937402681016058517
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2190443050266596873}
   m_Layer: 0
-  m_Name: Tower_4
+  m_Name: Tower_Brazil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -859,11 +859,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 204717667
-      Data2: 1331598743
-      Data3: 362637450
-      Data4: -205659313
-    Path: event:/Towers/Default/Placed
+      Data1: -2069603042
+      Data2: 1138135070
+      Data3: 480200344
+      Data4: 1525785430
+    Path: event:/Towers/Harpy/Placed
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1126
 --- !u!1 &5220485069265028813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1101
 --- !u!1 &5844824138514595473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1111
 --- !u!1 &5898325305371719466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,11 +1287,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 204717667
-      Data2: 1331598743
-      Data3: 362637450
-      Data4: -205659313
-    Path: event:/Towers/Default/Placed
+      Data1: -1398840330
+      Data2: 1321791602
+      Data3: -623170135
+      Data4: -966920675
+    Path: event:/Towers/Macaw/Placed
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1131
 --- !u!1 &6292539302657972155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1100
 --- !u!1 &6417865999478045537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1480,7 +1480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4622991305981484478}
   m_Layer: 0
-  m_Name: Tower_5
+  m_Name: Tower_Trumpet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1628,11 +1628,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -300924796
-      Data2: 1100923368
-      Data3: -1320169556
-      Data4: -934625325
-    Path: event:/Towers/Default/Selected
+      Data1: 692913054
+      Data2: 1113925200
+      Data3: 1659356544
+      Data4: -509531281
+    Path: event:/Towers/Trumpet/Selected
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1120
 --- !u!1 &8025250809279852340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907929601729573511}
   m_Layer: 0
-  m_Name: Tower_6
+  m_Name: Tower_Harpy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1818,11 +1818,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -300924796
-      Data2: 1100923368
-      Data3: -1320169556
-      Data4: -934625325
-    Path: event:/Towers/Default/Selected
+      Data1: -1632111916
+      Data2: 1076093364
+      Data3: 1636383909
+      Data4: -1711570728
+    Path: event:/Towers/Brazil/Selected
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1846,7 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1115
 --- !u!1 &8944969912569390679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1002
+  soundType: 1110
 --- !u!1 &9064607964318439764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1106
 --- !u!1 &9147257031281042613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,11 +2115,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 204717667
-      Data2: 1331598743
-      Data3: 362637450
-      Data4: -205659313
-    Path: event:/Towers/Default/Placed
+      Data1: -2071812150
+      Data2: 1315436819
+      Data3: 868488865
+      Data4: 867705149
+    Path: event:/Towers/Brazil/Placed
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1116
 --- !u!1 &9196092580577444518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,11 +2192,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 204717667
-      Data2: 1331598743
-      Data3: 362637450
-      Data4: -205659313
-    Path: event:/Towers/Default/Placed
+      Data1: 1823728609
+      Data2: 1172763620
+      Data3: -1348374606
+      Data4: 930483612
+    Path: event:/Towers/Trumpet/Placed
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -2220,7 +2220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bed78304ba60647b4d26b941afbf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundType: 1011
+  soundType: 1121
 --- !u!1 &9213013775284570735
 GameObject:
   m_ObjectHideFlags: 0
