@@ -18,5 +18,8 @@ namespace FG_GP2_T3
         
         // Enemy Stuff: 200 - 299
         EnemyCount = 200,
+        
+        // UI/Gameplay Stuff: 500 - ?
+        IsPaused = 500,
     }
 }
