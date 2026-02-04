@@ -16,6 +16,8 @@ MonoBehaviour:
   Role: 0
   AttackType: 1
   DamageType: 0
+  SoundOnSelected: 0
+  SoundOnPlaced: 0
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0
@@ -34,4 +36,4 @@ MonoBehaviour:
   CompostCost: 0
   FusionID: E
   FusionStatType: 3
-  FusionStatValue: 0
+  FusionStatValue: 5

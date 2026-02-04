@@ -133,7 +133,7 @@ namespace FG_GP2_T3
         }
 
 
-        public void MarkFused() => HasFused = false;
+        public void MarkFused() => HasFused = true;
         private void UpdateTarget() => _CurrentTargets = SelectTargets();
 
 

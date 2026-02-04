@@ -1,8 +1,8 @@
 ﻿<Solution>
   <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="UniTask.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="UniTask.Linq.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="BrunoMikoski.AnimationSequencer.Editor.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Editor.csproj" />

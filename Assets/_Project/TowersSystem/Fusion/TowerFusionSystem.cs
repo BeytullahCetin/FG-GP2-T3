@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FG_GP2_T3
 {
-    public static class TowerFusionSystem 
+    public static class TowerFusionSystem
     {
         public static bool TryFuse(TowerBase basetower, TowerBase sacrificetower)
         {
@@ -34,8 +34,8 @@ namespace FG_GP2_T3
 
             GameObject.Destroy(sacrificetower.gameObject);
 
-            Debug.Log($"Fusion: BASE={basetower.Data.TowerName} " +
-                      $"SACRIFICE={sacrificetower.Data.TowerName}"
+            Debug.Log($"Fusion: BASE={basetower.Data.FusionID} " +
+                      $"SACRIFICE={sacrificetower.Data.FusionID}"
 );
             return true;
         }
@@ -47,7 +47,7 @@ namespace FG_GP2_T3
                 case FusionStatType.None:
                     break;
                 case FusionStatType.RangeBoost:
-                   tower.Stats.Range += sacrifice.Data.FusionStatValue;
+                    tower.Stats.Range += sacrifice.Data.FusionStatValue;
                     break;
                 case FusionStatType.DamageBoost:
                     tower.Stats.Damage += sacrifice.Data.FusionStatValue;
@@ -67,12 +67,12 @@ namespace FG_GP2_T3
                 case FusionStatType.SplashRadiusBoost:
                     tower.Stats.Explosionradius += sacrifice.Data.FusionStatValue;
                     break;
-                
+
             }
             Debug.Log($"Applied fusion stat {sacrifice.Data.FusionStatType} with value {sacrifice.Data.FusionStatValue} to tower {tower.Data.TowerName}.");
         }
 
-        private static void ApplyFusionMaterials(TowerBase tower,TowerBase sacrifice)
+        private static void ApplyFusionMaterials(TowerBase tower, TowerBase sacrifice)
         {
             Material fusionMaterial = sacrifice.Data.towerMaterial;
 
