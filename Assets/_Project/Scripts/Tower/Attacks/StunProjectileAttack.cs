@@ -12,8 +12,8 @@ namespace FG_GP2_T3
             IDamegable enemy = target.GetComponent<IDamegable>();
             if (enemy != null)
             {
-                enemy.TakeDamage(Tower.Data.Damage);
-                enemy.ApplyStun(Tower.Data.CcDuration);
+                enemy.TakeDamage(Tower.Stats.Damage);
+                enemy.ApplyStun(Tower.Stats.CCDuraton);
             }
 
 
