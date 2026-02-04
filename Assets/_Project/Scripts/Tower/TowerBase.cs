@@ -35,9 +35,11 @@ namespace FG_GP2_T3
         
         private float _TargetTimer;
 
+        
+
 
         [SerializeField] List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
-        private  List<Transform> _CurrentTargets= new List<Transform>();
+        
 
 
         private TowerAttack _CurrentAttack;
@@ -119,7 +121,7 @@ namespace FG_GP2_T3
         }
 
         
-
+        public void MarkFused()=> HasFused = false;
         private void UpdateTarget() => _CurrentTargets = SelectTargets();
 
 
