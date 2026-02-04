@@ -12,7 +12,7 @@ namespace FG_GP2_T3
             IDamegable enemy = GetEnemy(target);
             if (enemy == null) return;
 
-            enemy.TakeDamage(Tower.Data.Damage);
+            enemy.TakeDamage(Tower.Stats.Damage);
         }
 
        
