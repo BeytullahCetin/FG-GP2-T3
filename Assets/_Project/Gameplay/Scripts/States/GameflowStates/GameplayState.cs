@@ -19,6 +19,7 @@ namespace FG_GP2_T3
 		private TowerPlacementState towerPlacementState;
 		private TowerPlacementConfirmationState towerPlacementConfirmationState;
 		private TowerFusionConfirmationState towerFusionConfirmationState;
+		private EnemyWaveState enemyWaveState;
 
 
 		public GameplayState(StateMachine stateMachine, TilePlacementController tilePlacementController, TowerPlacementController towerPlacementController) : base(stateMachine)
@@ -42,6 +43,7 @@ namespace FG_GP2_T3
 			towerPlacementState = new TowerPlacementState(subStateMachine, towerPlacementController);
 			towerPlacementConfirmationState = new TowerPlacementConfirmationState(stateMachine, towerPlacementController);
 			towerFusionConfirmationState = new TowerFusionConfirmationState(stateMachine, towerPlacementController);
+			enemyWaveState = new EnemyWaveState(subStateMachine);
 
 			GameflowEvents.OnEnteredGameplayState?.Invoke();
 			SwitchToTileSelectionState();
@@ -106,6 +108,11 @@ namespace FG_GP2_T3
 		public void SwitchToTowerFusionConfirmationState()
 		{
 			subStateMachine.ChangeState(towerFusionConfirmationState);
+		}
+
+		public void SwitchToEnemyWaveState()
+		{
+			subStateMachine.ChangeState(enemyWaveState);
 		}
 
 		#endregion
