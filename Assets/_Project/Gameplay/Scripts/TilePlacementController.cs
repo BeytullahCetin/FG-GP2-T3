@@ -52,7 +52,6 @@ namespace FG_GP2_T3
         {
             if (selectedCell.TrySetTile(selectedTile, validRotationsForSelectedTile[currentTileRotationIndex]))
             {
-                NavmeshManager.Instance.RebakeNavmesh();
                 Destroy(previewTile.gameObject);
             }
 

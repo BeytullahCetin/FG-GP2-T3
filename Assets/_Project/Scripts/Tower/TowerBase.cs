@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using FMODUnity;
 using NaughtyAttributes;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,22 +25,23 @@ namespace FG_GP2_T3
         [SerializeField] private TowerStats stats;
 
         public TowerStats Stats => stats;
-        
+
         public LayerMask EnemyLayer;
 
         [SerializeField] private StudioEventEmitter attackSoundEmitter;
-        
-        private  List<Transform> _CurrentTargets= new List<Transform>();
+
+        private List<Transform> _CurrentTargets = new List<Transform>();
         private Transform _CurrentTarget;
         private float _FireCooldown;
-        
+
         private float _TargetTimer;
 
-        
 
 
+        [SerializeField] Transform towerVisualsParent;
+        [ReadOnly][SerializeField] private List<TowerVisual> towerVisuals = new List<TowerVisual>();
         [SerializeField] List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
-        
+
 
 
         private TowerAttack _CurrentAttack;
@@ -55,17 +57,36 @@ namespace FG_GP2_T3
 
         private void Awake()
         {
-            stats = new TowerStats(Data);
+            Debug.Log("TowerBase.Awake()");
+            GetVisualReferances();
         }
 
         private void Start()
         {
-
-            BuildTower();
+            Debug.Log("TowerBase.Start()");
+            // stats = new TowerStats(Data);
+            // BuildTower();
         }
 
-        private void BuildTower()
+        void GetVisualReferances()
         {
+            Debug.Log("TowerBase.GetVisualReferances()");
+            towerVisuals = towerVisualsParent.GetComponentsInChildren<TowerVisual>(true).ToList();
+        }
+
+        [Button]
+        public void UpdateTowerVisual()
+        {
+            Debug.Log("TowerBase.UpdateTowerVisual()");
+            foreach (TowerVisual visual in towerVisuals)
+            {
+                visual.gameObject.SetActive(Data == visual.TowerData);
+            }
+        }
+
+        public void BuildTower()
+        {
+            stats = new TowerStats(Data);
             SetMaterials();
             SetupAttackBehaviour();
             PlayBuildSound();
@@ -86,19 +107,19 @@ namespace FG_GP2_T3
 
         private void Update()
         {
-            _TargetTimer-= Time.deltaTime;
-            if(_TargetTimer<=0f)
+            _TargetTimer -= Time.deltaTime;
+            if (_TargetTimer <= 0f)
             {
                 UpdateTarget();
                 _TargetTimer = 0.2f;
             }
             HandleTarget();
         }
-        
+
 
         private void HandleTarget()
         {
-            if (_CurrentTargets.Count==0 || _CurrentAttack ==null || Data==null) return;
+            if (_CurrentTargets.Count == 0 || _CurrentAttack == null || Data == null) return;
 
             _FireCooldown -= Time.deltaTime;
 
@@ -106,40 +127,40 @@ namespace FG_GP2_T3
             {
                 if (attackSoundEmitter)
                     attackSoundEmitter.Play();
-                
-                if(Data.EnemyTargetting==TargetType.Multiple)
+
+                if (Data.EnemyTargetting == TargetType.Multiple)
                 {
                     _CurrentAttack.Attack(_CurrentTargets);
-                   
+
                 }
                 else
                 {
                     _CurrentAttack.Attack(_CurrentTargets[0]);
                 }
-                _FireCooldown=1f/ Mathf.Max(0.01f,Stats.FireRate);
+                _FireCooldown = 1f / Mathf.Max(0.01f, Stats.FireRate);
             }
         }
 
-        
-        public void MarkFused()=> HasFused = false;
+
+        public void MarkFused() => HasFused = false;
         private void UpdateTarget() => _CurrentTargets = SelectTargets();
 
 
 
         private bool TargetInRange(Transform currentTarget)
         {
-            if(currentTarget==null) return false;
+            if (currentTarget == null) return false;
 
             return Vector3.Distance(transform.position, currentTarget.position) <= Data.Range;
         }
 
         private List<Transform> SelectTargets()
         {
-            Collider[] Hits=Physics.OverlapSphere(transform.position,Data.Range,EnemyLayer);
+            Collider[] Hits = Physics.OverlapSphere(transform.position, Data.Range, EnemyLayer);
 
-            List<Transform> Targets= new List<Transform>();
+            List<Transform> Targets = new List<Transform>();
 
-            if (Hits.Length==0) return Targets;
+            if (Hits.Length == 0) return Targets;
 
             switch (Data.EnemyTargetting)
             {
@@ -150,7 +171,7 @@ namespace FG_GP2_T3
                     Targets.Add(GetnearestEnemy(Hits));
                     break;
                 case TargetType.Multiple:
-                    Targets=GetmultipleEnemies(Hits);
+                    Targets = GetmultipleEnemies(Hits);
                     break;
             }
             return Targets;
@@ -158,18 +179,18 @@ namespace FG_GP2_T3
 
         private List<Transform> GetmultipleEnemies(Collider[] hits)
         {
-           List<Transform> enemies= new List<Transform>();
+            List<Transform> enemies = new List<Transform>();
 
-            foreach(Collider enemy in hits)
+            foreach (Collider enemy in hits)
             {
                 enemies.Add(enemy.transform);
             }
             //sort by nearest
-            enemies.Sort((a,b)=>Vector3.Distance(transform.position,a.position).CompareTo(Vector3.Distance(transform.position,b.position)));
+            enemies.Sort((a, b) => Vector3.Distance(transform.position, a.position).CompareTo(Vector3.Distance(transform.position, b.position)));
 
-            if(enemies.Count>Data.MaxTargets)
+            if (enemies.Count > Data.MaxTargets)
             {
-                enemies=enemies.GetRange(0,Data.MaxTargets);
+                enemies = enemies.GetRange(0, Data.MaxTargets);
             }
 
             return enemies;
@@ -180,7 +201,7 @@ namespace FG_GP2_T3
             Transform nearest = null;
             float minDistance = Mathf.Infinity;
 
-            foreach(Collider enemy in hits)
+            foreach (Collider enemy in hits)
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distance < minDistance)
@@ -192,15 +213,15 @@ namespace FG_GP2_T3
             return nearest;
         }
 
-        
+
 
         private void SetupAttackBehaviour()
         {
-           if(_CurrentAttack != null) 
+            if (_CurrentAttack != null)
             {
                 Destroy(_CurrentAttack);
             }
-            _CurrentAttack=TowerAttackFactory.CreateAttack(this);
+            _CurrentAttack = TowerAttackFactory.CreateAttack(this);
 
             if (_CurrentAttack != null)
                 _CurrentAttack.Initialize(this);

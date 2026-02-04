@@ -12,7 +12,7 @@ namespace FG_GP2_T3
         // if (previewTile != null)
         //         Destroy(previewTile);
 
-        public TowerData SelectedTower => selectedTower;
+        public TowerData SelectedTower => selectedTowerData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
 
         [SerializeField] StickyCameraMovement cam;
@@ -20,10 +20,12 @@ namespace FG_GP2_T3
         [SerializeField] NextWave nextWave;
         [SerializeField] HexTileData towerTile;
         [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
+        [SerializeField] TowerBase towerBasePrefab;
 
-        [ReadOnly][SerializeField] TowerData selectedTower;
+        [ReadOnly][SerializeField] TowerData selectedTowerData;
         [ReadOnly][SerializeField] HexCell selectedCell;
-        [ReadOnly][SerializeField] GameObject previewTower;
+        [ReadOnly][SerializeField] GameObject previewParent;
+        [ReadOnly][SerializeField] TowerBase previewTowerBase;
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
 
         void Awake()
@@ -59,8 +61,8 @@ namespace FG_GP2_T3
 
         void CancelPlacement()
         {
-            if (previewTower != null)
-                Destroy(previewTower);
+            if (previewParent != null)
+                Destroy(previewParent);
 
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
@@ -68,7 +70,9 @@ namespace FG_GP2_T3
         void ConfirmPlacement()
         {
             selectedCell.TrySetTile(towerTile);
-            previewTower = null;
+            previewTowerBase.BuildTower();
+            previewParent = null;
+
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -94,10 +98,10 @@ namespace FG_GP2_T3
 
         public void SetSelectedTower(TowerData tower)
         {
-            if (previewTower != null)
-                Destroy(previewTower);
+            if (previewParent != null)
+                Destroy(previewParent);
 
-            selectedTower = tower;
+            selectedTowerData = tower;
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
 
             // TODO: Change to POE's position.
@@ -155,16 +159,19 @@ namespace FG_GP2_T3
 
         public void PreviewTowerOnEmptyCell()
         {
-            if (previewTower != null)
-                Destroy(previewTower);
+            if (previewParent != null)
+                Destroy(previewParent);
 
-            previewTower = new GameObject("Tower");
-            GameObject tile = Instantiate(towerTile.TilePrefab, previewTower.transform);
-            // TODO: Add tower prefab with the empty tile.
-            // GameObject tower = Instantiate(selectedTower, previewTower.transform);
+            previewParent = new GameObject("TowerParent");
+            GameObject tile = Instantiate(towerTile.TilePrefab, previewParent.transform);
+            previewTowerBase = Instantiate(towerBasePrefab, previewParent.transform);
+            previewTowerBase.Data = selectedTowerData;
+            previewTowerBase.UpdateTowerVisual();
 
-            previewTower.transform.SetParent(selectedCell.transform);
-            previewTower.transform.localPosition = Vector3.zero;
+            previewParent.transform.SetParent(selectedCell.transform);
+            previewParent.transform.localPosition = Vector3.zero;
+            tile.transform.localPosition = Vector3.zero;
+            previewTowerBase.transform.localPosition = Vector3.zero;
 
             // TODO: Camera zoom in problem.
             // cam.ZoomIn();

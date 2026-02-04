@@ -47,10 +47,13 @@ namespace FG_GP2_T3
 			if (isHit == false)
 				return;
 
+			Debug.Log("ray hit");
 
 			bool hasGetCell = HexGrid.Instance.TryGetCell(hit.point, out HexCell cell);
 			if (hasGetCell == false)
 				return;
+
+			Debug.Log("get cell");
 
 			if (cell.Tile != null || tilePlacementController.ValidCellsForSelectedTile.Contains(cell) == false)
 				return;
