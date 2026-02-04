@@ -29,7 +29,9 @@ MonoBehaviour:
   Damage: 8
   FireRate: 3
   pierce: 0
-  FirePoint: {fileID: 0}
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
+  FusionID: E
+  FusionStatType: 3
+  FusionStatValue: 0

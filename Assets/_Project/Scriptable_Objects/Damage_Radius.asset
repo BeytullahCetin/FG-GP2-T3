@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: 
   Role: 0
-  TowerPrefab: {fileID: 0}
   AttackType: 3
   DamageType: 0
   CrowdControlType: 0
@@ -33,3 +32,6 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
+  FusionID: D
+  FusionStatType: 2
+  FusionStatValue: 1
