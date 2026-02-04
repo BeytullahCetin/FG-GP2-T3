@@ -16,7 +16,7 @@ namespace FG_GP2_T3
 
             if(motarProjectile !=null)
             {
-                motarProjectile.Initialize(target, Tower.Data.Damage, Tower.Data.ExplosionRadius);
+                motarProjectile.Initialize(target, Tower.Stats.Damage, Tower.Stats.Explosionradius);
             }
 
 

@@ -21,5 +21,10 @@ namespace FG_GP2_T3
         {
             _emitter.Play();
         }
+
+        public void Stop()
+        {
+            _emitter.Stop();
+        }
     }
 }
