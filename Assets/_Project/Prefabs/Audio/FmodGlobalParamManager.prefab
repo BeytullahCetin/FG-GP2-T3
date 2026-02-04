@@ -45,21 +45,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalParams:
-  - paramType: 0
+  - globalParamType: 0
     paramName: Volume_Main
-  - paramType: 10
+  - globalParamType: 10
     paramName: Volume_Music
-  - paramType: 20
+  - globalParamType: 20
     paramName: Volume_Ambience
-  - paramType: 30
+  - globalParamType: 30
     paramName: Volume_SFX_Auto
-  - paramType: 40
+  - globalParamType: 40
     paramName: Volume_SFX_Interaction
-  - paramType: 50
+  - globalParamType: 50
     paramName: Volume_Narration
-  - paramType: 60
+  - globalParamType: 60
     paramName: Volume_UI
-  - paramType: 100
+  - globalParamType: 100
     paramName: Poe_Health
-  - paramType: 200
+  - globalParamType: 200
     paramName: Enemy_Count
+  - globalParamType: 500
+    paramName: IsPaused
