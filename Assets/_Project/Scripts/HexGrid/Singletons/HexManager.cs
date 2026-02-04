@@ -248,6 +248,8 @@ namespace FG_GP2_T3
                     throw new Exception("Infinite loop detected in enemy pathfinding. Could not find a path to the core.");
             }
 
+            path.Add(_connections.GetEntrancePoint(currentCell, movementDirection.Opposite()));
+
             return path;
         }
 

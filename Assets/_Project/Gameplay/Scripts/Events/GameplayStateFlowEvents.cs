@@ -23,4 +23,7 @@ public class GameplayStateFlowEvents
 	public static Action OnEnteredTowerFusionConfirmationSubGameplayState;
 	public static Action OnExitedTowerFusionConfirmationSubGameplayState;
 
+	public static Action OnEnteredEnemyWaveState;
+	public static Action OnExitedEnemyWaveState;
+
 }

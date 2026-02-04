@@ -102,6 +102,12 @@ namespace FG_GP2_T3
             gameplayState.SwitchToTowerFusionConfirmationState();
         }
 
+        [Button]
+        public void SwitchToEnemyWaveSubState()
+        {
+            gameplayState.SwitchToEnemyWaveState();
+        }
+
         #endregion
     }
 }

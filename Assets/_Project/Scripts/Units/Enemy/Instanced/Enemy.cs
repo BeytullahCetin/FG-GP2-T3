@@ -44,7 +44,14 @@ namespace FG_GP2_T3
 
         public void Initialize(List<Vector3> path)
         {
-            _movementPoints = path.Concat(new[] { EnemyManager.Instance.GetTarget().transform.position }).ToList();
+            _movementPoints = path;
+
+            POE target = EnemyManager.Instance.GetTarget();
+            Vector2 randomInCircle = Random.insideUnitCircle;
+            Vector3 attackOffset = new Vector3(randomInCircle.x, 0f, randomInCircle.y) * target.Collider.radius;
+            _movementPoints.Add(target.transform.position + attackOffset);
+
+            path.Reverse();
         }
 
         private void Update()
@@ -61,7 +68,9 @@ namespace FG_GP2_T3
 
             float effectiveSpeed = _speed * (1f - _activeSlowPercentage / 100f);
             transform.position = Vector3.MoveTowards(transform.position, _movementPoints[_movementPoints.Count - 1], effectiveSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.LookRotation(_movementPoints[_movementPoints.Count - 1] - transform.position);
+            Vector3 lookDirection = _movementPoints[_movementPoints.Count - 1] - transform.position;
+            if(lookDirection != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(lookDirection);
 
             if(transform.position == _movementPoints[_movementPoints.Count - 1])
                 _movementPoints.RemoveAt(_movementPoints.Count - 1);
@@ -101,9 +110,9 @@ namespace FG_GP2_T3
 
         private void HandleAttacking()
         {
-            if (_movementPoints.Count > 1) return; //Last movement point is the target position
-            if (Vector3.Distance(transform.position, EnemyManager.Instance.GetTarget().transform.position) > _attackRange) return;
+            if (_movementPoints.Count > 1) return; //Last movement point is the target position    
             if (_remainingStunDuration > 0f) return;
+            if (Vector3.Distance(transform.position, EnemyManager.Instance.GetTarget().transform.position) > _attackRange) return;
 
             _timeSinceLastAttack += Time.deltaTime;
 
@@ -166,9 +175,9 @@ namespace FG_GP2_T3
 
         private float GetRandomInRange(Vector2 range) => Random.Range(range.x, range.y);
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if(collision.gameObject.layer == GameConstants.Layers.POE)
+            if(other.gameObject.layer == GameConstants.Layers.POE)
                 _speed = 0f;
         }
     }
