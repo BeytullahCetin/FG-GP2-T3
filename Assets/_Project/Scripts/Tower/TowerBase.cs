@@ -189,7 +189,7 @@ namespace FG_GP2_T3
             }
             else
             {
-                Gizmos.color = Color.green;
+                Gizmos.color = new Color(0,1,0,0.5f);
                 Gizmos.DrawSphere(transform.position, Data.Range);
             }
         }

@@ -10,13 +10,25 @@ namespace FG_GP2_T3
         public float maxHP = 50f;
         private float currentHP;
 
-        private float speed = 5f;
+        public float speed = 5f;
         private float baseSpeed;
+
+        public GameObject target;
 
         private void Start()
         {
             currentHP = maxHP;
             baseSpeed = speed;
+        }
+
+        public void Update()
+        {
+            if (target == null)
+            {
+                return;
+            }
+            float step = speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
         }
 
         public void TakeDamage(float amount)

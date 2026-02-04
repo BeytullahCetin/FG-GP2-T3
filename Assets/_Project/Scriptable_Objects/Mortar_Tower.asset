@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: 
   Role: 0
-  TowerPrefab: {fileID: 0}
   AttackType: 4
   DamageType: 0
   CrowdControlType: 0
@@ -30,6 +29,7 @@ MonoBehaviour:
   Damage: 35
   FireRate: 0.5
   pierce: 0
+  FirePoint: {fileID: 0}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 26ad00780f9e81b439360bbe8e7824ee, type: 3}
   towerMaterial: {fileID: 0}
   CompostCost: 0
