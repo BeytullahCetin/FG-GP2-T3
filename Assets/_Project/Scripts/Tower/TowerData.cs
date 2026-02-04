@@ -67,8 +67,6 @@ namespace FG_GP2_T3
         public float FireRate;
         public int pierce;
 
-        [EnableIf(nameof(UsesProjectiles))]
-        public Transform FirePoint;
 
 
         [EnableIf(nameof(UsesProjectiles))]
@@ -79,6 +77,11 @@ namespace FG_GP2_T3
 
 
         public int CompostCost;
+
+        [Header("Fusion System")]
+        public string FusionID;
+        public FusionStatType FusionStatType;
+        public float FusionStatValue;
 
 
 
@@ -139,8 +142,22 @@ namespace FG_GP2_T3
         Multiple
     }
 
-
-
+    public enum FusionStatType 
+    {
+        None,
+        RangeBoost,
+        DamageBoost,
+        FireRateBoost,
+        SlowEffectBoost,
+        StunDurationBoost,
+        DotDurationBoost,
+        SplashRadiusBoost
+    }
     
+
+
+
+
+
 
 }

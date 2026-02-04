@@ -21,7 +21,7 @@ namespace FG_GP2_T3
 
                     IDamegable enemy = hit.GetComponent<IDamegable>();
                     if (enemy != null)
-                        enemy.TakeDamage(Tower.Data.Damage);
+                        enemy.TakeDamage(Tower.Stats.Damage);
                 }
             }
         }

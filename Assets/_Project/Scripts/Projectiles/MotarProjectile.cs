@@ -9,21 +9,41 @@ namespace FG_GP2_T3
         float _Damage;
         float _ExplosionRadius;
 
+        Vector3 _StartPoint;
+        Vector3 _TargetPoint;
+
+        float _Flightime=1.5f;
+        float _Timer;
+        float _ArcHeight=5f;
+
         public void Initialize(Transform target, float damage, float explosionRadius)
         {
             _Target = target;
             _Damage = damage;
             _ExplosionRadius = explosionRadius;
+
+            _StartPoint = transform.position;
+            _TargetPoint = target.position;
         }
 
         private void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _Target.position, 10f * Time.deltaTime);
+            if (_Target == null) return;
 
-            if (Vector3.Distance(transform.position, _Target.position) < 0.2f)
+            _Timer += Time.deltaTime;
+            float t= _Timer / _Flightime;
+            if (t>=1f)
             {
                 Explode();
+                return;
             }
+
+            Vector3 flatpos=Vector3.Lerp(_StartPoint,_TargetPoint, t);
+
+            float Arc=MathF.Sin(t* MathF.PI) * _ArcHeight;
+
+            transform.position=flatpos + Vector3.up * Arc;
+
         }
 
         private void Explode()
@@ -37,8 +57,10 @@ namespace FG_GP2_T3
                 {
                     enemy.TakeDamage(_Damage);
                 }
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
+        
+
     }
 }

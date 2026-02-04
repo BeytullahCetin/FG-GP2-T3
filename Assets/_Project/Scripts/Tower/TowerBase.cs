@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 ///<summary>
 ///This script handles the base functionality of a tower in the game, including targeting enemies,sending the info to attack behavior classes.
@@ -19,6 +20,11 @@ namespace FG_GP2_T3
     {
         [Expandable] public TowerData Data;
 
+        [ReadOnly]
+        [SerializeField] private TowerStats stats;
+
+        public TowerStats Stats => stats;
+        
         public LayerMask EnemyLayer;
 
         [SerializeField] private StudioEventEmitter attackSoundEmitter;
@@ -26,9 +32,30 @@ namespace FG_GP2_T3
         private  List<Transform> _CurrentTargets= new List<Transform>();
         private Transform _CurrentTarget;
         private float _FireCooldown;
+        
+        private float _TargetTimer;
+
+
         [SerializeField] List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
+        private  List<Transform> _CurrentTargets= new List<Transform>();
+
 
         private TowerAttack _CurrentAttack;
+        public bool HasFused { get; private set; }
+
+
+        [Header("Fusion Visual Parts")]
+        public List<MeshRenderer> Baseparts;
+        public List<MeshRenderer> FusionParts;
+        [InfoBox("Fusion parts = materials of leaves,Head etc..")]
+        [InfoBox("Base parts = materials of body and weapon")]
+        public bool ImNothing;
+
+        private void Awake()
+        {
+            stats = new TowerStats(Data);
+        }
+
         private void Start()
         {
 
@@ -46,7 +73,7 @@ namespace FG_GP2_T3
         {
             foreach (var renderer in meshRenderers)
             {
-                renderer.material = Data.towerMaterial;
+                renderer.sharedMaterial = Data.towerMaterial;
             }
         }
 
@@ -57,9 +84,15 @@ namespace FG_GP2_T3
 
         private void Update()
         {
-            UpdateTarget();
+            _TargetTimer-= Time.deltaTime;
+            if(_TargetTimer<=0f)
+            {
+                UpdateTarget();
+                _TargetTimer = 0.2f;
+            }
             HandleTarget();
         }
+        
 
         private void HandleTarget()
         {
@@ -81,7 +114,7 @@ namespace FG_GP2_T3
                 {
                     _CurrentAttack.Attack(_CurrentTargets[0]);
                 }
-                _FireCooldown=1f/ Data.FireRate;
+                _FireCooldown=1f/ Mathf.Max(0.01f,Stats.FireRate);
             }
         }
 
@@ -202,7 +235,7 @@ namespace FG_GP2_T3
             else
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawSphere(transform.position, Data.Range);
+                Gizmos.DrawWireSphere(transform.position, Data.Range);
             }
         }
         #endregion///
