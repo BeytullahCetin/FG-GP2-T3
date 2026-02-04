@@ -37,7 +37,8 @@ namespace FG_GP2_T3
         {
             // Destroy previews
             // Hide panels
-            GameManager.Instance.SwitchToEnemyWaveSubState();
+            // GameManager.Instance.SwitchToEnemyWaveSubState();
+            GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
         void RemoveAllLisenersFromConfirmationButtons()
@@ -62,9 +63,7 @@ namespace FG_GP2_T3
 
         void CancelPlacement()
         {
-            if (previewParent != null)
-                Destroy(previewParent);
-
+            DestroyPreview();
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -99,8 +98,7 @@ namespace FG_GP2_T3
 
         public void SetSelectedTower(TowerData tower)
         {
-            if (previewParent != null)
-                Destroy(previewParent);
+            DestroyPreview();
 
             selectedTowerData = tower;
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
@@ -160,9 +158,7 @@ namespace FG_GP2_T3
 
         public void PreviewTowerOnEmptyCell()
         {
-            if (previewParent != null)
-                Destroy(previewParent);
-
+            DestroyPreview();
             previewParent = new GameObject("TowerParent");
             GameObject tile = Instantiate(towerTile.TilePrefab, previewParent.transform);
             previewTowerBase = Instantiate(towerBasePrefab, previewParent.transform);
@@ -177,6 +173,12 @@ namespace FG_GP2_T3
             // TODO: Camera zoom in problem.
             // cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
+        }
+
+        public void DestroyPreview()
+        {
+            if (previewParent != null)
+                Destroy(previewParent);
         }
     }
 }
