@@ -23,9 +23,9 @@ namespace FG_GP2_T3
                 Attack(target);
             }
         }
-        protected IDamegable GetEnemy(Transform Target)
+        protected IDamageable GetEnemy(Transform Target)
         {
-            return Target.GetComponent<IDamegable>();
+            return Target.GetComponent<IDamageable>();
         }
     }
 }

@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 ///<summary>
-///This is just a test enemy script to implement IDamegable interface for testing purposes
+///This is just a test enemy script to implement IDamageable interface for testing purposes
 ///</summary>
 namespace FG_GP2_T3
 {
-    public class Test_Enemy : MonoBehaviour, IDamegable
+    public class Test_Enemy : MonoBehaviour, IDamageable
     {
         public float maxHP = 50f;
         private float currentHP;

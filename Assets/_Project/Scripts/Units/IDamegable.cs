@@ -5,7 +5,7 @@ namespace FG_GP2_T3
     /// <summary>
     /// this interface defines the methods that any damageable entity must implement
     /// </summary>
-    public interface IDamegable
+    public interface IDamageable
     {
         void TakeDamage(float damageAmount);
         void ApplySlow(float slowPercentage, float duration);

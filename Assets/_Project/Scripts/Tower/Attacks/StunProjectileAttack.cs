@@ -9,7 +9,7 @@ namespace FG_GP2_T3
         {
             if(target == null) return;
 
-            IDamegable enemy = target.GetComponent<IDamegable>();
+            IDamageable enemy = target.GetComponent<IDamageable>();
             if (enemy != null)
             {
                 enemy.TakeDamage(Tower.Stats.Damage);
