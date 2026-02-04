@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using FMODUnity;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEditor;
@@ -23,6 +27,9 @@ namespace FG_GP2_T3
         
         public LayerMask EnemyLayer;
 
+        [SerializeField] private StudioEventEmitter attackSoundEmitter;
+        
+        private  List<Transform> _CurrentTargets= new List<Transform>();
         private Transform _CurrentTarget;
         private float _FireCooldown;
         
@@ -59,6 +66,7 @@ namespace FG_GP2_T3
         {
             SetMaterials();
             SetupAttackBehaviour();
+            PlayBuildSound();
         }
 
         public void SetMaterials()
@@ -69,7 +77,11 @@ namespace FG_GP2_T3
             }
         }
 
-        public void MarkFused()=>HasFused = true;
+        public void PlayBuildSound()
+        {
+            GlobalSoundManager.Instance.OnPlaySound(Data.SoundOnPlaced);
+        }
+
         private void Update()
         {
             _TargetTimer-= Time.deltaTime;
@@ -90,6 +102,9 @@ namespace FG_GP2_T3
 
             if (_FireCooldown <= 0f)
             {
+                if (attackSoundEmitter)
+                    attackSoundEmitter.Play();
+                
                 if(Data.EnemyTargetting==TargetType.Multiple)
                 {
                     _CurrentAttack.Attack(_CurrentTargets);
