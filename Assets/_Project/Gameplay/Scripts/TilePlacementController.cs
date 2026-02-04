@@ -20,7 +20,7 @@ namespace FG_GP2_T3
 
         [ReadOnly][SerializeField] private HexTileData selectedTile;
         [ReadOnly][SerializeField] private HexCell selectedCell;
-        [ReadOnly][SerializeField] private GameObject previewTile;
+        [ReadOnly][SerializeField] private HexTile previewTile;
         [ReadOnly][SerializeField] private int currentTileRotationIndex;
         private List<HexCell> validCellsForSelectedTile = new List<HexCell>();
         private List<float> validRotationsForSelectedTile = new List<float>();
@@ -119,7 +119,7 @@ namespace FG_GP2_T3
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
 
             // TODO: Camera zoom in problem.
-            // cam.ZoomIn();
+            cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
         }
     }

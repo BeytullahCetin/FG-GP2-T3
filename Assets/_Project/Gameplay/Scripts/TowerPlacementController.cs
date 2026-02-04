@@ -123,9 +123,14 @@ namespace FG_GP2_T3
             {
                 // Fusing tower with another tower
                 Debug.Log($"selectedCell.Coordinates: {selectedCell.Coordinates} - selectedCell.Tile.Data.name: {selectedCell.Tile.Data.name}");
-                //     // cell fusion checks
-                //     // fusion confirmation state
-                //     GameManager.Instance.SwitchToFusionConfirmationSubState();
+                if (selectedCell.Tile is HexTowerTile hexTowerTile)
+                {
+                    // hexTowerTile 
+                    //     cell fusion checks
+                    //      fusion confirmation state
+                    //     GameManager.Instance.SwitchToFusionConfirmationSubState();
+                }
+
             }
         }
 
@@ -160,7 +165,7 @@ namespace FG_GP2_T3
         {
             DestroyPreview();
             previewParent = new GameObject("TowerParent");
-            GameObject tile = Instantiate(towerTile.TilePrefab, previewParent.transform);
+            HexTowerTile tile = Instantiate(towerTile.TilePrefab, previewParent.transform).GetComponent<HexTowerTile>();
             previewTowerBase = Instantiate(towerBasePrefab, previewParent.transform);
             previewTowerBase.Data = selectedTowerData;
             previewTowerBase.UpdateTowerVisual();
@@ -168,6 +173,20 @@ namespace FG_GP2_T3
             previewParent.transform.SetParent(selectedCell.transform);
             previewParent.transform.localPosition = Vector3.zero;
             tile.transform.localPosition = Vector3.zero;
+            previewTowerBase.transform.localPosition = Vector3.zero;
+
+            // TODO: Camera zoom in problem.
+            // cam.ZoomIn();
+            cam.transform.DOMove(selectedCell.transform.position, .5f);
+        }
+
+        public void PreviewFusionOnTower()
+        {
+
+
+            previewParent.transform.SetParent(selectedCell.transform);
+            previewParent.transform.localPosition = Vector3.zero;
+            // tile.transform.localPosition = Vector3.zero;
             previewTowerBase.transform.localPosition = Vector3.zero;
 
             // TODO: Camera zoom in problem.

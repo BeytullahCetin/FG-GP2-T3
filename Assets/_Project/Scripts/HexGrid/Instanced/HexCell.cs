@@ -30,7 +30,7 @@ namespace FG_GP2_T3
             _propertyBlock = new MaterialPropertyBlock();
         }
 
-        public void SetNeighbor(HexDirection direction, HexCell cell) 
+        public void SetNeighbor(HexDirection direction, HexCell cell)
         {
             _neighbors[(int)direction] = cell;
             cell._neighbors[(int)direction.Opposite()] = this;
@@ -67,9 +67,9 @@ namespace FG_GP2_T3
 
         public bool TrySetTile(HexTileData tileData, float rotation = 0f) //Set to null to remove the tile
         {
-            if(IsCore) return false;
+            if (IsCore) return false;
 
-            if(tileData == null)
+            if (tileData == null)
             {
                 if (Tile == null) return false;
 
@@ -79,22 +79,23 @@ namespace FG_GP2_T3
                 EventManager.Invoke(new OnCellEvent(this, CellEventType.Remove));
                 return true;
             }
-            
+
             if (Tile != null) return false;
 
             HexTileData dataInstance = Instantiate(tileData);
             dataInstance.Roads.ShiftRight(Mathf.RoundToInt(rotation / 60f));
 
-            GameObject visual = Instantiate(dataInstance.TilePrefab);
-            Tile = visual.AddComponent<HexTile>();
+            HexTile visual = Instantiate(dataInstance.TilePrefab);
+            // Tile = visual.AddComponent<HexTile>();
+            Tile = visual.GetComponent<HexTile>();
             Tile.Initialize(dataInstance, this);
             Tile.transform.SetParent(transform, false);
             Tile.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
 
-            if(dataInstance.RoadsCount > 0) EventManager.Invoke(new OnCellEvent(this, CellEventType.Place));
+            if (dataInstance.RoadsCount > 0) EventManager.Invoke(new OnCellEvent(this, CellEventType.Place));
             //For tower tiles, an event will be invoked from gameplay managing script
             //else EventManager.Invoke(new OnTowerEvent(null, TowerEventType.Build));
-                
+
             return true;
         }
 

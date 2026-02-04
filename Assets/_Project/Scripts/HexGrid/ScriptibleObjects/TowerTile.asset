@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
   m_Name: TowerTile
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 3920069462997394578, guid: 5fbda205a973b324194899397212b867, type: 3}
+  TilePrefab: {fileID: 2630884399258393660, guid: 5fbda205a973b324194899397212b867, type: 3}
   Roads:
     _roads: 000000000000
