@@ -76,7 +76,7 @@ namespace FG_GP2_T3
                 Destroy(Tile.gameObject);
                 Tile = null;
 
-                EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Remove));
+                EventManager.Invoke(new OnCellEvent(this, CellEventType.Remove));
                 return true;
             }
             
@@ -87,11 +87,14 @@ namespace FG_GP2_T3
 
             GameObject visual = Instantiate(dataInstance.TilePrefab);
             Tile = visual.AddComponent<HexTile>();
+            Tile.Initialize(dataInstance, this);
             Tile.transform.SetParent(transform, false);
             Tile.transform.localRotation = Quaternion.Euler(0f, rotation, 0f);
-            Tile.Initialize(dataInstance, this);
 
-            EventManager.Invoke(new CellActionEventArgs(this, CellEventType.Place));
+            if(dataInstance.RoadsCount > 0) EventManager.Invoke(new OnCellEvent(this, CellEventType.Place));
+            //For tower tiles, an event will be invoked from gameplay managing script
+            //else EventManager.Invoke(new OnTowerEvent(null, TowerEventType.Build));
+                
             return true;
         }
 

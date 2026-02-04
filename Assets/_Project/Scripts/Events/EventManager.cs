@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace FG_GP2_T3
 {
+    public abstract class GameEventArgs : EventArgs { }
+
     public class EventManager : MonoBehaviour
     {
         public static EventManager Instance { get; private set; }

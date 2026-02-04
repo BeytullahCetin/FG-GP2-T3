@@ -28,12 +28,12 @@ namespace FG_GP2_T3
 
         private void OnEnable()
         {
-            EventManager.Register<CellActionEventArgs>(OnCellAction);
+            EventManager.Register<OnCellEvent>(OnCellEvent);
         }
 
         private void OnDisable()
         {
-            EventManager.Unregister<CellActionEventArgs>(OnCellAction);
+            EventManager.Unregister<OnCellEvent>(OnCellEvent);
         }
 
         private void SetCoreTiles()
@@ -70,9 +70,9 @@ namespace FG_GP2_T3
             });
         }
 
-        private void OnCellAction(CellActionEventArgs args)
+        private void OnCellEvent(OnCellEvent args)
         {
-            switch(args.ActionType)
+            switch(args.EventType)
             {
                 case CellEventType.Place:
                     int tileNeighbours = 0;

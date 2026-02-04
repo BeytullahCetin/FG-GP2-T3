@@ -3,27 +3,45 @@ using System;
 
 namespace FG_GP2_T3
 {
-    public abstract class GameEventArgs : EventArgs { }
-
-    public enum CellEventType
+    public enum WaveEventType
     {
-        Click,
-        Rotate,
-        Place,
-        Remove
+        Start,
+        End
     }
 
-    public class CellActionEventArgs : GameEventArgs
+    public class OnWaveEvent : GameEventArgs
     {
-        public readonly HexCell Cell;
-        public readonly CellEventType ActionType;
+        public readonly WaveEventType EventType;
+        public readonly int WaveNumber;
 
-        public CellActionEventArgs(HexCell cell, CellEventType actionType)
+        public OnWaveEvent(WaveEventType eventType, int waveNumber)
         {
-            Cell = cell;
-            ActionType = actionType;
+            EventType = eventType;
+            WaveNumber = waveNumber;
         }
     }
 
-    //Add more events bellow
+    public class OnGameEndedEvent : GameEventArgs
+    {
+        public readonly bool PlayerWon;
+
+        public OnGameEndedEvent(bool playerWon)
+        {
+            PlayerWon = playerWon;
+        }
+    }
+
+    public class OnCoreDamageEvent : GameEventArgs
+    {
+        public readonly int CurrentHealth;
+        public readonly int CurrentHealth01;
+        public readonly int DamageTaken;
+
+        public OnCoreDamageEvent(int currentHealth, int currentHealth01, int damageTaken)
+        {
+            CurrentHealth = currentHealth;
+            CurrentHealth01 = currentHealth01;
+            DamageTaken = damageTaken;
+        }
+    }
 }
