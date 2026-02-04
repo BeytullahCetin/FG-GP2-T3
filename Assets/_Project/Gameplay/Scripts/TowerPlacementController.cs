@@ -24,7 +24,7 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] TowerData selectedTower;
         [ReadOnly][SerializeField] HexCell selectedCell;
         [ReadOnly][SerializeField] GameObject previewTower;
-        List<HexCell> validCellsForSelectedTower = new List<HexCell>();
+        [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
 
         void Awake()
         {
@@ -68,8 +68,6 @@ namespace FG_GP2_T3
         void ConfirmPlacement()
         {
             selectedCell.TrySetTile(towerTile);
-            // NavmeshManager.Instance.RebakeNavmesh();
-            // Destroy(previewTower.gameObject);
             previewTower = null;
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
@@ -100,7 +98,8 @@ namespace FG_GP2_T3
                 Destroy(previewTower);
 
             selectedTower = tower;
-            validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile);
+            validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
+
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
             // TODO: move camera movement to state
@@ -112,19 +111,19 @@ namespace FG_GP2_T3
         {
             selectedCell = cell;
 
-            // Creating tower on empty cell
             if (selectedCell.Tile == null)
             {
+                // Creating tower on empty cell
                 GameManager.Instance.SwitchToTowerPlacementConfirmationSubState();
             }
-
-            // Fusing tower with another tower
-            // else if (selectedCell.Tile != null)
-            // {
-            //     // cell fusion checks
-            //     // fusion confirmation state
-            //     GameManager.Instance.SwitchToFusionConfirmationSubState();
-            // }
+            else if (selectedCell.Tile != null)
+            {
+                // Fusing tower with another tower
+                Debug.Log($"selectedCell.Coordinates: {selectedCell.Coordinates} - selectedCell.Tile.Data.name: {selectedCell.Tile.Data.name}");
+                //     // cell fusion checks
+                //     // fusion confirmation state
+                //     GameManager.Instance.SwitchToFusionConfirmationSubState();
+            }
         }
 
         public List<TowerData> GetTowerDatasForPlacement()
@@ -159,11 +158,9 @@ namespace FG_GP2_T3
             if (previewTower != null)
                 Destroy(previewTower);
 
-            //     validRotationsForSelectedTile = HexManager.Instance.GetValidTileRotations(selectedTile, selectedCell);
-            //     currentTileRotationIndex = 0;
-
             previewTower = new GameObject("Tower");
             GameObject tile = Instantiate(towerTile.TilePrefab, previewTower.transform);
+            // TODO: Add tower prefab with the empty tile.
             // GameObject tower = Instantiate(selectedTower, previewTower.transform);
 
             previewTower.transform.SetParent(selectedCell.transform);
