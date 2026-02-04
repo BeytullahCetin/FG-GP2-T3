@@ -30,11 +30,11 @@ namespace FG_GP2_T3
         SelectTowerBamboo = 1110,
         PlaceTowerBamboo = 1111,
         
-        SelectTower4 = 1115,
-        PlaceTower4 = 1116,
+        SelectTowerBrazil = 1115,
+        PlaceTowerBrazil = 1116,
         
-        SelectTower5 = 1120,
-        PlaceTower5 = 1121,
+        SelectTowerTrumpet = 1120,
+        PlaceTowerTrumpet = 1121,
         
         SelectTower6 = 1125,
         PlaceTower6 = 1126,
