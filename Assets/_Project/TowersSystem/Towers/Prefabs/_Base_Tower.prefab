@@ -135,6 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5956457490273698313}
   - component: {fileID: 6040454917783532709}
+  - component: {fileID: 7008675537999196101}
   m_Layer: 0
   m_Name: SlowRadiussTowerVisual
   m_TagString: Untagged
@@ -171,6 +172,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: dd2491eb3f2a74f42b82aa64fa16529c, type: 2}
+--- !u!114 &7008675537999196101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311204632686268190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 132026157
+      Data2: 1133070810
+      Data3: 1453492108
+      Data4: -1828849691
+    Path: event:/Towers/Bamboo/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &520198251608538509
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8934540404406139763}
   - component: {fileID: 6598645417739062369}
+  - component: {fileID: 3733587951584931259}
   m_Layer: 0
   m_Name: DotTowerVisual
   m_TagString: Untagged
@@ -217,6 +250,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: f2a5074c335de944f84e7de598569a3a, type: 2}
+--- !u!114 &3733587951584931259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520198251608538509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 728559065
+      Data2: 1146856365
+      Data3: -1609793152
+      Data4: 15553006
+    Path: event:/Towers/Trumpet/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &535286222563652134
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8432148048100549528}
   - component: {fileID: 1539776492933798892}
+  - component: {fileID: 7769359149493625027}
   m_Layer: 0
   m_Name: RangedTowerVisual
   m_TagString: Untagged
@@ -1285,6 +1350,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 958de3ddbd30eb344b6a96672de80acc, type: 2}
+--- !u!114 &7769359149493625027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2394510532230114966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 625877678
+      Data2: 1209328422
+      Data3: -215872366
+      Data4: 740338442
+    Path: event:/Towers/Brazil/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3114348795433195626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1563,6 @@ GameObject:
   m_Component:
   - component: {fileID: 326241368868224385}
   - component: {fileID: 1347720063006253959}
-  - component: {fileID: 7224481246237672020}
   m_Layer: 0
   m_Name: _Base_Tower
   m_TagString: Tower
@@ -1516,44 +1611,13 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackSoundEmitter: {fileID: 7224481246237672020}
+  attackSoundEmitter: {fileID: 0}
   towerVisualsParent: {fileID: 4558483495084116834}
   towerVisuals: []
   meshRenderers: []
   Baseparts: []
   FusionParts: []
   ImNothing: 0
---- !u!114 &7224481246237672020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317838810961247372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
 --- !u!1 &3876935367039370262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,6 +1972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6683318552189574224}
   - component: {fileID: 6752886998666416832}
+  - component: {fileID: 7488275282259440969}
   m_Layer: 0
   m_Name: ConeTowerVisual
   m_TagString: Untagged
@@ -1945,6 +2010,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 4e2d03495bd005540af5c5a471c4be06, type: 2}
+--- !u!114 &7488275282259440969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723032489984155587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1273874493
+      Data2: 1081771393
+      Data3: -1091587678
+      Data4: -749530418
+    Path: event:/Towers/Macaw/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4729942206895240464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,6 +2677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6734738967573028599}
   - component: {fileID: 6846688675151452075}
+  - component: {fileID: 3835555964329825347}
   m_Layer: 0
   m_Name: StunTowerVisual
   m_TagString: Untagged
@@ -2617,6 +2714,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 158bab672606832459b379edd9036c08, type: 2}
+--- !u!114 &3835555964329825347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689324841522260473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -203128071
+      Data2: 1078299227
+      Data3: -139245151
+      Data4: 1673426986
+    Path: event:/Towers/Howler/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6761737439542361474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,6 +3185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2886035845516402705}
   - component: {fileID: 6472619184779972598}
+  - component: {fileID: 6223997800309125418}
   m_Layer: 0
   m_Name: BaseTowerVisual
   m_TagString: Untagged
@@ -3094,6 +3223,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 0}
+--- !u!114 &6223997800309125418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7876572210282253844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1969468275
+      Data2: 1158987675
+      Data3: -1297767285
+      Data4: 466514566
+    Path: event:/Towers/Default/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7972933590284873486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,6 +3632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5531370383124747168}
   - component: {fileID: 3272150217941187177}
+  - component: {fileID: 6728254718095872697}
   m_Layer: 0
   m_Name: MortarTowerVisual
   m_TagString: Untagged
@@ -3508,6 +3669,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: faed82a53b05e284cba388e359d17ec2, type: 2}
+--- !u!114 &6728254718095872697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8158681757382058316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 89411216
+      Data2: 1266227567
+      Data3: -924928613
+      Data4: 67790125
+    Path: event:/Towers/Harpy/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8546735319352358138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2556967318062109661}
   - component: {fileID: 2233643814462005424}
+  - component: {fileID: 5047694075788584805}
   m_Layer: 0
   m_Name: MeleeTowerVisual
   m_TagString: Untagged
@@ -3812,6 +4005,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: c55112de09cbd0444bc2a49e1a2bac5a, type: 2}
+--- !u!114 &5047694075788584805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778083652754917287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 990256475
+      Data2: 1120421873
+      Data3: 1130330760
+      Data4: 384312878
+    Path: event:/Towers/Jaguar/Attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &625412697649342569
 PrefabInstance:
   m_ObjectHideFlags: 0

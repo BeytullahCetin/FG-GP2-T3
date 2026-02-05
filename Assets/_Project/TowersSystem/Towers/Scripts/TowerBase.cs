@@ -28,7 +28,7 @@ namespace FG_GP2_T3
 
         public LayerMask EnemyLayer;
 
-        [SerializeField] private StudioEventEmitter attackSoundEmitter;
+        private StudioEventEmitter _attackSoundEmitter;
 
         private List<Transform> _CurrentTargets = new List<Transform>();
         private Transform _CurrentTarget;
@@ -70,7 +70,11 @@ namespace FG_GP2_T3
         {
             foreach (TowerVisual visual in towerVisuals)
             {
-                visual.gameObject.SetActive(Data == visual.TowerData);
+                bool setActive = Data == visual.TowerData;
+                visual.gameObject.SetActive(setActive);
+                
+                if(setActive)
+                    _attackSoundEmitter = visual.GetComponent<StudioEventEmitter>();
             }
         }
 
@@ -116,8 +120,8 @@ namespace FG_GP2_T3
 
             if (_FireCooldown <= 0f)
             {
-                if (attackSoundEmitter)
-                    attackSoundEmitter.Play();
+                if (_attackSoundEmitter)
+                    _attackSoundEmitter.Play();
 
                 if (Data.EnemyTargetting == TargetType.Multiple)
                 {
