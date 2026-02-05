@@ -56,6 +56,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee_Tower Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Towers/Jaguar/Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 990256475
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1120421873
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 1130330760
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 384312878
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876572210282253844, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778083652754917287, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
