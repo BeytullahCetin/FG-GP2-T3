@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Mortar_Tower
   m_EditorClassIdentifier: 
-  TowerName: 
+  TowerName: Harpy Eagle
   TowerIcon: {fileID: 21300000, guid: 54eecbcf4492f4d8d931cb1923ec63e9, type: 3}
   Role: 0
   AttackType: 4
   DamageType: 0
-  SoundOnSelected: 0
-  SoundOnPlaced: 0
+  SoundOnSelected: 1125
+  SoundOnPlaced: 1126
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0
@@ -35,6 +35,6 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 26ad00780f9e81b439360bbe8e7824ee, type: 3}
   towerMaterial: {fileID: 0}
   CompostCost: 0
-  FusionID: C
+  FusionID: E
   FusionStatType: 7
   FusionStatValue: 1
