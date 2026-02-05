@@ -119,7 +119,7 @@ namespace FG_GP2_T3
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
 
             // TODO: Camera zoom in problem.
-            // cam.ZoomIn();
+            cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
         }
     }
