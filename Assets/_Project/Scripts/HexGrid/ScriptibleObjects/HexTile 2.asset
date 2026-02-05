@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
   m_Name: HexTile 2
   m_EditorClassIdentifier: 
-  TilePrefab: {fileID: 507221827215620252, guid: ab782a815fb75dd44b96ed51bab23406, type: 3}
+  TilePrefab: {fileID: 8552485119282704198, guid: ab782a815fb75dd44b96ed51bab23406, type: 3}
   Roads:
     _roads: 010001000000

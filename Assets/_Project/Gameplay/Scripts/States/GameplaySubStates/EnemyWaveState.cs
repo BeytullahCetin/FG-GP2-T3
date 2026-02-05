@@ -10,7 +10,6 @@ namespace FG_GP2_T3
 		{
 			base.Enter();
 			GameplayStateFlowEvents.OnEnteredEnemyWaveState?.Invoke();
-
 			EnemyManager.Instance.StartWave();
 		}
 

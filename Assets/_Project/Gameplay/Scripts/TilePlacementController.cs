@@ -11,16 +11,16 @@ namespace FG_GP2_T3
         // if (previewTile != null)
         //         Destroy(previewTile);
 
-        public HexTileData CurrentSelectedTile => selectedTile;
+        public HexTileData CurrentSelectedTile => selectedHexTileData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTile;
 
         [SerializeField] StickyCameraMovement cam;
         [SerializeField] TileRotationConfirmation tileRotationConfirmation;
         [SerializeField] List<HexTileData> tiles = new List<HexTileData>();
 
-        [ReadOnly][SerializeField] private HexTileData selectedTile;
+        [ReadOnly][SerializeField] private HexTileData selectedHexTileData;
         [ReadOnly][SerializeField] private HexCell selectedCell;
-        [ReadOnly][SerializeField] private GameObject previewTile;
+        [ReadOnly][SerializeField] private HexTile previewTile;
         [ReadOnly][SerializeField] private int currentTileRotationIndex;
         private List<HexCell> validCellsForSelectedTile = new List<HexCell>();
         private List<float> validRotationsForSelectedTile = new List<float>();
@@ -43,14 +43,14 @@ namespace FG_GP2_T3
         void CancelPreview()
         {
             if (previewTile != null)
-                Destroy(previewTile);
+                Destroy(previewTile.gameObject);
 
             GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
         void ConfirmPreview()
         {
-            if (selectedCell.TrySetTile(selectedTile, validRotationsForSelectedTile[currentTileRotationIndex]))
+            if (selectedCell.TrySetTile(selectedHexTileData, validRotationsForSelectedTile[currentTileRotationIndex]))
             {
                 Destroy(previewTile.gameObject);
             }
@@ -62,10 +62,10 @@ namespace FG_GP2_T3
         public void SetSelectedHexTile(HexTileData tile)
         {
             if (previewTile != null)
-                Destroy(previewTile);
+                Destroy(previewTile.gameObject);
 
-            selectedTile = tile;
-            validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedTile);
+            selectedHexTileData = tile;
+            validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedHexTileData);
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
             // TODO: move camera movement to state
@@ -108,12 +108,12 @@ namespace FG_GP2_T3
         public void PreviewTileOnTheCell()
         {
             if (previewTile != null)
-                Destroy(previewTile);
+                Destroy(previewTile.gameObject);
 
-            validRotationsForSelectedTile = HexManager.Instance.GetValidTileRotations(selectedTile, selectedCell);
+            validRotationsForSelectedTile = HexManager.Instance.GetValidTileRotations(selectedHexTileData, selectedCell);
             currentTileRotationIndex = 0;
 
-            previewTile = Instantiate(selectedTile.TilePrefab);
+            previewTile = Instantiate(selectedHexTileData.TilePrefab);
             previewTile.transform.SetParent(selectedCell.transform);
             previewTile.transform.localPosition = Vector3.zero;
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);

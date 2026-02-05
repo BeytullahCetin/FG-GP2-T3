@@ -11,7 +11,15 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
+			GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState?.Invoke();
+			towerPlacementController.PreviewFusionOnTower();
 			towerPlacementController.SetFusionListeners();
+		}
+
+		public override void Exit()
+		{
+			base.Exit();
+			GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState?.Invoke();
 		}
 	}
 }

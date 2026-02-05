@@ -7,7 +7,7 @@ namespace FG_GP2_T3
     [CreateAssetMenu(fileName = "HexTileData", menuName = "Scriptable Objects/HexTileData")]
     public class HexTileData : ScriptableObject
     {
-        public GameObject TilePrefab;
+        public HexTile TilePrefab;
         public HexRoadSet Roads;
         public bool HasRoad(HexDirection direction) => Roads.HasRoad(direction);
         public int RoadsCount => Roads.CountRoads();

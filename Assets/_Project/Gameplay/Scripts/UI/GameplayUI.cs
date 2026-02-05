@@ -29,11 +29,9 @@ namespace FG_GP2_T3
 
         void OnEnable()
         {
-            GameflowEvents.OnEnteredGameplayState += topPanel.Show;
-            GameflowEvents.OnEnteredGameplayState += bottomPanel.Show;
-
-            GameflowEvents.OnExitedGameplayState += topPanel.Hide;
-            GameflowEvents.OnExitedGameplayState += bottomPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += topPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += bottomPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += nextPhasePanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += ResetTileSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState += EnableTileSelectionButtons;
@@ -48,15 +46,22 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Hide;
 
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += topPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += bottomPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += nextPhasePanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Hide;
         }
 
         void OnDisable()
         {
-            GameflowEvents.OnEnteredGameplayState -= topPanel.Show;
-            GameflowEvents.OnEnteredGameplayState -= bottomPanel.Show;
-
-            GameflowEvents.OnExitedGameplayState -= topPanel.Hide;
-            GameflowEvents.OnExitedGameplayState -= bottomPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= topPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= bottomPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= nextPhasePanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= ResetTileSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTileSelectionSubGameplayState -= EnableTileSelectionButtons;
@@ -70,6 +75,16 @@ namespace FG_GP2_T3
 
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= topPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= bottomPanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= nextPhasePanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
         }
 
         void Start()
