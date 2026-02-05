@@ -49,12 +49,12 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Hide;
 
-            GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState += towerPlacementController.DestroyPreview;
-            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerPlacementController.DestroyPreview;
-
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += nextPhasePanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Hide;
         }
 
         void OnDisable()
@@ -79,12 +79,12 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
 
-            GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState -= towerPlacementController.DestroyPreview;
-            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerPlacementController.DestroyPreview;
-
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= nextPhasePanel.Hide;
+
+            GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
+            GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
         }
 
         void Start()

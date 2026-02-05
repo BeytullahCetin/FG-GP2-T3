@@ -8,10 +8,6 @@ namespace FG_GP2_T3
 {
     public class TowerPlacementController : MonoBehaviour
     {
-        // TODO: create a function for
-        // if (previewTile != null)
-        //         Destroy(previewTile);
-
         public TowerData SelectedTower => selectedTowerData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
 
@@ -24,8 +20,10 @@ namespace FG_GP2_T3
 
         [ReadOnly][SerializeField] TowerData selectedTowerData;
         [ReadOnly][SerializeField] HexCell selectedCell;
-        [ReadOnly][SerializeField] GameObject previewParent;
+        [ReadOnly][SerializeField] HexTowerTile previewTile;
         [ReadOnly][SerializeField] TowerBase previewTowerBase;
+        [ReadOnly][SerializeField] TowerBase previousTowerBase;
+        [ReadOnly][SerializeField] TowerBase towerBaseToFuse;
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
 
         void Awake()
@@ -63,42 +61,66 @@ namespace FG_GP2_T3
 
         void CancelPlacement()
         {
-            DestroyPreview();
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
+            if (previewTowerBase != null)
+                Destroy(previewTowerBase.gameObject);
+
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
         void ConfirmPlacement()
         {
+            if (previewTile != null)
+            {
+                Destroy(previewTile.gameObject);
+            }
+
             selectedCell.TrySetTile(towerTile);
+            selectedCell.Tile.GetComponent<HexTowerTile>().SetTowerBase(previewTowerBase);
+
             previewTowerBase.BuildTower();
-            previewParent = null;
+            previewTile = null;
+            previewTowerBase = null;
 
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
         void CancelFusion()
         {
-            //     if (previewTile != null)
-            //         Destroy(previewTile);
+            if (towerBaseToFuse != null)
+                Destroy(towerBaseToFuse.gameObject);
 
-            //     GameManager.Instance.SwitchToTileSelectionSubState();
+            towerBaseToFuse = null;
+            GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
         void ConfirmFusion()
         {
-            //     if (selectedCell.TrySetTile(selectedTile, validRotationsForSelectedTile[currentTileRotationIndex]))
-            //     {
-            //         NavmeshManager.Instance.RebakeNavmesh();
-            //         Destroy(previewTile.gameObject);
-            //     }
-
-            //     previewTile = null;
-            //     GameManager.Instance.SwitchToTileToTowerTransitionSubState();
+            bool isSuccess = FusionAPI.TryFuse(previousTowerBase, towerBaseToFuse);
+            if (isSuccess)
+            {
+                previousTowerBase = null;
+                towerBaseToFuse = null;
+                GameManager.Instance.SwitchToTowerSelectionSubState();
+            }
+            else
+            {
+                Debug.Log("<color=red>Fusion ERROR</color>");
+            }
         }
 
         public void SetSelectedTower(TowerData tower)
         {
-            DestroyPreview();
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
+            if (previewTowerBase != null)
+                Destroy(previewTowerBase.gameObject);
+
+            if (towerBaseToFuse != null)
+                Destroy(towerBaseToFuse.gameObject);
 
             selectedTowerData = tower;
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
@@ -110,7 +132,7 @@ namespace FG_GP2_T3
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
-        public void SetSelectedCell(HexCell cell)
+        public void SelectCellForTower(HexCell cell)
         {
             selectedCell = cell;
 
@@ -125,12 +147,23 @@ namespace FG_GP2_T3
                 Debug.Log($"selectedCell.Coordinates: {selectedCell.Coordinates} - selectedCell.Tile.Data.name: {selectedCell.Tile.Data.name}");
                 if (selectedCell.Tile is HexTowerTile hexTowerTile)
                 {
-                    // hexTowerTile 
-                    //     cell fusion checks
-                    //      fusion confirmation state
-                    //     GameManager.Instance.SwitchToFusionConfirmationSubState();
-                }
+                    if (towerBaseToFuse != null)
+                        Destroy(towerBaseToFuse.gameObject);
 
+                    previousTowerBase = hexTowerTile.TowerBase;
+                    towerBaseToFuse = Instantiate(towerBasePrefab, Vector3.up * 500f, Quaternion.identity);
+                    towerBaseToFuse.Data = selectedTowerData;
+                    towerBaseToFuse.BuildTower();
+
+                    bool canFuse = FusionAPI.CanFuse(previousTowerBase, towerBaseToFuse);
+                    if (canFuse == false)
+                    {
+                        Debug.Log("<color=red>can fuse == false</color>");
+                        return;
+                    }
+
+                    GameManager.Instance.SwitchToFusionConfirmationSubState();
+                }
             }
         }
 
@@ -163,17 +196,19 @@ namespace FG_GP2_T3
 
         public void PreviewTowerOnEmptyCell()
         {
-            DestroyPreview();
-            previewParent = new GameObject("TowerParent");
-            HexTowerTile tile = Instantiate(towerTile.TilePrefab, previewParent.transform).GetComponent<HexTowerTile>();
-            previewTowerBase = Instantiate(towerBasePrefab, previewParent.transform);
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
+            if (previewTowerBase != null)
+                Destroy(previewTowerBase.gameObject);
+
+            previewTile = Instantiate(towerTile.TilePrefab).GetComponent<HexTowerTile>();
+            previewTowerBase = Instantiate(towerBasePrefab);
             previewTowerBase.Data = selectedTowerData;
             previewTowerBase.UpdateTowerVisual();
 
-            previewParent.transform.SetParent(selectedCell.transform);
-            previewParent.transform.localPosition = Vector3.zero;
-            tile.transform.localPosition = Vector3.zero;
-            previewTowerBase.transform.localPosition = Vector3.zero;
+            previewTile.transform.position = selectedCell.transform.position;
+            previewTowerBase.transform.position = selectedCell.transform.position;
 
             // TODO: Camera zoom in problem.
             // cam.ZoomIn();
@@ -182,22 +217,9 @@ namespace FG_GP2_T3
 
         public void PreviewFusionOnTower()
         {
-
-
-            previewParent.transform.SetParent(selectedCell.transform);
-            previewParent.transform.localPosition = Vector3.zero;
-            // tile.transform.localPosition = Vector3.zero;
-            previewTowerBase.transform.localPosition = Vector3.zero;
-
             // TODO: Camera zoom in problem.
             // cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
-        }
-
-        public void DestroyPreview()
-        {
-            if (previewParent != null)
-                Destroy(previewParent);
         }
     }
 }

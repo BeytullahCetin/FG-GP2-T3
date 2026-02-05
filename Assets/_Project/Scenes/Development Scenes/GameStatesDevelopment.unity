@@ -32611,6 +32611,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc14bd907de12f14ab1d5b67b9b66819, type: 3}
+--- !u!1 &865741114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865741116}
+  - component: {fileID: 865741115}
+  m_Layer: 0
+  m_Name: FusionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &865741115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865741114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d27333c39cadc74393634267f63dfc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &865741116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865741114}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &865945151 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 250814636317072510, guid: cc14bd907de12f14ab1d5b67b9b66819, type: 3}
@@ -45343,7 +45387,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6344af6a6be6f574f83cdecfc51d9c72, type: 2}
   - {fileID: 11400000, guid: b1c4028d105ce7b4b8ddc1ec7b31894e, type: 2}
   - {fileID: 11400000, guid: 4ad4b30267f8f334fa9ac43c25301b8e, type: 2}
-  selectedTile: {fileID: 0}
+  selectedHexTileData: {fileID: 0}
   selectedCell: {fileID: 0}
   previewTile: {fileID: 0}
   currentTileRotationIndex: 0
@@ -60668,8 +60712,10 @@ MonoBehaviour:
   towerBasePrefab: {fileID: 1347720063006253959, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
   selectedTowerData: {fileID: 0}
   selectedCell: {fileID: 0}
-  previewParent: {fileID: 0}
+  previewTile: {fileID: 0}
   previewTowerBase: {fileID: 0}
+  previousTowerBase: {fileID: 0}
+  towerBaseToFuse: {fileID: 0}
   validCellsForSelectedTower: []
 --- !u!4 &1537280824
 Transform:
@@ -84843,6 +84889,7 @@ SceneRoots:
   - {fileID: 1276421653}
   - {fileID: 2074128053}
   - {fileID: 453538275}
+  - {fileID: 865741116}
   - {fileID: 402827322}
   - {fileID: 1051704115}
   - {fileID: 669268484}

@@ -56,7 +56,7 @@ namespace FG_GP2_T3
 			if (towerPlacementController.ValidCellsForSelectedTile.Contains(cell) == false)
 				return;
 
-			towerPlacementController.SetSelectedCell(cell);
+			towerPlacementController.SelectCellForTower(cell);
 		}
 	}
 }
