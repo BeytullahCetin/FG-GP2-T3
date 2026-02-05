@@ -6,6 +6,7 @@ namespace FG_GP2_T3
     public enum WaveEventType
     {
         Start,
+        EnemyCountChanged,
         End
     }
 
@@ -13,11 +14,13 @@ namespace FG_GP2_T3
     {
         public readonly WaveEventType EventType;
         public readonly int WaveNumber;
+        public readonly int EnemyCount;
 
-        public OnWaveEvent(WaveEventType eventType, int waveNumber)
+        public OnWaveEvent(WaveEventType eventType, int waveNumber, int enemyCount = 0)
         {
             EventType = eventType;
             WaveNumber = waveNumber;
+            EnemyCount = enemyCount;
         }
     }
 

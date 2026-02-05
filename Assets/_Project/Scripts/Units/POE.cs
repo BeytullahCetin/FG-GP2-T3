@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 namespace FG_GP2_T3
 {
 	public class POE : MonoBehaviour
 	{
-		[SerializeField] private float _health;
+		[SerializeField] private float _startingHealth;
+		[ReadOnly][SerializeField] private float _health;
 		public float Health => _health;
 
 		private CapsuleCollider _collider;
@@ -17,6 +19,7 @@ namespace FG_GP2_T3
 
 		private void Awake()
 		{
+			_health = _startingHealth;
 			_collider = GetComponentInChildren<CapsuleCollider>();
 			_renderer = GetComponentsInChildren<Renderer>();
 			foreach(Renderer rend in _renderer)
@@ -26,6 +29,8 @@ namespace FG_GP2_T3
 		public void TakeDamage(float damage)
 		{
 			_health -= damage;
+
+			EventManager.Invoke(new OnCoreDamageEvent(Mathf.RoundToInt(_health), Mathf.RoundToInt(Mathf.Clamp01(_health / _startingHealth)), Mathf.RoundToInt(damage)));
 
 			if(_health <= 0)
 			{

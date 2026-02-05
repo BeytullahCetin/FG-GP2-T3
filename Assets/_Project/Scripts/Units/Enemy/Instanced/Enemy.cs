@@ -49,6 +49,8 @@ namespace FG_GP2_T3
 
         public void Initialize(List<Vector3> path)
         {
+            EnemyManager.Instance.RegisterEnemy();
+
             _movementPoints = path;
 
             POE target = EnemyManager.Instance.GetTarget();
@@ -155,6 +157,7 @@ namespace FG_GP2_T3
             _health -= damageAmount;
             if (_health <= 0f)
             {
+                EnemyManager.Instance.UnregisterEnemy();
                 Destroy(gameObject);
                 return;
             }
