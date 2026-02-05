@@ -32,11 +32,13 @@ namespace FG_GP2_T3
         private void OnEnable()
         {
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
+            EventManager.Register<OnCellEvent>(OnCellEvent);
         }
 
         private void OnDisable()
         {
             EventManager.Unregister<OnTowerEvent>(OnTowerEvent);
+            EventManager.Unregister<OnCellEvent>(OnCellEvent);
         }
 
 
@@ -77,5 +79,27 @@ namespace FG_GP2_T3
                     break;
             }
         }
+        
+        private void OnCellEvent(OnCellEvent args)
+        {
+            CellEventType eventType = args.EventType;
+            
+            switch (eventType)
+            {
+                case CellEventType.Click:
+                    OnPlaySound(GlobalSoundType.SelectTileBlank);
+                    break;
+                case CellEventType.Rotate:
+                    break;
+                case CellEventType.Place:
+                    OnPlaySound(GlobalSoundType.PlaceRoadDefault);
+                    break;
+                case CellEventType.Remove:
+                    break;
+                case CellEventType.Cancel:
+                    break;
+            }
+        }
+        
     }
 }
