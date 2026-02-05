@@ -80,6 +80,8 @@ namespace FG_GP2_T3
             selectedCell.TrySetTile(towerTile);
             selectedCell.Tile.GetComponent<HexTowerTile>().SetTowerBase(previewTowerBase);
 
+            EventManager.Invoke(new OnTowerEvent(selectedCell.Tile.GetComponent<HexTowerTile>().TowerBase, TowerEventType.Build));
+
             previewTowerBase.BuildTower();
             previewTile = null;
             previewTowerBase = null;
@@ -101,6 +103,7 @@ namespace FG_GP2_T3
             bool isSuccess = FusionAPI.TryFuse(previousTowerBase, towerBaseToFuse);
             if (isSuccess)
             {
+                EventManager.Invoke(new OnTowerEvent(towerBaseToFuse, TowerEventType.Fuse));
                 previousTowerBase = null;
                 towerBaseToFuse = null;
                 GameManager.Instance.SwitchToTowerSelectionSubState();

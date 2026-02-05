@@ -29,7 +29,7 @@ namespace FG_GP2_T3
 
 			if(_health <= 0)
 			{
-				Debug.LogError("Oh no POE is Dead! :(");
+				GameManager.Instance.SwitchToGameOverState();
 				Destroy(gameObject);
 				return;
 			}
