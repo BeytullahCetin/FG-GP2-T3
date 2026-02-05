@@ -7,8 +7,11 @@ namespace FG_GP2_T3
     {
         public static GameManager Instance;
 
+        [SerializeField] bool showLoadingScreen;
+
         [SerializeField] TilePlacementController tilePlacementController;
         [SerializeField] TowerPlacementController towerPlacementController;
+        [SerializeField] LoadingScreen loadingScreen;
 
         private StateMachine gameflowStateMachine;
         private MainMenuState mainMenuState;
@@ -27,6 +30,9 @@ namespace FG_GP2_T3
         void Start()
         {
             SwitchToMainMenuState();
+
+            if (showLoadingScreen == true)
+                loadingScreen.TriggerLoadingBar().Forget();
         }
 
         void Update()
