@@ -30,8 +30,9 @@ namespace FG_GP2_T3
         void Start()
         {
             SwitchToMainMenuState();
-
+#if UNITY_EDITOR
             if (showLoadingScreen == true)
+#endif
                 loadingScreen.TriggerLoadingBar().Forget();
         }
 

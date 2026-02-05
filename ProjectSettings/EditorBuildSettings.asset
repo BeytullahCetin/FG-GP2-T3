@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Project/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: Assets/_Project/Scenes/Development Scenes/EnemyDevelopment.unity
-    guid: 67d26c0c54def814783df45d9203bb38
   - enabled: 1
-    path: Assets/_Project/Scenes/Development Scenes/GameStatesDevelopment.unity
-    guid: dc6321a91045e8f45a8fdb81ffb1b68b
+    path: Assets/_Project/Scenes/_Gameplay.unity
+    guid: 4099c6699f236a644a32c37f46252d97
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f053fae7551f3294bb895551b64fc72e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 970f6bcfc886f034dbf9c76e2a3ad1c2, type: 3}
