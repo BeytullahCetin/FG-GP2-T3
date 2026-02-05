@@ -172,7 +172,7 @@ namespace FG_GP2_T3
             foreach (TowerData towerData in towerPlacementController.GetTowerDatasForPlacement())
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, towerSelectionButtonsParent);
-                selectionButton.Title.SetText(towerData.name);
+                selectionButton.Title.SetText(towerData.TowerName);
                 selectionButton.Image.sprite = towerData.TowerIcon;
                 currentTowerSelectionButtons.Add(selectionButton);
 
