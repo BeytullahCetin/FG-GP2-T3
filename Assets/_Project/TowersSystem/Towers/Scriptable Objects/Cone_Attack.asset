@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Cone_Attack
   m_EditorClassIdentifier: 
-  TowerName: 
+  TowerName: Macaw
   TowerIcon: {fileID: 0}
   Role: 0
   AttackType: 1
   DamageType: 0
-  SoundOnSelected: 0
-  SoundOnPlaced: 0
+  SoundOnSelected: 1130
+  SoundOnPlaced: 1131
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0
@@ -35,6 +35,6 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
-  FusionID: E
+  FusionID: D
   FusionStatType: 3
   FusionStatValue: 5
