@@ -56,6 +56,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone_Tower Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/Towers/Macaw/Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1273874493
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1081771393
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: -1091587678
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -749530418
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

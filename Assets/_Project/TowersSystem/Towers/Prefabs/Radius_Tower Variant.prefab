@@ -51,10 +51,38 @@ PrefabInstance:
     - target: {fileID: 1347720063006253959, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
       propertyPath: Data
       value: 
-      objectReference: {fileID: 11400000, guid: 958de3ddbd30eb344b6a96672de80acc, type: 2}
+      objectReference: {fileID: 11400000, guid: 4f88cfb1233a218459abb2c89f062fe3, type: 2}
     - target: {fileID: 3317838810961247372, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
       propertyPath: m_Name
       value: Radius_Tower Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Path
+      value: event:/PsychicDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 1604075910
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1261133441
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 708716166
+      objectReference: {fileID: 0}
+    - target: {fileID: 7224481246237672020, guid: 8b0565ea5b7e5d84fa79faee588175be, type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: -1093174303
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
