@@ -227,7 +227,7 @@ namespace FG_GP2_T3
         /// Just for visualizing the tower's attack range in the editor
         /// </summary>
         #region
-
+#if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             if (Data == null) return;
@@ -252,6 +252,7 @@ namespace FG_GP2_T3
                 Gizmos.DrawWireSphere(transform.position, Data.Range);
             }
         }
+#endif
         #endregion///
     }
 }
