@@ -31,6 +31,9 @@ namespace FG_GP2_T3
         private List<Vector3> _movementPoints = new List<Vector3>();
         private float _timeSinceLastAttack = 0f;
         private float _timeSinceLastDamageTick = 0f;
+
+        Color _originalColor;
+        Renderer _renderer;
         #endregion
         
         private void Start()
@@ -39,7 +42,9 @@ namespace FG_GP2_T3
             if(!_randomizeEachAttackDamage) _attackDamage = GetRandomInRange(_attackDamageRange);
             if(!_randomizeEachAttackDelay) _attackDelaySeconds = GetRandomInRange(_attackDelaySecondsRange);   
             _compostReward = Mathf.RoundToInt(GetRandomInRange(_compostRewardRange));
-            
+
+            _renderer = GetComponentInChildren<Renderer>();
+            if (_renderer != null) _originalColor = _renderer.material.color;
         }
 
         public void Initialize(List<Vector3> path)
@@ -159,26 +164,26 @@ namespace FG_GP2_T3
 
         private IEnumerator FlashRedCoroutine()
         {
-            Renderer renderer = GetComponent<Renderer>();
-            MaterialPropertyBlock propBlock = new MaterialPropertyBlock();
-    
-            renderer.GetPropertyBlock(propBlock);
-            propBlock.SetColor("_Color", Color.red);
-            renderer.SetPropertyBlock(propBlock);
+            if (_renderer == null)yield break;
 
-            yield return new WaitForSeconds(0.25f);
-            if (renderer == null) yield break;
+            _renderer.material.color = Color.red;
 
-            propBlock.SetColor("_Color", Color.white);
-            renderer.SetPropertyBlock(propBlock);
+            yield return new WaitForSeconds(0.1f);
+
+            if (_renderer == null) yield break;
+
+            _renderer.material.color = _originalColor;
         }
 
         private float GetRandomInRange(Vector2 range) => Random.Range(range.x, range.y);
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer == GameConstants.Layers.POE)
-                _speed = 0f;
+            if(other.gameObject.layer != GameConstants.Layers.POE)
+                return;
+
+            _speed = 0f;
+            _attackRange = 666f; //Just a big number
         }
     }
 }
