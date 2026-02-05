@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace FG_GP2_T3
@@ -10,18 +9,15 @@ namespace FG_GP2_T3
 
         void Start()
         {
-            restartButton.onClick.AddListener(ReloadScene);
+            restartButton.onClick.AddListener(GameManager.Instance.ReloadScene);
         }
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.R))
-                ReloadScene();
+                GameManager.Instance.ReloadScene();
         }
 
-        void ReloadScene()
-        {
-            SceneManager.LoadScene(0);
-        }
+
     }
 }

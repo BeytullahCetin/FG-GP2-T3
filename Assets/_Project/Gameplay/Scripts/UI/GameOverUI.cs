@@ -21,6 +21,7 @@ namespace FG_GP2_T3
 		void Start()
 		{
 			gameoverPanel.Hide();
+			restartButton.onClick.AddListener(GameManager.Instance.ReloadScene);
 		}
 	}
 }

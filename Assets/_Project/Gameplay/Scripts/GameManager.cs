@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FG_GP2_T3
 {
@@ -39,6 +40,11 @@ namespace FG_GP2_T3
         void Update()
         {
             gameflowStateMachine.Update();
+        }
+
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(0);
         }
 
         #region State Switches
