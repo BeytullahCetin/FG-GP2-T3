@@ -35,6 +35,17 @@ namespace FG_GP2_T3
         {
             // Destroy previews
             // Hide panels
+
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
+            if (previewTowerBase != null)
+                Destroy(previewTowerBase.gameObject);
+
+            if (towerBaseToFuse != null)
+                Destroy(towerBaseToFuse.gameObject);
+
+            cam.ZoomOut();
             GameManager.Instance.SwitchToEnemyWaveSubState();
             // GameManager.Instance.SwitchToTileSelectionSubState();
         }
@@ -67,6 +78,7 @@ namespace FG_GP2_T3
             if (previewTowerBase != null)
                 Destroy(previewTowerBase.gameObject);
 
+            cam.ZoomOut();
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -86,6 +98,7 @@ namespace FG_GP2_T3
             previewTile = null;
             previewTowerBase = null;
 
+            cam.ZoomOut();
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -95,6 +108,7 @@ namespace FG_GP2_T3
                 Destroy(towerBaseToFuse.gameObject);
 
             towerBaseToFuse = null;
+            cam.ZoomOut();
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
@@ -106,6 +120,7 @@ namespace FG_GP2_T3
                 EventManager.Invoke(new OnTowerEvent(towerBaseToFuse, TowerEventType.Fuse));
                 previousTowerBase = null;
                 towerBaseToFuse = null;
+                cam.ZoomOut();
                 GameManager.Instance.SwitchToTowerSelectionSubState();
             }
             else
@@ -131,6 +146,7 @@ namespace FG_GP2_T3
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
             // TODO: move camera movement to state
+            cam.ZoomOut();
             cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
@@ -214,14 +230,14 @@ namespace FG_GP2_T3
             previewTowerBase.transform.position = selectedCell.transform.position;
 
             // TODO: Camera zoom in problem.
-            // cam.ZoomIn();
+            cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
         }
 
         public void PreviewFusionOnTower()
         {
             // TODO: Camera zoom in problem.
-            // cam.ZoomIn();
+            cam.ZoomIn();
             cam.transform.DOMove(selectedCell.transform.position, .5f);
         }
     }

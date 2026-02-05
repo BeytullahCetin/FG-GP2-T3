@@ -45,6 +45,7 @@ namespace FG_GP2_T3
             if (previewTile != null)
                 Destroy(previewTile.gameObject);
 
+            cam.ZoomOut();
             GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
@@ -56,6 +57,7 @@ namespace FG_GP2_T3
             }
 
             previewTile = null;
+            cam.ZoomOut();
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
         }
 
@@ -69,6 +71,7 @@ namespace FG_GP2_T3
             // TODO: Change to POE's position.
             // TODO: add do move function to camera script
             // TODO: move camera movement to state
+            cam.ZoomOut();
             cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTilePlacementSubState();
         }
