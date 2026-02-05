@@ -60718,9 +60718,7 @@ MonoBehaviour:
   nextWave: {fileID: 73609134}
   towerTile: {fileID: 11400000, guid: 38c8531395d4abe46b36110cad05b5d6, type: 2}
   towerDatas:
-  - {fileID: 11400000, guid: 4e2d03495bd005540af5c5a471c4be06, type: 2}
   - {fileID: 11400000, guid: 4f88cfb1233a218459abb2c89f062fe3, type: 2}
-  - {fileID: 11400000, guid: f2a5074c335de944f84e7de598569a3a, type: 2}
   - {fileID: 11400000, guid: c55112de09cbd0444bc2a49e1a2bac5a, type: 2}
   - {fileID: 11400000, guid: faed82a53b05e284cba388e359d17ec2, type: 2}
   - {fileID: 11400000, guid: 958de3ddbd30eb344b6a96672de80acc, type: 2}

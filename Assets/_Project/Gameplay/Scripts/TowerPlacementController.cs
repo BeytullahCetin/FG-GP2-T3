@@ -15,7 +15,7 @@ namespace FG_GP2_T3
         [SerializeField] TowerConfirmation towerConfirmation;
         [SerializeField] NextWave nextWave;
         [SerializeField] HexTileData towerTile;
-        [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
+        [Expandable][SerializeField] List<TowerData> towerDatas = new List<TowerData>();
         [SerializeField] TowerBase towerBasePrefab;
 
         [ReadOnly][SerializeField] TowerData selectedTowerData;

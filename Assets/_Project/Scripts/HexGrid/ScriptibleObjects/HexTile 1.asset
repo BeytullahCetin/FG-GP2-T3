@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
   m_Name: HexTile 1
   m_EditorClassIdentifier: 
+  TileIcon: {fileID: 21300000, guid: 6c19e35bc6fa6e843ad1159f369294a2, type: 3}
   TilePrefab: {fileID: -277693646696503276, guid: 7ca271d07e0c1174bafd8abd8e4d106c, type: 3}
   Roads:
     _roads: 010000010000

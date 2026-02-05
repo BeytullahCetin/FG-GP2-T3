@@ -149,6 +149,7 @@ namespace FG_GP2_T3
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
                 selectionButton.Title.SetText(hexTileData.name);
+                selectionButton.Image.sprite = hexTileData.TileIcon;
                 currentTileSelectionButtons.Add(selectionButton);
 
                 selectionButton.Button.onClick.AddListener(() =>
@@ -172,6 +173,7 @@ namespace FG_GP2_T3
             {
                 SelectionButton selectionButton = Instantiate(selectionButtonPrefab, towerSelectionButtonsParent);
                 selectionButton.Title.SetText(towerData.name);
+                selectionButton.Image.sprite = towerData.TowerIcon;
                 currentTowerSelectionButtons.Add(selectionButton);
 
                 selectionButton.Button.onClick.AddListener(() =>

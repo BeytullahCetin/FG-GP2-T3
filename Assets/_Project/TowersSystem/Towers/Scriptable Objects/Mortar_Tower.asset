@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Mortar_Tower
   m_EditorClassIdentifier: 
   TowerName: 
+  TowerIcon: {fileID: 21300000, guid: 54eecbcf4492f4d8d931cb1923ec63e9, type: 3}
   Role: 0
   AttackType: 4
   DamageType: 0
+  SoundOnSelected: 0
+  SoundOnPlaced: 0
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0

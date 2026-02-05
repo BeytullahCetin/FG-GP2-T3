@@ -13,9 +13,10 @@ namespace FG_GP2_T3
     {
         [Header("TowerInfo")]
         public string TowerName;
+        [ShowAssetPreview] public Sprite TowerIcon;
         public TowerRole Role;
 
-        
+
         public AttackType AttackType;
         public DamageType DamageType;
 
@@ -48,7 +49,7 @@ namespace FG_GP2_T3
         [Header("Damage Over Time")]
 
         [EnableIf(nameof(IsDotDamage))]
-        public float  DotDuration;
+        public float DotDuration;
 
         [EnableIf(nameof(IsDotDamage))]
         public float DotDamagePerSecond;
@@ -142,7 +143,7 @@ namespace FG_GP2_T3
         Multiple
     }
 
-    public enum FusionStatType 
+    public enum FusionStatType
     {
         None,
         RangeBoost,
@@ -153,7 +154,7 @@ namespace FG_GP2_T3
         DotDurationBoost,
         SplashRadiusBoost
     }
-    
+
 
 
 
