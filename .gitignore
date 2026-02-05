@@ -96,6 +96,8 @@ crashlytics-build.properties
 fmod_editor.log
 
 # Andreas personal assets, including testing related assets and tools
+/[Aa]ssets/_[Pp]roject/_[Dd]ev/
+/[Aa]ssets/_[Pp]roject/_[Dd]ev.meta
 /[Aa]ssets/[Ww]ingman/
 /[Aa]ssets/[Ww]ingman.meta
 /[Aa]ssets/[Pp]lugins/[Tt]iny [Gg]iant [Ss]tudio/
