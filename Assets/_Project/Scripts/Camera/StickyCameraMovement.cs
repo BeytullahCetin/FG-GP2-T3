@@ -55,14 +55,25 @@ namespace FG_GP2_T3
             return Vector3.zero;
         }
 
-        public void ZoomIn()
+        public Tween ZoomIn(float? targetSize = null, float? duration = null)
         {
-            mainCamera.DOOrthoSize(zoomInSize, zoomDuration);
+            float finalSize = targetSize ?? zoomInSize;
+            float finalDuration = duration ?? zoomDuration;
+
+            return mainCamera.DOOrthoSize(finalSize, finalDuration);
         }
 
-        public void ZoomOut()
+        public Tween ZoomOut(float? targetSize = null, float? duration = null)
         {
-            mainCamera.DOOrthoSize(zoomOutSize, zoomDuration);
+            float finalSize = targetSize ?? zoomOutSize;
+            float finalDuration = duration ?? zoomDuration;
+
+            return mainCamera.DOOrthoSize(finalSize, finalDuration);
+        }
+
+        public Tween MoveTo(Vector3 targetPosition, float duration)
+        {
+            return transform.DOMove(targetPosition, duration);
         }
 
         void LateUpdate()
