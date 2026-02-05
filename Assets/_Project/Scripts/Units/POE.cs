@@ -17,10 +17,10 @@ namespace FG_GP2_T3
 		Color _originalColor;
         Renderer[] _renderer;
 
-		private void Awake()
+		private void Start()
 		{
 			_health = _startingHealth;
-			_collider = GetComponentInChildren<CapsuleCollider>();
+			_collider = GetComponent<CapsuleCollider>();
 			_renderer = GetComponentsInChildren<Renderer>();
 			foreach(Renderer rend in _renderer)
 				 if (rend != null) _originalColor = rend.material.color;

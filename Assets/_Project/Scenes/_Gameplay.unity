@@ -46537,6 +46537,7 @@ GameObject:
   - component: {fileID: 1144003024}
   - component: {fileID: 1144003027}
   - component: {fileID: 1144003026}
+  - component: {fileID: 1144003028}
   m_Layer: 10
   m_Name: POE
   m_TagString: Untagged
@@ -46590,6 +46591,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingHealth: 0
   _health: 100
+--- !u!136 &1144003028
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144003023}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 18.08
+  m_Height: 90.7
+  m_Direction: 1
+  m_Center: {x: 0.000000047683717, y: -0.15, z: -0.00000009536743}
 --- !u!1001 &1149949529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83468,6 +83492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3371791169096884987, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
+    - {fileID: 9121218334411922497, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2894986372039587815, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
     m_AddedGameObjects:
