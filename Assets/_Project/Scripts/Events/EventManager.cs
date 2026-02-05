@@ -23,6 +23,15 @@ namespace FG_GP2_T3
             Instance = this;
         }
 
+        void OnDestroy()
+        {
+            if (Instance == this)
+            {
+                _events.Clear();
+                Instance = null;
+            }
+        }
+
         public static void Register<T>(Action<T> act) where T : GameEventArgs
         {
             Type _type = typeof(T);

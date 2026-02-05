@@ -38,6 +38,7 @@ namespace FG_GP2_T3
             currentTileRotationIndex = currentTileRotationIndex % validRotationsForSelectedTile.Count;
             // TODO: serialize magic number duration to settings file
             previewTile.transform.DOLocalRotate(new Vector3(0, validRotationsForSelectedTile[currentTileRotationIndex], 0), .5f);
+            EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Rotate));
         }
 
         void CancelPreview()
@@ -47,6 +48,7 @@ namespace FG_GP2_T3
 
             cam.ZoomOut();
             GameManager.Instance.SwitchToTileSelectionSubState();
+            EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Cancel));
         }
 
         void ConfirmPreview()
@@ -59,6 +61,7 @@ namespace FG_GP2_T3
             previewTile = null;
             cam.ZoomOut();
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
+            EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));
         }
 
         public void SetSelectedHexTile(HexTileData tile)
@@ -80,6 +83,7 @@ namespace FG_GP2_T3
         {
             selectedCell = cell;
             GameManager.Instance.SwitchToTileRotationSubState();
+            EventManager.Invoke(new OnCellEvent(cell, CellEventType.Click));
         }
 
         public List<HexTileData> GetHexTilesForPlacement()

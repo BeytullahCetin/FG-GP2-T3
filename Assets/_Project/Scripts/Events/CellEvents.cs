@@ -5,7 +5,8 @@ namespace FG_GP2_T3
         Click,
         Rotate,
         Place,
-        Remove
+        Remove,
+        Cancel
     }
 
     public class OnCellEvent : GameEventArgs
