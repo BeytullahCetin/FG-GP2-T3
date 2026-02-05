@@ -96,7 +96,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2373d1023f3ad164292e6455dd009033, type: 2}
+  - {fileID: 2100000, guid: 22c18ede0517fc54b86d1fa9c838a678, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5349148060542683715}
   - component: {fileID: 1194305933884659706}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: BeefyEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63718323d4578ec44aac006d578370fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthRange: {x: 20, y: 20}
+  _healthRange: {x: 40, y: 40}
   _speed: 3
   _attackDamageRange: {x: 3, y: 5}
   _attackDelaySecondsRange: {x: 1, y: 1}
