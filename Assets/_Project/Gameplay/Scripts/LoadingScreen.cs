@@ -23,13 +23,17 @@ namespace FG_GP2_T3
             canvasGroup.alpha = 1f;
             loadingBar.value = loadingBar.minValue;
 
-            await loadingBar.DOValue(loadingBar.maxValue, loadingDuration)
-                .SetEase(loadingEase)
-                .ToUniTask();
+            Tween barTween = loadingBar
+                .DOValue(loadingBar.maxValue, loadingDuration)
+                .SetEase(loadingEase);
 
-            await canvasGroup.DOFade(0, canvasGroupDuration)
-                .SetEase(canvasGroupEase)
-                .ToUniTask();
+            await barTween.AsyncWaitForCompletion();
+
+            Tween fadeTween = canvasGroup
+                 .DOFade(0, canvasGroupDuration)
+                 .SetEase(canvasGroupEase);
+
+            await fadeTween.AsyncWaitForCompletion();
 
             canvasGroup.blocksRaycasts = false;
             gameObject.SetActive(false);

@@ -28,7 +28,7 @@ MonoBehaviour:
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
-  Range: 6
+  Range: 15
   Damage: 2
   FireRate: 1
   pierce: 0

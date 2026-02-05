@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: DOT_Tower
   m_EditorClassIdentifier: 
   TowerName: 
+  TowerIcon: {fileID: 0}
   Role: 2
   AttackType: 3
   DamageType: 1
+  SoundOnSelected: 0
+  SoundOnPlaced: 0
   CrowdControlType: 0
   CcDuration: 0
   SlowPercent: 0
@@ -25,7 +28,7 @@ MonoBehaviour:
   DotDuration: 4
   DotDamagePerSecond: 6
   ConeAngle: 0
-  Range: 6
+  Range: 15
   Damage: 1
   FireRate: 1
   pierce: 0

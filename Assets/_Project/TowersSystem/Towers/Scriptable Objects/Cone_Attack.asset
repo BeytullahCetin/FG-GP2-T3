@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cone_Attack
   m_EditorClassIdentifier: 
   TowerName: 
+  TowerIcon: {fileID: 0}
   Role: 0
   AttackType: 1
   DamageType: 0
@@ -27,7 +28,7 @@ MonoBehaviour:
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 60
-  Range: 4
+  Range: 15
   Damage: 8
   FireRate: 3
   pierce: 0
