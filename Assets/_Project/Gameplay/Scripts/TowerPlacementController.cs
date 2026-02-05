@@ -35,8 +35,8 @@ namespace FG_GP2_T3
         {
             // Destroy previews
             // Hide panels
-            // GameManager.Instance.SwitchToEnemyWaveSubState();
-            GameManager.Instance.SwitchToTileSelectionSubState();
+            GameManager.Instance.SwitchToEnemyWaveSubState();
+            // GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
         void RemoveAllLisenersFromConfirmationButtons()
