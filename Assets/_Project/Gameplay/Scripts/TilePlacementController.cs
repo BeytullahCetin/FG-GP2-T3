@@ -46,7 +46,7 @@ namespace FG_GP2_T3
             if (previewTile != null)
                 Destroy(previewTile.gameObject);
 
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTileSelectionSubState();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Cancel));
         }
@@ -59,7 +59,7 @@ namespace FG_GP2_T3
             }
 
             previewTile = null;
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));
         }
@@ -72,10 +72,9 @@ namespace FG_GP2_T3
             selectedHexTileData = tile;
             validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedHexTileData);
             // TODO: Change to POE's position.
-            // TODO: add do move function to camera script
             // TODO: move camera movement to state
-            cam.ZoomOut();
-            cam.transform.DOMove(Vector3.zero, .5f);
+            cam.ZoomOut(null, .5f);
+            // cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTilePlacementSubState();
         }
 
@@ -126,8 +125,8 @@ namespace FG_GP2_T3
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
 
             // TODO: Camera zoom in problem.
-            cam.ZoomIn();
-            cam.transform.DOMove(selectedCell.transform.position, .5f);
+            cam.ZoomIn(null, .5f);
+            cam.MoveTo(selectedCell.transform.position, .5f);
         }
     }
 }

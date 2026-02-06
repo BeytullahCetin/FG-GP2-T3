@@ -67,7 +67,7 @@ namespace FG_GP2_T3
 		public void SwitchToTileSelectionState()
 		{
 			subStateMachine.ChangeState(tileSelectionState);
-			UIManager.Instance.GameplayUI.SetPhaseText("Tile Placement Phase");
+			UIManager.Instance.GameplayUI.SetPhaseText("Place Your Path Tile!");
 		}
 
 		public void SwitchToTilePlacementState()
@@ -92,7 +92,7 @@ namespace FG_GP2_T3
 		public void SwitchToTowerSelectionState()
 		{
 			subStateMachine.ChangeState(towerSelectionState);
-			UIManager.Instance.GameplayUI.SetPhaseText("Tower Placement Phase");
+			UIManager.Instance.GameplayUI.SetPhaseText("Place Your Tower Tiles!");
 		}
 
 		public void SwitchToTowerPlacementState()

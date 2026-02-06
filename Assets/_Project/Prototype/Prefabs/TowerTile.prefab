@@ -51,11 +51,11 @@ PrefabInstance:
     - target: {fileID: -6983504264620926558, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: eabf80046791ffb41825931ebc937e3d, type: 2}
+      objectReference: {fileID: 2100000, guid: 5de4435fd354a4b48b3b6ed54e21e265, type: 2}
     - target: {fileID: -3809945072200597350, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: eabf80046791ffb41825931ebc937e3d, type: 2}
+      objectReference: {fileID: 2100000, guid: 5de4435fd354a4b48b3b6ed54e21e265, type: 2}
     - target: {fileID: -1710581543988348024, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 8750140563518859423, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: eabf80046791ffb41825931ebc937e3d, type: 2}
+      objectReference: {fileID: 2100000, guid: 5de4435fd354a4b48b3b6ed54e21e265, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1bbb11195c41640abf1a022116b441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerBase: {fileID: 0}
 --- !u!1 &5973251535908495947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1710581543988348024, guid: c91f51c0eb3550c46808a4736dfc96ab, type: 3}

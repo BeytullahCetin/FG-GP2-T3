@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
-  m_Name: HexTile 1
+  m_Name: OLD_HexTile2
   m_EditorClassIdentifier: 
-  TileIcon: {fileID: 21300000, guid: 6c19e35bc6fa6e843ad1159f369294a2, type: 3}
-  TilePrefab: {fileID: -277693646696503276, guid: 7ca271d07e0c1174bafd8abd8e4d106c, type: 3}
+  TileIcon: {fileID: 21300000, guid: 907d504bb7412264b831fc6796af6dc8, type: 3}
+  TilePrefab: {fileID: 8552485119282704198, guid: ab782a815fb75dd44b96ed51bab23406, type: 3}
   Roads:
-    _roads: 010000010000
+    _roads: 010001000000

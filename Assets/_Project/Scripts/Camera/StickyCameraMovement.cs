@@ -21,6 +21,8 @@ namespace FG_GP2_T3
         private Vector3 startWorldPosition;
         private Camera mainCamera;
 
+        [HideInInspector] public bool IsZoomedIn = false;
+
         void Awake()
         {
             mainCamera = Camera.main;
@@ -60,6 +62,7 @@ namespace FG_GP2_T3
             float finalSize = targetSize ?? zoomInSize;
             float finalDuration = duration ?? zoomDuration;
 
+            IsZoomedIn = true;
             return mainCamera.DOOrthoSize(finalSize, finalDuration);
         }
 
@@ -68,6 +71,7 @@ namespace FG_GP2_T3
             float finalSize = targetSize ?? zoomOutSize;
             float finalDuration = duration ?? zoomDuration;
 
+            IsZoomedIn = false;
             return mainCamera.DOOrthoSize(finalSize, finalDuration);
         }
 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Ranged_Tower
   m_EditorClassIdentifier: 
-  TowerName: Brazil Nut Tree
-  TowerIcon: {fileID: 21300000, guid: 2493bd5eadbef4edf9cded09530cf424, type: 3}
+  TowerName: Brazil Nut Tree      (Ranged)
+  TowerIcon: {fileID: 21300000, guid: 850b4bc37fbd1d749a7a41ac1420c481, type: 3}
   Role: 0
   AttackType: 0
   DamageType: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
-  Range: 15
+  Range: 35
   Damage: 14
   FireRate: 2
   pierce: 0

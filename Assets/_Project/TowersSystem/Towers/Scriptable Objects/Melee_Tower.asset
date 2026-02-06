@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Melee_Tower
   m_EditorClassIdentifier: 
-  TowerName: Jaguar
-  TowerIcon: {fileID: 21300000, guid: 85c0a54f8d6cf4e658cdb5c7abe5260b, type: 3}
+  TowerName: Jaguar (Melee)
+  TowerIcon: {fileID: 21300000, guid: ca19ce95537b98445b6e7d41fb2027dd, type: 3}
   Role: 1
   AttackType: 2
   DamageType: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
-  Range: 15
+  Range: 25
   Damage: 20
   FireRate: 1
   pierce: 0

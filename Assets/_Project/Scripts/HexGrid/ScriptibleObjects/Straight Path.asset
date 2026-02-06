@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
-  m_Name: HexTile 3
+  m_Name: Straight Path
   m_EditorClassIdentifier: 
-  TileIcon: {fileID: 21300000, guid: b9cefc4c379ff7949ba54d54a3e88879, type: 3}
-  TilePrefab: {fileID: 1920740064823887946, guid: c3c6b91ce36c0a94580c5cfa3f3f7430, type: 3}
+  TileIcon: {fileID: 21300000, guid: 4e014ea9d37ea0b42bb4e7a3d12e9660, type: 3}
+  TilePrefab: {fileID: -2479820227682982245, guid: 4425a91b975326844868866036628060, type: 3}
   Roads:
-    _roads: 010100000000
+    _roads: 000100000100

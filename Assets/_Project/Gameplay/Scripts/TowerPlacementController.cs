@@ -78,7 +78,7 @@ namespace FG_GP2_T3
             if (previewTowerBase != null)
                 Destroy(previewTowerBase.gameObject);
 
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -98,7 +98,7 @@ namespace FG_GP2_T3
             previewTile = null;
             previewTowerBase = null;
 
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
@@ -108,7 +108,7 @@ namespace FG_GP2_T3
                 Destroy(towerBaseToFuse.gameObject);
 
             towerBaseToFuse = null;
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
@@ -120,7 +120,7 @@ namespace FG_GP2_T3
                 EventManager.Invoke(new OnTowerEvent(towerBaseToFuse, TowerEventType.Fuse));
                 previousTowerBase = null;
                 towerBaseToFuse = null;
-                cam.ZoomOut();
+                cam.ZoomOut(null, .5f);
                 GameManager.Instance.SwitchToTowerSelectionSubState();
             }
             else
@@ -144,10 +144,9 @@ namespace FG_GP2_T3
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
 
             // TODO: Change to POE's position.
-            // TODO: add do move function to camera script
             // TODO: move camera movement to state
-            cam.ZoomOut();
-            cam.transform.DOMove(Vector3.zero, .5f);
+            cam.ZoomOut(null, .5f);
+            // cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
@@ -229,16 +228,14 @@ namespace FG_GP2_T3
             previewTile.transform.position = selectedCell.transform.position;
             previewTowerBase.transform.position = selectedCell.transform.position;
 
-            // TODO: Camera zoom in problem.
-            cam.ZoomIn();
-            cam.transform.DOMove(selectedCell.transform.position, .5f);
+            cam.ZoomIn(null, .5f);
+            cam.MoveTo(selectedCell.transform.position, .5f);
         }
 
         public void PreviewFusionOnTower()
         {
-            // TODO: Camera zoom in problem.
-            cam.ZoomIn();
-            cam.transform.DOMove(selectedCell.transform.position, .5f);
+            cam.ZoomIn(null, .5f);
+            cam.MoveTo(selectedCell.transform.position, .5f);
         }
     }
 }

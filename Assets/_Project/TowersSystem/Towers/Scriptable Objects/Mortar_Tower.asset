@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Mortar_Tower
   m_EditorClassIdentifier: 
-  TowerName: Harpy Eagle
-  TowerIcon: {fileID: 21300000, guid: 54eecbcf4492f4d8d931cb1923ec63e9, type: 3}
+  TowerName: Harpy Eagle (Ranged)
+  TowerIcon: {fileID: 21300000, guid: e041b08f34ab79246b9750ed8d4441b0, type: 3}
   Role: 0
   AttackType: 4
   DamageType: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
-  Range: 15
+  Range: 35
   Damage: 35
   FireRate: 0.5
   pierce: 0
