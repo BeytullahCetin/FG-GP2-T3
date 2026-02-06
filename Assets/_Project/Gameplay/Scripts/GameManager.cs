@@ -30,6 +30,9 @@ namespace FG_GP2_T3
 
         void Start()
         {
+            Application.targetFrameRate = 120;
+            QualitySettings.vSyncCount = 0;
+
             SwitchToMainMenuState();
 #if UNITY_EDITOR
             if (showLoadingScreen == true)
