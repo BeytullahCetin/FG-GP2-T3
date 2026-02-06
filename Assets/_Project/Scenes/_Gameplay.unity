@@ -148314,6 +148314,51 @@ MonoBehaviour:
       Count: 10
       SpawnRate: 1
       StartDelay: 17
+  - Groups:
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
+      Count: 15
+      SpawnRate: 1
+      StartDelay: 1
+  - Groups:
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+      Count: 15
+      SpawnRate: 1
+      StartDelay: 1
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
+      Count: 10
+      SpawnRate: 1
+      StartDelay: 17
+  - Groups:
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
+      Count: 20
+      SpawnRate: 1
+      StartDelay: 1
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+      Count: 10
+      SpawnRate: 1
+      StartDelay: 17
+  - Groups:
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+      Count: 23
+      SpawnRate: 1
+      StartDelay: 1
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
+      Count: 17
+      SpawnRate: 1
+      StartDelay: 25
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+      Count: 13
+      SpawnRate: 1
+      StartDelay: 43
+  - Groups:
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+      Count: 50
+      SpawnRate: 1
+      StartDelay: 1
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
+      Count: 50
+      SpawnRate: 1
+      StartDelay: 52
 --- !u!1001 &1051727379
 PrefabInstance:
   m_ObjectHideFlags: 0
