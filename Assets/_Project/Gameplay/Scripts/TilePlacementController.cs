@@ -118,6 +118,7 @@ namespace FG_GP2_T3
 
             validRotationsForSelectedTile = HexManager.Instance.GetValidTileRotations(selectedHexTileData, selectedCell);
             currentTileRotationIndex = 0;
+            tileRotationConfirmation.RotateButton.interactable = validRotationsForSelectedTile.Count > 1;
 
             previewTile = Instantiate(selectedHexTileData.TilePrefab);
             previewTile.transform.SetParent(selectedCell.transform);
