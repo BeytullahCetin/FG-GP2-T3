@@ -79,7 +79,7 @@ namespace FG_GP2_T3
                 Destroy(previewTowerBase.gameObject);
 
             cam.ZoomOut(null, .5f);
-            GameManager.Instance.SwitchToTowerSelectionSubState();
+            GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
         void ConfirmPlacement()
@@ -236,7 +236,7 @@ namespace FG_GP2_T3
         {
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);
-            UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerFusionInfo(previewTowerBase.Data, towerBaseToFuse.Data);
+            UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerFusionInfo(previousTowerBase.Data, selectedTowerData);
             UIManager.Instance.GameplayUI.TowerInfoUI.Show();
         }
     }
