@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9755599cf1d2514bbe1249836b8ecb7, type: 3}
   m_Name: Slow_Radius
   m_EditorClassIdentifier: 
-  TowerName: Bamboo (Slow Aura)
   TowerIcon: {fileID: 21300000, guid: 5af229f82ff642e4eb33773f687c4457, type: 3}
-  Role: 2
+  TowerName: Bamboo
+  Role: Slow Aura
+  Description: Description
+  ReferanceDescription: Referance Description
+  RealLifeEquivalentDescription: Real Life Equivalent Description
   AttackType: 3
   DamageType: 0
   SoundOnSelected: 1110
@@ -32,6 +35,9 @@ MonoBehaviour:
   Damage: 2
   FireRate: 1
   pierce: 0
+  RangeString: Medium
+  DamageString: High
+  FireRateString: Fast
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0

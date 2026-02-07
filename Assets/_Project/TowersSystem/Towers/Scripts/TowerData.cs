@@ -12,10 +12,12 @@ namespace FG_GP2_T3
     public class TowerData : ScriptableObject
     {
         [Header("TowerInfo")]
-        public string TowerName;
         [ShowAssetPreview] public Sprite TowerIcon;
-        public TowerRole Role;
-
+        public string TowerName;
+        public string Role;
+        [TextArea] public string Description;
+        [TextArea] public string ReferanceDescription;
+        [TextArea] public string RealLifeEquivalentDescription;
 
         public AttackType AttackType;
         public DamageType DamageType;
@@ -67,6 +69,9 @@ namespace FG_GP2_T3
         public float Damage;
         public float FireRate;
         public int pierce;
+        public string RangeString;
+        public string DamageString;
+        public string FireRateString;
 
 
 
@@ -82,6 +87,7 @@ namespace FG_GP2_T3
         [Header("Fusion System")]
         public string FusionID;
         public FusionStatType FusionStatType;
+        public string FusionStatString;
         public float FusionStatValue;
 
 
@@ -94,11 +100,11 @@ namespace FG_GP2_T3
         /// </summary>
 
 
-        private bool UsesProjectiles => AttackType == AttackType.Projectile || AttackType == AttackType.Mortor;
+        private bool UsesProjectiles => AttackType == AttackType.Projectile || AttackType == AttackType.Mortar;
 
         private bool IsconeAttack => AttackType == AttackType.Cone;
 
-        private bool UsesExplosion => AttackType == AttackType.Mortor || AttackType == AttackType.Radius;
+        private bool UsesExplosion => AttackType == AttackType.Mortar || AttackType == AttackType.Radius;
 
         private bool IsDotDamage => DamageType == DamageType.DamageOverTime;
 
@@ -114,16 +120,15 @@ namespace FG_GP2_T3
         Ranged,
         Melee,
         CrowdControl,
-
-
     }
+
     public enum AttackType
     {
         Projectile,
         Cone,
-        melee,
+        Melee,
         Radius,
-        Mortor
+        Mortar
     }
     public enum CrowdControlType
     {

@@ -5,7 +5,7 @@ namespace FG_GP2_T3
     /// <summary>
     /// this factory class is responsible for creating appropriate TowerAttack instances based on the TowerData configuration.
     /// </summary>
-    public static class TowerAttackFactory 
+    public static class TowerAttackFactory
 
     {
         public static TowerAttack CreateAttack(TowerBase towerBase)
@@ -13,14 +13,14 @@ namespace FG_GP2_T3
             switch (towerBase.Data.AttackType)
             {
                 case AttackType.Projectile:
-                    if(towerBase.Data.CrowdControlType == CrowdControlType.Stun)
+                    if (towerBase.Data.CrowdControlType == CrowdControlType.Stun)
                     {
                         return towerBase.gameObject.AddComponent<StunProjectileAttack>();
                     }
                     return towerBase.gameObject.AddComponent<ProjectileAttack>();
                 case AttackType.Cone:
                     return towerBase.gameObject.AddComponent<ConeAttack>();
-                case AttackType.melee:
+                case AttackType.Melee:
                     return towerBase.gameObject.AddComponent<MeleeAttack>();
                 case AttackType.Radius:
                     if (towerBase.Data.DamageType == DamageType.DamageOverTime)
@@ -32,9 +32,9 @@ namespace FG_GP2_T3
                         return towerBase.gameObject.AddComponent<SlowRadiusAttack>();
                     }
                     return towerBase.gameObject.AddComponent<RadiusAttack>();
-                case AttackType.Mortor:
+                case AttackType.Mortar:
                     return towerBase.gameObject.AddComponent<MortarAttack>();
-                
+
             }
             return null;
         }

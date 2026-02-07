@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class UtilityExtentions
 {
@@ -13,5 +14,10 @@ public static class UtilityExtentions
 			ts[i] = ts[r];
 			ts[r] = tmp;
 		}
+	}
+
+	public static string ToHex(this Color color)
+	{
+		return $"#{ColorUtility.ToHtmlStringRGB(color)}";
 	}
 }
