@@ -236,6 +236,8 @@ namespace FG_GP2_T3
         {
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);
+            UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerFusionInfo(previewTowerBase.Data, towerBaseToFuse.Data);
+            UIManager.Instance.GameplayUI.TowerInfoUI.Show();
         }
     }
 }

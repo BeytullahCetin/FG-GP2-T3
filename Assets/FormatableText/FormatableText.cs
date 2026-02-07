@@ -55,7 +55,7 @@ namespace FormatableTextNS
                 return null;
             }
 
-            for (int i = 1; i <= parameters.Length; i++)
+            for (int i = parameters.Length; i > 0; i--)
             {
                 newText = newText.Replace($"{replacePrefix}{i}", parameters[i - 1]);
             }

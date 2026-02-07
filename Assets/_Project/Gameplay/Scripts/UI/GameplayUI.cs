@@ -7,8 +7,10 @@ namespace FG_GP2_T3
 {
     public class GameplayUI : MonoBehaviour
     {
+        public TowerInfoUI TowerInfoUI => towerInfoUI;
         [SerializeField] TilePlacementController tilePlacementController;
         [SerializeField] TowerPlacementController towerPlacementController;
+        [SerializeField] TowerInfoUI towerInfoUI;
 
         [SerializeField] FormatableText phaseText;
         [SerializeField] Transform tileSelectionButtonsParent;
@@ -100,6 +102,7 @@ namespace FG_GP2_T3
             towerConfirmationPanel.Hide();
             nextPhasePanel.Hide();
             speedUpPanel.Hide();
+            towerInfoUI.Hide();
         }
 
         void DestroyAllChildren(Transform parent)
@@ -187,6 +190,8 @@ namespace FG_GP2_T3
                     towerPlacementController.SetSelectedTower(towerData);
                     DeselectSelectionButtons(currentTowerSelectionButtons);
                     selectionButton.Select();
+                    towerInfoUI.SetTowerInfo(towerData);
+                    towerInfoUI.Show();
                 });
             }
 
