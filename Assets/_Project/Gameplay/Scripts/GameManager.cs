@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +9,20 @@ namespace FG_GP2_T3
     {
         public static GameManager Instance;
 
+        public GameSpeedController GameSpeedController => gameSpeedController;
+
         [SerializeField] bool showLoadingScreen;
 
         [SerializeField] TilePlacementController tilePlacementController;
         [SerializeField] TowerPlacementController towerPlacementController;
         [SerializeField] LoadingScreen loadingScreen;
+        [SerializeField] GameSpeedController gameSpeedController;
 
         private StateMachine gameflowStateMachine;
         private MainMenuState mainMenuState;
         private GameplayState gameplayState;
         private GameOverState gameOverState;
+
 
         void Awake()
         {
@@ -32,6 +37,7 @@ namespace FG_GP2_T3
         {
             Application.targetFrameRate = 120;
             QualitySettings.vSyncCount = 0;
+            Time.timeScale = 1;
 
             SwitchToMainMenuState();
 #if UNITY_EDITOR

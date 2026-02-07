@@ -20,6 +20,7 @@ namespace FG_GP2_T3
         [SerializeField] ScaleUpPanel tileRotationPanel;
         [SerializeField] ScaleUpPanel towerConfirmationPanel;
         [SerializeField] ScaleUpPanel nextPhasePanel;
+        [SerializeField] ScaleUpPanel speedUpPanel;
 
         [Header("Prefabs")]
         [SerializeField] SelectionButton selectionButtonPrefab;
@@ -52,6 +53,8 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += nextPhasePanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += speedUpPanel.Show;
+            GameplayStateFlowEvents.OnExitedEnemyWaveState += speedUpPanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState += towerConfirmationPanel.Hide;
@@ -82,6 +85,8 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= nextPhasePanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= speedUpPanel.Show;
+            GameplayStateFlowEvents.OnExitedEnemyWaveState -= speedUpPanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
@@ -94,6 +99,7 @@ namespace FG_GP2_T3
             tileRotationPanel.Hide();
             towerConfirmationPanel.Hide();
             nextPhasePanel.Hide();
+            speedUpPanel.Hide();
         }
 
         void DestroyAllChildren(Transform parent)
