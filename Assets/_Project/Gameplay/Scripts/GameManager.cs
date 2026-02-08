@@ -12,6 +12,7 @@ namespace FG_GP2_T3
         public GameSpeedController GameSpeedController => gameSpeedController;
 
         [SerializeField] bool showLoadingScreen;
+        [SerializeField] bool unlimitedCompost;
 
         [SerializeField] TilePlacementController tilePlacementController;
         [SerializeField] TowerPlacementController towerPlacementController;
@@ -44,6 +45,10 @@ namespace FG_GP2_T3
             if (showLoadingScreen == true)
 #endif
                 loadingScreen.TriggerLoadingBar().Forget();
+#if UNITY_EDITOR
+            if (unlimitedCompost == true)
+                CompostManager.Instance.AddCompost(500000);
+#endif
         }
 
         void Update()
