@@ -284,7 +284,7 @@ MonoBehaviour:
   _attackDamageRange: {x: 3, y: 5}
   _attackDelaySecondsRange: {x: 1, y: 1}
   _attackRange: 3
-  _compostRewardRange: {x: 1, y: 1}
+  _compostRewardRange: {x: 25, y: 25}
   _randomizeEachAttackDamage: 0
   _randomizeEachAttackDelay: 0
 --- !u!136 &5349148060542683715
