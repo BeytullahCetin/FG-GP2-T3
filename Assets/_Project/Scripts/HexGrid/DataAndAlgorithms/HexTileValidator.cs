@@ -51,7 +51,7 @@ namespace FG_GP2_T3
                     return false;
             }
 
-            return IsCreatingClosedCircuit(tile, cell);
+            return !IsCreatingClosedCircuit(tile, cell);
         }
 
         private static bool IsCreatingClosedCircuit(HexTileData tile, HexCell cell)
@@ -72,8 +72,8 @@ namespace FG_GP2_T3
 
         private static bool IsBranchOpen(HexCell currentCell, HexDirection incomingDirection, HashSet<HexCell> visitedCells)
         {
-            if (currentCell == null || currentCell.IsCore || currentCell.Tile == null) return false;
-            if (visitedCells.Contains(currentCell)) return false;
+            if (visitedCells.Contains(currentCell) || currentCell.IsCore) return false;
+            if (currentCell == null || currentCell.Tile == null) return true;
 
             visitedCells.Add(currentCell);
 
