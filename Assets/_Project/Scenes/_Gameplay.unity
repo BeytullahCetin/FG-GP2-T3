@@ -33753,6 +33753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showLoadingScreen: 0
+  unlimitedCompost: 0
   tilePlacementController: {fileID: 1099434811}
   towerPlacementController: {fileID: 1537280823}
   loadingScreen: {fileID: 44915461}

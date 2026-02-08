@@ -1,6 +1,7 @@
 ﻿<Solution>
   <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="UniTask.csproj" />
+  <Project Path="EPO.csproj" />
   <Project Path="UniTask.Linq.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="BrunoMikoski.AnimationSequencer.Editor.csproj" />
@@ -8,6 +9,7 @@
   <Project Path="Unity.PlayerPrefsEditor.Editor.csproj" />
   <Project Path="BrunoMikoski.AnimationSequencer.csproj" />
   <Project Path="UniTask.Addressables.csproj" />
+  <Project Path="EPODemo.csproj" />
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="FMODUnityEditor.csproj" />
@@ -15,14 +17,18 @@
   <Project Path="FMODUnity.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="FMODUnityHaptics.csproj" />
+  <Project Path="EPOUtilities.csproj" />
   <Project Path="UniTask.TextMeshPro.csproj" />
+  <Project Path="EPOEditor.csproj" />
   <Project Path="CustomPlayButton.Editor.csproj" />
   <Project Path="FMODUnityResonance.csproj" />
   <Project Path="DOTweenPro.EditorScripts.csproj" />
+  <Project Path="EPOURP.csproj" />
   <Project Path="DOTweenPro.Scripts.csproj" />
   <Project Path="UniTask.Editor.csproj" />
   <Project Path="UniTask.DOTween.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.EditorResources.csproj" />
+  <Project Path="EPOHDRP.csproj" />
   <Project Path="ToolbarExtender.Editor.csproj" />
   <Project Path="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj" />
 </Solution>
