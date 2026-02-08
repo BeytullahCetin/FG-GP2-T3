@@ -220,7 +220,7 @@ MonoBehaviour:
   screenPositionAction: {fileID: 0}
   zoomInAction: {fileID: 0}
   zoomOutAction: {fileID: 0}
-  zoomOutSize: 40
+  zoomOutSize: 50
   zoomInSize: 15
   zoomDuration: 0.2
   useCameraAnchoring: 1
