@@ -15,6 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: 497ef791c59470f46be8ef3c45d51b12, type: 3}
   TowerName: Angel's Trumpet
   Role: Damage Aura
+  Cost: 3
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -43,4 +44,5 @@ MonoBehaviour:
   CompostCost: 0
   FusionID: D
   FusionStatType: 2
+  FusionStatString: 
   FusionStatValue: 1

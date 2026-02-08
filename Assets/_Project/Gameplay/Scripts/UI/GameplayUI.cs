@@ -25,7 +25,8 @@ namespace FG_GP2_T3
         [SerializeField] ScaleUpPanel speedUpPanel;
 
         [Header("Prefabs")]
-        [SerializeField] SelectionButton selectionButtonPrefab;
+        [SerializeField] SelectionButton tileSelectionButtonPrefab;
+        [SerializeField] TowerSelectionButton towerSelectionButtonPrefab;
 
         private List<SelectionButton> currentTileSelectionButtons = new List<SelectionButton>();
         private List<SelectionButton> currentTowerSelectionButtons = new List<SelectionButton>();
@@ -156,7 +157,7 @@ namespace FG_GP2_T3
 
             foreach (HexTileData hexTileData in tilePlacementController.GetHexTilesForPlacement())
             {
-                SelectionButton selectionButton = Instantiate(selectionButtonPrefab, tileSelectionButtonsParent);
+                SelectionButton selectionButton = Instantiate(tileSelectionButtonPrefab, tileSelectionButtonsParent);
                 selectionButton.Title.SetText(hexTileData.name);
                 selectionButton.Image.sprite = hexTileData.TileIcon;
                 currentTileSelectionButtons.Add(selectionButton);
@@ -180,9 +181,11 @@ namespace FG_GP2_T3
 
             foreach (TowerData towerData in towerPlacementController.GetTowerDatasForPlacement())
             {
-                SelectionButton selectionButton = Instantiate(selectionButtonPrefab, towerSelectionButtonsParent);
+                TowerSelectionButton selectionButton = Instantiate(towerSelectionButtonPrefab, towerSelectionButtonsParent);
+                selectionButton.SetTowerData(towerData);
                 selectionButton.Title.SetText($"{towerData.TowerName}\n({towerData.Role})");
                 selectionButton.Image.sprite = towerData.TowerIcon;
+                selectionButton.CostText.FillText(towerData.Cost.ToString());
                 currentTowerSelectionButtons.Add(selectionButton);
 
                 selectionButton.Button.onClick.AddListener(() =>
@@ -196,6 +199,15 @@ namespace FG_GP2_T3
             }
 
             DeselectSelectionButtons(currentTowerSelectionButtons);
+            UpdateTowerSelectionButtons();
+        }
+
+        public void UpdateTowerSelectionButtons()
+        {
+            foreach (TowerSelectionButton selectionButton in currentTowerSelectionButtons)
+            {
+                selectionButton.Button.interactable = CompostManager.Instance.CurrentCompostAmount >= selectionButton.TowerData.Cost;
+            }
         }
     }
 }

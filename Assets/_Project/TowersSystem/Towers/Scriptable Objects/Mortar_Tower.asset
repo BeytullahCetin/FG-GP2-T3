@@ -15,6 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: e041b08f34ab79246b9750ed8d4441b0, type: 3}
   TowerName: Harpy Eagle
   Role: Ranged
+  Cost: 3
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -43,4 +44,5 @@ MonoBehaviour:
   CompostCost: 0
   FusionID: E
   FusionStatType: 7
+  FusionStatString: 
   FusionStatValue: 1

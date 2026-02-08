@@ -15,6 +15,7 @@ namespace FG_GP2_T3
         [ShowAssetPreview] public Sprite TowerIcon;
         public string TowerName;
         public string Role;
+        public int Cost;
         [TextArea] public string Description;
         [TextArea] public string ReferanceDescription;
         [TextArea] public string RealLifeEquivalentDescription;

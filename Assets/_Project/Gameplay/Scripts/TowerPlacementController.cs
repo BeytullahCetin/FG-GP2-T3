@@ -93,6 +93,8 @@ namespace FG_GP2_T3
 
             EventManager.Invoke(new OnTowerEvent(selectedCell.Tile.GetComponent<HexTowerTile>().TowerBase, TowerEventType.Build));
 
+            CompostManager.Instance.UseCompost(selectedTowerData.Cost);
+            UIManager.Instance.GameplayUI.UpdateTowerSelectionButtons();
             previewTowerBase.BuildTower();
             previewTile = null;
             previewTowerBase = null;
@@ -116,6 +118,8 @@ namespace FG_GP2_T3
             bool isSuccess = FusionAPI.TryFuse(previousTowerBase, towerBaseToFuse);
             if (isSuccess)
             {
+                CompostManager.Instance.UseCompost(selectedTowerData.Cost);
+                UIManager.Instance.GameplayUI.UpdateTowerSelectionButtons();
                 EventManager.Invoke(new OnTowerEvent(towerBaseToFuse, TowerEventType.Fuse));
                 previousTowerBase = null;
                 towerBaseToFuse = null;

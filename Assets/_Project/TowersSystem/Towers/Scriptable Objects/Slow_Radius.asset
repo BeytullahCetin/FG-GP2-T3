@@ -15,6 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: 5af229f82ff642e4eb33773f687c4457, type: 3}
   TowerName: Bamboo
   Role: Slow Aura
+  Cost: 3
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -43,4 +44,5 @@ MonoBehaviour:
   CompostCost: 0
   FusionID: B
   FusionStatType: 4
+  FusionStatString: 
   FusionStatValue: 1

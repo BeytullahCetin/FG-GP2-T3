@@ -15,6 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: ca19ce95537b98445b6e7d41fb2027dd, type: 3}
   TowerName: Jaguar
   Role: Melee
+  Cost: 3
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -43,4 +44,5 @@ MonoBehaviour:
   CompostCost: 0
   FusionID: C
   FusionStatType: 2
+  FusionStatString: 
   FusionStatValue: 5

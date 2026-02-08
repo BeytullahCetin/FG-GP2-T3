@@ -1,5 +1,6 @@
-using UnityEngine;
+using FormatableTextNS;
 using TMPro;
+using UnityEngine;
 
 namespace FG_GP2_T3
 {
@@ -13,7 +14,7 @@ namespace FG_GP2_T3
         public int CurrentCompostAmount { get; private set; }
 
         [Header("UI Reference")]
-        [SerializeField] private TMP_Text _CompostText;
+        [SerializeField] private FormatableText _CompostText;
 
 
         void Awake()
@@ -52,7 +53,7 @@ namespace FG_GP2_T3
         {
             if (_CompostText != null)
             {
-                _CompostText.text = $"Compost: {CurrentCompostAmount}";
+                _CompostText.FillText(CurrentCompostAmount.ToString());
             }
         }
     }
