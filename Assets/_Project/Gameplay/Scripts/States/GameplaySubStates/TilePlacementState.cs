@@ -14,14 +14,12 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
-			tilePlacementController.StartAnimateValidCells();
 			GameplayStateFlowEvents.OnEnteredTilePlacementSubGameplayState?.Invoke();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
-			tilePlacementController.StopAnimateValidCells();
 			GameplayStateFlowEvents.OnExitedTilePlacementSubGameplayState?.Invoke();
 		}
 

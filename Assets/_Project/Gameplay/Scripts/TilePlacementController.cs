@@ -83,7 +83,9 @@ namespace FG_GP2_T3
                 Destroy(previewTile.gameObject);
 
             selectedHexTileData = tile;
+            StopAnimateValidCells();
             validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedHexTileData);
+            StartAnimateValidCells();
             // TODO: Change to POE's position.
             // TODO: move camera movement to state
             cam.ZoomOut(null, .5f);
@@ -129,6 +131,7 @@ namespace FG_GP2_T3
             if (previewTile != null)
                 Destroy(previewTile.gameObject);
 
+            StopAnimateValidCells();
             validRotationsForSelectedTile = HexManager.Instance.GetValidTileRotations(selectedHexTileData, selectedCell);
             currentTileRotationIndex = 0;
             tileRotationConfirmation.RotateButton.interactable = validRotationsForSelectedTile.Count > 1;
