@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
@@ -7,6 +8,7 @@ namespace FG_GP2_T3
 {
     public class TilePlacementController : MonoBehaviour
     {
+        public static event Action OnTilePlaced;
         // TODO: create a function for
         // if (previewTile != null)
         //         Destroy(previewTile);
@@ -22,6 +24,10 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] private HexCell selectedCell;
         [ReadOnly][SerializeField] private HexTile previewTile;
         [ReadOnly][SerializeField] private int currentTileRotationIndex;
+
+        [Header("Animations")]
+        [Expandable][SerializeField] TilePlacementSettings tilePlacementSettings;
+
         private List<HexCell> validCellsForSelectedTile = new List<HexCell>();
         private List<float> validRotationsForSelectedTile = new List<float>();
 
@@ -58,9 +64,16 @@ namespace FG_GP2_T3
                 Destroy(previewTile.gameObject);
             }
 
+            selectedCell.Tile.transform.localPosition = Vector3.up * 50;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(selectedCell.Tile.transform.DOLocalMoveY(0, tilePlacementSettings.placementDuration).SetEase(tilePlacementSettings.placementEase));
+            seq.Append(selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+
             previewTile = null;
             cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
+            // GameManager.Instance.SwitchToTileSelectionSubState();
+            OnTilePlaced?.Invoke();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));
         }
 

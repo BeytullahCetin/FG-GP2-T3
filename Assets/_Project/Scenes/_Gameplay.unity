@@ -163308,6 +163308,7 @@ MonoBehaviour:
   selectedCell: {fileID: 0}
   previewTile: {fileID: 0}
   currentTileRotationIndex: 0
+  tilePlacementSettings: {fileID: 11400000, guid: 01f23b66b67f048258c87ead75494f3f, type: 2}
 --- !u!114 &1099533013 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 250814636317072510, guid: cc14bd907de12f14ab1d5b67b9b66819, type: 3}
@@ -211186,6 +211187,22 @@ MonoBehaviour:
   max: 120
   speed: 1
   isEnabled: 1
+--- !u!114 &1468411748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468411746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f98d9215fa548c5bb62ba1db99886a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1346016978}
+  duration: 0.5
+  strenght: 1
+  vibrato: 10
 --- !u!1001 &1468706358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252407,6 +252424,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7602260149215462659, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1468411747}
+    - targetCorrespondingSourceObject: {fileID: 7602260149215462659, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1468411748}
   m_SourcePrefab: {fileID: 100100000, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
 --- !u!114 &1743657225 stripped
 MonoBehaviour:
