@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: e0bee328d51509646ac06a09aee23ce3, type: 3}
   TowerName: Macaw
   Role: Cone
-  Cost: 3
+  Cost: 25
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
