@@ -42340,6 +42340,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 573048567}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TowerSelectionButton (2)
@@ -67354,6 +67358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 573048567}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TowerSelectionButton (1)
@@ -252469,6 +252477,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 573048567}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TowerSelectionButton (3)
@@ -258965,6 +258977,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 884449947}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TileSelection (2)
@@ -266492,7 +266508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b069cb29f41558743a7b287241e2f891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingCompostAmount: 10
+  StartingCompostAmount: 100
   _CompostText: {fileID: 1277003200}
 --- !u!4 &1844180818
 Transform:
@@ -298957,6 +298973,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 884449947}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TileSelection (3)
@@ -308267,6 +308287,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 884449947}
     m_Modifications:
+    - target: {fileID: 940402075388686532, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9328003
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TileSelection (1)
