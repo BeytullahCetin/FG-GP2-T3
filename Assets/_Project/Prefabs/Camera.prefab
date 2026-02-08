@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7602260149215462659}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09904577, y: -0.89239913, z: 0.23911765, w: 0.3696438}
+  m_LocalRotation: {x: 0.09904577, y: -0.8923991, z: 0.23911765, w: 0.36964378}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   zoomDuration: 0.2
   useCameraAnchoring: 1
   mapCenter: {x: 0, y: 0, z: 0}
-  maxRadius: 50
+  maxRadius: 70
   snapbackSmoothness: 5
   IsZoomedIn: 0
 --- !u!114 &3424484706352358209
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 7992355724677621930}
-  min: 20
+  min: 10
   max: 120
   speed: 1
   isEnabled: 1
