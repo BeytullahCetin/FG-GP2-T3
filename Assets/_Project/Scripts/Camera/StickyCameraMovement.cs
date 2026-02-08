@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace FG_GP2_T3
@@ -16,7 +17,7 @@ namespace FG_GP2_T3
         [SerializeField] private float zoomOutSize = 10f;
         [SerializeField] private float zoomInSize = 5f;
         [SerializeField] private float zoomDuration = 0.5f;
-        
+
         private Plane referencePlane = new Plane(Vector3.up, Vector3.zero);
         private Vector3 startWorldPosition;
         private Camera mainCamera;
@@ -82,6 +83,9 @@ namespace FG_GP2_T3
 
         void LateUpdate()
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             if (dragAction.action.WasPressedThisFrame())
             {
                 startWorldPosition = GetPressWorldPosition();
