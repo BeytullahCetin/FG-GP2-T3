@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7992355724677621930}
   - component: {fileID: 6145819494705629503}
   - component: {fileID: 1505844960133341529}
+  - component: {fileID: 7526201983859453808}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -69,7 +70,7 @@ Camera:
   far clip plane: 500
   field of view: 60
   orthographic: 1
-  orthographic size: 75
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -81,7 +82,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -143,6 +144,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
+--- !u!114 &7526201983859453808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408886028672332723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb42831ee5422f409e7f24f9e7488ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: 1
+  renderingStrategy: 0
+  renderingMode: 1
+  outlineLayerMask: -1
+  primaryBufferSizeMode: 3
+  primaryRendererScale: 1
+  primarySizeReference: 800
+  blurShift: 1
+  dilateShift: 0
+  dilateIterations: 1
+  dilateQuality: 1
+  blurIterations: 1
+  blurType: 4
 --- !u!1 &7602260149215462659
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +179,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4302085460594307250}
   - component: {fileID: 3805030264933881306}
+  - component: {fileID: 3424484706352358209}
+  - component: {fileID: 8405675235652659979}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -192,6 +220,44 @@ MonoBehaviour:
   screenPositionAction: {fileID: 0}
   zoomInAction: {fileID: 0}
   zoomOutAction: {fileID: 0}
-  zoomOutSize: 75
-  zoomInSize: 25
+  zoomOutSize: 40
+  zoomInSize: 15
   zoomDuration: 0.2
+  useCameraAnchoring: 1
+  mapCenter: {x: 0, y: 0, z: 0}
+  maxRadius: 50
+  snapbackSmoothness: 5
+  IsZoomedIn: 0
+--- !u!114 &3424484706352358209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602260149215462659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3e00afadd284cf389519cc5a583e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 7992355724677621930}
+  min: 20
+  max: 120
+  speed: 1
+  isEnabled: 1
+--- !u!114 &8405675235652659979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7602260149215462659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f98d9215fa548c5bb62ba1db99886a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 7992355724677621930}
+  duration: 0.5
+  strenght: 1
+  vibrato: 10

@@ -18,6 +18,12 @@ namespace FG_GP2_T3
         [SerializeField] private float zoomInSize = 5f;
         [SerializeField] private float zoomDuration = 0.5f;
 
+        [Header("Camera Anchoring Settings")]
+        [SerializeField] private bool useCameraAnchoring = true;
+        [SerializeField] private Vector3 mapCenter = Vector3.zero;
+        [SerializeField] private float maxRadius = 50f;
+        [SerializeField] private float snapbackSmoothness = 5f;
+
         private Plane referencePlane = new Plane(Vector3.up, Vector3.zero);
         private Vector3 startWorldPosition;
         private Camera mainCamera;
@@ -96,6 +102,26 @@ namespace FG_GP2_T3
                 Vector3 currentWorldPosition = GetPressWorldPosition();
                 Vector3 difference = startWorldPosition - currentWorldPosition;
                 transform.position += difference;
+            }
+
+            if (useCameraAnchoring)
+            {
+                Vector3 offset = transform.position - mapCenter;
+                offset.y = 0;
+                
+                if (offset.magnitude > maxRadius)
+                {
+                    Vector3 targetPosition = mapCenter + offset.normalized * maxRadius;
+                    targetPosition.y = transform.position.y;
+
+                    Vector3 positionBeforeSnap = transform.position;
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * snapbackSmoothness);
+
+                    if (dragAction.action.IsPressed())
+                    {
+                        startWorldPosition += transform.position - positionBeforeSnap;
+                    }
+                }
             }
 
             if (zoomInAction.action.WasPressedThisFrame())
