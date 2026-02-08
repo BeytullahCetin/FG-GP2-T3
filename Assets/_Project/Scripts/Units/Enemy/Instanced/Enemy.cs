@@ -158,6 +158,7 @@ namespace FG_GP2_T3
             if (_health <= 0f)
             {
                 EnemyManager.Instance.UnregisterEnemy();
+                CompostManager.Instance.AddCompost(_compostReward);
                 Destroy(gameObject);
                 return;
             }
