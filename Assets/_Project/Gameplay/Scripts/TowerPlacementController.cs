@@ -44,7 +44,8 @@ namespace FG_GP2_T3
             if (towerBaseToFuse != null)
                 Destroy(towerBaseToFuse.gameObject);
 
-            cam.ZoomOut();
+            cam.ZoomOut(null, .5f);
+            cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
             GameManager.Instance.SwitchToEnemyWaveSubState();
             // GameManager.Instance.SwitchToTileSelectionSubState();
         }
