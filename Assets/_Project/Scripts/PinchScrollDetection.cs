@@ -11,6 +11,7 @@ namespace FG_GP2_T3
         [SerializeField] float max;
 
         public float speed = 0.1f;
+        public float mobileSpeedMultiplier = 0.1f;
         private float prevMagnitude = 0;
         private int touchCount = 0;
 
@@ -22,7 +23,6 @@ namespace FG_GP2_T3
             var scrollAction = new InputAction(binding: "<Mouse>/scroll");
             scrollAction.Enable();
             scrollAction.performed += ctx => CameraZoom(ctx.ReadValue<Vector2>().y * speed);
-
             // pinch gesture
             var touch0contact = new InputAction
             (
@@ -71,7 +71,7 @@ namespace FG_GP2_T3
                     prevMagnitude = magnitude;
                 var difference = magnitude - prevMagnitude;
                 prevMagnitude = magnitude;
-                CameraZoom(-difference * speed);
+                CameraZoom(-difference * speed * mobileSpeedMultiplier);
             };
         }
 

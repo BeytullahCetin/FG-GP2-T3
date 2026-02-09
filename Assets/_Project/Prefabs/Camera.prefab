@@ -243,7 +243,8 @@ MonoBehaviour:
   cam: {fileID: 7992355724677621930}
   min: 10
   max: 120
-  speed: 1
+  speed: 10
+  mobileSpeedMultiplier: 0.05
   isEnabled: 1
 --- !u!114 &8405675235652659979
 MonoBehaviour:
