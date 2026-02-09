@@ -316,7 +316,7 @@ MonoBehaviour:
       Data2: 1306705559
       Data3: 610135714
       Data4: 1478534460
-    Path: event:/Tiles/SelectRoad
+    Path: event:/Tiles/Path_Select
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -1214,7 +1214,7 @@ MonoBehaviour:
       Data2: 1254038600
       Data3: -1934372946
       Data4: -882368362
-    Path: event:/Tiles/PlaceRoad
+    Path: event:/Tiles/Path_Place
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
