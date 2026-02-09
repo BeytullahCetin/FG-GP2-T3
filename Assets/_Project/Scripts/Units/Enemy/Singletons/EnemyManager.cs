@@ -28,6 +28,8 @@ namespace FG_GP2_T3
 
         [SerializeField] private List<EnemyWave> _waves;
         private int _waveIndex = 0;
+        public int WaveIndex => _waveIndex;
+        public bool IsFirstTurn => _waveIndex == 0;
 
         private POE _target;
         public POE GetTarget() => _target;
@@ -63,10 +65,11 @@ namespace FG_GP2_T3
             _isWaveActive = false;
             _enemiesRemaining = 0;
 
-            GameManager.Instance.SwitchToTileSelectionSubState();
             EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
-            
+
             _waveIndex++;
+            
+            GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
         public void StartWave()

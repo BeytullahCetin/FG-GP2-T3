@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
   m_Name: 3 Way split 3
   m_EditorClassIdentifier: 
-  TileIcon: {fileID: 0}
+  TileIcon: {fileID: 21300000, guid: 915506a95f6fa564fa3204534b83b58e, type: 3}
   TilePrefab: {fileID: -635916191146105520, guid: 161a5c01872bd4e48ae5c69b6a64b9e7, type: 3}
   Roads:
     _roads: 000001000101

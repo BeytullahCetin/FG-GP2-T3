@@ -9538,10 +9538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 895804492}
   tileRotationConfirmation: {fileID: 1569384421}
-  tiles:
-  - {fileID: 11400000, guid: dd2fd10b139dac147825b49da90d7e71, type: 2}
-  - {fileID: 11400000, guid: 59f35765d80209f4a84589d4b077ee1c, type: 2}
-  - {fileID: 11400000, guid: 071857ae5e820b64bb0e1ea592b41d25, type: 2}
   selectedHexTileData: {fileID: 0}
   selectedCell: {fileID: 0}
   previewTile: {fileID: 0}

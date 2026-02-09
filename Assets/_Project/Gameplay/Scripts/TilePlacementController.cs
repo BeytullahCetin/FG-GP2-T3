@@ -105,7 +105,7 @@ namespace FG_GP2_T3
         public List<HexTileData> GetHexTilesForPlacement()
         {
             // TODO: add select 3 random tile
-            return HexManager.Instance.GetRandomValidTiles(3);
+            return HexManager.Instance.GetRandomValidTiles(3, EnemyManager.Instance.IsFirstTurn);
         }
 
         public void StartAnimateValidCells()

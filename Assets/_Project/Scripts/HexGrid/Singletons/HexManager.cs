@@ -175,7 +175,8 @@ namespace FG_GP2_T3
             RemoveInvalidTiles(availableTiles, isFirstTurn);
 
             List<HexTileData> result = new List<HexTileData>();
-            for (int i = 0; i < Mathf.Min(amount, availableTiles.Count); i++)
+            int iterations = Mathf.Min(amount, availableTiles.Count);
+            for (int i = 0; i < iterations; i++)
             {
                 int randomIndex = UnityEngine.Random.Range(0, availableTiles.Count);
                 result.Add(availableTiles[randomIndex]);
