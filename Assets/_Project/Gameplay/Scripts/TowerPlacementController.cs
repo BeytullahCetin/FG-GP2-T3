@@ -198,22 +198,14 @@ namespace FG_GP2_T3
 
         public void StartAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTower)
-            {
-                cell.OuterColor = Color.white;
-                cell.InnerColor = Color.white;
-            }
+                cell.TogglePlacementHighlight(true);
         }
 
         public void StopAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTower)
-            {
-                cell.OuterColor = Color.black;
-                cell.InnerColor = Color.black;
-            }
+                cell.TogglePlacementHighlight(false);
         }
 
         public void PreviewTowerOnEmptyCell()

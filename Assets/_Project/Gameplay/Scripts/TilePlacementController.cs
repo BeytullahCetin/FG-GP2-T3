@@ -104,28 +104,19 @@ namespace FG_GP2_T3
 
         public List<HexTileData> GetHexTilesForPlacement()
         {
-            // TODO: add select 3 random tile
             return HexManager.Instance.GetRandomValidTiles(3, EnemyManager.Instance.IsFirstTurn);
         }
 
         public void StartAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTile)
-            {
-                cell.OuterColor = Color.white;
-                cell.InnerColor = Color.white;
-            }
+                cell.TogglePlacementHighlight(true);
         }
 
         public void StopAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTile)
-            {
-                cell.OuterColor = Color.black;
-                cell.InnerColor = Color.black;
-            }
+                cell.TogglePlacementHighlight(false);
         }
 
         public void PreviewTileOnTheCell()
