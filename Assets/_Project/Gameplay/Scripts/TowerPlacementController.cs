@@ -79,6 +79,7 @@ namespace FG_GP2_T3
                 Destroy(previewTowerBase.gameObject);
 
             cam.ZoomOut(null, .5f);
+            EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Cancel));
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 
@@ -146,6 +147,7 @@ namespace FG_GP2_T3
 
             selectedTowerData = tower;
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
+            EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Open));
 
             // TODO: Change to POE's position.
             // TODO: move camera movement to state
@@ -184,6 +186,8 @@ namespace FG_GP2_T3
                         return;
                     }
 
+                    EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Close));
+                    EventManager.Invoke(new OnCellEvent(cell, CellEventType.Click));
                     GameManager.Instance.SwitchToFusionConfirmationSubState();
                 }
             }
@@ -198,22 +202,14 @@ namespace FG_GP2_T3
 
         public void StartAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTower)
-            {
-                cell.OuterColor = Color.white;
-                cell.InnerColor = Color.white;
-            }
+                cell.TogglePlacementHighlight(true);
         }
 
         public void StopAnimateValidCells()
         {
-            // TODO: add settings for colors
             foreach (HexCell cell in validCellsForSelectedTower)
-            {
-                cell.OuterColor = Color.black;
-                cell.InnerColor = Color.black;
-            }
+                cell.TogglePlacementHighlight(false);
         }
 
         public void PreviewTowerOnEmptyCell()

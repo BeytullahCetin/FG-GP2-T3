@@ -5624,6 +5624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4974c17d6c74143bc25cc9559de44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tileSelected: 0
+  _selectedTile: {fileID: 0}
+  _highlightedCells: []
 --- !u!1 &655467185
 GameObject:
   m_ObjectHideFlags: 0
