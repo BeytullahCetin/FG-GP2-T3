@@ -73,7 +73,7 @@ namespace FG_GP2_T3
         public string RangeString;
         public string DamageString;
         public string FireRateString;
-
+        public Vector2 RotationOffset;
 
 
         [EnableIf(nameof(UsesProjectiles))]

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,15 +12,29 @@ namespace FG_GP2_T3
         [SerializeField] private GameObject _outerBorder;
         [SerializeField] private GameObject _innerBorder;
 
-        public bool IsCore { get; private set; }
-        public void SetAsCore(bool isCore = true) => IsCore = isCore;
+        [Header("Animation Settings")]
+        [SerializeField] private AnimationCurve _placementHighlightSizeCurve;
+        [SerializeField] private Gradient _placementHighlightGradient;
+        [SerializeField] private AnimationCurve _fusionHighlightSizeCurve;
+        [SerializeField] private Gradient _fusionHighlightGradient;
 
-        [SerializeField] HexCell[] _neighbors = new HexCell[6];
+        private Coroutine _activeHighlightCoroutine;
         private MeshRenderer _outerMeshRenderer;
         private MeshRenderer _innerMeshRenderer;
         private MaterialPropertyBlock _propertyBlock;
-        private static readonly int _colorProperty = Shader.PropertyToID("_Color");
 
+        private static readonly int _colorProperty = Shader.PropertyToID("_Color");
+        private static readonly int _sizeProperty = Shader.PropertyToID("_Size");
+        private static readonly int _alphaProperty = Shader.PropertyToID("_Alpha");
+
+        private Color _startingInnerColor;
+        private float _startingInnerSize;
+
+        public bool IsCore { get; private set; }
+        public void SetAsCore(bool isCore = true) => IsCore = isCore;
+
+        [ReadOnly][SerializeField] HexCell[] _neighbors = new HexCell[6];
+        
         private void Awake() => Initialize();
 
         private void Initialize()
@@ -28,7 +44,59 @@ namespace FG_GP2_T3
             _outerMeshRenderer = _outerBorder.GetComponent<MeshRenderer>();
             _innerMeshRenderer = _innerBorder.GetComponent<MeshRenderer>();
             _propertyBlock = new MaterialPropertyBlock();
+
+            _startingInnerColor = _innerMeshRenderer.sharedMaterial.GetColor(_colorProperty);
+            _startingInnerColor.a = _innerMeshRenderer.sharedMaterial.GetFloat(_alphaProperty);
+            _startingInnerSize = _innerMeshRenderer.sharedMaterial.GetFloat(_sizeProperty);
         }
+
+        #region Highligh animations
+
+        private void StopActiveHighlight()
+        {
+            if (_activeHighlightCoroutine != null)
+            {
+                StopCoroutine(_activeHighlightCoroutine);
+                _activeHighlightCoroutine = null;
+            }
+
+            ApplyInnerProperties(_startingInnerColor, _startingInnerSize);
+        }
+
+        private IEnumerator AnimateHighlightCoroutine(AnimationCurve curve, Gradient gradient)
+        {
+            if (curve.length == 0) yield break;
+
+            float duration = curve.keys[curve.length - 1].time;
+            float timer = 0f;
+
+            while (true)
+            {
+                timer += Time.deltaTime;
+                if (timer > duration) timer = 0f;
+
+                float normalizedTime = timer / duration;
+                float sizeValue = curve.Evaluate(timer);
+                Color colorValue = gradient.Evaluate(normalizedTime);
+
+                ApplyInnerProperties(colorValue, sizeValue);
+
+                yield return null;
+            }
+        }
+
+        private void ApplyInnerProperties(Color color, float size)
+        {
+            if (_innerMeshRenderer == null) Initialize();
+
+            _innerMeshRenderer.GetPropertyBlock(_propertyBlock);
+            _propertyBlock.SetColor(_colorProperty, color);
+            _propertyBlock.SetFloat(_sizeProperty, size);
+            _propertyBlock.SetFloat(_alphaProperty, color.a);
+            _innerMeshRenderer.SetPropertyBlock(_propertyBlock);
+        }
+
+        #endregion
 
         public void SetNeighbor(HexDirection direction, HexCell cell)
         {
@@ -42,27 +110,21 @@ namespace FG_GP2_T3
 
         public HexCoordinates Coordinates;
         public HexTile Tile;
-        public Color OuterColor
-        {
-            set
-            {
-                if (_outerMeshRenderer == null) Initialize();
 
-                _outerMeshRenderer.GetPropertyBlock(_propertyBlock);
-                _propertyBlock.SetColor(_colorProperty, value);
-                _outerMeshRenderer.SetPropertyBlock(_propertyBlock);
-            }
+        public void TogglePlacementHighlight(bool enable)
+        {
+            StopActiveHighlight();
+
+            if (enable)
+                _activeHighlightCoroutine = StartCoroutine(AnimateHighlightCoroutine(_placementHighlightSizeCurve, _placementHighlightGradient));
         }
-        public Color InnerColor
-        {
-            set
-            {
-                if (_innerMeshRenderer == null) Initialize();
 
-                _innerMeshRenderer.GetPropertyBlock(_propertyBlock);
-                _propertyBlock.SetColor(_colorProperty, value);
-                _innerMeshRenderer.SetPropertyBlock(_propertyBlock);
-            }
+        public void ToggleFusionHighlight(bool enable)
+        {
+            StopActiveHighlight();
+
+            if (enable)
+                _activeHighlightCoroutine = StartCoroutine(AnimateHighlightCoroutine(_fusionHighlightSizeCurve, _fusionHighlightGradient));
         }
 
         public bool TrySetTile(HexTileData tileData, float rotation = 0f) //Set to null to remove the tile

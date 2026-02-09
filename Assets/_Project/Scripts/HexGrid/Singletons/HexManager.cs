@@ -46,14 +46,11 @@ namespace FG_GP2_T3
             foreach(HexCoordinates coordinate in HexCore.CoreCoordinates)
                 if(HexGrid.Instance.TryGetCell(coordinate, out HexCell cell))
                 {
-                    _connections.AddTowerTileConnections(cell);
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         HexCell neighbor = cell.GetNeighbor(direction);
                         if(neighbor != null && !neighbor.IsCore)
-                        {
-                            _connections.AddPathConnection((cell, direction));
-                        }                 
+                            _connections.AddPathConnection((cell, direction));            
                     }  
                 } 
         }
@@ -178,7 +175,8 @@ namespace FG_GP2_T3
             RemoveInvalidTiles(availableTiles, isFirstTurn);
 
             List<HexTileData> result = new List<HexTileData>();
-            for (int i = 0; i < Mathf.Min(amount, availableTiles.Count); i++)
+            int iterations = Mathf.Min(amount, availableTiles.Count);
+            for (int i = 0; i < iterations; i++)
             {
                 int randomIndex = UnityEngine.Random.Range(0, availableTiles.Count);
                 result.Add(availableTiles[randomIndex]);

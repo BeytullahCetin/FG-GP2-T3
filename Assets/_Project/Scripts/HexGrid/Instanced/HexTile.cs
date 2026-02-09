@@ -14,8 +14,6 @@ namespace FG_GP2_T3
         private int _lastChosenRoadIndex = 0;
         private List<HexDirection> _pathsNotLeadingToCore = new();
         private List<HexDirection> _availablePaths = new();
-        [SerializeField] Outlinable outlinable;
-        public Outlinable Outlinable => outlinable;
 
         public void Initialize(HexTileData data, HexCell parentCell)
         {

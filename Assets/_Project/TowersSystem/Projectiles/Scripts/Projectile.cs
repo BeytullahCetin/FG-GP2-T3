@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// This script handles both melee and ranged projectiles.
@@ -35,7 +36,7 @@ namespace FG_GP2_T3
 
         private void DoInstantHit()
         {
-            Test_Enemy enemy = _Target.GetComponent<Test_Enemy>();
+            Enemy enemy = _Target.GetComponent<Enemy>();
 
             if (enemy != null)
             {
@@ -63,12 +64,13 @@ namespace FG_GP2_T3
         {
             if (!other.CompareTag("Enemy")) return;
 
-            Test_Enemy enemy = other.GetComponent<Test_Enemy>();
+            Enemy enemy = other.GetComponent<Enemy>();
 
             if (enemy != null)
             {
                 enemy.TakeDamage(_Damage);
             }
+            Debug.Log($"<color=red> {_Damage} given to {other.name} - Exit()</color>");
 
             Destroy(gameObject);
         }

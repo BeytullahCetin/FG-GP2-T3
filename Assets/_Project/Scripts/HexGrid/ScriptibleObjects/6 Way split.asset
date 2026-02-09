@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
+  m_Name: 6 Way split
+  m_EditorClassIdentifier: 
+  TileIcon: {fileID: 21300000, guid: 5133d64a347f7a6479fcf16b0c347580, type: 3}
+  TilePrefab: {fileID: 325963933659367054, guid: 2dba363c11d3f50479e89be2cba4012a, type: 3}
+  Roads:
+    _roads: 010101010101

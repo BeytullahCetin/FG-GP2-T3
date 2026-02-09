@@ -27,14 +27,17 @@ namespace FG_GP2_T3
         public static EnemyManager Instance;
 
         [SerializeField] private List<EnemyWave> _waves;
-        private int waveIndex = 0;
+        private int _waveIndex = 0;
+        public int WaveIndex => _waveIndex;
+        public bool IsFirstTurn => _waveIndex == 0;
 
         private POE _target;
         public POE GetTarget() => _target;
 
         private int _enemiesRemaining = 0;
-        bool _spawningFinished = false;
+        private int _activeSpawningCoroutines = 0;
         private int _enemyCount = 0;
+        private bool _isWaveActive = false;
 
         private void Awake()
         {
@@ -46,33 +49,43 @@ namespace FG_GP2_T3
             Instance = this;
         }
 
+        private void Start() => _target = FindFirstObjectByType<POE>();
+
         private void Update()
         {
-            if(_spawningFinished && _enemiesRemaining <= 0)
-            {
-                GameManager.Instance.SwitchToTileSelectionSubState();
-                EventManager.Invoke(new OnWaveEvent(WaveEventType.End, waveIndex));
-                waveIndex++;
-                _spawningFinished = false;
-                _enemiesRemaining = 0;
-            }
+            if (!_isWaveActive) return;
+            if (_activeSpawningCoroutines > 0) return;
+            if (_enemiesRemaining > 0) return;
+
+            FinishWave();
         }
 
-        private void Start() => _target = FindFirstObjectByType<POE>();
+        private void FinishWave()
+        {           
+            _isWaveActive = false;
+            _enemiesRemaining = 0;
+
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
+
+            _waveIndex++;
+            
+            GameManager.Instance.SwitchToTileSelectionSubState();
+        }
 
         public void StartWave()
         {
-            if (waveIndex >= _waves.Count) return;
+            if (_waveIndex >= _waves.Count) return;
+            if (_isWaveActive) return;
 
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.Start, waveIndex));
+            _isWaveActive = true;
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.Start, _waveIndex));
 
-            foreach (EnemyGroup group in _waves[waveIndex].Groups)
+            foreach (EnemyGroup group in _waves[_waveIndex].Groups)
             {
-                StartCoroutine(SpawnGroupCoroutine(group));
+                _activeSpawningCoroutines++;
                 _enemiesRemaining += group.Count;
+                StartCoroutine(SpawnGroupCoroutine(group));
             }
-
-            _spawningFinished = true;
         }
 
         private IEnumerator SpawnGroupCoroutine(EnemyGroup group)
@@ -86,6 +99,8 @@ namespace FG_GP2_T3
                 SpawnEnemy(group.EnemyPrefab);
                 yield return new WaitForSeconds(interval);
             }
+
+            _activeSpawningCoroutines--;
         }
 
         private void SpawnEnemy(GameObject prefab)
@@ -99,13 +114,13 @@ namespace FG_GP2_T3
 
         public void RegisterEnemy()
         {
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, waveIndex, _enemyCount));
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, _waveIndex, _enemyCount));
             _enemyCount++;
         }
 
         public void UnregisterEnemy()
         {
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, waveIndex, _enemyCount));
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, _waveIndex, _enemyCount));
             _enemyCount--;
             _enemiesRemaining--;
         }

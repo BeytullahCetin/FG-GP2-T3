@@ -16,6 +16,7 @@ namespace FG_GP2_T3
                     enemy.TakeDamage(Tower.Stats.Damage);
 
             }
+            Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
         }
 
 
