@@ -90,10 +90,11 @@ namespace FG_GP2_T3
             {
                 case CellEventType.Click:
                     Debug.LogWarning("Click");
-                    OnPlaySound(GlobalSoundType.SelectTileBlank);
+                    OnPlaySound(GlobalSoundType.PreviewPlaceTile);
                     break;
                 case CellEventType.Rotate:
                     Debug.LogWarning("Rotate");
+                    OnPlaySound(GlobalSoundType.RotateTile);
                     break;
                 case CellEventType.Place:
                     OnPlaySound(GlobalSoundType.PlaceRoadDefault);
@@ -103,6 +104,7 @@ namespace FG_GP2_T3
                     break;
                 case CellEventType.Cancel:
                     Debug.LogWarning("Cancel");
+                    OnPlaySound(GlobalSoundType.CancelPlaceTile);
                     break;
             }
         }
