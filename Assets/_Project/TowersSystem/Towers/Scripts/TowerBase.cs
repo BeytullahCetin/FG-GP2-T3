@@ -33,14 +33,16 @@ namespace FG_GP2_T3
         private List<Transform> _CurrentTargets = new List<Transform>();
         private Transform _CurrentTarget;
         private float _FireCooldown;
+        [SerializeField] private float RotationSpeed;
 
         private float _TargetTimer;
-
+        private TowerVisual _CurrentVisual;
 
 
         [SerializeField] Transform towerVisualsParent;
         [ReadOnly][SerializeField] private List<TowerVisual> towerVisuals = new List<TowerVisual>();
         [SerializeField] List<MeshRenderer> meshRenderers = new List<MeshRenderer>();
+
 
 
 
@@ -74,7 +76,10 @@ namespace FG_GP2_T3
                 visual.gameObject.SetActive(setActive);
                 
                 if(setActive)
+                {
+                    _CurrentVisual = visual;
                     _attackSoundEmitter = visual.GetComponent<StudioEventEmitter>();
+                }
             }
         }
 
@@ -100,6 +105,25 @@ namespace FG_GP2_T3
             // GlobalSoundManager.Instance.OnPlaySound(Data.SoundOnPlaced);
         }
 
+       public void RotateTowardsTarget()
+        {
+            if(_CurrentTargets==null || _CurrentTargets.Count == 0 || _CurrentVisual==null) return;
+
+            Transform target = _CurrentTargets[0];
+            if(target == null) return;
+
+            Vector3 Direction=target.position-towerVisualsParent.position;
+            Direction.y=0f;
+
+            if(Direction.sqrMagnitude<0.001f) return;
+
+            Quaternion LookRot=Quaternion.LookRotation(Direction);
+
+            Quaternion OffsetRot = Quaternion.Euler(_CurrentVisual.TowerData.RotationOffset);
+
+            towerVisualsParent.localRotation=Quaternion.Slerp(towerVisualsParent.rotation,LookRot*OffsetRot,RotationSpeed*Time.deltaTime);
+
+        }
         private void Update()
         {
             _TargetTimer -= Time.deltaTime;
@@ -109,6 +133,8 @@ namespace FG_GP2_T3
                 _TargetTimer = 0.2f;
             }
             HandleTarget();
+            RotateTowardsTarget();
+            
         }
 
 
