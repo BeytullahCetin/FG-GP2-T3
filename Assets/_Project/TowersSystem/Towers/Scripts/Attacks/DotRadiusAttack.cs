@@ -11,7 +11,7 @@ namespace FG_GP2_T3
 
             foreach (Collider hit in Hits)
             {
-                IDamageable enemy = hit.GetComponent<IDamageable>();
+                IDamageable enemy = hit.GetComponentInParent<IDamageable>();
                 if (enemy != null)
                     enemy.ApplyDot(Tower.Stats.DotDamage, Tower.Stats.DotDuration);
             }
