@@ -8,9 +8,13 @@ namespace FG_GP2_T3
     public class GlobalSoundManager : MonoBehaviour
     {
         public static GlobalSoundManager Instance { get; private set; }
+
+        public float poeLowHealthWarning = 0.2f;
         
         
         private List<GlobalSoundEmitter> _globalSoundEmitters = new();
+        
+        private bool hasPlayedLowHealthSound = false;
         
         
         private void Awake()
@@ -34,6 +38,7 @@ namespace FG_GP2_T3
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
             EventManager.Register<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Register<OnCellEvent>(OnCellEvent);
+            EventManager.Register<OnCoreDamageEvent>(OnCoreDamageEvent);
         }
 
         private void OnDisable()
@@ -41,6 +46,7 @@ namespace FG_GP2_T3
             EventManager.Unregister<OnTowerEvent>(OnTowerEvent);
             EventManager.Unregister<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Unregister<OnCellEvent>(OnCellEvent);
+            EventManager.Unregister<OnCoreDamageEvent>(OnCoreDamageEvent);
         }
 
 
@@ -124,6 +130,17 @@ namespace FG_GP2_T3
                     OnPlaySound(GlobalSoundType.CancelPlaceTile);
                     break;
             }
+        }
+
+        private void OnCoreDamageEvent(OnCoreDamageEvent args)
+        {
+            if (hasPlayedLowHealthSound)
+                return;
+            hasPlayedLowHealthSound = true;
+            
+            float health = args.CurrentHealth01;
+            if (health < poeLowHealthWarning)
+                OnPlaySound(GlobalSoundType.PoeLowHealth);
         }
         
     }
