@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
-  m_Name: TowerTile
+  m_Name: 4 Way split 1
   m_EditorClassIdentifier: 
   TileIcon: {fileID: 0}
-  TilePrefab: {fileID: -714646935447167456, guid: d753eae5b3dea4d45a735cb868ad566b, type: 3}
+  TilePrefab: {fileID: 1017926467505586278, guid: 3c2e9db5893d42c43ad202524fdd684a, type: 3}
   Roads:
-    _roads: 000000000000
+    _roads: 010001000101

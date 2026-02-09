@@ -9096,17 +9096,53 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
-      propertyPath: '_hexTiles.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dd2fd10b139dac147825b49da90d7e71, type: 2}
+      propertyPath: _hexTiles.Array.size
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
-      propertyPath: '_hexTiles.Array.data[1]'
+      propertyPath: '_hexTiles.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 59f35765d80209f4a84589d4b077ee1c, type: 2}
     - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: dd2fd10b139dac147825b49da90d7e71, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
       propertyPath: '_hexTiles.Array.data[2]'
       value: 
+      objectReference: {fileID: 11400000, guid: 0646f69d17966e347b1b023c4cca4521, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c2f4849e7571e849a27aaab3a72afbb, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 71f470b4e12d77e4489edf9e1121c0a8, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d11e123b7233944dafa2f095f032edf, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[6]'
+      value: 
       objectReference: {fileID: 11400000, guid: 071857ae5e820b64bb0e1ea592b41d25, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c29463c11075c54db3f222549ee7453, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b5bbc6b4503c984fa05bfa07dec494f, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f3b17920baa91a4caa51fbea9b447cb, type: 2}
+    - target: {fileID: 2050352637500413067, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
+      propertyPath: '_hexTiles.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5567a4ba73e230842858430051b99e19, type: 2}
     - target: {fileID: 5507981676112616957, guid: 324b4b3205f25f245b48e59052ae1bdb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
