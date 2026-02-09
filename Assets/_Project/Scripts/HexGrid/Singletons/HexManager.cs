@@ -46,14 +46,11 @@ namespace FG_GP2_T3
             foreach(HexCoordinates coordinate in HexCore.CoreCoordinates)
                 if(HexGrid.Instance.TryGetCell(coordinate, out HexCell cell))
                 {
-                    _connections.AddTowerTileConnections(cell);
                     foreach(HexDirection direction in Enum.GetValues(typeof(HexDirection)))
                     {
                         HexCell neighbor = cell.GetNeighbor(direction);
                         if(neighbor != null && !neighbor.IsCore)
-                        {
-                            _connections.AddPathConnection((cell, direction));
-                        }                 
+                            _connections.AddPathConnection((cell, direction));            
                     }  
                 } 
         }

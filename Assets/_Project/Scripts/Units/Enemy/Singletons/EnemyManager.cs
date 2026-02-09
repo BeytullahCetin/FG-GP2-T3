@@ -27,7 +27,7 @@ namespace FG_GP2_T3
         public static EnemyManager Instance;
 
         [SerializeField] private List<EnemyWave> _waves;
-        private int waveIndex = 0;
+        private int _waveIndex = 0;
 
         private POE _target;
         public POE GetTarget() => _target;
@@ -35,6 +35,7 @@ namespace FG_GP2_T3
         private int _enemiesRemaining = 0;
         private int _activeSpawningCoroutines = 0;
         private int _enemyCount = 0;
+        private bool _isWaveActive = false;
 
         private void Awake()
         {
@@ -50,23 +51,33 @@ namespace FG_GP2_T3
 
         private void Update()
         {
+            if (!_isWaveActive) return;
             if (_activeSpawningCoroutines > 0) return;
             if (_enemiesRemaining > 0) return;
+
             FinishWave();
         }
 
         private void FinishWave()
         {           
-            if (_enemiesRemaining < 0) _enemiesRemaining = 0; 
+            _isWaveActive = false;
+            _enemiesRemaining = 0;
+
+            GameManager.Instance.SwitchToTileSelectionSubState();
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
+            
+            _waveIndex++;
         }
 
         public void StartWave()
         {
-            if (waveIndex >= _waves.Count) return;
+            if (_waveIndex >= _waves.Count) return;
+            if (_isWaveActive) return;
 
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.Start, waveIndex));
+            _isWaveActive = true;
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.Start, _waveIndex));
 
-            foreach (EnemyGroup group in _waves[waveIndex].Groups)
+            foreach (EnemyGroup group in _waves[_waveIndex].Groups)
             {
                 _activeSpawningCoroutines++;
                 _enemiesRemaining += group.Count;
@@ -100,13 +111,13 @@ namespace FG_GP2_T3
 
         public void RegisterEnemy()
         {
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, waveIndex, _enemyCount));
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, _waveIndex, _enemyCount));
             _enemyCount++;
         }
 
         public void UnregisterEnemy()
         {
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, waveIndex, _enemyCount));
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.EnemyCountChanged, _waveIndex, _enemyCount));
             _enemyCount--;
             _enemiesRemaining--;
         }
