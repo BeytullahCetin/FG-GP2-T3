@@ -15,6 +15,7 @@ namespace FG_GP2_T3
         float _Flightime=1.5f;
         float _Timer;
         float _ArcHeight=5f;
+        private bool _exploded;
 
         public void Initialize(Transform target, float damage, float explosionRadius)
         {
@@ -28,7 +29,13 @@ namespace FG_GP2_T3
 
         private void Update()
         {
-            if (_Target == null) return;
+            if (_exploded) return;
+
+            if (_Target == null)
+            {
+                Explode();
+                return;
+            }
 
             _Timer += Time.deltaTime;
             float t= _Timer / _Flightime;
@@ -48,19 +55,28 @@ namespace FG_GP2_T3
 
         private void Explode()
         {
-            Collider[] Hits=Physics.OverlapSphere(transform.position, _ExplosionRadius);
+            if (_exploded) return;
+            _exploded = true;
 
-            foreach(Collider hit in Hits)
+            Collider[] hits = Physics.OverlapSphere(transform.position, _ExplosionRadius);
+
+            foreach (Collider hit in hits)
             {
-                Test_Enemy enemy=hit.GetComponent<Test_Enemy>();
-                if(enemy != null)
+                Enemy enemy = hit.GetComponentInParent<Enemy>();
+                if (enemy != null)
                 {
                     enemy.TakeDamage(_Damage);
                 }
             }
+
+            if (hits.Length > 0)
+                Debug.Log($"<color=red>{_Damage} given By {hits[0].name} to {_Target.name}</color>");
             Destroy(gameObject);
+        }
+            
+           
         }
         
 
     }
-}
+

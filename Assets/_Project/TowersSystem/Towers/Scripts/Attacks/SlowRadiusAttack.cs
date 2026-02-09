@@ -16,6 +16,7 @@ namespace FG_GP2_T3
 
                 enemy.ApplySlow(Tower.Stats.Slowpercent, Tower.Stats.CCDuraton);
             }
+            Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Slowpercent} given to {target.name} - Exit()</color>");
         }
 
     }

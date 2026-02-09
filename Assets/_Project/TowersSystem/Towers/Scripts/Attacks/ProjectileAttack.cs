@@ -19,8 +19,8 @@ namespace FG_GP2_T3
             {
                 projectile.Initialize(target, Tower.Stats.Damage);
             }
+           
         }
 
-       
     }
 }
