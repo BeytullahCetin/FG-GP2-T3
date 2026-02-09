@@ -29,9 +29,11 @@ namespace FG_GP2_T3
 
             await barTween.AsyncWaitForCompletion();
 
+            UIManager.Instance.GameplayUI.TowerInfoUI.Hide();
             Tween fadeTween = canvasGroup
                  .DOFade(0, canvasGroupDuration)
-                 .SetEase(canvasGroupEase);
+                 .SetEase(canvasGroupEase)
+                 .SetDelay(.5f);
 
             await fadeTween.AsyncWaitForCompletion();
 
