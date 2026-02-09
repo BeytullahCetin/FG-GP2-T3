@@ -10,6 +10,17 @@ namespace FG_GP2_T3
         //// UI: 1 - 999
         ButtonDefault = 1,
         
+        TapToPlay = 10,
+        RestartGame = 11,
+        StartRound = 12,
+        
+        ChangeSpeed = 20,
+        
+        TowerMenuOpen = 30,
+        TowerMenuClose = 31,
+        TowerInfoExpand = 35,
+        TowerInfoCollapse = 36,
+        
         
         //// Tiles: 1000 - 1999
         // Base Actions: 1000 - 1099
@@ -19,7 +30,6 @@ namespace FG_GP2_T3
         RotateTile = 1003,
         CancelPlaceTile = 1004,
         PreviewPlaceTile = 1005,
-        
         
         PlaceRoadDefault = 1010,
         PlaceTowerDefault = 1011,

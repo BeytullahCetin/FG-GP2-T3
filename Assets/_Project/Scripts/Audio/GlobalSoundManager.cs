@@ -32,12 +32,14 @@ namespace FG_GP2_T3
         private void OnEnable()
         {
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
+            EventManager.Register<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Register<OnCellEvent>(OnCellEvent);
         }
 
         private void OnDisable()
         {
             EventManager.Unregister<OnTowerEvent>(OnTowerEvent);
+            EventManager.Unregister<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Unregister<OnCellEvent>(OnCellEvent);
         }
 
@@ -78,6 +80,21 @@ namespace FG_GP2_T3
                 case TowerEventType.Deselect:
                     Debug.LogWarning("Deselect tower");
                     OnStopSound(tdata.SoundOnSelected);
+                    break;
+            }
+        }
+
+        private void OnUITowerEvent(OnUITowerEvent args)
+        {
+            UIEventType eventType = args.EventType;
+
+            switch (eventType)
+            {
+                case UIEventType.Open:
+                    Debug.LogWarning("Open tower");
+                    break;
+                case UIEventType.Close:
+                    Debug.LogWarning("Close tower");
                     break;
             }
         }
