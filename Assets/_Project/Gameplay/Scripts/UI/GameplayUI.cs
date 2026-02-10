@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using FormatableTextNS;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace FG_GP2_T3
@@ -22,6 +23,7 @@ namespace FG_GP2_T3
         [SerializeField] ScaleUpPanel tileRotationPanel;
         [SerializeField] ScaleUpPanel towerConfirmationPanel;
         [SerializeField] ScaleUpPanel nextPhasePanel;
+        [SerializeField] ScaleUpPanel rerollTowersPanel;
         [SerializeField] ScaleUpPanel speedUpPanel;
 
         [Header("Prefabs")]
@@ -46,6 +48,8 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += EnableTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += nextPhasePanel.Show;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += rerollTowersPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += towerPlacementController.UpdateRerollButton;
 
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Hide;
@@ -56,6 +60,7 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += nextPhasePanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += rerollTowersPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState += speedUpPanel.Show;
             GameplayStateFlowEvents.OnExitedEnemyWaveState += speedUpPanel.Hide;
 
@@ -78,6 +83,8 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= EnableTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= nextPhasePanel.Show;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= rerollTowersPanel.Show;
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= towerPlacementController.UpdateRerollButton;
 
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
@@ -88,6 +95,7 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= topPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= bottomPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= nextPhasePanel.Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= rerollTowersPanel.Hide;
             GameplayStateFlowEvents.OnEnteredEnemyWaveState -= speedUpPanel.Show;
             GameplayStateFlowEvents.OnExitedEnemyWaveState -= speedUpPanel.Hide;
 
@@ -102,6 +110,7 @@ namespace FG_GP2_T3
             tileRotationPanel.Hide();
             towerConfirmationPanel.Hide();
             nextPhasePanel.Hide();
+            rerollTowersPanel.Hide();
             speedUpPanel.Hide();
             towerInfoUI.Hide();
         }
@@ -174,7 +183,9 @@ namespace FG_GP2_T3
             DeselectSelectionButtons(currentTileSelectionButtons);
         }
 
-        void ResetTowerSelectionButtons()
+
+        [Button]
+        public void ResetTowerSelectionButtons()
         {
             DestroyAllChildren(towerSelectionButtonsParent);
             currentTowerSelectionButtons.Clear();
@@ -186,7 +197,11 @@ namespace FG_GP2_T3
                 selectionButton.Title.SetText($"{towerData.TowerName}\n({towerData.Role})");
                 selectionButton.Image.sprite = towerData.TowerIcon;
                 selectionButton.CostText.FillText(towerData.Cost.ToString());
+                selectionButton.UnaffordableCostText.FillText(towerData.Cost.ToString());
                 currentTowerSelectionButtons.Add(selectionButton);
+                bool isAffordable = CompostManager.Instance.CurrentCompostAmount >= towerData.Cost;
+                selectionButton.CostText.gameObject.SetActive(isAffordable);
+                selectionButton.UnaffordableCostText.gameObject.SetActive(!isAffordable);
 
                 selectionButton.Button.onClick.AddListener(() =>
                 {

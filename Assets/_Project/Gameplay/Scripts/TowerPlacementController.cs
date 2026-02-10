@@ -10,12 +10,15 @@ namespace FG_GP2_T3
         public TowerData SelectedTower => selectedTowerData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
 
+        [SerializeField] int rerollCost = 25;
+
         [SerializeField] StickyCameraMovement cam;
         [SerializeField] TowerConfirmation towerConfirmation;
         [SerializeField] NextWave nextWave;
         [SerializeField] HexTileData towerTile;
         [Expandable][SerializeField] List<TowerData> towerDatas = new List<TowerData>();
         [SerializeField] TowerBase towerBasePrefab;
+        [SerializeField] TowerRerollButton rerollButton;
 
         [ReadOnly][SerializeField] TowerData selectedTowerData;
         [ReadOnly][SerializeField] HexCell selectedCell;
@@ -24,10 +27,22 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] TowerBase previousTowerBase;
         [ReadOnly][SerializeField] TowerBase towerBaseToFuse;
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
+        [ReadOnly][SerializeField] int rerollCount = 0;
+
+        private int GetRerollCost()
+        {
+            return Mathf.RoundToInt(rerollCost * Mathf.Pow(2, rerollCount));
+        }
 
         void Awake()
         {
             nextWave.Button.onClick.AddListener(GoToNextRound);
+            rerollButton.Button.onClick.AddListener(RerollTowerSelection);
+        }
+
+        public void UpdateRerollButton()
+        {
+            rerollButton.UpdateRerollButton(GetRerollCost());
         }
 
         void GoToNextRound()
@@ -79,6 +94,7 @@ namespace FG_GP2_T3
                 Destroy(previewTowerBase.gameObject);
 
             cam.ZoomOut(null, .5f);
+            StartAnimateValidCells();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Cancel));
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
@@ -111,6 +127,8 @@ namespace FG_GP2_T3
                 Destroy(towerBaseToFuse.gameObject);
 
             towerBaseToFuse = null;
+            StartAnimateValidCells();
+            UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerInfo(selectedTowerData);
             cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
@@ -146,9 +164,12 @@ namespace FG_GP2_T3
                 Destroy(towerBaseToFuse.gameObject);
 
             selectedTowerData = tower;
+            StopAnimateValidCells();
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
+            StartAnimateValidCells();
             EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Open));
 
+            UIManager.Instance.GameplayUI.TowerInfoUI.Shrink();
             // TODO: Change to POE's position.
             // TODO: move camera movement to state
             cam.ZoomOut(null, .5f);
@@ -196,9 +217,32 @@ namespace FG_GP2_T3
 
         public List<TowerData> GetTowerDatasForPlacement()
         {
-            // TODO: add select 3 random tile
-            towerDatas.Shuffle();
-            return towerDatas.Take(3).ToList();
+            List<TowerData> towersForPlacement = new List<TowerData>();
+            List<TowerData> otherTowers = new List<TowerData>();
+
+            List<TowerData> affordableTowers = towerDatas.Where(x => x.Cost <= CompostManager.Instance.CurrentCompostAmount).ToList();
+            if (affordableTowers.Count() > 0)
+            {
+                affordableTowers.Shuffle();
+                towersForPlacement.Add(affordableTowers[0]);
+
+                otherTowers = towerDatas.Except(towersForPlacement).ToList();
+                otherTowers.Shuffle();
+
+                towersForPlacement.AddRange(otherTowers.Take(2));
+
+                string affordableTowersString = "";
+                affordableTowers.ForEach(x => affordableTowersString += x.name + " - ");
+                Debug.Log($"<color=green>Affordable towers detected: {affordableTowersString}</color>");
+            }
+            else
+            {
+                Debug.Log($"<color=red>No affordable towers!</color>");
+                towerDatas.Shuffle();
+                towersForPlacement = towerDatas.Take(3).ToList();
+            }
+
+            return towersForPlacement.OrderBy(x => x.Cost).ToList();
         }
 
         public void StartAnimateValidCells()
@@ -229,16 +273,46 @@ namespace FG_GP2_T3
             previewTile.transform.position = selectedCell.transform.position;
             previewTowerBase.transform.position = selectedCell.transform.position;
 
+            StopAnimateValidCells();
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);
         }
 
         public void PreviewFusionOnTower()
         {
+            StopAnimateValidCells();
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);
             UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerFusionInfo(previousTowerBase.Data, selectedTowerData);
             UIManager.Instance.GameplayUI.TowerInfoUI.Show();
+        }
+
+
+        public void RerollTowerSelection()
+        {
+            if (previewTile != null)
+                Destroy(previewTile.gameObject);
+
+            if (previewTowerBase != null)
+                Destroy(previewTowerBase.gameObject);
+
+            if (towerBaseToFuse != null)
+                Destroy(towerBaseToFuse.gameObject);
+
+            previewTile = null;
+            previewTowerBase = null;
+            towerBaseToFuse = null;
+            selectedCell = null;
+            selectedTowerData = null;
+
+            CompostManager.Instance.UseCompost(GetRerollCost());
+            UIManager.Instance.GameplayUI.ResetTowerSelectionButtons();
+            GameManager.Instance.SwitchToTowerSelectionSubState();
+
+            rerollCount++;
+            UpdateRerollButton();
+            cam.ZoomOut(null, .5f);
+            cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
         }
     }
 }

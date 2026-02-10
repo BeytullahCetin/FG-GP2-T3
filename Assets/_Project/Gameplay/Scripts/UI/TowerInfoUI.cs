@@ -31,6 +31,8 @@ namespace FG_GP2_T3
         [SerializeField] Ease expandEase = Ease.OutBack;
         [SerializeField] Ease shrinkEase = Ease.InBack;
 
+        private TowerData currentTowerData;
+
         private RectTransform layoutGroupTranform;
         private RectTransform closeButtonTransform;
 
@@ -40,11 +42,13 @@ namespace FG_GP2_T3
         void OnEnable()
         {
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState += Hide;
         }
 
         void OnDisable()
         {
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= Hide;
+            GameplayStateFlowEvents.OnEnteredEnemyWaveState -= Hide;
         }
 
         void Awake()
@@ -70,7 +74,8 @@ namespace FG_GP2_T3
                 $"Range: {towerData.RangeString}", $"Attack Type: {towerData.AttackType}",
                 $"Fuse Effect: {towerData.FusionStatType}",
                 towerData.Description);
-            FillTowerDetail(towerData);
+            currentTowerData = towerData;
+            // FillTowerDetail(towerData);
         }
 
         public void SetTowerFusionInfo(TowerData mainTower, TowerData secondaryTower)
@@ -103,7 +108,8 @@ namespace FG_GP2_T3
                 $"Range: {rangeText}", $"Attack Type: {mainTower.AttackType}",
                 $"<color={fusedTowerStatColor.ToHex()}>{secondaryTower.FusionStatType}+</color>",
                 mainTower.Description);
-            FillTowerDetail(mainTower);
+            currentTowerData = mainTower;
+            // FillTowerDetail(mainTower);
         }
 
         private void FillTowerDetail(TowerData towerData)
@@ -128,6 +134,7 @@ namespace FG_GP2_T3
         [Button]
         public void Expand()
         {
+            FillTowerDetail(currentTowerData);
             shrinkButton.gameObject.SetActive(true);
             expandButton.gameObject.SetActive(false);
             detailPanelTransform.DOAnchorPosY(0, expandShrinkDuration).SetEase(expandEase);

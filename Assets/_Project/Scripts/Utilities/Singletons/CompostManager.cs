@@ -25,10 +25,10 @@ namespace FG_GP2_T3
                 return;
             }
             Instance = this;
+            CurrentCompostAmount = StartingCompostAmount;
         }
         void Start()
         {
-            CurrentCompostAmount = StartingCompostAmount;
             UpdateCompostUI();
         }
 
