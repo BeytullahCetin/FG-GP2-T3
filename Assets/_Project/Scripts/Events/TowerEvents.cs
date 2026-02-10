@@ -19,4 +19,21 @@ namespace FG_GP2_T3
             EventType = eventType;
         }
     }
+
+    public enum TowerActionType
+    {
+        Attack,
+    }
+
+    public class OnTowerActionEvent : GameEventArgs
+    {
+        public readonly TowerBase Tower;
+        public readonly TowerActionType ActionType;
+
+        public OnTowerActionEvent(TowerBase tower, TowerActionType actionType)
+        {
+            Tower = tower;
+            ActionType = actionType;
+        }
+    }
 }

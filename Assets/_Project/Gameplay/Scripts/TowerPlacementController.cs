@@ -122,8 +122,8 @@ namespace FG_GP2_T3
             {
                 CompostManager.Instance.UseCompost(selectedTowerData.Cost);
                 UIManager.Instance.GameplayUI.UpdateTowerSelectionButtons();
-                EventManager.Invoke(new OnTowerEvent(towerBaseToFuse, TowerEventType.Fuse));
-                previousTowerBase = null;
+                EventManager.Invoke(new OnTowerEvent(previousTowerBase, TowerEventType.Fuse));
+                //previousTowerBase = null;
                 towerBaseToFuse = null;
                 cam.ZoomOut(null, .5f);
                 GameManager.Instance.SwitchToTowerSelectionSubState();

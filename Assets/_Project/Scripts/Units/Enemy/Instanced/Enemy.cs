@@ -59,6 +59,8 @@ namespace FG_GP2_T3
             _movementPoints.Add(target.transform.position + attackOffset);
 
             path.Reverse();
+
+            EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Spawn));
         }
 
         private void Update()
@@ -158,12 +160,14 @@ namespace FG_GP2_T3
             if (_health <= 0f)
             {
                 EnemyManager.Instance.UnregisterEnemy();
+                EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Death));
                 CompostManager.Instance.AddCompost(_compostReward);
                 Destroy(gameObject);
                 return;
             }
 
-            StartCoroutine(FlashRedCoroutine());
+            EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Damaged));
+            //StartCoroutine(FlashRedCoroutine());
         }
 
         private IEnumerator FlashRedCoroutine()
