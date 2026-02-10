@@ -23,6 +23,28 @@ namespace FG_GP2_T3
                 Attack(target);
             }
         }
+        public void ApplyEffects(IDamageable enemy)
+        {
+            if (enemy == null) return;
+
+            if (Tower.Stats.HasStun)
+            {
+                enemy.ApplyStun(Tower.Stats.CCDuraton);
+            }
+
+            if (Tower.Stats.HasDot)
+            {
+                enemy.ApplyDot(
+                    Tower.Stats.DotDamage,
+                    Tower.Stats.DotDuration
+                );
+            }
+
+            if (Tower.Stats.HasSlow)
+            {
+                enemy.ApplySlow(Tower.Stats.Slowpercent,Tower.Stats.CCDuraton);
+            }
+        }
         protected IDamageable GetEnemy(Transform Target)
         {
             return Target.GetComponent<IDamageable>();

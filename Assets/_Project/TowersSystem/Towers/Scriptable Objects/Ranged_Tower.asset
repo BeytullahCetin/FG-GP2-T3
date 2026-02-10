@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: 850b4bc37fbd1d749a7a41ac1420c481, type: 3}
   TowerName: Brazil Nut Tree
   Role: Ranged
-  Cost: 25
+  Cost: 100
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -34,15 +34,16 @@ MonoBehaviour:
   ConeAngle: 0
   Range: 35
   Damage: 14
-  FireRate: 2
+  FireRate: 1.5
   pierce: 0
-  RangeString: Medium
+  RangeString: Long
   DamageString: High
   FireRateString: Fast
+  RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 44d433f45af59094691c5cf262c9bd7a, type: 3}
   towerMaterial: {fileID: 2100000, guid: e9b35260c4dca5b43aea221110bdf0c6, type: 2}
   CompostCost: 0
   FusionID: A
   FusionStatType: 1
   FusionStatString: 
-  FusionStatValue: 4
+  FusionStatValue: 20

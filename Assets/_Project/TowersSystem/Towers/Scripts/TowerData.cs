@@ -155,10 +155,12 @@ namespace FG_GP2_T3
         RangeBoost,
         DamageBoost,
         FireRateBoost,
-        SlowEffectBoost,
-        StunDurationBoost,
-        DotDurationBoost,
-        SplashRadiusBoost
+        splashradiusBoost,
+
+        AddSlow,
+        AddStun,
+        AddDot
+
     }
 
 
