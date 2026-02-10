@@ -11,6 +11,8 @@ namespace FG_GP2_T3
 
         private void Start()
         {
+            Debug.LogWarning("HackStartMusic is still trying to run but I've disabled it because it is a hack.");
+            return;
             // RuntimeManager.StudioSystem.setParameterByName("Volume_Music", volume);
             
             if(!emitter.IsPlaying())
