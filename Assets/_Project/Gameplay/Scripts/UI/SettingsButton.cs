@@ -10,7 +10,7 @@ namespace FG_GP2_T3
 
         void Awake()
         {
-            settingsPanel = FindAnyObjectByType<SettingsPanel>();
+            settingsPanel = FindAnyObjectByType<SettingsPanel>(FindObjectsInactive.Include);
             button = GetComponent<Button>();
         }
 

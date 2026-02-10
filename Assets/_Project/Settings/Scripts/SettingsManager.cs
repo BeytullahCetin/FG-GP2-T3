@@ -29,7 +29,7 @@ namespace FG_GP2_T3
         {
             Instance = this;
             qualitySettings = UnityEngine.QualitySettings.names.ToList();
-            settingsPanel = FindAnyObjectByType<SettingsPanel>();
+            settingsPanel = FindAnyObjectByType<SettingsPanel>(FindObjectsInactive.Include);
         }
 
         void Start()

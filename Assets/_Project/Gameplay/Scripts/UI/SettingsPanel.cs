@@ -27,7 +27,7 @@ namespace FG_GP2_T3
             GameManager.Instance.PauseGame();
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
-            modalTransform.DOScale(1, animationDuration).SetUpdate(true);
+            modalTransform.DOScale(1, animationDuration).SetEase(showEase).SetUpdate(true);
             canvasGroup.DOFade(1, animationDuration).SetUpdate(true);
         }
 
@@ -35,14 +35,15 @@ namespace FG_GP2_T3
         public void Hide()
         {
             GameManager.Instance.ResumeGame();
-            modalTransform.DOScale(0, animationDuration).SetEase(hideEase);
-            canvasGroup.DOFade(0, animationDuration);
+            modalTransform.DOScale(0, animationDuration).SetEase(hideEase).SetUpdate(true);
+            canvasGroup.DOFade(0, animationDuration).SetUpdate(true);
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
         }
 
         public void Initialize()
         {
+            gameObject.SetActive(true);
             SetFrameRateButtons();
             UpdateFrameRateButtons();
 
