@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePlacedPrefab: {fileID: 1792178807734627912, guid: 699f36a761b178742b4421c30acae230, type: 3}
   _towerFusedPrefab: {fileID: 4620414861077503870, guid: 401f42a9d6b7c784381ba3d48692f73b, type: 3}
-  _enemySpawnPrefab: {fileID: 0}
+  _enemySpawnPrefab: {fileID: 5914929582580334764, guid: fa3d87f10b3f9984e8394e8889ac07ff, type: 3}
   _enemyDamagedPrefab: {fileID: 7862791552056050486, guid: fdcd1131b73fd9940a79d9f42e23ac05, type: 3}
   _enemyDeathPrefab: {fileID: 6616622013104538485, guid: 4f2086d5d7477284baf67cfe3f58c9e2, type: 3}
   _towerSlowAOEPrefab: {fileID: 0}

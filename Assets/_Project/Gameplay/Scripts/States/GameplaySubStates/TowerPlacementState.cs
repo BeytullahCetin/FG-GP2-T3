@@ -13,14 +13,12 @@ namespace FG_GP2_T3
 		public override void Enter()
 		{
 			base.Enter();
-			towerPlacementController.StartAnimateValidCells();
 			GameplayStateFlowEvents.OnEnteredTowerPlacementSubGameplayState?.Invoke();
 		}
 
 		public override void Exit()
 		{
 			base.Exit();
-			towerPlacementController.StopAnimateValidCells();
 			GameplayStateFlowEvents.OnExitedTowerPlacementSubGameplayState?.Invoke();
 		}
 
