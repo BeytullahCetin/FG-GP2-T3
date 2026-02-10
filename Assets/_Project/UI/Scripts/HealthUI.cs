@@ -6,8 +6,6 @@ namespace FG_GP2_T3
     {
         private HudElement hudElement;
 
-        // TODO: Register OnTakeDamageEvent
-
         void Awake()
         {
             hudElement = GetComponent<HudElement>();
