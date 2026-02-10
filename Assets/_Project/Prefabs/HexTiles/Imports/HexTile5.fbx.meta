@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: b3dc52c588bbe32469f33eb882d2b090
+guid: 5162d8b273ceb024d8fbf1859d40418e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ColorPalette
+    second: {fileID: 2100000, guid: 90f5669324f5c224e896df652aa11402, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grass
+    second: {fileID: 2100000, guid: e7d4873053139364699cd17d5f5a8241, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mud.001
+    second: {fileID: 2100000, guid: 614fdec569899aa448e66c9e3ac9475a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: leaves2.001
+    second: {fileID: 2100000, guid: 3bceb16cf94f81e4dbdcbc5dc26eaef4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plants2.005
+    second: {fileID: 2100000, guid: e9376377748b2e64eac43fde9ea52079, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

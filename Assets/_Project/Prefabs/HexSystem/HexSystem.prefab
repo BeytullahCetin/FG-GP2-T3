@@ -78,9 +78,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hexTiles:
-  - {fileID: 11400000, guid: 6344af6a6be6f574f83cdecfc51d9c72, type: 2}
-  - {fileID: 11400000, guid: b1c4028d105ce7b4b8ddc1ec7b31894e, type: 2}
-  - {fileID: 11400000, guid: 4ad4b30267f8f334fa9ac43c25301b8e, type: 2}
+  - {fileID: 11400000, guid: 8f71713ed1784154582bc3496ea4d60c, type: 2}
+  - {fileID: 11400000, guid: ff7ddddd37f5cd04b825b2cebbf4a6e6, type: 2}
+  - {fileID: 11400000, guid: 85dff6bc429f6944d87633aad17d0e09, type: 2}
+  - {fileID: 11400000, guid: b5ae721dfaa27d149a00f6cb3c099382, type: 2}
+  - {fileID: 11400000, guid: 013565c1e1270dc4d8d18ca3e6ba7c95, type: 2}
+  - {fileID: 11400000, guid: e0f530dad308a204c8236a7d236b9054, type: 2}
+  - {fileID: 11400000, guid: f86ad3663b3bde249b1fc1169b04d90a, type: 2}
+  - {fileID: 11400000, guid: a0c542b71d3b95c458eaf2e6c8802b8b, type: 2}
+  - {fileID: 11400000, guid: 18f8b1e035b13ff4a87ed2d0a823d18a, type: 2}
+  - {fileID: 11400000, guid: 89eb0d35b79e4d24fa971d81a5e41201, type: 2}
+  - {fileID: 11400000, guid: f52f90fc8d9ea0348ae1d0346ecf473f, type: 2}
 --- !u!1 &8250459727612590498
 GameObject:
   m_ObjectHideFlags: 0
