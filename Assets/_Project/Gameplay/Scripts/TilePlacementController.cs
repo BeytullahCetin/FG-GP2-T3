@@ -53,7 +53,9 @@ namespace FG_GP2_T3
                 Destroy(previewTile.gameObject);
 
             cam.ZoomOut(null, .5f);
-            GameManager.Instance.SwitchToTileSelectionSubState();
+            StartAnimateValidCells();
+            // GameManager.Instance.SwitchToTileSelectionSubState();
+            GameManager.Instance.SwitchToTilePlacementSubState();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Cancel));
         }
 
