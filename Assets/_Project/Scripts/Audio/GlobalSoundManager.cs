@@ -9,6 +9,8 @@ namespace FG_GP2_T3
     {
         public static GlobalSoundManager Instance { get; private set; }
 
+        public bool printSoundLogs = false;
+        public bool printEventLogs = false;
         public float poeLowHealthWarning = 0.2f;
         
         
@@ -38,6 +40,8 @@ namespace FG_GP2_T3
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
             EventManager.Register<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Register<OnCellEvent>(OnCellEvent);
+            EventManager.Register<OnWaveEvent>(OnWaveEvent);
+            EventManager.Register<OnGameEndedEvent>(OnGameEndedEvent);
             EventManager.Register<OnCoreDamageEvent>(OnCoreDamageEvent);
         }
 
@@ -46,6 +50,8 @@ namespace FG_GP2_T3
             EventManager.Unregister<OnTowerEvent>(OnTowerEvent);
             EventManager.Unregister<OnUITowerEvent>(OnUITowerEvent);
             EventManager.Unregister<OnCellEvent>(OnCellEvent);
+            EventManager.Unregister<OnWaveEvent>(OnWaveEvent);
+            EventManager.Unregister<OnGameEndedEvent>(OnGameEndedEvent);
             EventManager.Unregister<OnCoreDamageEvent>(OnCoreDamageEvent);
         }
 
@@ -55,12 +61,14 @@ namespace FG_GP2_T3
             // Don't play if sound is set to default
             if (type == GlobalSoundType.Default)// && !Application.isEditor)
                 return;
-            
+
+            SoundLog(true, type);
             _globalSoundEmitters.Find(x => x.soundType == type).Play();
         }
 
         public void OnStopSound(GlobalSoundType type)
         {
+            SoundLog(false, type);
             _globalSoundEmitters.Find(x => x.soundType == type).Stop();
         }
 
@@ -69,6 +77,7 @@ namespace FG_GP2_T3
         {
             TowerEventType eventType = args.EventType;
             TowerData tdata = args.Tower.Data;
+            EventLog("OnTowerEvent: " + eventType);
 
             switch (eventType)
             {
@@ -80,11 +89,9 @@ namespace FG_GP2_T3
                     //TODO: Also needs to play fusion sound
                     break;
                 case TowerEventType.Select:
-                    Debug.LogWarning("Select tower");
                     OnPlaySound(tdata.SoundOnSelected);
                     break;
                 case TowerEventType.Deselect:
-                    Debug.LogWarning("Deselect tower");
                     OnStopSound(tdata.SoundOnSelected);
                     break;
             }
@@ -93,14 +100,15 @@ namespace FG_GP2_T3
         private void OnUITowerEvent(OnUITowerEvent args)
         {
             UIEventType eventType = args.EventType;
+            EventLog("OnUITowerEvent: " + eventType);
 
             switch (eventType)
             {
                 case UIEventType.Open:
-                    Debug.LogWarning("Open tower");
+                    OnPlaySound(GlobalSoundType.TowerMenuOpen);
                     break;
                 case UIEventType.Close:
-                    Debug.LogWarning("Close tower");
+                    OnPlaySound(GlobalSoundType.TowerMenuClose);
                     break;
             }
         }
@@ -108,32 +116,59 @@ namespace FG_GP2_T3
         private void OnCellEvent(OnCellEvent args)
         {
             CellEventType eventType = args.EventType;
+            EventLog("OnCellEvent: " + eventType);
             
             switch (eventType)
             {
                 case CellEventType.Click:
-                    Debug.LogWarning("Click");
                     OnPlaySound(GlobalSoundType.PreviewPlaceTile);
                     break;
                 case CellEventType.Rotate:
-                    Debug.LogWarning("Rotate");
                     OnPlaySound(GlobalSoundType.RotateTile);
                     break;
                 case CellEventType.Place:
                     OnPlaySound(GlobalSoundType.PlaceRoadDefault);
                     break;
                 case CellEventType.Remove:
-                    Debug.LogWarning("Remove");
                     break;
                 case CellEventType.Cancel:
-                    Debug.LogWarning("Cancel");
                     OnPlaySound(GlobalSoundType.CancelPlaceTile);
                     break;
             }
         }
 
+        private void OnWaveEvent(OnWaveEvent args)
+        {
+            WaveEventType eventType = args.EventType;
+            EventLog("OnWaveEvent: " + eventType);
+
+            switch (eventType)
+            {
+                case WaveEventType.Start:
+                    OnPlaySound(GlobalSoundType.WaveStart);
+                    break;
+                case WaveEventType.EnemyCountChanged:
+                    break;
+                case WaveEventType.End:
+                    OnPlaySound(GlobalSoundType.WaveEnd);
+                    break;
+            }
+        }
+
+        private void OnGameEndedEvent(OnGameEndedEvent args)
+        {
+            bool playerWon = args.PlayerWon;
+            EventLog("OnGameEndedEvent: Player " + (playerWon ? "Won" : "Lost"));
+            
+            if (playerWon)
+                OnPlaySound(GlobalSoundType.GameWin);
+            else
+                OnPlaySound(GlobalSoundType.GameLose);
+        }
+        
         private void OnCoreDamageEvent(OnCoreDamageEvent args)
         {
+            EventLog("OnCoreDamageEvent");
             if (hasPlayedLowHealthSound)
                 return;
             hasPlayedLowHealthSound = true;
@@ -142,6 +177,28 @@ namespace FG_GP2_T3
             if (health < poeLowHealthWarning)
                 OnPlaySound(GlobalSoundType.PoeLowHealth);
         }
+
+
+        private void SoundLog(bool started, GlobalSoundType type)
+        {
+            if (!printSoundLogs)
+                return;
+            if (!Application.isEditor)
+                return;
+            
+            string toPrint = $"<color=green>Global Sound {(started ? "Played" : "Stopped")}: </color><color=white>{type}</color>";
+            Debug.Log(toPrint);
+        }
         
+        private void EventLog(string log)
+        {
+            if (!printEventLogs)
+                return;
+            if (!Application.isEditor)
+                return;
+            
+            string toPrint = $"<color=green>Global Sound Event: </color><color=white>{log}</color>";
+            Debug.Log(toPrint);
+        }
     }
 }

@@ -7,6 +7,9 @@ namespace FG_GP2_T3
     public class MusicManager : MonoBehaviour
     {
         public static MusicManager Instance { get; private set; }
+
+
+        public MusicType startingMusic = MusicType.Wave;
         
         
         private List<MusicEmitter> _musicEmitters;
@@ -15,18 +18,20 @@ namespace FG_GP2_T3
         
         private void Awake()
         {
-            if (Instance != null)
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
             
+            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
 
         private void Start()
         {
             _musicEmitters = gameObject.GetComponentsInChildren<MusicEmitter>().ToList();
+            OnPlaySong(startingMusic);
         }
 
 
