@@ -160,6 +160,9 @@ namespace FG_GP2_T3
         {
             selectedCell = cell;
 
+            EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Close));
+            EventManager.Invoke(new OnCellEvent(cell, CellEventType.Click));
+
             if (selectedCell.Tile == null)
             {
                 // Creating tower on empty cell
@@ -186,8 +189,6 @@ namespace FG_GP2_T3
                         return;
                     }
 
-                    EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Close));
-                    EventManager.Invoke(new OnCellEvent(cell, CellEventType.Click));
                     GameManager.Instance.SwitchToFusionConfirmationSubState();
                 }
             }
