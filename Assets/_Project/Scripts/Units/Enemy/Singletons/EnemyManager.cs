@@ -47,9 +47,9 @@ namespace FG_GP2_T3
                 return;
             }
             Instance = this;
+            _target = FindFirstObjectByType<POE>();
         }
 
-        private void Start() => _target = FindFirstObjectByType<POE>();
 
         private void Update()
         {
@@ -61,14 +61,14 @@ namespace FG_GP2_T3
         }
 
         private void FinishWave()
-        {           
+        {
             _isWaveActive = false;
             _enemiesRemaining = 0;
 
             EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
 
             _waveIndex++;
-            
+
             GameManager.Instance.SwitchToTileSelectionSubState();
         }
 
