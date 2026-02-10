@@ -10,9 +10,12 @@ namespace FG_GP2_T3
         public static GameManager Instance;
 
         public GameSpeedController GameSpeedController => gameSpeedController;
+        public bool IsGameOver => isGameOver;
 
         [SerializeField] bool showLoadingScreen;
         [SerializeField] bool unlimitedCompost;
+
+        bool isGameOver;
 
         [SerializeField] TilePlacementController tilePlacementController;
         [SerializeField] TowerPlacementController towerPlacementController;
@@ -36,8 +39,9 @@ namespace FG_GP2_T3
 
         void Start()
         {
-            QualitySettings.vSyncCount = 0;
+            // QualitySettings.vSyncCount = 0;
             Time.timeScale = 1;
+            isGameOver = false;
 
             SwitchToMainMenuState();
 #if UNITY_EDITOR
@@ -87,13 +91,15 @@ namespace FG_GP2_T3
         [Button]
         public void SwitchToGameOverState()
         {
+            isGameOver = true;
             gameflowStateMachine.ChangeState(gameOverState);
         }
 
         [Button]
         public void SwitchToTileSelectionSubState()
         {
-            gameplayState.SwitchToTileSelectionState();
+            if (IsGameOver == false)
+                gameplayState.SwitchToTileSelectionState();
         }
 
         [Button]
