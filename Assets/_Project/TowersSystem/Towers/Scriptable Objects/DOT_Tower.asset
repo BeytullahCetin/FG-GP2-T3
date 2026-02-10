@@ -30,7 +30,7 @@ MonoBehaviour:
   MaxTargets: 4
   ExplosionRadius: 4
   DotDuration: 4
-  DotDamagePerSecond: 6
+  DotDamagePerSecond: 5
   ConeAngle: 0
   Range: 25
   Damage: 1
