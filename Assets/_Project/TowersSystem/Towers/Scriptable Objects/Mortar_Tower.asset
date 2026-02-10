@@ -44,6 +44,6 @@ MonoBehaviour:
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: E
-  FusionStatType: 7
+  FusionStatType: 4
   FusionStatString: 
   FusionStatValue: 2

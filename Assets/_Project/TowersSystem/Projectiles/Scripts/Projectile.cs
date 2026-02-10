@@ -15,7 +15,7 @@ namespace FG_GP2_T3
     {
         private Transform _Target;
         private float _Damage;
-
+        private TowerAttack _OwnerAttack;
 
         [Header("Projectile Settings")]
         public float Speed;
@@ -23,24 +23,27 @@ namespace FG_GP2_T3
         [Header("Melee Mode")]
         public bool InstantHit = false;
 
-        internal void Initialize(Transform currentTarget, float damage)
+        public void Initialize(
+            Transform target,
+            float damage,
+            TowerAttack ownerAttack
+        )
         {
-            _Target = currentTarget;
+            _Target = target;
             _Damage = damage;
+            _OwnerAttack = ownerAttack;
 
             if (InstantHit)
-            {
                 DoInstantHit();
-            }
         }
 
         private void DoInstantHit()
         {
-            Enemy enemy = _Target.GetComponent<Enemy>();
-
+            IDamageable enemy = _Target.GetComponent<IDamageable>();
             if (enemy != null)
             {
                 enemy.TakeDamage(_Damage);
+                _OwnerAttack.ApplyEffects(enemy);
             }
 
             Destroy(gameObject, 0.1f);
@@ -56,25 +59,22 @@ namespace FG_GP2_T3
                 return;
             }
 
-            Vector3 Dir = (_Target.position - transform.position).normalized;
-            transform.position += Dir * Speed * Time.deltaTime;
+            Vector3 dir = (_Target.position - transform.position).normalized;
+            transform.position += dir * Speed * Time.deltaTime;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Enemy")) return;
 
-            Enemy enemy = other.GetComponent<Enemy>();
-
+            IDamageable enemy = other.GetComponent<IDamageable>();
             if (enemy != null)
             {
                 enemy.TakeDamage(_Damage);
+                _OwnerAttack.ApplyEffects(enemy);
             }
-            Debug.Log($"<color=red> {_Damage} given to {other.name} - Exit()</color>");
 
             Destroy(gameObject);
         }
-
-        
     }
 }

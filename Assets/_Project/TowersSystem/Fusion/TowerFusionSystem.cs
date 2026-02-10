@@ -42,32 +42,61 @@ namespace FG_GP2_T3
 
         private static void ApplyFusionStat(TowerBase tower, TowerBase sacrifice)
         {
+            float value = sacrifice.Data.FusionStatValue;
             switch (sacrifice.Data.FusionStatType)
             {
                 case FusionStatType.None:
                     break;
                 case FusionStatType.RangeBoost:
-                    tower.Stats.Range += sacrifice.Data.FusionStatValue;
+                    tower.Stats.Range += value;
                     break;
                 case FusionStatType.DamageBoost:
-                    tower.Stats.Damage += sacrifice.Data.FusionStatValue;
+                    tower.Stats.Damage += value;
                     break;
                 case FusionStatType.FireRateBoost:
-                    tower.Stats.FireRate += sacrifice.Data.FusionStatValue;
+                    tower.Stats.FireRate += value;
                     break;
-                case FusionStatType.SlowEffectBoost:
-                    tower.Stats.Slowpercent += sacrifice.Data.FusionStatValue;
-                    break;
-                case FusionStatType.StunDurationBoost:
-                    tower.Stats.CCDuraton += sacrifice.Data.FusionStatValue;
-                    break;
-                case FusionStatType.DotDurationBoost:
-                    tower.Stats.DotDuration += sacrifice.Data.FusionStatValue;
-                    break;
-                case FusionStatType.SplashRadiusBoost:
-                    tower.Stats.Explosionradius += sacrifice.Data.FusionStatValue;
-                    break;
+                case FusionStatType.splashradiusBoost:
+                    if(!tower.Stats.HasSplash)
+                        tower.Stats.HasSplash = true;
 
+                    tower.Stats.Explosionradius += value;
+
+                    break;
+                case FusionStatType.AddSlow:
+                    if(!tower.Stats.HasSlow)
+                    { 
+                        tower.Stats.HasSlow = true;
+                       tower.Stats.Slowpercent = value;
+                    }
+                    else
+                    {
+                       tower.Stats.Slowpercent += value;
+                    }
+                        break;
+                case FusionStatType.AddStun:
+                    if (!tower.Stats.HasStun)
+                    {
+                        tower.Stats.HasStun = true;
+                        tower.Stats.CCDuraton = value;
+                    }
+                    else
+                    {
+                        tower.Stats.CCDuraton += value;
+                    }
+                    break;
+                case FusionStatType.AddDot:
+                    if (!tower.Stats.HasDot)
+                    {
+                        tower.Stats.HasDot = true;
+                        tower.Stats.DotDamage = value;
+                        tower.Stats.DotDuration = value;
+                    }
+                    else
+                    {
+                        tower.Stats.DotDamage += value;
+                    }
+                        break;
             }
             Debug.Log($"Applied fusion stat {sacrifice.Data.FusionStatType} with value {sacrifice.Data.FusionStatValue} to tower {tower.Data.TowerName}.");
         }

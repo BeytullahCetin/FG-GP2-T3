@@ -16,7 +16,7 @@ namespace FG_GP2_T3
 
             if(motarProjectile !=null)
             {
-                motarProjectile.Initialize(target, Tower.Stats.Damage, Tower.Stats.Explosionradius);
+                motarProjectile.Initialize(target, Tower.Stats.Damage, Tower.Stats.Explosionradius,this);
             }
 
             Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
