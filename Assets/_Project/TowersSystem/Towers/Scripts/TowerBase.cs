@@ -264,14 +264,14 @@ namespace FG_GP2_T3
 
             if (Data.AttackType == AttackType.Cone)
             {
-                Vector3 forward = transform.forward * Data.Range;
+                Vector3 forward = transform.forward * stats.Range;
                 Quaternion leftRayRotation = Quaternion.AngleAxis(-Data.ConeAngle / 2f, Vector3.up);
                 Quaternion rightRayRotation = Quaternion.AngleAxis(Data.ConeAngle / 2f, Vector3.up);
                 Vector3 leftRayDirection = leftRayRotation * forward;
                 Vector3 rightRayDirection = rightRayRotation * forward;
                 // draw cone arc and edges
                 Handles.color = Color.yellow;
-                Handles.DrawSolidArc(transform.position, Vector3.up, leftRayDirection.normalized, Data.ConeAngle, Data.Range);
+                Handles.DrawSolidArc(transform.position, Vector3.up, leftRayDirection.normalized, Data.ConeAngle, stats.Range);
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawLine(transform.position, transform.position + leftRayDirection);
                 Gizmos.DrawLine(transform.position, transform.position + rightRayDirection);
@@ -279,7 +279,7 @@ namespace FG_GP2_T3
             else
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawWireSphere(transform.position, Data.Range);
+                Gizmos.DrawWireSphere(transform.position, stats.Range);
             }
         }
 #endif
