@@ -8309,6 +8309,10 @@ MonoBehaviour:
       Count: 15
       SpawnRate: 1
       StartDelay: 1
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: defc6635ea7018d4a9cb838837738a01, type: 3}
+      Count: 1
+      SpawnRate: 1
+      StartDelay: 17
   - Groups:
     - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
       Count: 15
@@ -8318,12 +8322,16 @@ MonoBehaviour:
       Count: 10
       SpawnRate: 1
       StartDelay: 17
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: defc6635ea7018d4a9cb838837738a01, type: 3}
+      Count: 5
+      SpawnRate: 1
+      StartDelay: 17
   - Groups:
     - EnemyPrefab: {fileID: 7595482904669408211, guid: df816d8e656c1974e81f725c73876b30, type: 3}
       Count: 20
       SpawnRate: 1
       StartDelay: 1
-    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: defc6635ea7018d4a9cb838837738a01, type: 3}
       Count: 10
       SpawnRate: 1
       StartDelay: 17
@@ -8336,7 +8344,7 @@ MonoBehaviour:
       Count: 17
       SpawnRate: 1
       StartDelay: 25
-    - EnemyPrefab: {fileID: 7595482904669408211, guid: 9d6f3796f0d44fb43b3399302876ea1b, type: 3}
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: defc6635ea7018d4a9cb838837738a01, type: 3}
       Count: 13
       SpawnRate: 1
       StartDelay: 43
@@ -8349,6 +8357,10 @@ MonoBehaviour:
       Count: 50
       SpawnRate: 1
       StartDelay: 52
+    - EnemyPrefab: {fileID: 7595482904669408211, guid: defc6635ea7018d4a9cb838837738a01, type: 3}
+      Count: 50
+      SpawnRate: 1
+      StartDelay: 105
 --- !u!114 &1060786276 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 250814636317072510, guid: cc14bd907de12f14ab1d5b67b9b66819, type: 3}
