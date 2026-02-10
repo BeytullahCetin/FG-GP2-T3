@@ -1877,8 +1877,8 @@ MonoBehaviour:
   _enemySpawnPrefab: {fileID: 5914929582580334764, guid: fa3d87f10b3f9984e8394e8889ac07ff, type: 3}
   _enemyDamagedPrefab: {fileID: 7862791552056050486, guid: fdcd1131b73fd9940a79d9f42e23ac05, type: 3}
   _enemyDeathPrefab: {fileID: 6616622013104538485, guid: 4f2086d5d7477284baf67cfe3f58c9e2, type: 3}
-  _towerSlowAOEPrefab: {fileID: 0}
-  _towerDOTAOEPrefab: {fileID: 0}
+  _towerSlowAOEPrefab: {fileID: 171600803764382394, guid: 44c09c60fcdba604cb4c58784ca9024a, type: 3}
+  _towerDOTAOEPrefab: {fileID: 5135726487167222243, guid: 9a35199f3cc1548478dbb1d2d04992de, type: 3}
 --- !u!4 &196808375
 Transform:
   m_ObjectHideFlags: 0

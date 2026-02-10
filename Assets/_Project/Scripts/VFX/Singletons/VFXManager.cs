@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FG_GP2_T3
@@ -14,6 +15,9 @@ namespace FG_GP2_T3
         [SerializeField] private GameObject _towerSlowAOEPrefab;
         [SerializeField] private GameObject _towerDOTAOEPrefab;
 
+        HashSet<(TowerBase, ParticleSystem)> _slowTowerVFXs = new();
+        HashSet<(TowerBase, ParticleSystem)> _dotTowerVFXs = new();
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -28,8 +32,8 @@ namespace FG_GP2_T3
         {
             EventManager.Register<OnCellEvent>(OnCellEvent);
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
-            EventManager.Register<OnTowerActionEvent>(OnTowerActionEvent);
             EventManager.Register<OnEnemyActionEvent>(OnEnemyActionEvent);
+            EventManager.Register<OnWaveEvent>(OnWaveEvent);
         }
 
         private void Update()
@@ -45,13 +49,45 @@ namespace FG_GP2_T3
 
         private void OnTowerEvent(OnTowerEvent args)
         {
-            if(args.EventType == TowerEventType.Fuse)
-                SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
+            switch(args.EventType)
+            {
+                case TowerEventType.Build:
+                    if(args.Tower.Data.CrowdControlType == CrowdControlType.Slow)
+                    {
+                        ParticleSystem vfx = SpawnVFX(_towerSlowAOEPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
+                        vfx.gameObject.SetActive(false);
+                        _slowTowerVFXs.Add((args.Tower, vfx));
+                    }
+                    else if(args.Tower.Data.DotDamagePerSecond > 0f)
+                    {  
+                        ParticleSystem vfx = SpawnVFX(_towerDOTAOEPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
+                        vfx.gameObject.SetActive(false);
+                        _dotTowerVFXs.Add((args.Tower, vfx));
+                    }
+                    return;
+                case TowerEventType.Fuse:
+                    SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
+                    return;
+            }
         }
 
-        private void OnTowerActionEvent(OnTowerActionEvent args)
+        private void OnWaveEvent(OnWaveEvent args)
         {
-            
+            switch(args.EventType)
+            {
+                case WaveEventType.Start:
+                    foreach(var slowTowerVFX in _slowTowerVFXs)
+                        slowTowerVFX.Item2.gameObject.SetActive(true);
+                    foreach(var dotTowerVFX in _dotTowerVFXs)
+                        dotTowerVFX.Item2.gameObject.SetActive(true);
+                    return;
+                case WaveEventType.End:
+                    foreach(var slowTowerVFX in _slowTowerVFXs)
+                        slowTowerVFX.Item2.gameObject.SetActive(false);
+                    foreach(var dotTowerVFX in _dotTowerVFXs)
+                        dotTowerVFX.Item2.gameObject.SetActive(false);
+                    return;
+            }
         }
 
         private void OnEnemyActionEvent(OnEnemyActionEvent args)
@@ -70,11 +106,11 @@ namespace FG_GP2_T3
             }
         }
 
-        private void SpawnVFX(GameObject prefab, Vector3 position, bool loop = false, Transform parent = null)
+        private ParticleSystem SpawnVFX(GameObject prefab, Vector3 position, bool loop = false, Transform parent = null)
         {
-            if (prefab == null) return;
+            if (prefab == null) return null;
 
-            Transform instance = ComponentFactory.Spawn(prefab.transform, position, Quaternion.identity, parent);
+            Transform instance = ComponentFactory.Spawn(prefab.transform, position, prefab.transform.rotation, parent);
             
             ParticleSystem rootPS = instance.GetComponent<ParticleSystem>();
             
@@ -90,6 +126,8 @@ namespace FG_GP2_T3
                 if (!loop && !_isLooping)
                     StartCoroutine(WaitForVFXEnd(prefab.transform, instance, rootPS));
             }
+
+            return rootPS;
         }
 
         private System.Collections.IEnumerator WaitForVFXEnd(Transform prefab, Transform instance, ParticleSystem rootPS)
