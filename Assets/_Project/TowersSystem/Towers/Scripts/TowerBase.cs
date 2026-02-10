@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
 using NaughtyAttributes;
@@ -140,7 +139,7 @@ namespace FG_GP2_T3
 
         private void HandleTarget()
         {
-            if (_CurrentTargets.Count == 0 || _CurrentAttack == null || Data == null) return;
+            if (_CurrentTargets.Count == 0 || _CurrentAttack == null || Data == null ||TargetInRange(_CurrentTarget)) return;
 
             _FireCooldown -= Time.deltaTime;
 
@@ -172,12 +171,12 @@ namespace FG_GP2_T3
         {
             if (currentTarget == null) return false;
 
-            return Vector3.Distance(transform.position, currentTarget.position) <= Data.Range;
+            return Vector3.Distance(transform.position, currentTarget.position) <= stats.Range;
         }
 
         private List<Transform> SelectTargets()
         {
-            Collider[] Hits = Physics.OverlapSphere(transform.position, Data.Range, EnemyLayer);
+            Collider[] Hits = Physics.OverlapSphere(transform.position, stats.Range, EnemyLayer);
 
             List<Transform> Targets = new List<Transform>();
 
