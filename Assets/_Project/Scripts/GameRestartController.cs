@@ -17,7 +17,5 @@ namespace FG_GP2_T3
             if (Input.GetKeyDown(KeyCode.R))
                 GameManager.Instance.ReloadScene();
         }
-
-
     }
 }
