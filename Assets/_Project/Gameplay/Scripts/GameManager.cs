@@ -36,7 +36,6 @@ namespace FG_GP2_T3
 
         void Start()
         {
-            Application.targetFrameRate = 120;
             QualitySettings.vSyncCount = 0;
             Time.timeScale = 1;
 
@@ -59,6 +58,16 @@ namespace FG_GP2_T3
         public void ReloadScene()
         {
             SceneManager.LoadScene(0);
+        }
+
+        public void PauseGame()
+        {
+            gameSpeedController.PauseGame();
+        }
+
+        public void ResumeGame()
+        {
+            gameSpeedController.ResumeGame();
         }
 
         #region State Switches

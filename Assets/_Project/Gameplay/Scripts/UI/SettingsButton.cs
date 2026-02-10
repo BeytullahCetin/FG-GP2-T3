@@ -1,19 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FG_GP2_T3
 {
     public class SettingsButton : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        Button button;
+        SettingsPanel settingsPanel;
+
+        void Awake()
         {
-        
+            settingsPanel = FindAnyObjectByType<SettingsPanel>();
+            button = GetComponent<Button>();
         }
 
-        // Update is called once per frame
-        void Update()
+        void Start()
         {
-        
+            button.onClick.AddListener(settingsPanel.Show);
         }
     }
 }

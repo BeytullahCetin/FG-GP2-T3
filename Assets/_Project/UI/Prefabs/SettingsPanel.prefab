@@ -794,6 +794,7 @@ GameObject:
   - component: {fileID: 2558554855766062492}
   - component: {fileID: 8177284365420390924}
   - component: {fileID: 689217757737842397}
+  - component: {fileID: 5089389628874980767}
   m_Layer: 5
   m_Name: QualitySettingButton (3)
   m_TagString: Untagged
@@ -903,6 +904,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5089389628874980767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157120367317550791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec37fdf6cedb42d1a61584fff436f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qualityIndex: 0
+  qualityName: 
 --- !u!1 &2243110153835895831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,6 +2232,7 @@ GameObject:
   - component: {fileID: 4216752129399945530}
   - component: {fileID: 9185959670859675623}
   - component: {fileID: 2590485276314494287}
+  - component: {fileID: 5211841357069965022}
   m_Layer: 5
   m_Name: QualitySettingButton (2)
   m_TagString: Untagged
@@ -2326,6 +2342,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5211841357069965022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030112116695306944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec37fdf6cedb42d1a61584fff436f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qualityIndex: 0
+  qualityName: 
 --- !u!1 &5176899554046926440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,6 +2685,7 @@ GameObject:
   - component: {fileID: 2527910348299033224}
   - component: {fileID: 6827418757791568743}
   - component: {fileID: 6564469174078836126}
+  - component: {fileID: 6435149760681386773}
   m_Layer: 5
   m_Name: FramerateSettingButton (1)
   m_TagString: Untagged
@@ -2764,6 +2795,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6435149760681386773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5971933156829545464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b405cecc4ce4bc2b71ee8d7b494bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameRate: 0
 --- !u!1 &6446643930191191928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2895,7 @@ GameObject:
   - component: {fileID: 8050248810206771117}
   - component: {fileID: 397208983380599776}
   - component: {fileID: 7871689762123956724}
+  - component: {fileID: 7553333527355808599}
   m_Layer: 5
   m_Name: FramerateSettingButton (2)
   m_TagString: Untagged
@@ -2960,6 +3005,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7553333527355808599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552008467496470598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9b405cecc4ce4bc2b71ee8d7b494bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frameRate: 0
 --- !u!1 &6753527648593072223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,6 +4359,7 @@ GameObject:
   - component: {fileID: 7957358872392204704}
   - component: {fileID: 678592583045447631}
   - component: {fileID: 9002528325791963500}
+  - component: {fileID: 6690771933192792228}
   m_Layer: 5
   m_Name: QualitySettingButton (1)
   m_TagString: Untagged
@@ -4410,6 +4469,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6690771933192792228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8133763603579305420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec37fdf6cedb42d1a61584fff436f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  qualityIndex: 0
+  qualityName: 
 --- !u!1 &8498080284748647605
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,6 +4620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3322209149926219379}
   - component: {fileID: 1474461002036129944}
+  - component: {fileID: 3109005524233962376}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -4587,3 +4661,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a56dbfe91469a457ea87af18f4007e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  qualityLevelButtonList:
+  - {fileID: 6690771933192792228}
+  - {fileID: 5211841357069965022}
+  - {fileID: 5089389628874980767}
+  frameRateButtonList:
+  - {fileID: 6435149760681386773}
+  - {fileID: 7553333527355808599}
+  canvasGroup: {fileID: 3109005524233962376}
+  modalTransform: {fileID: 8061142179593693425}
+  closeButton: {fileID: 6860124260553488162}
+  animationDuration: 0.5
+  showEase: 27
+  hideEase: 26
+--- !u!225 &3109005524233962376
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005607948459865162}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
