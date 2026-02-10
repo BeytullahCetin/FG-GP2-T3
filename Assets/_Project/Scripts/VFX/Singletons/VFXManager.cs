@@ -56,28 +56,38 @@ namespace FG_GP2_T3
 
         private void OnEnemyActionEvent(OnEnemyActionEvent args)
         {
-            
+            switch(args.EventType)
+            {
+                case EnemyEventType.Spawn:
+                    return;
+                case EnemyEventType.Damaged:
+                    SpawnVFX(_enemyDamagedPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, args.Enemy.transform);
+                    return;
+                case EnemyEventType.Death:
+                    SpawnVFX(_enemyDeathPrefab, args.Enemy.transform.position + Vector3.up * 0.1f);
+                    return;
+            }
         }
 
-        private void SpawnVFX(GameObject _prefab, Vector3 _position, bool _loop = false, Transform _parent = null)
+        private void SpawnVFX(GameObject prefab, Vector3 position, bool loop = false, Transform parent = null)
         {
-            if (_prefab == null) return;
+            if (prefab == null) return;
 
-            Transform _instance = ComponentFactory.Spawn(_prefab.transform, _position, Quaternion.identity, _parent);
+            Transform instance = ComponentFactory.Spawn(prefab.transform, position, Quaternion.identity, parent);
             
-            ParticleSystem _rootPS = _instance.GetComponent<ParticleSystem>();
+            ParticleSystem rootPS = instance.GetComponent<ParticleSystem>();
             
-            if (_rootPS == null)
-                _rootPS = _instance.GetComponentInChildren<ParticleSystem>();
+            if (rootPS == null)
+                rootPS = instance.GetComponentInChildren<ParticleSystem>();
 
-            if (_rootPS != null)
+            if (rootPS != null)
             {
-                _rootPS.Play(true); 
+                rootPS.Play(true); 
 
-                bool _isLooping = _rootPS.main.loop;
+                bool _isLooping = rootPS.main.loop;
                 
-                if (!_loop && !_isLooping)
-                    StartCoroutine(WaitForVFXEnd(_prefab.transform, _instance, _rootPS));
+                if (!loop && !_isLooping)
+                    StartCoroutine(WaitForVFXEnd(prefab.transform, instance, rootPS));
             }
         }
 
