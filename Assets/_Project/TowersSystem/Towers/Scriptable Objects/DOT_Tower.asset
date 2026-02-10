@@ -15,7 +15,7 @@ MonoBehaviour:
   TowerIcon: {fileID: 21300000, guid: 497ef791c59470f46be8ef3c45d51b12, type: 3}
   TowerName: Angel Trumpet
   Role: Damage Aura
-  Cost: 25
+  Cost: 200
   Description: Description
   ReferanceDescription: Referance Description
   RealLifeEquivalentDescription: Real Life Equivalent Description
@@ -34,11 +34,12 @@ MonoBehaviour:
   ConeAngle: 0
   Range: 25
   Damage: 1
-  FireRate: 1
+  FireRate: 0.75
   pierce: 0
   RangeString: Medium
-  DamageString: High
-  FireRateString: Fast
+  DamageString: Low
+  FireRateString: Slow
+  RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
