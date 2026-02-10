@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 21059359439712182}
   - component: {fileID: 6264487655615937006}
   - component: {fileID: 5969989449659189364}
+  - component: {fileID: 1153214491414044109}
   m_Layer: 0
   m_Name: VFX_TilePlacement
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1792178807734627912}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.9708, y: 1.81, z: -3.05}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 4.685348, y: 3.5260055, z: 4.685348}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4900,3 +4901,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1153214491414044109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792178807734627912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c92218d57b0724285443eddecf2530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
