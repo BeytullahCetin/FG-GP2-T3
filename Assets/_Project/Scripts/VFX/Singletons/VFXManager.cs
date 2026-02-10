@@ -59,6 +59,7 @@ namespace FG_GP2_T3
             switch(args.EventType)
             {
                 case EnemyEventType.Spawn:
+                    SpawnVFX(_enemySpawnPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, args.Enemy.transform);
                     return;
                 case EnemyEventType.Damaged:
                     SpawnVFX(_enemyDamagedPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, args.Enemy.transform);
