@@ -6,13 +6,13 @@ namespace FG_GP2_T3
     {
         public static VFXManager Instance { get; private set; }
 
-        [SerializeField] private ParticleSystem _tilePlacedPrefab;
-        [SerializeField] private ParticleSystem _towerFusedPrefab;
-        [SerializeField] private ParticleSystem _enemySpawnPrefab;
-        [SerializeField] private ParticleSystem _enemyDamagedPrefab;
-        [SerializeField] private ParticleSystem _enemyDeathPrefab;
-        [SerializeField] private ParticleSystem _towerSlowAOEPrefab;
-        [SerializeField] private ParticleSystem _towerDOTAOEPrefab;
+        [SerializeField] private GameObject _tilePlacedPrefab;
+        [SerializeField] private GameObject _towerFusedPrefab;
+        [SerializeField] private GameObject _enemySpawnPrefab;
+        [SerializeField] private GameObject _enemyDamagedPrefab;
+        [SerializeField] private GameObject _enemyDeathPrefab;
+        [SerializeField] private GameObject _towerSlowAOEPrefab;
+        [SerializeField] private GameObject _towerDOTAOEPrefab;
 
         private void Awake()
         {
@@ -46,7 +46,7 @@ namespace FG_GP2_T3
         private void OnTowerEvent(OnTowerEvent args)
         {
             if(args.EventType == TowerEventType.Fuse)
-                SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, args.Tower.transform);
+                SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
         }
 
         private void OnTowerActionEvent(OnTowerActionEvent args)
@@ -59,21 +59,33 @@ namespace FG_GP2_T3
             
         }
 
-        private void SpawnVFX(ParticleSystem prefab, Vector3 position, bool loop = false, Transform parent = null)
+        private void SpawnVFX(GameObject _prefab, Vector3 _position, bool _loop = false, Transform _parent = null)
         {
-            ParticleSystem instance = ComponentFactory.Spawn(prefab, position, Quaternion.identity, parent);
+            if (_prefab == null) return;
 
-            instance.Play();
+            Transform _instance = ComponentFactory.Spawn(_prefab.transform, _position, Quaternion.identity, _parent);
             
-            if (!loop)
-                StartCoroutine(WaitForVFXEnd(prefab, instance));
+            ParticleSystem _rootPS = _instance.GetComponent<ParticleSystem>();
+            
+            if (_rootPS == null)
+                _rootPS = _instance.GetComponentInChildren<ParticleSystem>();
+
+            if (_rootPS != null)
+            {
+                _rootPS.Play(true); 
+
+                bool _isLooping = _rootPS.main.loop;
+                
+                if (!_loop && !_isLooping)
+                    StartCoroutine(WaitForVFXEnd(_prefab.transform, _instance, _rootPS));
+            }
         }
 
-        private System.Collections.IEnumerator WaitForVFXEnd(ParticleSystem prefab, ParticleSystem instance)
+        private System.Collections.IEnumerator WaitForVFXEnd(Transform prefab, Transform instance, ParticleSystem rootPS)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
-            while (instance.IsAlive(true))
+            while (rootPS != null && rootPS.IsAlive(true))
                 yield return new WaitForSeconds(0.5f);
 
             ComponentFactory.Despawn(prefab, instance);

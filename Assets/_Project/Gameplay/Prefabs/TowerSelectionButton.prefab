@@ -75,7 +75,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: <sprite name="compost"> #1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b29c7f93a4c8eef4ca49f3574c4d67dc, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 6134210806850118985, guid: b29c7f93a4c8eef4ca49f3574c4d67dc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -161,6 +161,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2023916907193525730, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2610401908321983602, guid: 2b90feeb3adacd2449bc79448ae612a6, type: 3}
       propertyPath: m_Name
       value: TowerSelectionButton
