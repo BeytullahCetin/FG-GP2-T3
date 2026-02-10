@@ -40,4 +40,13 @@ public class GameSpeedController : MonoBehaviour
 		OnGameSpeedSet?.Invoke(gameSpeedSettings.GameSpeeds[gameSpeedIndex]);
 	}
 
+	public void ResumeGame()
+	{
+		Time.timeScale = gameSpeedSettings.GameSpeeds[currentGameSpeedIndex];
+	}
+
+	public void PauseGame()
+	{
+		Time.timeScale = 0;
+	}
 }
