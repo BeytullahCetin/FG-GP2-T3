@@ -9690,7 +9690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c87ad75b63755642aeef5a33f3192ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 0
+  _startingHealth: 100
   _health: 100
 --- !u!136 &1144003028
 CapsuleCollider:
