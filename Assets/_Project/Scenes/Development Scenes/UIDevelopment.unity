@@ -5118,8 +5118,6 @@ GameObject:
   m_Component:
   - component: {fileID: 651940188}
   - component: {fileID: 651940187}
-  - component: {fileID: 651940186}
-  - component: {fileID: 651940185}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -5127,31 +5125,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &651940185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651940184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e1737e408304015bd0568063351b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &651940186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651940184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a812a95b606e468b843f85c034e1e28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  supportedFrameRates: 1e0000003c000000
 --- !u!114 &651940187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5164,6 +5137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811d874dff2a84971b2c0cd7c2cb6f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supportedFrameRates: 1e0000003c000000
+  audioSettingsList:
+  - settingsName: Music Volume
+    settingsKey: Volume_Music
+  - settingsName: Ambience Volume
+    settingsKey: Volume_Ambience
 --- !u!4 &651940188
 Transform:
   m_ObjectHideFlags: 0

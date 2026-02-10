@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace FG_GP2_T3
     {
         [SerializeField] List<QualitySettingsButton> qualityLevelButtonList;
         [SerializeField] List<FrameRateButton> frameRateButtonList;
+        [SerializeField] List<AudioSettingsSlider> audioSettingsSliderList;
         [SerializeField] CanvasGroup canvasGroup;
         [SerializeField] Transform modalTransform;
         [SerializeField] Button closeButton;
@@ -39,19 +41,45 @@ namespace FG_GP2_T3
             canvasGroup.blocksRaycasts = false;
         }
 
-        void Start()
+        public void Initialize()
         {
-            closeButton.onClick.AddListener(Hide);
-
-            Application.targetFrameRate = PlayerPrefs.GetInt(SettingsManager.PP_FrameRate, 60);
             SetFrameRateButtons();
             UpdateFrameRateButtons();
 
-            QualitySettings.SetQualityLevel(PlayerPrefs.GetInt(SettingsManager.PP_QualityIndex, 0), true);
             SetQualityButtons();
             UpdateQualityButtons();
 
+            SetAudioSliders();
+            UpdateAudioSliders();
+
+            closeButton.onClick.AddListener(Hide);
             Hide();
+        }
+
+        void SetAudioSliders()
+        {
+            for (int i = 0; i < audioSettingsSliderList.Count; i++)
+            {
+                AudioSettingsSlider audioSettingsSlider = audioSettingsSliderList[i];
+                AudioSettings audioSettings = SettingsManager.Instance.AudioSettingsList[i];
+
+                audioSettingsSlider.audioSettingsKey = audioSettings.settingsKey;
+                audioSettingsSlider.AudioSettingsText.SetText(audioSettings.settingsName);
+                audioSettingsSlider.Slider.onValueChanged.AddListener((value) =>
+                {
+                    SettingsManager.Instance.SetParameterByName(audioSettings.settingsKey, value);
+                    PlayerPrefs.SetFloat(audioSettings.settingsKey, value);
+                });
+            }
+        }
+
+        void UpdateAudioSliders()
+        {
+            foreach (AudioSettingsSlider audioSettingsSlider in audioSettingsSliderList)
+            {
+                RuntimeManager.StudioSystem.getParameterByName(audioSettingsSlider.audioSettingsKey, out float volume);
+                audioSettingsSlider.Slider.value = volume;
+            }
         }
 
         void SetQualityButtons()
@@ -60,12 +88,12 @@ namespace FG_GP2_T3
             {
                 QualitySettingsButton qualitySettingsButton = qualityLevelButtonList[i];
                 qualitySettingsButton.qualityIndex = i;
-                qualitySettingsButton.qualityName = SettingsManager.Instance.QualitySettingsController.QualitySettings[i];
+                qualitySettingsButton.qualityName = SettingsManager.Instance.QualitySettings[i];
                 qualitySettingsButton.QualitySettingsText.SetText(qualitySettingsButton.qualityName);
 
                 qualitySettingsButton.Button.onClick.AddListener(() =>
                 {
-                    QualitySettings.SetQualityLevel(qualitySettingsButton.qualityIndex, true);
+                    SettingsManager.Instance.SetQualityLevel(qualitySettingsButton.qualityIndex);
                     PlayerPrefs.SetInt(SettingsManager.PP_QualityIndex, qualitySettingsButton.qualityIndex);
                     UpdateQualityButtons();
                 });
@@ -85,12 +113,12 @@ namespace FG_GP2_T3
             for (int i = 0; i < frameRateButtonList.Count; i++)
             {
                 FrameRateButton frameRateButton = frameRateButtonList[i];
-                frameRateButton.FrameRateText.SetText(SettingsManager.Instance.QualitySettingsController.SupportedFrameRates[i].ToString());
-                frameRateButton.frameRate = SettingsManager.Instance.QualitySettingsController.SupportedFrameRates[i];
+                frameRateButton.FrameRateText.SetText(SettingsManager.Instance.SupportedFrameRates[i].ToString());
+                frameRateButton.frameRate = SettingsManager.Instance.SupportedFrameRates[i];
 
                 frameRateButton.Button.onClick.AddListener(() =>
                 {
-                    Application.targetFrameRate = frameRateButton.frameRate;
+                    SettingsManager.Instance.SetTargetFrameRate(frameRateButton.frameRate);
                     PlayerPrefs.SetInt(SettingsManager.PP_FrameRate, frameRateButton.frameRate);
                     UpdateFrameRateButtons();
                 });
