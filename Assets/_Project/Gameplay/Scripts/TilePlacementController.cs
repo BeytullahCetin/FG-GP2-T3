@@ -9,16 +9,12 @@ namespace FG_GP2_T3
     public class TilePlacementController : MonoBehaviour
     {
         public static event Action OnTilePlaced;
-        // TODO: create a function for
-        // if (previewTile != null)
-        //         Destroy(previewTile);
 
         public HexTileData CurrentSelectedTile => selectedHexTileData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTile;
 
         [SerializeField] StickyCameraMovement cam;
         [SerializeField] TileRotationConfirmation tileRotationConfirmation;
-        //[SerializeField] List<HexTileData> tiles = new List<HexTileData>();
 
         [ReadOnly][SerializeField] private HexTileData selectedHexTileData;
         [ReadOnly][SerializeField] private HexCell selectedCell;
@@ -42,7 +38,6 @@ namespace FG_GP2_T3
         {
             currentTileRotationIndex++;
             currentTileRotationIndex = currentTileRotationIndex % validRotationsForSelectedTile.Count;
-            // TODO: serialize magic number duration to settings file
             previewTile.transform.DOLocalRotate(new Vector3(0, validRotationsForSelectedTile[currentTileRotationIndex], 0), .5f);
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Rotate));
         }
@@ -90,10 +85,7 @@ namespace FG_GP2_T3
             StopAnimateValidCells();
             validCellsForSelectedTile = HexManager.Instance.GetValidCells(selectedHexTileData);
             StartAnimateValidCells();
-            // TODO: Change to POE's position.
-            // TODO: move camera movement to state
             cam.ZoomOut(null, .5f);
-            // cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTilePlacementSubState();
         }
 
@@ -136,7 +128,6 @@ namespace FG_GP2_T3
             previewTile.transform.localPosition = Vector3.zero;
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
 
-            // TODO: Camera zoom in problem.
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);
         }

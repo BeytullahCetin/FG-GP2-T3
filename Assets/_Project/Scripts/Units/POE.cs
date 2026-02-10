@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine;
 
 namespace FG_GP2_T3
 {
@@ -15,15 +15,15 @@ namespace FG_GP2_T3
 		public CapsuleCollider Collider => _collider;
 
 		Color _originalColor;
-        Renderer[] _renderer;
+		Renderer[] _renderer;
 
-		private void Start()
+		private void Awake()
 		{
 			_health = _startingHealth;
 			_collider = GetComponent<CapsuleCollider>();
 			_renderer = GetComponentsInChildren<Renderer>();
-			foreach(Renderer rend in _renderer)
-				 if (rend != null) _originalColor = rend.material.color;
+			foreach (Renderer rend in _renderer)
+				if (rend != null) _originalColor = rend.material.color;
 		}
 
 		public void TakeDamage(float damage)
@@ -32,7 +32,7 @@ namespace FG_GP2_T3
 
 			EventManager.Invoke(new OnCoreDamageEvent(Mathf.RoundToInt(_health), Mathf.RoundToInt(Mathf.Clamp01(_health / _startingHealth)), Mathf.RoundToInt(damage)));
 
-			if(_health <= 0)
+			if (_health <= 0)
 			{
 				GameManager.Instance.SwitchToGameOverState();
 				Destroy(gameObject);
@@ -43,20 +43,20 @@ namespace FG_GP2_T3
 		}
 
 		private IEnumerator FlashRedCoroutine()
-        {
-			foreach(Renderer rend in _renderer)
-            {
-                if (rend == null) continue;
-                rend.material.color = Color.red;
-            }
+		{
+			foreach (Renderer rend in _renderer)
+			{
+				if (rend == null) continue;
+				rend.material.color = Color.red;
+			}
 
-            yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.1f);
 
-            foreach(Renderer rend in _renderer)
+			foreach (Renderer rend in _renderer)
 			{
 				if (rend == null) continue;
 				rend.material.color = _originalColor;
 			}
-        }
+		}
 	}
 }

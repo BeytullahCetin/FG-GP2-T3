@@ -170,10 +170,7 @@ namespace FG_GP2_T3
             EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Open));
 
             UIManager.Instance.GameplayUI.TowerInfoUI.Shrink();
-            // TODO: Change to POE's position.
-            // TODO: move camera movement to state
             cam.ZoomOut(null, .5f);
-            // cam.transform.DOMove(Vector3.zero, .5f);
             GameManager.Instance.SwitchToTowerPlacementSubState();
         }
 

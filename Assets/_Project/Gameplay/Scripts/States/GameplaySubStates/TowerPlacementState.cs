@@ -30,18 +30,15 @@ namespace FG_GP2_T3
 
 		private void ListenSelectCellClicks()
 		{
-			// TODO: Change input system to new input system
 			if (Input.GetMouseButtonDown(0) == false)
 				return;
 
 			if (towerPlacementController.SelectedTower == null)
 			{
-				// TODO: Add UI remainder to select a tower!
 				return;
 			}
 
 			Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			// TODO: Add collider to cells. detect cell with getcomponent when raycast hit
 			bool isHit = Physics.Raycast(inputRay, out RaycastHit hit);
 
 			if (isHit == false)

@@ -6,8 +6,6 @@ namespace FG_GP2_T3
     {
         private HudElement hudElement;
 
-        // TODO: Register OnWaveChangeEvent
-
         void Awake()
         {
             hudElement = GetComponent<HudElement>();
@@ -16,11 +14,18 @@ namespace FG_GP2_T3
         void Start()
         {
             UpdateWaveText();
+            EventManager.Register<OnWaveEvent>(UpdateWaveText);
         }
 
         void UpdateWaveText()
         {
             hudElement.ContentText.FillText((EnemyManager.Instance.WaveIndex + 1).ToString());
+        }
+
+        void UpdateWaveText(OnWaveEvent args)
+        {
+            if (args.EventType == WaveEventType.End)
+                UpdateWaveText();
         }
     }
 }

@@ -65,9 +65,8 @@ namespace FG_GP2_T3
             _isWaveActive = false;
             _enemiesRemaining = 0;
 
-            EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
-
             _waveIndex++;
+            EventManager.Invoke(new OnWaveEvent(WaveEventType.End, _waveIndex));
 
             GameManager.Instance.SwitchToTileSelectionSubState();
         }

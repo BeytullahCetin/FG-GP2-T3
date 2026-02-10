@@ -31,7 +31,6 @@ namespace FG_GP2_T3
 
 		private void CheckValidCellClicked()
 		{
-			// TODO: Change input system to new input system
 			if (Input.GetMouseButtonDown(0) == false)
 				return;
 
@@ -39,7 +38,6 @@ namespace FG_GP2_T3
 				return;
 
 			Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			// TODO: Add collider to cells. detect cell with getcomponent when raycast hit
 			bool isHit = Physics.Raycast(inputRay, out RaycastHit hit);
 
 			if (isHit == false)

@@ -6,6 +6,7 @@ namespace FG_GP2_T3
     public class TowerRangePreview : MonoBehaviour
     {
         [SerializeField] private GameObject _rangePreview;
+        [SerializeField] TowerBase towerBase;
 
         private MeshRenderer _innerMeshRenderer;
         private MaterialPropertyBlock _propertyBlock;
@@ -22,6 +23,7 @@ namespace FG_GP2_T3
 
             _innerMeshRenderer = _rangePreview.GetComponent<MeshRenderer>();
             _propertyBlock = new MaterialPropertyBlock();
+            towerBase = GetComponent<TowerBase>();
         }
 
         private void ApplyProperties(float range, float angleDegrees, float directionDegrees)
@@ -38,6 +40,13 @@ namespace FG_GP2_T3
 
         #region API
 
+        [Button]
+        public void ShowRange()
+        {
+            ApplyProperties(towerBase.Stats.Range, 360, 0);
+            _rangePreview.SetActive(true);
+        }
+
         public void ShowRange(float range, float angleDegrees = 360, float directionDegrees = 0)
         {
             angleDegrees = Mathf.Clamp(angleDegrees, 0f, 360f);
@@ -46,6 +55,7 @@ namespace FG_GP2_T3
             _rangePreview.SetActive(true);
         }
 
+        [Button]
         public void HideRange()
         {
             _rangePreview.SetActive(false);
