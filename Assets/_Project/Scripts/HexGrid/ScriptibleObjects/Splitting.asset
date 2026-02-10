@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2553e4e6e8306aa46903aaf732ffe874, type: 3}
+  m_Name: Splitting
+  m_EditorClassIdentifier: 
+  TileIcon: {fileID: 21300000, guid: 3f1b36ebc49fa384499ef06918a89ff9, type: 3}
+  TilePrefab: {fileID: 4273206115010845714, guid: d83ab30dfcee8104d8e915c5a2de22e7, type: 3}
+  Roads:
+    _roads: 000001000101

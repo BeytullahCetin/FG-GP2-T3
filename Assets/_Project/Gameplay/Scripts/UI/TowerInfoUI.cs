@@ -121,6 +121,7 @@ namespace FG_GP2_T3
         public void Hide()
         {
             Shrink();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroupTranform);
             layoutGroupTranform.DOAnchorPosY(-LayoutHidePos, showHideDuration).SetEase(hideEase);
         }
 
