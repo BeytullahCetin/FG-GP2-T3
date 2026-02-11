@@ -3257,6 +3257,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc14bd907de12f14ab1d5b67b9b66819, type: 3}
+--- !u!1 &351089893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7602260149215462659, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
+  m_PrefabInstance: {fileID: 1743176019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &352226033 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1762592767324347199, guid: 25411d0d121e4f64daa5bac8fc4f46b4, type: 3}
@@ -7323,7 +7328,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3805030264933881306, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
   m_PrefabInstance: {fileID: 1743176019}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 351089893}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73b799beadc19e245a9e899c3555db1f, type: 3}
@@ -9769,6 +9774,7 @@ GameObject:
   - component: {fileID: 1144003027}
   - component: {fileID: 1144003026}
   - component: {fileID: 1144003028}
+  - component: {fileID: 1144003029}
   m_Layer: 10
   m_Name: POE
   m_TagString: Untagged
@@ -9845,6 +9851,24 @@ CapsuleCollider:
   m_Height: 90.7
   m_Direction: 1
   m_Center: {x: 0.000000047683717, y: -0.15, z: -0.00000009536743}
+--- !u!114 &1144003029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144003023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e850ee623940d874580a94622f18df30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  branches:
+  - {fileID: 1261092701}
+  - {fileID: 237066110}
+  - {fileID: 582192878}
+  - {fileID: 161558363}
+  - {fileID: 1618257728}
 --- !u!1001 &1151671544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14081,6 +14105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 211938300}
     m_Modifications:
+    - target: {fileID: 1505844960133341529, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 351089893}
     - target: {fileID: 3805030264933881306, guid: 8fae46be3eb0f34409fd98ef7ee31415, type: 3}
       propertyPath: dragAction
       value: 
