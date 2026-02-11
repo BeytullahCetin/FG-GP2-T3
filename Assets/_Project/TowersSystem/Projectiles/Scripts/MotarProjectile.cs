@@ -9,6 +9,7 @@ namespace FG_GP2_T3
         float _Damage;
         float _ExplosionRadius;
         TowerAttack _OwnerAttack;
+        LayerMask _enemylayer;
 
         Vector3 _StartPoint;
         Vector3 _TargetPoint;
@@ -22,13 +23,15 @@ namespace FG_GP2_T3
             Transform target,
             float damage,
             float explosionRadius,
-            TowerAttack ownerAttack
+            TowerAttack ownerAttack,
+            LayerMask enemyLayer
         )
         {
             _Target = target;
             _Damage = damage;
             _ExplosionRadius = explosionRadius;
             _OwnerAttack = ownerAttack;
+            _enemylayer = enemyLayer;
 
             _StartPoint = transform.position;
             _TargetPoint = target.position;
@@ -46,8 +49,11 @@ namespace FG_GP2_T3
                 Explode();
                 return;
             }
+            if (_Target != null)
+                _TargetPoint = _Target.position;
 
             Vector3 flatPos = Vector3.Lerp(_StartPoint, _TargetPoint, t);
+
             float arc = Mathf.Sin(t * Mathf.PI) * _ArcHeight;
             transform.position = flatPos + Vector3.up * arc;
         }
@@ -57,7 +63,7 @@ namespace FG_GP2_T3
             if (_Exploded) return;
             _Exploded = true;
 
-            Collider[] hits = Physics.OverlapSphere(transform.position, _ExplosionRadius);
+            Collider[] hits = Physics.OverlapSphere(transform.position, _ExplosionRadius, _enemylayer);
 
             foreach (Collider hit in hits)
             {
@@ -67,10 +73,13 @@ namespace FG_GP2_T3
                 enemy.TakeDamage(_Damage);
                 _OwnerAttack.ApplyEffects(enemy);
             }
+            Debug.Log($"Explosion Radius: {_ExplosionRadius}");
+            Debug.Log($"Hit Count: {hits.Length}");
 
             Destroy(gameObject);
         }
+    
     }
-
 }
+    
 

@@ -9,11 +9,11 @@ namespace FG_GP2_T3
         {
             if(target == null) return;
 
-            IDamageable enemy = target.GetComponent<IDamageable>();
+            IDamageable enemy = target.GetComponentInParent<IDamageable>();
             if (enemy != null)
             {
                 enemy.TakeDamage(Tower.Stats.Damage);
-                enemy.ApplyStun(Tower.Stats.CCDuraton);
+                ApplyEffects(enemy);
             }
             Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
 

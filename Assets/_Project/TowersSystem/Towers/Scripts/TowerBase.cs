@@ -88,6 +88,8 @@ namespace FG_GP2_T3
         public void BuildTower()
         {
             stats = new TowerStats(Data);
+            Debug.Log($"{Data.TowerName} -> Slow:{stats.HasSlow} Stun:{stats.HasStun} Dot:{stats.HasDot}");
+
             SetMaterials();
             SetupAttackBehaviour();
             PlayBuildSound();

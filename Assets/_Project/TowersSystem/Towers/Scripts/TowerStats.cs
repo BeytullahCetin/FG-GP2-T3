@@ -27,11 +27,21 @@ namespace FG_GP2_T3
             Range = data.Range;
             FireRate = data.FireRate;
             Damage = data.Damage;
+
+            HasSlow=data.CrowdControlType == CrowdControlType.Slow;
+            HasStun=data.CrowdControlType == CrowdControlType.Stun;
+
             Slowpercent = data.SlowPercent;
             CCDuraton = data.CcDuration;
+            
+            HasSplash=data.AttackType == AttackType.Mortar ;
+            Explosionradius = data.ExplosionRadius;
+
+
+            HasDot = data.DamageType == DamageType.DamageOverTime;
+
             DotDuration = data.DotDuration;
             DotDamage = data.DotDamagePerSecond;
-            Explosionradius = data.ExplosionRadius;
 
         }
     }
