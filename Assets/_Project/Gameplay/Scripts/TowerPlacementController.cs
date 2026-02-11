@@ -118,7 +118,7 @@ namespace FG_GP2_T3
             selectedCell.TrySetTile(towerTile);
             selectedCell.Tile.GetComponent<HexTowerTile>().SetTowerBase(previewTowerBase);
 
-            EventManager.Invoke(new OnTowerEvent(selectedCell.Tile.GetComponent<HexTowerTile>().TowerBase, TowerEventType.Build));
+            EventManager.Invoke(new OnTowerEvent(selectedCell.Tile.GetComponent<HexTowerTile>().TowerBase, selectedCell, TowerEventType.Build));
 
             CompostManager.Instance.UseCompost(selectedTowerData.Cost);
             UIManager.Instance.GameplayUI.UpdateTowerSelectionButtons();
@@ -158,7 +158,7 @@ namespace FG_GP2_T3
                 CompostManager.Instance.UseCompost(selectedTowerData.Cost);
                 UIManager.Instance.GameplayUI.UpdateTowerSelectionButtons();
                 UIManager.Instance.GameplayUI.DeselectTowerSelectionButtons();
-                EventManager.Invoke(new OnTowerEvent(previousTowerBase, TowerEventType.Fuse));
+                EventManager.Invoke(new OnTowerEvent(previousTowerBase, null, TowerEventType.Fuse));
 
                 previousTowerBase.TowerRangePreview.HideRange();
                 //previousTowerBase = null;

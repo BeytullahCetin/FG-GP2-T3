@@ -11,11 +11,13 @@ namespace FG_GP2_T3
     public class OnTowerEvent : GameEventArgs
     {
         public readonly TowerBase Tower;
+        public readonly HexCell Cell;
         public readonly TowerEventType EventType;
 
-        public OnTowerEvent(TowerBase tower, TowerEventType eventType)
+        public OnTowerEvent(TowerBase tower, HexCell cell, TowerEventType eventType)
         {
             Tower = tower;
+            Cell = cell;
             EventType = eventType;
         }
     }

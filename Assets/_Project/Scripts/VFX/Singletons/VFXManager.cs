@@ -74,6 +74,7 @@ namespace FG_GP2_T3
                         vfx.gameObject.SetActive(false);
                         _dotTowerVFXs.Add((args.Tower, vfx));
                     }
+                    SpawnVFX(_tilePlacedPrefab, args.Cell.transform.position + Vector3.up * 0.1f, args.Cell.transform);
                     return;
                 case TowerEventType.Fuse:
                     SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
