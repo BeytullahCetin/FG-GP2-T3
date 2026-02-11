@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -9,6 +10,8 @@ namespace FG_GP2_T3
     {
         public TowerData SelectedTower => selectedTowerData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
+
+        public static event Action OnTowerTilePlaced;
 
         [SerializeField] int rerollCost = 25;
 
@@ -129,6 +132,7 @@ namespace FG_GP2_T3
 
             cam.ZoomOut(null, .5f);
             validCellsForSelectedTower.Clear();
+            OnTowerTilePlaced?.Invoke();
             GameManager.Instance.SwitchToTowerSelectionSubState();
         }
 
