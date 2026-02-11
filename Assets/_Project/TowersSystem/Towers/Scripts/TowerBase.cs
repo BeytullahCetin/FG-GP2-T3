@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EPOOutline;
 using FMODUnity;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
+using Handles = UnityEditor.Handles;
 
 
 ///<summary>
@@ -19,6 +21,8 @@ namespace FG_GP2_T3
     public class TowerBase : MonoBehaviour
     {
         [Expandable] public TowerData Data;
+        [SerializeField] Outlinable outlinable;
+        public Outlinable Outlinable => outlinable;
 
         [ReadOnly]
         [SerializeField] private TowerStats stats;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d013462729c4c19a205534fa68a719, type: 3}
   m_Name: TilePlacementSettings
   m_EditorClassIdentifier: 
-  placementDuration: 0
+  placementDuration: 0.2
   placementEase: 3
   shakeDuration: 0
   shakeStrenght: 1

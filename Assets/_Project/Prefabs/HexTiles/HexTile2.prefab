@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 5373891104693001250}
   - component: {fileID: 6384692601037791586}
   - component: {fileID: 72486981400207368}
-  - component: {fileID: 488094642174482934}
+  - component: {fileID: 939890908005270896}
   m_Layer: 7
   m_Name: HexTile2
   m_TagString: Untagged
@@ -2084,6 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6bd9597218a6e4aa898adefd70c0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlinable: {fileID: 939890908005270896}
 --- !u!114 &72486981400207368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,20 +2099,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkRadius: 12
   targetTag: Foliage
---- !u!114 &488094642174482934
+--- !u!114 &939890908005270896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2825304087922768970}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   complexMaskingMode: 0
-  drawingMode: 10
+  drawingMode: -1
   outlineLayer: 0
   outlineTargets:
   - CutoutMask: 8
@@ -2785,7 +2786,7 @@ MonoBehaviour:
     CullMode: 2
     cutoutTextureName: 
     cutoutTextureIndex: 0
-  renderStyle: 2
+  renderStyle: 1
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -2796,20 +2797,20 @@ MonoBehaviour:
       serializedProperties:
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 0, g: 1, b: 0, a: 0.3137255}
+          ColorValue: {r: 0, g: 1, b: 0, a: 0.39215687}
           FloatValue: 0
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
       - PropertyName: _PublicGapColor
         Property:
-          ColorValue: {r: 1, g: 1, b: 1, a: 0}
+          ColorValue: {r: 0, g: 0, b: 0, a: 0.039215688}
           FloatValue: 0
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
       - PropertyName: _PublicSize
         Property:
           ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
-          FloatValue: 2
+          FloatValue: 3
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 2
       - PropertyName: _PublicGapSize
@@ -2827,7 +2828,7 @@ MonoBehaviour:
       - PropertyName: _PublicSpeed
         Property:
           ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
-          FloatValue: 10
+          FloatValue: 5
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 2
       - PropertyName: _PublicAngle

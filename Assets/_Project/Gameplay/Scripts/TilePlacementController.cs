@@ -62,9 +62,16 @@ namespace FG_GP2_T3
             }
 
             selectedCell.Tile.transform.localPosition = Vector3.up * 50;
+
+            var moveTween = selectedCell.Tile.transform.DOLocalMoveY(0, tilePlacementSettings.placementDuration).SetEase(tilePlacementSettings.placementEase);
+            var shakeTween = selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato);
+
+            if (moveTween == null) Debug.LogError("MOVE TWEEN NULL");
+            if (shakeTween == null) Debug.LogError("SHAKE TWEEN NULL");
+
             Sequence seq = DOTween.Sequence();
-            seq.Append(selectedCell.Tile.transform.DOLocalMoveY(0, tilePlacementSettings.placementDuration).SetEase(tilePlacementSettings.placementEase));
-            seq.Append(selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+            seq.Append(moveTween);
+            seq.Append(shakeTween);
 
             previewTile = null;
             cam.ZoomOut(null, .5f);
@@ -128,6 +135,8 @@ namespace FG_GP2_T3
             previewTile.transform.SetParent(selectedCell.transform);
             previewTile.transform.localPosition = Vector3.zero;
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
+            previewTile.Outlineable.enabled = true;
+
 
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);

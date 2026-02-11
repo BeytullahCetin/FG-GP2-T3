@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -33,6 +34,8 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
         [ReadOnly][SerializeField] int rerollCount = 0;
 
+        [Header("Animations")]
+        [Expandable][SerializeField] TilePlacementSettings tilePlacementSettings;
 
 
         private int GetRerollCost()
@@ -125,6 +128,22 @@ namespace FG_GP2_T3
             UIManager.Instance.GameplayUI.DeselectTowerSelectionButtons();
             previewTowerBase.BuildTower();
             previewTowerBase.TowerRangePreview.HideRange();
+
+            selectedCell.Tile.transform.localPosition = Vector3.up * 50;
+            previewTowerBase.transform.localPosition = new Vector3(previewTowerBase.transform.localPosition.x, 50, previewTowerBase.transform.localPosition.z);
+
+            Sequence seq = DOTween.Sequence();
+            seq.Pause();
+            seq.Append(selectedCell.Tile.transform.DOLocalMoveY(0, tilePlacementSettings.placementDuration).SetEase(tilePlacementSettings.placementEase));
+            seq.Join(previewTowerBase.transform.DOLocalMoveY(-50, tilePlacementSettings.placementDuration).SetRelative().SetEase(tilePlacementSettings.placementEase));
+
+            seq.Append(selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+            seq.Join(previewTowerBase.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+            seq.Play();
+
+            previewTowerBase.Outlinable.enabled = false;
+            previewTile.Outlineable.enabled = false;
+
             selectedCell = null;
             previewTile = null;
             previewTowerBase = null;
@@ -315,6 +334,9 @@ namespace FG_GP2_T3
             previewTowerBase.Data = selectedTowerData;
             previewTowerBase.UpdateTowerVisual();
             previewTowerBase.TowerRangePreview.ShowRange();
+
+            previewTowerBase.Outlinable.enabled = false;
+            previewTile.Outlineable.enabled = false;
 
             previewTile.transform.position = selectedCell.transform.position;
             previewTowerBase.transform.position = selectedCell.transform.position;
