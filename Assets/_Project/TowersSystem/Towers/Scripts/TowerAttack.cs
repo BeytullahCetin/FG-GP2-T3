@@ -31,7 +31,7 @@ namespace FG_GP2_T3
             if (Tower.Stats.HasStun)
             {
                 enemy.ApplyStun(Tower.Stats.CCDuraton);
-                Debug.Log($"Applied stun to {enemy} for {Tower.Stats.CCDuraton} seconds.");
+                // Debug.Log($"Applied stun to {enemy} for {Tower.Stats.CCDuraton} seconds.");
             }
 
             if (Tower.Stats.HasDot)
@@ -40,13 +40,13 @@ namespace FG_GP2_T3
                     Tower.Stats.DotDamage,
                     Tower.Stats.DotDuration
                 );
-                Debug.Log($"Applied DoT to {enemy} for {Tower.Stats.DotDamage} damage per second for {Tower.Stats.DotDuration} seconds.");
+                // Debug.Log($"Applied DoT to {enemy} for {Tower.Stats.DotDamage} damage per second for {Tower.Stats.DotDuration} seconds.");
             }
 
             if (Tower.Stats.HasSlow)
             {
                 enemy.ApplySlow(Tower.Stats.Slowpercent,Tower.Stats.CCDuraton);
-                Debug.Log($"Applied slow to {enemy} reducing speed by {Tower.Stats.Slowpercent * 100}% for {Tower.Stats.CCDuraton} seconds.");
+                // Debug.Log($"Applied slow to {enemy} reducing speed by {Tower.Stats.Slowpercent * 100}% for {Tower.Stats.CCDuraton} seconds.");
             }
         }
         protected IDamageable GetEnemy(Transform Target)

@@ -7,11 +7,12 @@ namespace FG_GP2_T3
         public static UIManager Instance;
 
         public GameplayUI GameplayUI => gameplayUI;
-        [SerializeField] GameplayUI gameplayUI;
+        GameplayUI gameplayUI;
 
         void Awake()
         {
             Instance = this;
+            gameplayUI = FindAnyObjectByType<GameplayUI>();
         }
     }
 }

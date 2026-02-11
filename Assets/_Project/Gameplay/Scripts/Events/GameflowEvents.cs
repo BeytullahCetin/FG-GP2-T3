@@ -9,4 +9,5 @@ public class GameflowEvents
 	public static Action OnExitedGameplayState;
 
 	public static Action OnEnterGameOverState;
+	public static Action OnEnterGameWinState;
 }

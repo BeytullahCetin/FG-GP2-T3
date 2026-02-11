@@ -5,12 +5,11 @@ namespace FG_GP2_T3
 {
     public class SettingsButton : MonoBehaviour
     {
+        [SerializeField] SettingsPanel settingsPanel;
         Button button;
-        SettingsPanel settingsPanel;
 
         void Awake()
         {
-            settingsPanel = FindAnyObjectByType<SettingsPanel>(FindObjectsInactive.Include);
             button = GetComponent<Button>();
         }
 

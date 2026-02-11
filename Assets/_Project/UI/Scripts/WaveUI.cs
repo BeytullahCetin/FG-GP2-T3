@@ -19,7 +19,16 @@ namespace FG_GP2_T3
 
         void UpdateWaveText()
         {
-            hudElement.ContentText.FillText($"{EnemyManager.Instance.WaveIndex + 1}/{EnemyManager.Instance.Waves.Count}");
+            int waveNo = EnemyManager.Instance.WaveIndex + 1;
+            int totalWaveCount = EnemyManager.Instance.Waves.Count;
+
+            if (waveNo <= totalWaveCount)
+            {
+                hudElement.ContentText.FillText($"{waveNo}/{totalWaveCount}");
+                return;
+            }
+
+            GameManager.Instance.SwitchToGameWinState();
         }
 
         void UpdateWaveText(OnWaveEvent args)

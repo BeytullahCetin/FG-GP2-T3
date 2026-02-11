@@ -11,15 +11,15 @@ namespace FG_GP2_T3
 
             foreach (Collider hit in Hits)
             {
-               IDamageable enemy = hit.GetComponentInParent<IDamageable>();
+                IDamageable enemy = hit.GetComponentInParent<IDamageable>();
                 if (enemy != null)
                     enemy.TakeDamage(Tower.Stats.Damage);
                 ApplyEffects(enemy);
 
-               
+
 
             }
-            Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
+            // Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
         }
 
 
