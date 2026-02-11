@@ -83,9 +83,9 @@ namespace FG_GP2_T3
             string towerRole = $"<color={towerNameColor.ToHex()}>{towerData.Role}</color>";
 
             towerInfoText.FillText(towerName, towerRole,
-                $"Damage: {towerData.DamageString}", $"Fire Rate: {towerData.FireRateString}",
-                $"Range: {towerData.RangeString}", $"Attack Type: {towerData.AttackType}",
-                $"Fuse Effect: {towerData.FusionStatType}",
+                $"{towerData.DamageString}", $"{towerData.FireRateString}",
+                $"{towerData.RangeString}", $"{towerData.AttackTypeString}",
+                $"{towerData.FusionStatString}",
                 towerData.Description);
             currentTowerData = towerData;
             // FillTowerDetail(towerData);
@@ -123,9 +123,9 @@ namespace FG_GP2_T3
             }
 
             towerInfoText.FillText(towerName, towerRole,
-                $"Damage: {damageText}", $"FireRate: {fireRateText}",
-                $"Range: {rangeText}", $"Attack Type: {mainTower.AttackType}",
-                $"<color={fusedTowerStatColor.ToHex()}>{secondaryTower.FusionStatType}+</color>",
+                $"{damageText}", $"{fireRateText}",
+                $"{rangeText}", $"{mainTower.AttackTypeString}",
+                $"<color={fusedTowerStatColor.ToHex()}>{secondaryTower.FusionStatString}+</color>",
                 mainTower.Description);
             currentTowerData = mainTower;
             // FillTowerDetail(mainTower);

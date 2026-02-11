@@ -17,8 +17,14 @@ MonoBehaviour:
   Role: Ranged
   Cost: 50
   Description: Description
-  ReferanceDescription: Referance Description
-  RealLifeEquivalentDescription: Real Life Equivalent Description
+  ReferanceDescription: Single target tower with a long range. Focuses on one enemy
+    until it dies or leaves the tower's range.
+  RealLifeEquivalentDescription: The Brazil nut tree is one of the longest-lived
+    residents of the Amazon, often reaching 500 to 1,000 years of age. Its massive,
+    woody fruit pods can take over a year to mature and are heavy enough to be fatal
+    if they fall on someone below. It was a mystery how anything could pierce these
+    rock-hard shells until it was discovered that the Agouti, a large rodent, is
+    the only animal with the specialized teeth needed to crack them open.
   AttackType: 0
   DamageType: 0
   SoundOnSelected: 1115
@@ -36,14 +42,15 @@ MonoBehaviour:
   Damage: 15
   FireRate: 1.5
   pierce: 0
-  RangeString: Long
-  DamageString: High
-  FireRateString: Fast
+  RangeString: LONG
+  DamageString: HIGH
+  FireRateString: FAST
+  AttackTypeString: PROJECTILE
   RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 44d433f45af59094691c5cf262c9bd7a, type: 3}
   towerMaterial: {fileID: 2100000, guid: e9b35260c4dca5b43aea221110bdf0c6, type: 2}
   CompostCost: 0
   FusionID: A
   FusionStatType: 1
-  FusionStatString: 
+  FusionStatString: RANGE+
   FusionStatValue: 20

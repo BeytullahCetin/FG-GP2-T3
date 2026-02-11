@@ -17,8 +17,11 @@ MonoBehaviour:
   Role: Slow Aura
   Cost: 75
   Description: Description
-  ReferanceDescription: Referance Description
-  RealLifeEquivalentDescription: Real Life Equivalent Description
+  ReferanceDescription: Crowd control tower. Affects all enemies within a circular
+    radius and slows their movement speed by a fixed percentage while in range.
+  RealLifeEquivalentDescription: "While it can tower over 30 meters like a tree,
+    bamboo is actually the world\u2019s fastest-growing grass. Under ideal conditions,
+    certain species can shoot up by over 90 cm in a single day."
   AttackType: 3
   DamageType: 0
   SoundOnSelected: 1110
@@ -36,14 +39,15 @@ MonoBehaviour:
   Damage: 5
   FireRate: 1
   pierce: 0
-  RangeString: Medium
-  DamageString: Low
-  FireRateString: Medium
+  RangeString: MEDIUM
+  DamageString: LOW
+  FireRateString: MEDIUM
+  AttackTypeString: AREA
   RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: B
   FusionStatType: 4
-  FusionStatString: 
+  FusionStatString: SPLASH+
   FusionStatValue: 1

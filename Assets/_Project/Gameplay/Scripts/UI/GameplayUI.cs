@@ -199,7 +199,7 @@ namespace FG_GP2_T3
             {
                 TowerSelectionButton selectionButton = Instantiate(towerSelectionButtonPrefab, towerSelectionButtonsParent);
                 selectionButton.SetTowerData(towerData);
-                selectionButton.Title.SetText($"{towerData.TowerName}\n({towerData.Role})");
+                selectionButton.Title.SetText(towerData.TowerName);
                 selectionButton.Image.sprite = towerData.TowerIcon;
                 selectionButton.CostText.FillText(towerData.Cost.ToString());
                 selectionButton.UnaffordableCostText.FillText(towerData.Cost.ToString());

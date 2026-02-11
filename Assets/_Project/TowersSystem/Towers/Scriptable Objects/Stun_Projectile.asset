@@ -17,8 +17,12 @@ MonoBehaviour:
   Role: Stun
   Cost: 150
   Description: Description
-  ReferanceDescription: Referance Description
-  RealLifeEquivalentDescription: Real Life Equivalent Description
+  ReferanceDescription: A single target tower that deals low damage but stuns targets
+    on hit.
+  RealLifeEquivalentDescription: The Howler Monkey is the largest monkey in the Amazon
+    and also one of the loudest land animals on Earth, with a howl that can be heard
+    up to 3 miles away. Out of respect for your earbuds, we avoided adding their
+    howl as a sound effect.
   AttackType: 0
   DamageType: 0
   SoundOnSelected: 1105
@@ -36,14 +40,15 @@ MonoBehaviour:
   Damage: 10
   FireRate: 0.8
   pierce: 0
-  RangeString: Medium
-  DamageString: High
-  FireRateString: Medium
-  RotationOffset: {x: 0, y: 0}
+  RangeString: MEDIUM
+  DamageString: LOW
+  FireRateString: MEDIUM
+  AttackTypeString: PROJECTILE
+  RotationOffset: {x: 0, y: -90}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 44d433f45af59094691c5cf262c9bd7a, type: 3}
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: F
   FusionStatType: 6
-  FusionStatString: 
+  FusionStatString: STUN+
   FusionStatValue: 2

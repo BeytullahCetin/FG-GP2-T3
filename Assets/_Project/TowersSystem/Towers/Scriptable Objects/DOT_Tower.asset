@@ -17,8 +17,14 @@ MonoBehaviour:
   Role: Damage Aura
   Cost: 200
   Description: Description
-  ReferanceDescription: Referance Description
-  RealLifeEquivalentDescription: Real Life Equivalent Description
+  ReferanceDescription: Damage over Time tower. Affects all enemies within a circular
+    radius and deals damage at a fixed rate.
+  RealLifeEquivalentDescription: Commonly known as Angel's Trumpet for its large,
+    pendulous blooms, Brugmansia has evolved clever ways to court different pollinators.
+    Many varieties emit a powerful, sweet fragrance specifically at night to lure
+    in moths from great distances. In contrast, certain red-hued species focus on
+    visual appeal rather than scent, ditching the perfume to rely on the keen eyes
+    of hummingbirds for pollination.
   AttackType: 3
   DamageType: 1
   SoundOnSelected: 1120
@@ -36,14 +42,15 @@ MonoBehaviour:
   Damage: 1
   FireRate: 0.75
   pierce: 0
-  RangeString: Medium
-  DamageString: Low
-  FireRateString: Slow
+  RangeString: MEDIUM
+  DamageString: LOW
+  FireRateString: SLOW
+  AttackTypeString: AREA
   RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: G
   FusionStatType: 6
-  FusionStatString: 
+  FusionStatString: STUN+
   FusionStatValue: 2
