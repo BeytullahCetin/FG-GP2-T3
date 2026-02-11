@@ -31,6 +31,7 @@ namespace FG_GP2_T3
 
             basetower.MarkFused();
             sacrificetower.MarkFused();
+            basetower.FusedTower = sacrificetower.Data;
 
             GameObject.Destroy(sacrificetower.gameObject);
 
@@ -57,23 +58,23 @@ namespace FG_GP2_T3
                     tower.Stats.FireRate += value;
                     break;
                 case FusionStatType.splashradiusBoost:
-                    if(!tower.Stats.HasSplash)
+                    if (!tower.Stats.HasSplash)
                         tower.Stats.HasSplash = true;
 
                     tower.Stats.Explosionradius += value;
 
                     break;
                 case FusionStatType.AddSlow:
-                    if(!tower.Stats.HasSlow)
-                    { 
+                    if (!tower.Stats.HasSlow)
+                    {
                         tower.Stats.HasSlow = true;
-                       tower.Stats.Slowpercent = value;
+                        tower.Stats.Slowpercent = value;
                     }
                     else
                     {
-                       tower.Stats.Slowpercent += value;
+                        tower.Stats.Slowpercent += value;
                     }
-                        break;
+                    break;
                 case FusionStatType.AddStun:
                     if (!tower.Stats.HasStun)
                     {
@@ -96,7 +97,7 @@ namespace FG_GP2_T3
                     {
                         tower.Stats.DotDamage += value;
                     }
-                        break;
+                    break;
             }
             Debug.Log($"Applied fusion stat {sacrifice.Data.FusionStatType} with value {sacrifice.Data.FusionStatValue} to tower {tower.Data.TowerName}.");
         }

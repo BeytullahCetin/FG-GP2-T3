@@ -70,24 +70,25 @@ namespace FG_GP2_T3
 
         public void SetTowerInfo(TowerData towerData, TowerBase towerBase = null)
         {
-            // if (currentTowerBase != null)
-            // {
-            //     currentTowerBase.TowerRangePreview.HideRange();
-            //     currentTowerBase = null;
-            // }
-
-            // if (towerBase != null)
             currentTowerBase = towerBase;
 
-            string towerName = $"<color={towerNameColor.ToHex()}>{towerData.TowerName}</color>";
-            string towerRole = $"<color={towerNameColor.ToHex()}>{towerData.Role}</color>";
+            if (towerBase == null || (towerBase != null && towerBase.HasFused == false))
+            {
 
-            towerInfoText.FillText(towerName, towerRole,
-                $"{towerData.DamageString}", $"{towerData.FireRateString}",
-                $"{towerData.RangeString}", $"{towerData.AttackTypeString}",
-                $"{towerData.FusionStatString}",
-                towerData.Description);
-            currentTowerData = towerData;
+                string towerName = $"<color={towerNameColor.ToHex()}>{towerData.TowerName}</color>";
+                string towerRole = $"<color={towerNameColor.ToHex()}>{towerData.Role}</color>";
+
+                towerInfoText.FillText(towerName, towerRole,
+                    $"{towerData.DamageString}", $"{towerData.FireRateString}",
+                    $"{towerData.RangeString}", $"{towerData.AttackTypeString}",
+                    $"{towerData.FusionStatString}",
+                    towerData.Description);
+                currentTowerData = towerData;
+            }
+            else
+            {
+                SetTowerFusionInfo(towerData, towerBase.FusedTower);
+            }
             // FillTowerDetail(towerData);
         }
 

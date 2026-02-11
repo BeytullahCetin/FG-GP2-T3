@@ -57,6 +57,8 @@ namespace FG_GP2_T3
         [InfoBox("Base parts = materials of body and weapon")]
         public bool ImNothing;
 
+        public TowerData FusedTower;
+
         private void Awake()
         {
             GetVisualReferances();
