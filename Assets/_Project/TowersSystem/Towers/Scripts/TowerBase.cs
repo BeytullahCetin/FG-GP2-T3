@@ -91,6 +91,8 @@ namespace FG_GP2_T3
             SetMaterials();
             SetupAttackBehaviour();
             PlayBuildSound();
+
+            _CurrentVisual?.PlayIdle();
         }
 
         public void SetMaterials()
@@ -147,6 +149,7 @@ namespace FG_GP2_T3
 
             if (_FireCooldown <= 0f)
             {
+                _CurrentVisual?.PlayAttack();
                 if (_attackSoundEmitter)
                     _attackSoundEmitter.Play();
 
