@@ -53,7 +53,7 @@ namespace FG_GP2_T3
         [Button]
         public void ShowRange(TowerData towerToFuse = null)
         {
-            float range = towerBase.Stats.Range;
+            float range = Mathf.Max(towerBase.Data.Range, towerBase.Stats.Range);
             if (towerToFuse != null && towerToFuse.FusionStatType == FusionStatType.RangeBoost)
                 range += towerToFuse.FusionStatValue;
 
