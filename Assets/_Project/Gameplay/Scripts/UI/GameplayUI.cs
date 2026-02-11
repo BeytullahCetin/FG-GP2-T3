@@ -204,9 +204,7 @@ namespace FG_GP2_T3
                 selectionButton.CostText.FillText(towerData.Cost.ToString());
                 selectionButton.UnaffordableCostText.FillText(towerData.Cost.ToString());
                 currentTowerSelectionButtons.Add(selectionButton);
-                bool isAffordable = CompostManager.Instance.CurrentCompostAmount >= towerData.Cost;
-                selectionButton.CostText.gameObject.SetActive(isAffordable);
-                selectionButton.UnaffordableCostText.gameObject.SetActive(!isAffordable);
+
 
                 selectionButton.Button.onClick.AddListener(() =>
                 {
@@ -226,7 +224,10 @@ namespace FG_GP2_T3
         {
             foreach (TowerSelectionButton selectionButton in currentTowerSelectionButtons)
             {
-                selectionButton.Button.interactable = CompostManager.Instance.CurrentCompostAmount >= selectionButton.TowerData.Cost;
+                bool isAffordable = CompostManager.Instance.CurrentCompostAmount >= selectionButton.TowerData.Cost;
+                selectionButton.Button.interactable = isAffordable;
+                selectionButton.CostText.gameObject.SetActive(isAffordable);
+                selectionButton.UnaffordableCostText.gameObject.SetActive(!isAffordable);
             }
         }
     }
