@@ -30,7 +30,7 @@ namespace FG_GP2_T3
 		{
 			_health -= damage;
 
-			EventManager.Invoke(new OnCoreDamageEvent(Mathf.RoundToInt(_health), Mathf.RoundToInt(Mathf.Clamp01(_health / _startingHealth)), Mathf.RoundToInt(damage)));
+			EventManager.Invoke(new OnCoreDamageEvent(Mathf.RoundToInt(_health), Mathf.Clamp01(_health / _startingHealth), Mathf.RoundToInt(damage)));
 
 			if (_health <= 0)
 			{

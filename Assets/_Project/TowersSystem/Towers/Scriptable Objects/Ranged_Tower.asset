@@ -53,4 +53,4 @@ MonoBehaviour:
   FusionID: A
   FusionStatType: 1
   FusionStatString: RANGE+
-  FusionStatValue: 20
+  FusionStatValue: 15

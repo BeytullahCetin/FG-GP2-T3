@@ -43,6 +43,7 @@ namespace FG_GP2_T3
             EventManager.Register<OnWaveEvent>(OnWaveEvent);
             EventManager.Register<OnGameEndedEvent>(OnGameEndedEvent);
             EventManager.Register<OnCoreDamageEvent>(OnCoreDamageEvent);
+            EventManager.Register<OnBranchLostEvent>(OnBranchLostEvent);
         }
 
         private void OnDisable()
@@ -53,6 +54,7 @@ namespace FG_GP2_T3
             EventManager.Unregister<OnWaveEvent>(OnWaveEvent);
             EventManager.Unregister<OnGameEndedEvent>(OnGameEndedEvent);
             EventManager.Unregister<OnCoreDamageEvent>(OnCoreDamageEvent);
+            EventManager.Unregister<OnBranchLostEvent>(OnBranchLostEvent);
         }
 
 
@@ -176,6 +178,11 @@ namespace FG_GP2_T3
             float health = args.CurrentHealth01;
             if (health < poeLowHealthWarning)
                 OnPlaySound(GlobalSoundType.PoeLowHealth);
+        }
+
+        private void OnBranchLostEvent(OnBranchLostEvent args)
+        {
+            EventLog("OnBranchLostEvent");
         }
 
 

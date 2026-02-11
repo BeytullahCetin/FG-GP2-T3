@@ -31,12 +31,12 @@ MonoBehaviour:
   SlowPercent: 0.5
   EnemyTargetting: 2
   MaxTargets: 5
-  ExplosionRadius: 3
+  ExplosionRadius: 1
   DotDuration: 0
   DotDamagePerSecond: 0
   ConeAngle: 0
   Range: 25
-  Damage: 5
+  Damage: 1
   FireRate: 1
   pierce: 0
   RangeString: MEDIUM
@@ -48,6 +48,6 @@ MonoBehaviour:
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: B
-  FusionStatType: 4
-  FusionStatString: SPLASH+
-  FusionStatValue: 1
+  FusionStatType: 5
+  FusionStatString: SLOW+
+  FusionStatValue: 2
