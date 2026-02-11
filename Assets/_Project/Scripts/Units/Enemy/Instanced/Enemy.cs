@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using UnityEngine;
 
 namespace FG_GP2_T3
@@ -16,6 +17,11 @@ namespace FG_GP2_T3
         [SerializeField] private Vector2 _compostRewardRange; private int _compostReward; 
         [SerializeField] bool _randomizeEachAttackDamage = true;
         [SerializeField] bool _randomizeEachAttackDelay = true;
+
+        [SerializeField] private StudioEventEmitter _attackSoundEmitter;
+        [SerializeField] private StudioEventEmitter _deathSoundEmitter;
+        [SerializeField] private StudioEventEmitter _hitSoundEmitter;
+        [SerializeField] private StudioEventEmitter _spawnSoundEmitter;
         #endregion
 
         #region Effects tracking data
@@ -62,6 +68,7 @@ namespace FG_GP2_T3
 
             path.Reverse();
 
+            _spawnSoundEmitter?.Play();
             EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Spawn));
         }
 
@@ -131,6 +138,7 @@ namespace FG_GP2_T3
             {
                 float damage = _randomizeEachAttackDamage ? GetRandomInRange(_attackDamageRange) : _attackDamage;
                 EnemyManager.Instance.GetTarget().TakeDamage(damage);
+                _attackSoundEmitter?.Play();
 
                 _timeSinceLastAttack = 0f;
 
@@ -161,11 +169,13 @@ namespace FG_GP2_T3
             if (_isDead) return;
 
             _health -= damageAmount;
+            _hitSoundEmitter?.Play();
 
             if (_health <= 0f)
             {
                 _isDead = true;
                 EnemyManager.Instance.UnregisterEnemy();
+                _deathSoundEmitter?.Play();
                 EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Death));
                 CompostManager.Instance.AddCompost(_compostReward);
                 Destroy(gameObject);
