@@ -35,6 +35,7 @@ namespace FG_GP2_T3
 			if (_health <= 0)
 			{
 				GameManager.Instance.SwitchToGameOverState();
+				EventManager.Invoke(new OnGameEndedEvent(false));
 				Destroy(gameObject);
 				return;
 			}
