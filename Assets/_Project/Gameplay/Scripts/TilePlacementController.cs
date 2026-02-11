@@ -65,6 +65,7 @@ namespace FG_GP2_T3
             Sequence seq = DOTween.Sequence();
             seq.Append(selectedCell.Tile.transform.DOLocalMoveY(0, tilePlacementSettings.placementDuration).SetEase(tilePlacementSettings.placementEase));
             seq.Append(selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+            seq.AppendCallback(selectedCell.Tile.GetComponent<FoliageCulling>().ClearArea);
 
             previewTile = null;
             cam.ZoomOut(null, .5f);
@@ -128,6 +129,7 @@ namespace FG_GP2_T3
             previewTile.transform.SetParent(selectedCell.transform);
             previewTile.transform.localPosition = Vector3.zero;
             previewTile.transform.rotation = Quaternion.Euler(0, validRotationsForSelectedTile[currentTileRotationIndex], 0);
+            previewTile.SetPreview(true);
 
             cam.ZoomIn(null, .5f);
             cam.MoveTo(selectedCell.transform.position, .5f);

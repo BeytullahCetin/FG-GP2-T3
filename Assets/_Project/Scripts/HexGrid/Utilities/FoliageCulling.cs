@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic; // Required for Lists
+using UnityEngine;
 
 public class FoliageCulling : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class FoliageCulling : MonoBehaviour
         ClearArea();
     }
 
-    void ClearArea()
+    public void ClearArea()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, checkRadius);
 
@@ -23,7 +23,7 @@ public class FoliageCulling : MonoBehaviour
             if (hitCollider.CompareTag(targetTag))
             {
                 GameObject foliage = hitCollider.gameObject;
-                
+
                 // Add to list and deactivate
                 hiddenFoliage.Add(foliage);
                 foliage.SetActive(false);
@@ -41,7 +41,7 @@ public class FoliageCulling : MonoBehaviour
     private void OnDisable()
     {
         // Only run if the application is actually playing to avoid editor errors
-        if (gameObject.scene.isLoaded) 
+        if (gameObject.scene.isLoaded)
         {
             ReactivateFoliage();
         }
@@ -57,7 +57,7 @@ public class FoliageCulling : MonoBehaviour
                 foliage.SetActive(true);
             }
         }
-        
+
         // Clear the list so we don't try to reactivate twice
         hiddenFoliage.Clear();
     }

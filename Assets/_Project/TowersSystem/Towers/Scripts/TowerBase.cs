@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EPOOutline;
 using FMODUnity;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using Handles = UnityEditor.Handles;
+#endif
 
 ///<summary>
 ///This script handles the base functionality of a tower in the game, including targeting enemies,sending the info to attack behavior classes.
@@ -26,6 +26,9 @@ namespace FG_GP2_T3
         public TowerStats Stats => stats;
         public TowerRangePreview TowerRangePreview => towerRangePreview;
         public LayerMask EnemyLayer;
+
+        [SerializeField] Outlinable previewOutlinable;
+        public Outlinable PreviewOutlinable => previewOutlinable;
 
         private StudioEventEmitter _attackSoundEmitter;
         private TowerRangePreview towerRangePreview;

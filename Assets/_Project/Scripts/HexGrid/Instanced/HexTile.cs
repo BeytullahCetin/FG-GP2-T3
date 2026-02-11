@@ -15,6 +15,15 @@ namespace FG_GP2_T3
         private List<HexDirection> _pathsNotLeadingToCore = new();
         private List<HexDirection> _availablePaths = new();
 
+        [SerializeField] GameObject original;
+        [SerializeField] GameObject preview;
+
+        public void SetPreview(bool value)
+        {
+            preview.SetActive(value);
+            original.SetActive(!value);
+        }
+
         public void Initialize(HexTileData data, HexCell parentCell)
         {
             Data = data;
@@ -26,11 +35,11 @@ namespace FG_GP2_T3
 
         public HexDirection GetNextDirection(HexDirection incomingDirection)
         {
-            if(_availablePaths.Count == 1) return _availablePaths[0];
+            if (_availablePaths.Count == 1) return _availablePaths[0];
 
             HexDirection chosen = _availablePaths[_lastChosenRoadIndex];
             _lastChosenRoadIndex = (_lastChosenRoadIndex + 1) % _availablePaths.Count;
-            
+
             return chosen == incomingDirection ? GetNextDirection(incomingDirection) : chosen;
         }
 
@@ -39,7 +48,7 @@ namespace FG_GP2_T3
             for (int i = _pathsNotLeadingToCore.Count - 1; i >= 0; i--)
             {
                 HexDirection direction = _pathsNotLeadingToCore[i];
-                
+
                 if (LeadsToCore(ParentCell, direction))
                 {
                     _availablePaths.Add(direction);
@@ -52,7 +61,7 @@ namespace FG_GP2_T3
         {
             HashSet<HexCell> visitedCells = new HashSet<HexCell> { startCell };
             HexCell neighbor = startCell.GetNeighbor(direction);
-            
+
             return CheckIfPathLeadsToCore(neighbor, direction.Opposite(), visitedCells);
         }
 
@@ -67,7 +76,7 @@ namespace FG_GP2_T3
             {
                 if (direction == incomingDirection) continue;
                 if (!currentCell.Tile.Data.HasRoad(direction)) continue;
-                
+
                 if (CheckIfPathLeadsToCore(currentCell.GetNeighbor(direction), direction.Opposite(), visitedCells))
                     return true;
             }
