@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -9,6 +10,7 @@ namespace FG_GP2_T3
     {
         public TowerData SelectedTower => selectedTowerData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTower;
+        public static event Action OnTowerTilePlaced;
 
         [SerializeField] int rerollCost = 25;
 
@@ -59,8 +61,8 @@ namespace FG_GP2_T3
             if (towerBaseToFuse != null)
                 Destroy(towerBaseToFuse.gameObject);
 
-            cam.ZoomOut(null, .5f);
-            cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
+            // cam.ZoomOut(null, .5f);
+            // cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
             GameManager.Instance.SwitchToEnemyWaveSubState();
             // GameManager.Instance.SwitchToTileSelectionSubState();
         }
@@ -118,7 +120,9 @@ namespace FG_GP2_T3
             previewTowerBase = null;
 
             cam.ZoomOut(null, .5f);
+            OnTowerTilePlaced?.Invoke();
             GameManager.Instance.SwitchToTowerSelectionSubState();
+            EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));
         }
 
         void CancelFusion()
@@ -308,8 +312,8 @@ namespace FG_GP2_T3
 
             rerollCount++;
             UpdateRerollButton();
-            cam.ZoomOut(null, .5f);
-            cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
+            // cam.ZoomOut(null, .5f);
+            // cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
         }
     }
 }

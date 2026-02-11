@@ -73,6 +73,7 @@ namespace FG_GP2_T3
         public string RangeString;
         public string DamageString;
         public string FireRateString;
+        public string AttackTypeString;
         public Vector2 RotationOffset;
 
 

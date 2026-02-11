@@ -36,14 +36,15 @@ MonoBehaviour:
   Damage: 8
   FireRate: 2
   pierce: 0
-  RangeString: Short
-  DamageString: Medium
-  FireRateString: Fast
+  RangeString: SHORT
+  DamageString: MEDIUM
+  FireRateString: FAST
+  AttackTypeString: CONE
   RotationOffset: {x: 0, y: 0}
   ProjectilePrefab: {fileID: 0}
   towerMaterial: {fileID: 0}
   CompostCost: 0
   FusionID: D
   FusionStatType: 3
-  FusionStatString: 
+  FusionStatString: RATE+
   FusionStatValue: 5

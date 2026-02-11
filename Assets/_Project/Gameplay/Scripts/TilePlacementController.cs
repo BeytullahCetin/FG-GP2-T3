@@ -8,7 +8,7 @@ namespace FG_GP2_T3
 {
     public class TilePlacementController : MonoBehaviour
     {
-        public static event Action OnTilePlaced;
+        public static event Action OnPathTilePlaced;
 
         public HexTileData CurrentSelectedTile => selectedHexTileData;
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTile;
@@ -70,7 +70,7 @@ namespace FG_GP2_T3
             cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
             // GameManager.Instance.SwitchToTileSelectionSubState();
-            OnTilePlaced?.Invoke();
+            OnPathTilePlaced?.Invoke();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));
         }
 

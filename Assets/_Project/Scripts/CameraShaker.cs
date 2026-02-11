@@ -13,12 +13,14 @@ namespace FG_GP2_T3
 
         void OnEnable()
         {
-            TilePlacementController.OnTilePlaced += ShakeCameraOnTilePlacement;
+            TilePlacementController.OnPathTilePlaced += ShakeCameraOnTilePlacement;
+            TowerPlacementController.OnTowerTilePlaced += ShakeCameraOnTilePlacement;
         }
 
         void OnDisable()
         {
-            TilePlacementController.OnTilePlaced -= ShakeCameraOnTilePlacement;
+            TilePlacementController.OnPathTilePlaced -= ShakeCameraOnTilePlacement;
+            TowerPlacementController.OnTowerTilePlaced -= ShakeCameraOnTilePlacement;
         }
 
         [Button]

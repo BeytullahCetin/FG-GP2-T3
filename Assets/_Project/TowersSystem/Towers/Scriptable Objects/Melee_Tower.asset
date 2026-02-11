@@ -17,8 +17,12 @@ MonoBehaviour:
   Role: Melee
   Cost: 100
   Description: Description
-  ReferanceDescription: Referance Description
-  RealLifeEquivalentDescription: Real Life Equivalent Description
+  ReferanceDescription: A short range, high damage melee tower that focuses on taking
+    down one enemy at a time.
+  RealLifeEquivalentDescription: The Jaguar is the largest cat in the Americas, and
+    a formidable apex predator with the strongest bite of all big cats, capable of
+    piercing even crocodile skulls. Unlike many felines, Jaguars are excellent swimmers
+    and frequently hunt in the water, preying on caimans and fish.
   AttackType: 2
   DamageType: 0
   SoundOnSelected: 1100
@@ -36,14 +40,15 @@ MonoBehaviour:
   Damage: 20
   FireRate: 1
   pierce: 0
-  RangeString: Short
-  DamageString: High
-  FireRateString: Medium
+  RangeString: SHORT
+  DamageString: HIGH
+  FireRateString: MEDIUM
+  AttackTypeString: MELEE
   RotationOffset: {x: 0, y: -110}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 199f551af5ad7914482dc18ba0fd961a, type: 3}
   towerMaterial: {fileID: 2100000, guid: 653a483cd8a125f43ba6047f5f653211, type: 2}
   CompostCost: 0
   FusionID: C
   FusionStatType: 2
-  FusionStatString: 
+  FusionStatString: DMG+
   FusionStatValue: 10
