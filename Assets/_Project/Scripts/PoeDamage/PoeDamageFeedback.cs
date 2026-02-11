@@ -34,7 +34,7 @@ namespace FG_GP2_T3
         private void OnCoreDamageEvent(OnCoreDamageEvent args)
         {
             float health = args.CurrentHealth01;
-            Debug.Log(health);
+            //Debug.Log(health);
             if (health > _nextDmgFeedback)
                 return;
 
