@@ -32,7 +32,7 @@ namespace FG_GP2_T3
 
             _innerMeshRenderer.GetPropertyBlock(_propertyBlock);
             //_propertyBlock.SetFloat(_radiusProperty, range); Range controlled by scale
-            _rangePreview.transform.localScale = Vector3.one * range;
+            _rangePreview.transform.localScale = Vector3.one * range * 2f; //2 is a magic number, makes the range actually match towers range
             _propertyBlock.SetFloat(_angleProperty, angleDegrees);
             _propertyBlock.SetFloat(_rotationProperty, directionDegrees);
             _innerMeshRenderer.SetPropertyBlock(_propertyBlock);
