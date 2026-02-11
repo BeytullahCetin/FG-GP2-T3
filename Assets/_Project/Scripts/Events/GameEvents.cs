@@ -1,5 +1,6 @@
 
 using System;
+using UnityEngine;
 
 namespace FG_GP2_T3
 {
@@ -37,14 +38,24 @@ namespace FG_GP2_T3
     public class OnCoreDamageEvent : GameEventArgs
     {
         public readonly int CurrentHealth;
-        public readonly int CurrentHealth01;
+        public readonly float CurrentHealth01;
         public readonly int DamageTaken;
 
-        public OnCoreDamageEvent(int currentHealth, int currentHealth01, int damageTaken)
+        public OnCoreDamageEvent(int currentHealth, float currentHealth01, int damageTaken)
         {
             CurrentHealth = currentHealth;
             CurrentHealth01 = currentHealth01;
             DamageTaken = damageTaken;
+        }
+    }
+    
+    public class OnBranchLostEvent : GameEventArgs
+    {
+        public GameObject Branch;
+
+        public OnBranchLostEvent(GameObject branch)
+        {
+            Branch = branch;
         }
     }
 }

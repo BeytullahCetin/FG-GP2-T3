@@ -34,6 +34,7 @@ namespace FG_GP2_T3
             EventManager.Register<OnTowerEvent>(OnTowerEvent);
             EventManager.Register<OnEnemyActionEvent>(OnEnemyActionEvent);
             EventManager.Register<OnWaveEvent>(OnWaveEvent);
+            EventManager.Register<OnBranchLostEvent>(OnBranchLostEvent);
         }
 
         private void Update()
@@ -104,6 +105,15 @@ namespace FG_GP2_T3
                     SpawnVFX(_enemyDeathPrefab, args.Enemy.transform.position + Vector3.up * 0.1f);
                     return;
             }
+        }
+
+        private void OnBranchLostEvent(OnBranchLostEvent args)
+        {
+            GameObject branch = args.Branch;
+            Vector3 branchPos = branch.transform.position;
+            //TODO: The actual vfx
+            
+            branch.SetActive(false); // Maybe this should be done elsewhere
         }
 
         private ParticleSystem SpawnVFX(GameObject prefab, Vector3 position, bool loop = false, Transform parent = null)
