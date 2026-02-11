@@ -26,8 +26,11 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] TowerBase previewTowerBase;
         [ReadOnly][SerializeField] TowerBase previousTowerBase;
         [ReadOnly][SerializeField] TowerBase towerBaseToFuse;
+        [ReadOnly][SerializeField] TowerBase lastSelectedTowerBase;
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
         [ReadOnly][SerializeField] int rerollCount = 0;
+
+
 
         private int GetRerollCost()
         {
@@ -119,6 +122,7 @@ namespace FG_GP2_T3
             UIManager.Instance.GameplayUI.DeselectTowerSelectionButtons();
             previewTowerBase.BuildTower();
             previewTowerBase.TowerRangePreview.HideRange();
+            selectedCell = null;
             previewTile = null;
             previewTowerBase = null;
             selectedTowerData = null;
@@ -154,6 +158,7 @@ namespace FG_GP2_T3
 
                 previousTowerBase.TowerRangePreview.HideRange();
                 //previousTowerBase = null;
+                selectedCell = null;
                 towerBaseToFuse = null;
                 cam.ZoomOut(null, .5f);
                 validCellsForSelectedTower.Clear();
@@ -178,6 +183,9 @@ namespace FG_GP2_T3
 
             if (previousTowerBase != null)
                 previousTowerBase.TowerRangePreview.HideRange();
+
+            if (lastSelectedTowerBase != null)
+                lastSelectedTowerBase.TowerRangePreview.HideRange();
 
             selectedTowerData = tower;
             StopAnimateValidCells();
@@ -323,10 +331,44 @@ namespace FG_GP2_T3
 
             if (SelectedTower == null && cell.Tile is HexTowerTile hexTowerTile)
             {
+                Debug.Log("Test");
+
                 TowerBase towerBase = hexTowerTile.TowerBase;
-                towerBase.TowerRangePreview.ShowRange();
-                UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerInfo(towerBase.Data, towerBase);
-                UIManager.Instance.GameplayUI.TowerInfoUI.Show();
+
+
+                if (lastSelectedTowerBase == null)
+                {
+                    UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerInfo(towerBase.Data, towerBase);
+                    UIManager.Instance.GameplayUI.TowerInfoUI.Show();
+                    towerBase.TowerRangePreview.ShowRange();
+                }
+                else
+                {
+                    if (towerBase != lastSelectedTowerBase)
+                    {
+                        lastSelectedTowerBase.TowerRangePreview.HideRange();
+
+                        UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerInfo(towerBase.Data, towerBase);
+                        UIManager.Instance.GameplayUI.TowerInfoUI.Show();
+                        towerBase.TowerRangePreview.ShowRange();
+                    }
+                    else
+                    {
+                        if (UIManager.Instance.GameplayUI.TowerInfoUI.IsHide == true)
+                        {
+                            UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerInfo(towerBase.Data, towerBase);
+                            UIManager.Instance.GameplayUI.TowerInfoUI.Show();
+                            towerBase.TowerRangePreview.ShowRange();
+                        }
+                        else
+                        {
+                            UIManager.Instance.GameplayUI.TowerInfoUI.Hide();
+                            towerBase.TowerRangePreview.HideRange();
+                        }
+                    }
+                }
+
+                lastSelectedTowerBase = towerBase;
                 cam.ZoomIn(null, .5f);
                 cam.MoveTo(cell.transform.position, .5f);
                 return;

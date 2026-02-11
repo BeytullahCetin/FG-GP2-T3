@@ -75,6 +75,14 @@ namespace FG_GP2_T3
             _rangePreview.SetActive(false);
         }
 
+        public void SwitchRange()
+        {
+            Debug.Log($"Range: {_rangePreview.activeSelf}");
+            bool newState = !_rangePreview.activeSelf;
+            Debug.Log($"New Range: {newState}");
+            _rangePreview.SetActive(newState);
+        }
+
         #endregion
     }
 }

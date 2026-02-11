@@ -8,6 +8,8 @@ namespace FG_GP2_T3
 {
     public class TowerInfoUI : MonoBehaviour
     {
+        public bool IsHide => isHide;
+
         [SerializeField] VerticalLayoutGroup layoutGroup;
         [SerializeField] RectTransform mainLayoutElement;
         [SerializeField] RectTransform detailLayoutElement;
@@ -33,6 +35,7 @@ namespace FG_GP2_T3
 
         private TowerData currentTowerData;
         private TowerBase currentTowerBase;
+        private bool isHide;
 
         private RectTransform layoutGroupTranform;
         private RectTransform closeButtonTransform;
@@ -67,14 +70,14 @@ namespace FG_GP2_T3
 
         public void SetTowerInfo(TowerData towerData, TowerBase towerBase = null)
         {
-            if (currentTowerBase != null)
-            {
-                currentTowerBase.TowerRangePreview.HideRange();
-                currentTowerBase = null;
-            }
+            // if (currentTowerBase != null)
+            // {
+            //     currentTowerBase.TowerRangePreview.HideRange();
+            //     currentTowerBase = null;
+            // }
 
-            if (towerBase != null)
-                currentTowerBase = towerBase;
+            // if (towerBase != null)
+            currentTowerBase = towerBase;
 
             string towerName = $"<color={towerNameColor.ToHex()}>{towerData.TowerName}</color>";
             string towerRole = $"<color={towerNameColor.ToHex()}>{towerData.Role}</color>";
@@ -90,11 +93,11 @@ namespace FG_GP2_T3
 
         public void SetTowerFusionInfo(TowerData mainTower, TowerData secondaryTower)
         {
-            if (currentTowerBase != null)
-            {
-                currentTowerBase.TowerRangePreview.HideRange();
-                currentTowerBase = null;
-            }
+            // if (currentTowerBase != null)
+            // {
+            //     currentTowerBase.TowerRangePreview.HideRange();
+            //     currentTowerBase = null;
+            // }
 
             string towerName = $"<color={fusedTowerNameColor.ToHex()}>Evolved {mainTower.TowerName}</color>";
             string towerRole = $"<color={fusedTowerNameColor.ToHex()}>{mainTower.Role}</color>";
@@ -137,6 +140,7 @@ namespace FG_GP2_T3
         public void Show()
         {
             layoutGroupTranform.DOAnchorPosY(0, showHideDuration).SetEase(showEase);
+            isHide = false;
         }
 
         [Button]
@@ -151,6 +155,7 @@ namespace FG_GP2_T3
             Shrink();
             LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroupTranform);
             layoutGroupTranform.DOAnchorPosY(-LayoutHidePos, showHideDuration).SetEase(hideEase);
+            isHide = true;
         }
 
         [Button]
