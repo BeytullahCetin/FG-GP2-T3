@@ -241,7 +241,7 @@ namespace FG_GP2_T3
 
         public List<TowerData> GetTowerDatasForPlacement()
         {
-            return towerDatas;
+            // return towerDatas;
             List<TowerData> towersForPlacement = new List<TowerData>();
             List<TowerData> otherTowers = new List<TowerData>();
 
