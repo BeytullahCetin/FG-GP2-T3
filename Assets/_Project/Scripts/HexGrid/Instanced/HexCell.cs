@@ -121,10 +121,14 @@ namespace FG_GP2_T3
 
         public void ToggleFusionHighlight(bool enable)
         {
+            _outerBorder.transform.localPosition = _innerBorder.transform.localPosition = Vector3.zero;
             StopActiveHighlight();
 
             if (enable)
+            {
+                _outerBorder.transform.localPosition = _innerBorder.transform.localPosition = new Vector3(0f, 0f, -1.1f);
                 _activeHighlightCoroutine = StartCoroutine(AnimateHighlightCoroutine(_fusionHighlightSizeCurve, _fusionHighlightGradient));
+            } 
         }
 
         public bool TrySetTile(HexTileData tileData, float rotation = 0f) //Set to null to remove the tile

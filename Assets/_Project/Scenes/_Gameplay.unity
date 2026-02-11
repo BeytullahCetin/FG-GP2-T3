@@ -12928,6 +12928,7 @@ MonoBehaviour:
   previewTowerBase: {fileID: 0}
   previousTowerBase: {fileID: 0}
   towerBaseToFuse: {fileID: 0}
+  lastSelectedTowerBase: {fileID: 0}
   validCellsForSelectedTower: []
   rerollCount: 0
 --- !u!4 &1537280824

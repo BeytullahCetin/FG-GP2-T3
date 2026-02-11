@@ -193,7 +193,14 @@ namespace FG_GP2_T3
 
             selectedTowerData = tower;
             StopAnimateValidCells();
+
             validCellsForSelectedTower = HexManager.Instance.GetValidCells(towerTile).Union(HexManager.Instance.GetTowerCells()).ToList();
+            validCellsForSelectedTower = validCellsForSelectedTower.Where(cell => { //Filtering out towers that have already fused
+                HexTowerTile towerTile = cell.Tile as HexTowerTile;
+                if (towerTile == null) return true;
+                return !towerTile.TowerBase.HasFused;
+            }).ToList();
+
             StartAnimateValidCells();
             EventManager.Invoke(new OnUITowerEvent(selectedTowerData, UIEventType.Open));
 
@@ -277,13 +284,20 @@ namespace FG_GP2_T3
         public void StartAnimateValidCells()
         {
             foreach (HexCell cell in validCellsForSelectedTower)
-                cell.TogglePlacementHighlight(true);
+            {
+                if(cell.Tile is HexTowerTile) cell.ToggleFusionHighlight(true);
+                else cell.TogglePlacementHighlight(true);
+            }
+                
         }
 
         public void StopAnimateValidCells()
         {
             foreach (HexCell cell in validCellsForSelectedTower)
-                cell.TogglePlacementHighlight(false);
+            {
+                if(cell.Tile is HexTowerTile) cell.ToggleFusionHighlight(false);
+                else cell.TogglePlacementHighlight(false);
+            }
         }
 
         public void PreviewTowerOnEmptyCell()
