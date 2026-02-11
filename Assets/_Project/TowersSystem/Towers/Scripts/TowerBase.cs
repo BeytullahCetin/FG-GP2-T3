@@ -7,8 +7,9 @@ using FMODUnity;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
 using Handles = UnityEditor.Handles;
-
+#endif
 
 ///<summary>
 ///This script handles the base functionality of a tower in the game, including targeting enemies,sending the info to attack behavior classes.
