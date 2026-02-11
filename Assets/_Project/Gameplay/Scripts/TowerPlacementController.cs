@@ -335,8 +335,8 @@ namespace FG_GP2_T3
             previewTowerBase.UpdateTowerVisual();
             previewTowerBase.TowerRangePreview.ShowRange();
 
-            previewTowerBase.Outlinable.enabled = false;
-            previewTile.Outlineable.enabled = false;
+            previewTowerBase.Outlinable.enabled = true;
+            previewTile.Outlineable.enabled = true;
 
             previewTile.transform.position = selectedCell.transform.position;
             previewTowerBase.transform.position = selectedCell.transform.position;
