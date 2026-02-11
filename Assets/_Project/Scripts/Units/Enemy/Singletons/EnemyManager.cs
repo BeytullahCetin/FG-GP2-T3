@@ -25,7 +25,7 @@ namespace FG_GP2_T3
         }
 
         public static EnemyManager Instance;
-
+        public List<EnemyWave> Waves => _waves;
         [SerializeField] private List<EnemyWave> _waves;
         private int _waveIndex = 0;
         public int WaveIndex => _waveIndex;
