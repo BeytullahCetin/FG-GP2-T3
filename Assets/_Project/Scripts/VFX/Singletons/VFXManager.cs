@@ -7,6 +7,8 @@ namespace FG_GP2_T3
     {
         public static VFXManager Instance { get; private set; }
 
+        private ComponentFactory _factory;
+
         [SerializeField] private GameObject _tilePlacedPrefab;
         [SerializeField] private GameObject _towerFusedPrefab;
         [SerializeField] private GameObject _enemySpawnPrefab;
@@ -26,6 +28,10 @@ namespace FG_GP2_T3
                 return;
             }
             Instance = this;
+
+            GameObject _root = new GameObject("--- VFX_POOL_ROOT ---");
+            _root.transform.SetParent(transform);
+            _factory = new ComponentFactory(_root.transform);
         }
 
         private void Start()
@@ -110,7 +116,7 @@ namespace FG_GP2_T3
         {
             if (prefab == null) return null;
 
-            Transform instance = ComponentFactory.Spawn(prefab.transform, position, prefab.transform.rotation, parent);
+            Transform instance = _factory.Spawn(prefab.transform, position, prefab.transform.rotation, parent);
             
             ParticleSystem rootPS = instance.GetComponent<ParticleSystem>();
             
@@ -137,7 +143,7 @@ namespace FG_GP2_T3
             while (rootPS != null && rootPS.IsAlive(true))
                 yield return new WaitForSeconds(0.5f);
 
-            ComponentFactory.Despawn(prefab, instance);
+            _factory.Despawn(prefab, instance);
         }
     }
 }

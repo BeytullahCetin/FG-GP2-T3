@@ -3,22 +3,18 @@ using UnityEngine;
 
 namespace FG_GP2_T3
 {
-    public static class ComponentFactory
+    public class ComponentFactory
     {
-        private static readonly Dictionary<Component, object> _pools = new();
-        private static Transform _mainPoolRoot;
+        private readonly Dictionary<Component, object> _pools = new();
+        private Transform _mainPoolRoot;
 
-        private static void EnsureRootExists()
+        public ComponentFactory(Transform _root)
         {
-            if (_mainPoolRoot != null) return;
-            _mainPoolRoot = new GameObject("--- GLOBAL_POOL_ROOT ---").transform;
-            Object.DontDestroyOnLoad(_mainPoolRoot);
+            _mainPoolRoot = _root;
         }
 
-        public static T Spawn<T>(T _prefab, Vector3 _position, Quaternion _rotation, Transform _parent = null) where T : Component
+        public T Spawn<T>(T _prefab, Vector3 _position, Quaternion _rotation, Transform _parent = null) where T : Component
         {
-            EnsureRootExists();
-
             if (!_pools.TryGetValue(_prefab, out object _poolValue))
             {
                 GameObject _poolParent = new GameObject($"{_prefab.name}_Pool");
@@ -37,7 +33,7 @@ namespace FG_GP2_T3
             return _spawned;
         }
 
-        public static void Despawn<T>(T _prefab, T _instance) where T : Component
+        public void Despawn<T>(T _prefab, T _instance) where T : Component
         {
             if (_pools.TryGetValue(_prefab, out object _poolValue))
             {
