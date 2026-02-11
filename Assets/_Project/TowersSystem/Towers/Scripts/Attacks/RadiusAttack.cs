@@ -14,6 +14,9 @@ namespace FG_GP2_T3
                IDamageable enemy = hit.GetComponentInParent<IDamageable>();
                 if (enemy != null)
                     enemy.TakeDamage(Tower.Stats.Damage);
+                ApplyEffects(enemy);
+
+               
 
             }
             Debug.Log($"<color=red> {Tower.name}+{Tower.Stats.Damage} given to {target.name} - Exit()</color>");
