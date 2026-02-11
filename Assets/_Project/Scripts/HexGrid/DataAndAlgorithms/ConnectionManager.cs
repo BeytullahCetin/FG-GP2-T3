@@ -15,6 +15,8 @@ namespace FG_GP2_T3
 
         public void AddPathConnection((HexCell Cell, HexDirection Direction) connection)
         {
+            Debug.Log($"Connection added {connection.Item1.Coordinates}, {connection.Item2}");
+
             PathConnections.Add(connection);
 
             if (!connection.Cell.IsCore)
@@ -51,6 +53,7 @@ namespace FG_GP2_T3
 
         public void RemovePathConnection((HexCell Cell, HexDirection Direction) connection)
         {
+            Debug.Log($"Connection removed {connection.Item1.Coordinates}, {connection.Item2}");
             PathConnections.Remove(connection);
             PathConnectionsWithoutCore.Remove(connection);
         }
@@ -61,9 +64,9 @@ namespace FG_GP2_T3
         {
             if(PathConnectionsWithoutCore.Count == 0) throw new System.InvalidOperationException("No connections available.");
 
-            (HexCell, HexDirection) connection = PathConnectionsWithoutCore.ElementAt(_currentConnectionIndex);
             _currentConnectionIndex = (_currentConnectionIndex + 1) % PathConnectionsWithoutCore.Count;
-
+            (HexCell, HexDirection) connection = PathConnectionsWithoutCore.ElementAt(_currentConnectionIndex);
+            
             return connection;
         }
 
