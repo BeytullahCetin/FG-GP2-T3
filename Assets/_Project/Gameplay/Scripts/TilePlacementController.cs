@@ -69,6 +69,7 @@ namespace FG_GP2_T3
             previewTile = null;
             cam.ZoomOut(null, .5f);
             GameManager.Instance.SwitchToTileToTowerTransitionSubState();
+            UIManager.Instance.GameplayUI.ResetTowerSelectionButtons();
             // GameManager.Instance.SwitchToTileSelectionSubState();
             OnTilePlaced?.Invoke();
             EventManager.Invoke(new OnCellEvent(selectedCell, CellEventType.Place));

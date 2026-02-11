@@ -24,10 +24,11 @@ namespace FG_GP2_T3
         [SerializeField] private TowerStats stats;
 
         public TowerStats Stats => stats;
-
+        public TowerRangePreview TowerRangePreview => towerRangePreview;
         public LayerMask EnemyLayer;
 
         private StudioEventEmitter _attackSoundEmitter;
+        private TowerRangePreview towerRangePreview;
 
         private List<Transform> _CurrentTargets = new List<Transform>();
         private Transform _CurrentTarget;
@@ -59,6 +60,7 @@ namespace FG_GP2_T3
         private void Awake()
         {
             GetVisualReferances();
+            towerRangePreview = GetComponent<TowerRangePreview>();
         }
 
         void GetVisualReferances()
@@ -73,8 +75,8 @@ namespace FG_GP2_T3
             {
                 bool setActive = Data == visual.TowerData;
                 visual.gameObject.SetActive(setActive);
-                
-                if(setActive)
+
+                if (setActive)
                 {
                     _CurrentVisual = visual;
                     _attackSoundEmitter = visual.GetComponent<StudioEventEmitter>();
@@ -89,6 +91,8 @@ namespace FG_GP2_T3
             SetMaterials();
             SetupAttackBehaviour();
             PlayBuildSound();
+
+            _CurrentVisual?.PlayIdle();
         }
 
         public void SetMaterials()
@@ -104,23 +108,23 @@ namespace FG_GP2_T3
             // GlobalSoundManager.Instance.OnPlaySound(Data.SoundOnPlaced);
         }
 
-       public void RotateTowardsTarget()
+        public void RotateTowardsTarget()
         {
-            if(_CurrentTargets==null || _CurrentTargets.Count == 0 || _CurrentVisual==null) return;
+            if (_CurrentTargets == null || _CurrentTargets.Count == 0 || _CurrentVisual == null) return;
 
             Transform target = _CurrentTargets[0];
-            if(target == null) return;
+            if (target == null) return;
 
-            Vector3 Direction=target.position-towerVisualsParent.position;
-            Direction.y=0f;
+            Vector3 Direction = target.position - towerVisualsParent.position;
+            Direction.y = 0f;
 
-            if(Direction.sqrMagnitude<0.001f) return;
+            if (Direction.sqrMagnitude < 0.001f) return;
 
-            Quaternion LookRot=Quaternion.LookRotation(Direction);
+            Quaternion LookRot = Quaternion.LookRotation(Direction);
 
             Quaternion OffsetRot = Quaternion.Euler(_CurrentVisual.TowerData.RotationOffset);
 
-            towerVisualsParent.localRotation=Quaternion.Slerp(towerVisualsParent.rotation,LookRot*OffsetRot,RotationSpeed*Time.deltaTime);
+            towerVisualsParent.localRotation = Quaternion.Slerp(towerVisualsParent.rotation, LookRot * OffsetRot, RotationSpeed * Time.deltaTime);
 
         }
         private void Update()
@@ -133,18 +137,19 @@ namespace FG_GP2_T3
             }
             HandleTarget();
             RotateTowardsTarget();
-            
+
         }
 
 
         private void HandleTarget()
         {
-            if (_CurrentTargets.Count == 0 || _CurrentAttack == null || Data == null ||TargetInRange(_CurrentTarget)) return;
+            if (_CurrentTargets.Count == 0 || _CurrentAttack == null || Data == null || TargetInRange(_CurrentTarget)) return;
 
             _FireCooldown -= Time.deltaTime;
 
             if (_FireCooldown <= 0f)
             {
+                _CurrentVisual?.PlayAttack();
                 if (_attackSoundEmitter)
                     _attackSoundEmitter.Play();
 

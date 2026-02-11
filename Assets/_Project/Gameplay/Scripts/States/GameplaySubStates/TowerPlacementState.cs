@@ -25,33 +25,7 @@ namespace FG_GP2_T3
 		public override void Update()
 		{
 			base.Update();
-			ListenSelectCellClicks();
-		}
-
-		private void ListenSelectCellClicks()
-		{
-			if (Input.GetMouseButtonDown(0) == false)
-				return;
-
-			if (towerPlacementController.SelectedTower == null)
-			{
-				return;
-			}
-
-			Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			bool isHit = Physics.Raycast(inputRay, out RaycastHit hit);
-
-			if (isHit == false)
-				return;
-
-			bool hasGetCell = HexGrid.Instance.TryGetCell(hit.point, out HexCell cell);
-			if (hasGetCell == false)
-				return;
-
-			if (towerPlacementController.ValidCellsForSelectedTile.Contains(cell) == false)
-				return;
-
-			towerPlacementController.SelectCellForTower(cell);
+			towerPlacementController.ListenSelectCellClicks();
 		}
 	}
 }

@@ -46,7 +46,7 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnExitedTileRotationSubGameplayState += tileRotationPanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += EnableTowerSelectionButtons;
-            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
+            // GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += nextPhasePanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += rerollTowersPanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += towerPlacementController.UpdateRerollButton;
@@ -81,7 +81,7 @@ namespace FG_GP2_T3
             GameplayStateFlowEvents.OnExitedTileRotationSubGameplayState -= tileRotationPanel.Hide;
 
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= EnableTowerSelectionButtons;
-            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
+            // GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= nextPhasePanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= rerollTowersPanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= towerPlacementController.UpdateRerollButton;
@@ -151,12 +151,17 @@ namespace FG_GP2_T3
             bottomPanel.Show();
         }
 
-        void DeselectSelectionButtons(List<SelectionButton> selectionButtons)
+        public void DeselectSelectionButtons(List<SelectionButton> selectionButtons)
         {
             foreach (SelectionButton selectionButton in selectionButtons)
             {
                 selectionButton.Deselect();
             }
+        }
+
+        public void DeselectTowerSelectionButtons()
+        {
+            DeselectSelectionButtons(currentTowerSelectionButtons);
         }
 
         void ResetTileSelectionButtons()
