@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+
+using Vector3 = UnityEngine.Vector3;
 
 namespace FG_GP2_T3
 {
@@ -83,9 +86,15 @@ namespace FG_GP2_T3
             {
                 case WaveEventType.Start:
                     foreach(var slowTowerVFX in _slowTowerVFXs)
+                    {
+                        slowTowerVFX.Item2.transform.localScale = Vector3.one * slowTowerVFX.Item1.Stats.Range / 25f;
                         slowTowerVFX.Item2.gameObject.SetActive(true);
+                    }
                     foreach(var dotTowerVFX in _dotTowerVFXs)
+                    {
+                        dotTowerVFX.Item2.transform.localScale = Vector3.one * dotTowerVFX.Item1.Stats.Range / 25f;
                         dotTowerVFX.Item2.gameObject.SetActive(true);
+                    } 
                     return;
                 case WaveEventType.End:
                     foreach(var slowTowerVFX in _slowTowerVFXs)
