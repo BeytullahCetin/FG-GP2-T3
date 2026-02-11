@@ -83,8 +83,10 @@ namespace FG_GP2_T3
             {
                 _activeSpawningCoroutines++;
                 _enemiesRemaining += group.Count;
-                StartCoroutine(SpawnGroupCoroutine(group));
             }
+
+            foreach (EnemyGroup group in _waves[_waveIndex].Groups)
+                StartCoroutine(SpawnGroupCoroutine(group));
         }
 
         private IEnumerator SpawnGroupCoroutine(EnemyGroup group)

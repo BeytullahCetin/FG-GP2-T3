@@ -34,6 +34,8 @@ namespace FG_GP2_T3
 
         Color _originalColor;
         Renderer _renderer;
+
+        private bool _isDead = false;
         #endregion
         
         private void Start()
@@ -156,9 +158,13 @@ namespace FG_GP2_T3
 
         public void TakeDamage(float damageAmount)
         {
+            if (_isDead) return;
+
             _health -= damageAmount;
+
             if (_health <= 0f)
             {
+                _isDead = true;
                 EnemyManager.Instance.UnregisterEnemy();
                 EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Death));
                 CompostManager.Instance.AddCompost(_compostReward);
