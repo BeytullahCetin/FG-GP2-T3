@@ -29,7 +29,7 @@ namespace FG_GP2_T3
         {
             Instance = this;
             qualitySettings = UnityEngine.QualitySettings.names.ToList();
-            settingsPanel = FindAnyObjectByType<SettingsPanel>(FindObjectsInactive.Include);
+            settingsPanel = FindAnyObjectByType<SettingsPanel>();
         }
 
         void Start()
@@ -40,8 +40,8 @@ namespace FG_GP2_T3
 
         public void LoadSettings()
         {
-            SetTargetFrameRate(PlayerPrefs.GetInt(SettingsManager.PP_FrameRate, 60));
-            SetQualityLevel(PlayerPrefs.GetInt(SettingsManager.PP_QualityIndex, 0));
+            SetTargetFrameRate(PlayerPrefs.GetInt(PP_FrameRate, 60));
+            SetQualityLevel(PlayerPrefs.GetInt(PP_QualityIndex, 0));
 
             foreach (AudioSettings audioSettings in audioSettingsList)
             {

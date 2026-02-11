@@ -9,8 +9,8 @@ namespace FG_GP2_T3
     public class GameplayUI : MonoBehaviour
     {
         public TowerInfoUI TowerInfoUI => towerInfoUI;
-        [SerializeField] TilePlacementController tilePlacementController;
-        [SerializeField] TowerPlacementController towerPlacementController;
+        TilePlacementController tilePlacementController;
+        TowerPlacementController towerPlacementController;
         [SerializeField] TowerInfoUI towerInfoUI;
 
         [SerializeField] FormatableText phaseText;
@@ -49,7 +49,6 @@ namespace FG_GP2_T3
             // GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += nextPhasePanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += rerollTowersPanel.Show;
-            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += towerPlacementController.UpdateRerollButton;
 
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState += towerConfirmationPanel.Hide;
@@ -84,7 +83,6 @@ namespace FG_GP2_T3
             // GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= ResetTowerSelectionButtons;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= nextPhasePanel.Show;
             GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= rerollTowersPanel.Show;
-            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= towerPlacementController.UpdateRerollButton;
 
             GameplayStateFlowEvents.OnEnteredTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerPlacementConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
@@ -101,6 +99,18 @@ namespace FG_GP2_T3
 
             GameplayStateFlowEvents.OnEnteredTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Show;
             GameplayStateFlowEvents.OnExitedTowerFusionConfirmationSubGameplayState -= towerConfirmationPanel.Hide;
+        }
+
+        void Awake()
+        {
+            tilePlacementController = FindAnyObjectByType<TilePlacementController>();
+            towerPlacementController = FindAnyObjectByType<TowerPlacementController>();
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState += towerPlacementController.UpdateRerollButton;
+        }
+
+        void OnDestroy()
+        {
+            GameplayStateFlowEvents.OnEnteredTowerSelectionSubGameplayState -= towerPlacementController.UpdateRerollButton;
         }
 
         void Start()

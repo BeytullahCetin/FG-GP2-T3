@@ -114,8 +114,8 @@ namespace FG_GP2_T3
             for (int i = 0; i < frameRateButtonList.Count; i++)
             {
                 FrameRateButton frameRateButton = frameRateButtonList[i];
-                frameRateButton.FrameRateText.SetText(SettingsManager.Instance.SupportedFrameRates[i].ToString());
                 frameRateButton.frameRate = SettingsManager.Instance.SupportedFrameRates[i];
+                frameRateButton.FrameRateText.SetText(frameRateButton.frameRate.ToString());
 
                 frameRateButton.Button.onClick.AddListener(() =>
                 {

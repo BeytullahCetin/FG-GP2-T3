@@ -26,6 +26,7 @@ namespace FG_GP2_T3
         private MainMenuState mainMenuState;
         private GameplayState gameplayState;
         private GameOverState gameOverState;
+        private GameWinState gameWinState;
 
 
         void Awake()
@@ -35,6 +36,7 @@ namespace FG_GP2_T3
             mainMenuState = new MainMenuState(gameflowStateMachine);
             gameplayState = new GameplayState(gameflowStateMachine, tilePlacementController, towerPlacementController);
             gameOverState = new GameOverState(gameflowStateMachine);
+            gameWinState = new GameWinState(gameflowStateMachine);
         }
 
         void Start()
@@ -93,6 +95,13 @@ namespace FG_GP2_T3
         {
             isGameOver = true;
             gameflowStateMachine.ChangeState(gameOverState);
+        }
+
+        [Button]
+        public void SwitchToGameWinState()
+        {
+            isGameOver = true;
+            gameflowStateMachine.ChangeState(gameWinState);
         }
 
         [Button]

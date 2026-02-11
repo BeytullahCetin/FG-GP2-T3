@@ -17,12 +17,12 @@ namespace FG_GP2_T3
         [SerializeField] int rerollCost = 25;
 
         [SerializeField] StickyCameraMovement cam;
-        [SerializeField] TowerConfirmation towerConfirmation;
-        [SerializeField] NextWave nextWave;
+        TowerConfirmation towerConfirmation;
+        NextWave nextWave;
         [SerializeField] HexTileData towerTile;
         [Expandable][SerializeField] List<TowerData> towerDatas = new List<TowerData>();
         [SerializeField] TowerBase towerBasePrefab;
-        [SerializeField] TowerRerollButton rerollButton;
+        TowerRerollButton rerollButton;
 
         [ReadOnly][SerializeField] TowerData selectedTowerData;
         [ReadOnly][SerializeField] HexCell selectedCell;
@@ -44,6 +44,11 @@ namespace FG_GP2_T3
 
         void Awake()
         {
+            towerConfirmation = FindAnyObjectByType<TowerConfirmation>();
+            nextWave = FindAnyObjectByType<NextWave>();
+            rerollButton = FindAnyObjectByType<TowerRerollButton>();
+            towerConfirmation = FindAnyObjectByType<TowerConfirmation>();
+
             nextWave.Button.onClick.AddListener(GoToNextRound);
             rerollButton.Button.onClick.AddListener(RerollTowerSelection);
         }
@@ -445,8 +450,8 @@ namespace FG_GP2_T3
 
             rerollCount++;
             UpdateRerollButton();
-            cam.ZoomOut(null, .5f);
-            cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
+            // cam.ZoomOut(null, .5f);
+            // cam.MoveTo(EnemyManager.Instance.GetTarget().transform.position, .5f);
         }
     }
 }

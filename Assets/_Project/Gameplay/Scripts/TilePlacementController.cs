@@ -14,7 +14,7 @@ namespace FG_GP2_T3
         public List<HexCell> ValidCellsForSelectedTile => validCellsForSelectedTile;
 
         [SerializeField] StickyCameraMovement cam;
-        [SerializeField] TileRotationConfirmation tileRotationConfirmation;
+        TileRotationConfirmation tileRotationConfirmation;
 
         [ReadOnly][SerializeField] private HexTileData selectedHexTileData;
         [ReadOnly][SerializeField] private HexCell selectedCell;
@@ -29,6 +29,7 @@ namespace FG_GP2_T3
 
         void Awake()
         {
+            tileRotationConfirmation = FindAnyObjectByType<TileRotationConfirmation>();
             tileRotationConfirmation.CancelButton.onClick.AddListener(CancelPreview);
             tileRotationConfirmation.RotateButton.onClick.AddListener(RotatePreview);
             tileRotationConfirmation.ConfirmButton.onClick.AddListener(ConfirmPreview);
