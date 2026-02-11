@@ -27,7 +27,7 @@ namespace FG_GP2_T3
             ApplyFusionStat(basetower, sacrificetower);
             ApplyFusionMaterials(basetower, sacrificetower);
 
-            FusionRegistry.MarkUsed(BaseID, SacrificeID);
+            // FusionRegistry.MarkUsed(BaseID, SacrificeID);
 
             basetower.MarkFused();
             sacrificetower.MarkFused();
