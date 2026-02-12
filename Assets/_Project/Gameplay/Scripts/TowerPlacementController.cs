@@ -144,6 +144,8 @@ namespace FG_GP2_T3
 
             seq.Append(selectedCell.Tile.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
             seq.Join(previewTowerBase.transform.DOShakePosition(tilePlacementSettings.shakeDuration, tilePlacementSettings.shakeStrenght, tilePlacementSettings.shakeVibrato));
+
+            seq.AppendCallback(selectedCell.Tile.GetComponent<FoliageCulling>().ClearArea);
             seq.Play();
 
             previewTile.SetPreview(false);
