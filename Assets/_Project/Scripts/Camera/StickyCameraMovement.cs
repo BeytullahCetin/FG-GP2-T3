@@ -82,9 +82,15 @@ namespace FG_GP2_T3
             return mainCamera.DOOrthoSize(finalSize, finalDuration);
         }
 
-        public Tween MoveTo(Vector3 targetPosition, float duration)
+        public Tween MoveTo(Vector3 targetPosition, float duration, bool useTileOffset = false)
         {
-            return transform.DOMove(targetPosition, duration);
+            Vector3 finalPosition = targetPosition;
+            if (useTileOffset)
+            {
+                finalPosition += new Vector3(-3f, 0, -5f);
+            }
+            finalPosition.y = transform.position.y;
+            return transform.DOMove(finalPosition, duration);
         }
 
         void LateUpdate()

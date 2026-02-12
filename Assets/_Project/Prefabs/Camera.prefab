@@ -70,7 +70,7 @@ Camera:
   far clip plane: 500
   field of view: 60
   orthographic: 1
-  orthographic size: 40
+  orthographic size: 60
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 7602260149215462659}
 --- !u!114 &7526201983859453808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7602260149215462659}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09904577, y: -0.8923991, z: 0.23911765, w: 0.36964378}
+  m_LocalRotation: {x: 0.09904577, y: -0.89239913, z: 0.23911765, w: 0.3696438}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -220,8 +220,8 @@ MonoBehaviour:
   screenPositionAction: {fileID: 0}
   zoomInAction: {fileID: 0}
   zoomOutAction: {fileID: 0}
-  zoomOutSize: 50
-  zoomInSize: 15
+  zoomOutSize: 60
+  zoomInSize: 30
   zoomDuration: 0.2
   useCameraAnchoring: 1
   mapCenter: {x: 0, y: 0, z: 0}
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 7992355724677621930}
   min: 10
-  max: 120
-  speed: 10
+  max: 100
+  speed: 5
   mobileSpeedMultiplier: 0.05
   isEnabled: 1
 --- !u!114 &8405675235652659979

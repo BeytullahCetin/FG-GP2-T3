@@ -15,6 +15,7 @@ namespace FG_GP2_T3
         public static event Action OnTowerTilePlaced;
 
         [SerializeField] int rerollCost = 25;
+        [SerializeField] float clickDragThreshold = 10f;
 
         [SerializeField] StickyCameraMovement cam;
         TowerConfirmation towerConfirmation;
@@ -33,6 +34,7 @@ namespace FG_GP2_T3
         [ReadOnly][SerializeField] TowerBase lastSelectedTowerBase;
         [ReadOnly][SerializeField] List<HexCell> validCellsForSelectedTower = new List<HexCell>();
         [ReadOnly][SerializeField] int rerollCount = 0;
+        Vector3 mouseDownPosition;
 
         [Header("Animations")]
         [Expandable][SerializeField] TilePlacementSettings tilePlacementSettings;
@@ -350,14 +352,14 @@ namespace FG_GP2_T3
 
             StopAnimateValidCells();
             cam.ZoomIn(null, .5f);
-            cam.MoveTo(selectedCell.transform.position, .5f);
+            cam.MoveTo(selectedCell.transform.position, .5f, true);
         }
 
         public void PreviewFusionOnTower()
         {
             StopAnimateValidCells();
-            cam.ZoomIn(null, .5f);
-            cam.MoveTo(selectedCell.transform.position, .5f);
+            // cam.ZoomIn(null, .5f);
+            cam.MoveTo(selectedCell.transform.position, .5f, true);
             previousTowerBase.TowerRangePreview.ShowRange(selectedTowerData);
             UIManager.Instance.GameplayUI.TowerInfoUI.SetTowerFusionInfo(previousTowerBase.Data, selectedTowerData);
             UIManager.Instance.GameplayUI.TowerInfoUI.Show();
@@ -365,7 +367,15 @@ namespace FG_GP2_T3
 
         public void ListenSelectCellClicks()
         {
-            if (Input.GetMouseButtonDown(0) == false)
+            if (Input.GetMouseButtonDown(0))
+            {
+                mouseDownPosition = Input.mousePosition;
+            }
+
+            if (Input.GetMouseButtonUp(0) == false)
+                return;
+
+            if (Vector3.Distance(mouseDownPosition, Input.mousePosition) > clickDragThreshold)
                 return;
 
             Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -418,8 +428,8 @@ namespace FG_GP2_T3
                 }
 
                 lastSelectedTowerBase = towerBase;
-                cam.ZoomIn(null, .5f);
-                cam.MoveTo(cell.transform.position, .5f);
+                // cam.ZoomIn(null, .5f);
+                cam.MoveTo(cell.transform.position, .5f, true);
                 return;
             }
 
