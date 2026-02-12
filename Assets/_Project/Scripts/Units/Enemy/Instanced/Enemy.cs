@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using FMODUnity;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace FG_GP2_T3
@@ -14,10 +12,10 @@ namespace FG_GP2_T3
         #region Property data
         [SerializeField] private Vector2 _healthRange; private float _health;
         [SerializeField] private float _speed;
-        [SerializeField] private Vector2 _attackDamageRange;  private float _attackDamage;
+        [SerializeField] private Vector2 _attackDamageRange; private float _attackDamage;
         [SerializeField] private Vector2 _attackDelaySecondsRange; private float _attackDelaySeconds;
         [SerializeField] private float _attackRange;
-        [SerializeField] private Vector2 _compostRewardRange; private int _compostReward; 
+        [SerializeField] private Vector2 _compostRewardRange; private int _compostReward;
         [SerializeField] bool _randomizeEachAttackDamage = true;
         [SerializeField] bool _randomizeEachAttackDelay = true;
 
@@ -46,12 +44,12 @@ namespace FG_GP2_T3
 
         private bool _isDead = false;
         #endregion
-        
+
         private void Start()
         {
             _health = GetRandomInRange(_healthRange);
-            if(!_randomizeEachAttackDamage) _attackDamage = GetRandomInRange(_attackDamageRange);
-            if(!_randomizeEachAttackDelay) _attackDelaySeconds = GetRandomInRange(_attackDelaySecondsRange);   
+            if (!_randomizeEachAttackDamage) _attackDamage = GetRandomInRange(_attackDamageRange);
+            if (!_randomizeEachAttackDelay) _attackDelaySeconds = GetRandomInRange(_attackDelaySecondsRange);
             _compostReward = Mathf.RoundToInt(GetRandomInRange(_compostRewardRange));
 
             _renderer = GetComponentInChildren<Renderer>();
@@ -84,7 +82,7 @@ namespace FG_GP2_T3
         private void Update()
         {
             if (_isDead) return;
-            
+
             MoveTowardsTarget();
             UpdateEffects();
             HandleAttacking();
@@ -93,15 +91,15 @@ namespace FG_GP2_T3
         private void MoveTowardsTarget()
         {
             if (_remainingStunDuration > 0f) return;
-            if(_movementPoints.Count == 0) return;
+            if (_movementPoints.Count == 0) return;
 
             float effectiveSpeed = _speed * (1f - _activeSlowPercentage / 100f);
             transform.position = Vector3.MoveTowards(transform.position, _movementPoints[_movementPoints.Count - 1], effectiveSpeed * Time.deltaTime);
             Vector3 lookDirection = _movementPoints[_movementPoints.Count - 1] - transform.position;
-            if(lookDirection != Vector3.zero)
+            if (lookDirection != Vector3.zero)
                 transform.rotation = Quaternion.LookRotation(lookDirection);
 
-            if(transform.position == _movementPoints[_movementPoints.Count - 1])
+            if (transform.position == _movementPoints[_movementPoints.Count - 1])
                 _movementPoints.RemoveAt(_movementPoints.Count - 1);
         }
 
@@ -153,7 +151,7 @@ namespace FG_GP2_T3
 
                 _timeSinceLastAttack = 0f;
 
-                if(_randomizeEachAttackDelay)
+                if (_randomizeEachAttackDelay)
                     _attackDelaySeconds = GetRandomInRange(_attackDelaySecondsRange);
             }
         }
@@ -203,7 +201,7 @@ namespace FG_GP2_T3
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             _speed = 0f;
             Debug.Log("Die");
-            _controller.SetTrigger("Die"); 
+            _controller.SetTrigger("Die");
         }
 
         private void HandleAnimationEnded()
@@ -215,7 +213,7 @@ namespace FG_GP2_T3
 
         private IEnumerator FlashRedCoroutine()
         {
-            if (_renderer == null)yield break;
+            if (_renderer == null) yield break;
 
             _renderer.material.color = Color.red;
 
@@ -230,7 +228,7 @@ namespace FG_GP2_T3
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.layer != GameConstants.Layers.POE)
+            if (other.gameObject.layer != GameConstants.Layers.POE)
                 return;
 
             _speed = 0f;
