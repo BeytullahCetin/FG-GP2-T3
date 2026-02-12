@@ -70,7 +70,7 @@ namespace FG_GP2_T3
                     }
                     else if(args.Tower.Data.DotDamagePerSecond > 0f)
                     {  
-                        ParticleSystem vfx = SpawnVFX(_towerDOTAOEPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
+                        ParticleSystem vfx = SpawnVFX(_towerDOTAOEPrefab, args.Tower.transform.position + Vector3.up * 2f, true, args.Tower.transform);
                         vfx.gameObject.SetActive(false);
                         _dotTowerVFXs.Add((args.Tower, vfx));
                     }
