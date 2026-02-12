@@ -44,7 +44,7 @@ MonoBehaviour:
   DamageString: LOW
   FireRateString: MEDIUM
   AttackTypeString: PROJECTILE
-  RotationOffset: {x: 0, y: -90}
+  RotationOffset: {x: 0, y: -25}
   ProjectilePrefab: {fileID: 2595672995752767437, guid: 44d433f45af59094691c5cf262c9bd7a, type: 3}
   towerMaterial: {fileID: 0}
   CompostCost: 0
