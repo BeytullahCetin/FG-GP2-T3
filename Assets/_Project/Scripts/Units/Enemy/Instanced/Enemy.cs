@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FMODUnity;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace FG_GP2_T3
 {
     public class Enemy : MonoBehaviour, IDamageable
     {
+        [SerializeField] private Animator _controller;
+
         #region Property data
         [SerializeField] private Vector2 _healthRange; private float _health;
         [SerializeField] private float _speed;
@@ -53,6 +56,12 @@ namespace FG_GP2_T3
 
             _renderer = GetComponentInChildren<Renderer>();
             if (_renderer != null) _originalColor = _renderer.material.color;
+
+            AnimationReporter reporter = _controller.GetBehaviour<AnimationReporter>();
+            if (reporter != null)
+            {
+                reporter.OnAnimationEnded += HandleAnimationEnded;
+            }
         }
 
         public void Initialize(List<Vector3> path)
@@ -74,6 +83,8 @@ namespace FG_GP2_T3
 
         private void Update()
         {
+            if (_isDead) return;
+            
             MoveTowardsTarget();
             UpdateEffects();
             HandleAttacking();
@@ -173,17 +184,33 @@ namespace FG_GP2_T3
 
             if (_health <= 0f)
             {
-                _isDead = true;
-                EnemyManager.Instance.UnregisterEnemy();
-                _deathSoundEmitter?.Play();
-                EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Death));
-                CompostManager.Instance.AddCompost(_compostReward);
-                Destroy(gameObject);
+                Die();
                 return;
             }
 
             EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Damaged));
             //StartCoroutine(FlashRedCoroutine());
+        }
+
+        private void Die()
+        {
+            _isDead = true;
+
+            _deathSoundEmitter?.Play();
+            CompostManager.Instance.AddCompost(_compostReward);
+
+            gameObject.tag = "Untagged";
+            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            _speed = 0f;
+            Debug.Log("Die");
+            _controller.SetTrigger("Die"); 
+        }
+
+        private void HandleAnimationEnded()
+        {
+            EnemyManager.Instance.UnregisterEnemy();
+            EventManager.Invoke(new OnEnemyActionEvent(this, EnemyEventType.Death));
+            Destroy(gameObject);
         }
 
         private IEnumerator FlashRedCoroutine()
@@ -207,6 +234,8 @@ namespace FG_GP2_T3
                 return;
 
             _speed = 0f;
+            Debug.Log("Attack");
+            _controller.SetTrigger("Attack");
             _attackRange = 666f; //Just a big number
         }
     }

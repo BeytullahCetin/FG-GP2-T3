@@ -40,7 +40,7 @@ namespace FG_GP2_T3
 				return;
 			}
 
-			StartCoroutine(FlashRedCoroutine());
+			//StartCoroutine(FlashRedCoroutine());
 		}
 
 		private IEnumerator FlashRedCoroutine()
