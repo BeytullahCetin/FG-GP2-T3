@@ -247,7 +247,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bc5aa7426f566042a964f2327e53a25, type: 2}
+  - {fileID: 2100000, guid: 06940235c906a3149aa37f2b318215b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -627,7 +627,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bc5aa7426f566042a964f2327e53a25, type: 2}
+  - {fileID: 2100000, guid: 06940235c906a3149aa37f2b318215b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -979,7 +979,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1730268162154407598}
@@ -1153,7 +1153,7 @@ GameObject:
   - component: {fileID: 1194305933884659706}
   - component: {fileID: -3663326763138181090}
   m_Layer: 6
-  m_Name: MegaEnemy
+  m_Name: BigBossEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1189,12 +1189,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 1381069872934971047}
-  _healthRange: {x: 200, y: 200}
-  _speed: 3
+  _healthRange: {x: 1000, y: 1000}
+  _speed: 2
   _attackDamageRange: {x: 3, y: 5}
   _attackDelaySecondsRange: {x: 1, y: 1}
   _attackRange: 3
-  _compostRewardRange: {x: 0, y: 0}
+  _compostRewardRange: {x: 25, y: 25}
   _randomizeEachAttackDamage: 0
   _randomizeEachAttackDelay: 0
   _attackSoundEmitter: {fileID: 3188171940915868958}
