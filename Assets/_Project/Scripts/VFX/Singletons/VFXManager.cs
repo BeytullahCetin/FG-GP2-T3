@@ -32,7 +32,7 @@ namespace FG_GP2_T3
             }
             Instance = this;
 
-            GameObject _root = new GameObject("--- VFX_POOL_ROOT ---");
+            GameObject _root = new GameObject("VFX Pool");
             _root.transform.SetParent(transform);
             _factory = new ComponentFactory(_root.transform);
         }
@@ -54,7 +54,7 @@ namespace FG_GP2_T3
         private void OnCellEvent(OnCellEvent args)
         {
             if (args.EventType == CellEventType.Place)
-                SpawnVFX(_tilePlacedPrefab, args.Cell.transform.position + Vector3.up * 0.1f, args.Cell.transform);
+                SpawnVFX(_tilePlacedPrefab, args.Cell.transform.position + Vector3.up * 0.1f, parent: args.Cell.transform);
         }
 
         private void OnTowerEvent(OnTowerEvent args)
@@ -74,7 +74,7 @@ namespace FG_GP2_T3
                         vfx.gameObject.SetActive(false);
                         _dotTowerVFXs.Add((args.Tower, vfx));
                     }
-                    SpawnVFX(_tilePlacedPrefab, args.Cell.transform.position + Vector3.up * 0.1f, args.Cell.transform);
+                    SpawnVFX(_tilePlacedPrefab, args.Cell.transform.position + Vector3.up * 0.1f, parent: args.Cell.transform);
                     return;
                 case TowerEventType.Fuse:
                     SpawnVFX(_towerFusedPrefab, args.Tower.transform.position + Vector3.up * 0.1f, true, args.Tower.transform);
@@ -112,10 +112,10 @@ namespace FG_GP2_T3
             switch(args.EventType)
             {
                 case EnemyEventType.Spawn:
-                    SpawnVFX(_enemySpawnPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, args.Enemy.transform);
+                    SpawnVFX(_enemySpawnPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, parent: args.Enemy.transform);
                     return;
                 case EnemyEventType.Damaged:
-                    SpawnVFX(_enemyDamagedPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, args.Enemy.transform);
+                    SpawnVFX(_enemyDamagedPrefab, args.Enemy.transform.position + Vector3.up * 0.1f, parent: args.Enemy.transform);
                     return;
                 case EnemyEventType.Death:
                     SpawnVFX(_enemyDeathPrefab, args.Enemy.transform.position + Vector3.up * 0.1f);
@@ -136,8 +136,10 @@ namespace FG_GP2_T3
         {
             if (prefab == null) return null;
 
-            Transform instance = _factory.Spawn(prefab.transform, position, prefab.transform.rotation, parent);
+            GameObject instance = _factory.Spawn(prefab, position, prefab.transform.rotation, parent);
             
+            if (instance == null) return null;
+
             ParticleSystem rootPS = instance.GetComponent<ParticleSystem>();
             
             if (rootPS == null)
@@ -150,20 +152,21 @@ namespace FG_GP2_T3
                 bool _isLooping = rootPS.main.loop;
                 
                 if (!loop && !_isLooping)
-                    StartCoroutine(WaitForVFXEnd(prefab.transform, instance, rootPS));
+                    StartCoroutine(WaitForVFXEnd(prefab, instance, rootPS));
             }
 
             return rootPS;
         }
 
-        private System.Collections.IEnumerator WaitForVFXEnd(Transform prefab, Transform instance, ParticleSystem rootPS)
+        private System.Collections.IEnumerator WaitForVFXEnd(GameObject prefab, GameObject instance, ParticleSystem rootPS)
         {
             yield return new WaitForSeconds(0.5f);
 
             while (rootPS != null && rootPS.IsAlive(true))
                 yield return new WaitForSeconds(0.5f);
 
-            _factory.Despawn(prefab, instance);
+            if (instance != null)
+                _factory.Despawn(prefab, instance);
         }
     }
 }

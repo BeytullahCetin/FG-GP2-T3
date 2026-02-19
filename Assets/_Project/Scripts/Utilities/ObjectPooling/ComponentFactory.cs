@@ -5,7 +5,7 @@ namespace FG_GP2_T3
 {
     public class ComponentFactory
     {
-        private readonly Dictionary<Component, object> _pools = new();
+        private Dictionary<int, object> _pools = new();
         private Transform _mainPoolRoot;
 
         public ComponentFactory(Transform _root)
@@ -13,36 +13,44 @@ namespace FG_GP2_T3
             _mainPoolRoot = _root;
         }
 
-        public T Spawn<T>(T _prefab, Vector3 _position, Quaternion _rotation, Transform _parent = null) where T : Component
+        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
         {
-            if (!_pools.TryGetValue(_prefab, out object _poolValue))
+            if (prefab == null) return null;
+
+            int key = prefab.GetInstanceID();
+
+            if (!_pools.TryGetValue(key, out object poolValue))
             {
-                GameObject _poolParent = new GameObject($"{_prefab.name}_Pool");
-                _poolParent.transform.SetParent(_mainPoolRoot);
+                GameObject poolParent = new GameObject($"{prefab.name}_Pool");
+                poolParent.transform.SetParent(_mainPoolRoot);
                 
-                _poolValue = new ObjectPool<T>(_prefab, 5, _poolParent.transform);
-                _pools.Add(_prefab, _poolValue);
+                poolValue = new ObjectPool<GameObject>(prefab, 5, poolParent.transform);
+                _pools.Add(key, poolValue);
             }
 
-            ObjectPool<T> _pool = (ObjectPool<T>)_poolValue;
-            T _spawned = _pool.Get();
+            ObjectPool<GameObject> pool = (ObjectPool<GameObject>)poolValue;
+            GameObject spawned = pool.Get();
             
-            _spawned.transform.SetParent(_parent);
-            _spawned.transform.SetPositionAndRotation(_position, _rotation);
+            spawned.transform.SetParent(parent);
+            spawned.transform.SetPositionAndRotation(position, rotation);
             
-            return _spawned;
+            return spawned;
         }
 
-        public void Despawn<T>(T _prefab, T _instance) where T : Component
+        public void Despawn(GameObject prefab, GameObject instance)
         {
-            if (_pools.TryGetValue(_prefab, out object _poolValue))
+            if (prefab == null || instance == null)
+                return;
+
+            int key = prefab.GetInstanceID();
+
+            if (_pools.TryGetValue(key, out object poolValue))
             {
-                ((ObjectPool<T>)_poolValue).ReturnToPool(_instance);
+                ((ObjectPool<GameObject>)poolValue).ReturnToPool(instance);
+                return;
             }
-            else
-            {
-                Object.Destroy(_instance.gameObject);
-            }
+
+            Object.Destroy(instance);
         }
     }
 }

@@ -200,7 +200,6 @@ namespace FG_GP2_T3
             gameObject.tag = "Untagged";
             gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             _speed = 0f;
-            Debug.Log("Die");
             _controller.SetTrigger("Die");
         }
 
@@ -232,7 +231,6 @@ namespace FG_GP2_T3
                 return;
 
             _speed = 0f;
-            Debug.Log("Attack");
             _controller.SetTrigger("Attack");
             _attackRange = 666f; //Just a big number
         }

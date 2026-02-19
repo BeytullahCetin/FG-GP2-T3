@@ -4934,7 +4934,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -19574,7 +19574,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -29305,6 +29305,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3484585828998069365, guid: 622a0ad89286d2c46a5d31a29496bf00, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5839904863776936677, guid: 622a0ad89286d2c46a5d31a29496bf00, type: 3}
+      propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5839904863776936677, guid: 622a0ad89286d2c46a5d31a29496bf00, type: 3}
