@@ -104,6 +104,7 @@ namespace FG_GP2_T3
             UIEventType eventType = args.EventType;
             EventLog("OnUITowerEvent: " + eventType);
 
+            return;
             switch (eventType)
             {
                 case UIEventType.Open:
